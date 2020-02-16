@@ -7,8 +7,16 @@ Authors@R:
              family = "Collier",
              role = c("aut", "cre"),
              email = "andrew@exegetic.biz"))
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Description: Retrieve data from Retail Pricing API.
+URL: https://github.com/datawookie/retail/
+BugReports: https://github.com/datawookie/retail/issues/
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
+Imports:
+    httr,
+    jsonlite
+Suggests:
+    testthat (>= 2.1.0),
+    roxygen2
+RoxygenNote: 7.0.2
