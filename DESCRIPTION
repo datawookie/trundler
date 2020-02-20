@@ -18,5 +18,6 @@ Imports:
     jsonlite
 Suggests:
     hexSticker,
-    showtext
+    showtext,
+    testthat (>= 2.1.0)
 RoxygenNote: 7.0.2

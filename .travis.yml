@@ -1,0 +1,18 @@
+language: R
+sudo: false
+cache: packages
+warnings_are_errors: false
+latex: false
+r_packages:
+- covr
+after_success:
+- Rscript -e 'library(covr); codecov()'
+notifications:
+  email:
+    recipients:
+    - andrew@exegetic.biz
+    on_success: change
+    on_failure: change
+env:
+  global:
+    secure: O5JdtLYc/dhRvUHtk4vf/eKCPk+9D200oML98+i/gkjK6/gR7qbrFZW7YbIB56s0I7FHGeYk06zu7cMi9swZmcyeQ9Q30hE1oIsAh176Bq/aKqQe3nF9cG1vcaPCsvyr/amnAhFr4fUTWMTSALrAEFUBXV5+lqu9O8ZW3COkuDEeQ8C3QYsbWYoyHxijnp1QN/O9Tbag51Sxzc+J74uuarXSTPgM0qcAbcvIKxgZI5mQFPl6CD64NxUf/DeHQwkMQfK6rV8VCAzKY77nLwNbQpjoMWQpZJIuC48tOwHpNJJoShSS1wRc3s6IyiLQ2mI0DBSkr7Q1INjqz2+lMaNkDX3KMa12PbxFkEQiH0wMUW3nGcREYZfc3eyd4j9cqruUjlE7mj1/XP4JAUCU0UZnox/hxJ8skl7QibtSrtHXZpchPTNHVWFVaKaftMVGZoS+yWIekomJkpSn3W7P6qwWAbKzxYinPeY2xQ+/0bgmY7pkwX/wiOnPneBhB5+wnMo6q1t3INa3ye727pBQwowp7e34piYXdPEy1dStExz9OH5sQRPyZi/PI5bMY8DZozP+6LFN2OsTuHdPlMo58h4WUTNfol89gig6KHm4Z5HFlCMcWMt5iJ7TdjzsY6VviRqOFtSojKPwLemlFSeTnDMzs1LYF72sPmz6DzRIWLujhA0=
