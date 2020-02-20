@@ -3,10 +3,12 @@ sudo: false
 cache: packages
 warnings_are_errors: false
 latex: false
+before_install:
+  - sudo apt-get -y install libmagick++-dev
 r_packages:
-- covr
+  - covr
 after_success:
-- Rscript -e 'library(covr); codecov()'
+  - Rscript -e 'library(covr); codecov()'
 notifications:
   email:
     recipients:
