@@ -17,6 +17,6 @@ Imports:
     httr,
     jsonlite
 Suggests:
-    testthat (>= 2.1.0),
-    roxygen2
+    hexSticker,
+    showtext
 RoxygenNote: 7.0.2
