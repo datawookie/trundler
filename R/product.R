@@ -10,7 +10,12 @@ product <- function(product_id) {
   url <- paste0(BASE_URL, "product/%d/") %>%
     sprintf(product_id)
 
-  result <- GET(url, UA, add_headers("X-Api-Key" = get_api_key())) %>%
+  response <- GET(url, UA, add_headers("X-Api-Key" = get_api_key()))
+
+  check_response_error(response)
+  check_response_json(response)
+
+  result <- response %>%
     content(as = "text", encoding = "UTF-8") %>%
     fromJSON()
 
@@ -33,7 +38,12 @@ product_prices <- function(product_id) {
   url <- paste0(BASE_URL, "product/%d/prices/") %>%
     sprintf(product_id)
 
-  result <- GET(url, UA, add_headers("X-Api-Key" = get_api_key())) %>%
+  response <- GET(url, UA, add_headers("X-Api-Key" = get_api_key()))
+
+  check_response_error(response)
+  check_response_json(response)
+
+  result <- response %>%
     content(as = "text", encoding = "UTF-8") %>%
     fromJSON()
 
