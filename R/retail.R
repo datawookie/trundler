@@ -8,11 +8,10 @@ UA <- user_agent("Retail R Package")
 #' @import tibble
 cache <- new.env()
 
-#' Title
+#' Set API key
 #'
-#' @param api_key
+#' @param api_key API key.
 #'
-#' @return
 #' @export
 #'
 #' @examples
@@ -20,9 +19,9 @@ set_api_key <- function(api_key) {
   assign("api_key", api_key, envir = cache)
 }
 
-#' Title
+#' Retrieve API key
 #'
-#' @return
+#' @return API key.
 #' @export
 #'
 #' @examples

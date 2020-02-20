@@ -2,16 +2,16 @@
 % Please edit documentation in R/product.R
 \name{product_prices}
 \alias{product_prices}
-\title{Title}
+\title{Price history for a specific product}
 \usage{
 product_prices(product_id)
 }
 \arguments{
-\item{product_id}{}
+\item{product_id}{A product ID.}
 }
 \value{
-
+Price history as a \code{data.frame}.
 }
 \description{
-Title
+Price history for a specific product
 }

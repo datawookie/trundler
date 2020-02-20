@@ -2,13 +2,16 @@
 % Please edit documentation in R/product.R
 \name{product}
 \alias{product}
-\title{Title}
+\title{Details for a specific product}
 \usage{
 product(product_id)
 }
+\arguments{
+\item{product_id}{A product ID.}
+}
 \value{
-
+Product details as a \code{data.frame}.
 }
 \description{
-Title
+Details for a specific product
 }

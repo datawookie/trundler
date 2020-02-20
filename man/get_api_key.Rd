@@ -2,13 +2,13 @@
 % Please edit documentation in R/retail.R
 \name{get_api_key}
 \alias{get_api_key}
-\title{Title}
+\title{Retrieve API key}
 \usage{
 get_api_key()
 }
 \value{
-
+API key.
 }
 \description{
-Title
+Retrieve API key
 }

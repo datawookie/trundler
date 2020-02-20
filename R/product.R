@@ -1,6 +1,8 @@
-#' Title
+#' Details for a specific product
 #'
-#' @return
+#' @param product_id A product ID.
+#'
+#' @return Product details as a \code{data.frame}.
 #' @export
 #'
 #' @examples
@@ -19,11 +21,11 @@ product <- function(product_id) {
     as_tibble()
 }
 
-#' Title
+#' Price history for a specific product
 #'
-#' @param product_id
+#' @param product_id A product ID.
 #'
-#' @return
+#' @return Price history as a \code{data.frame}.
 #' @export
 #'
 #' @examples

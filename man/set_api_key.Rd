@@ -2,16 +2,13 @@
 % Please edit documentation in R/retail.R
 \name{set_api_key}
 \alias{set_api_key}
-\title{Title}
+\title{Set API key}
 \usage{
 set_api_key(api_key)
 }
 \arguments{
-\item{api_key}{}
-}
-\value{
-
+\item{api_key}{API key.}
 }
 \description{
-Title
+Set API key
 }

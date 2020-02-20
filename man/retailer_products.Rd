@@ -2,16 +2,16 @@
 % Please edit documentation in R/retailer.R
 \name{retailer_products}
 \alias{retailer_products}
-\title{Title}
+\title{Products for a specific retailer}
 \usage{
 retailer_products(retailer_id)
 }
 \arguments{
-\item{retailer_id}{}
+\item{retailer_id}{A retailer ID.}
 }
 \value{
-
+Details of all products for a specific retailer as a \code{data.frame}.
 }
 \description{
-Title
+Products for a specific retailer
 }

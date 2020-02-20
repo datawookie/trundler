@@ -1,6 +1,8 @@
-#' Title
+#' Details of a retailer
 #'
-#' @return
+#' @param retailer_id A retailer ID.
+#'
+#' @return Details of either all retailers or a specific retailer as a \code{data.frame}.
 #' @export
 #'
 #' @examples
@@ -22,11 +24,11 @@ retailer <- function(retailer_id = NA) {
     as_tibble()
 }
 
-#' Title
+#' Products for a specific retailer
 #'
-#' @param retailer_id
+#' @param retailer_id A retailer ID.
 #'
-#' @return
+#' @return Details of all products for a specific retailer as a \code{data.frame}.
 #' @export
 #'
 #' @examples
