@@ -26,5 +26,10 @@ set_api_key <- function(api_key) {
 #'
 #' @examples
 get_api_key <- function() {
-  get("api_key", envir = cache)
+  tryCatch(
+    get("api_key", envir = cache),
+    error = function(e) {
+      stop("Use set_api_key() to specify an API key.", call. = FALSE)
+    }
+  )
 }
