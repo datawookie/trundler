@@ -2,6 +2,10 @@
 output: github_document
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment=NA)
+```
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # retail <img src="man/figures/retail-hex.png" align="right" alt="" width="120" />
@@ -9,3 +13,42 @@ output: github_document
 [![Travis-CI build status](https://travis-ci.org/datawookie/retail.svg?branch=master)](https://travis-ci.org/datawookie/retail)
 [![Codecov test coverage](https://img.shields.io/codecov/c/github/datawookie/retail.svg)](https://codecov.io/github/datawookie/retail)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+
+```{r}
+library(retail)
+```
+
+## Set API Key
+
+To access the full API you'll need to first specify an API key.
+
+```{r eval=FALSE}
+set_api_key("8f9f6c4e-5dd6-4bff-352c-592b35cf2437")
+```
+
+```{r include=FALSE}
+set_api_key(Sys.getenv("RETAIL_KEY"))
+get_api_key()
+```
+
+To obtain a key, please get in touch. Contact details are in `DESCRIPTION`.
+
+## Retailers
+
+Use `retailers()` to get a list of retailers.
+
+```{r}
+retailer()
+```
+
+Or you can acccess the details for a specific retailer.
+
+```{r}
+retailer(2)
+```
+
+## Products
+
+```{r}
+retailer_products(2)
+```

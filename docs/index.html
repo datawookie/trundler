@@ -71,6 +71,40 @@
 <a href="#retail" class="anchor"></a>retail <img src="reference/figures/retail-hex.png" align="right" alt="" width="120">
 </h1></div>
 
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(retail)</a></code></pre></div>
+<div id="set-api-key" class="section level2">
+<h2 class="hasAnchor">
+<a href="#set-api-key" class="anchor"></a>Set API Key</h2>
+<p>To access the full API you’ll need to first specify an API key.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="reference/set_api_key.html">set_api_key</a></span>(<span class="st">"8f9f6c4e-5dd6-4bff-352c-592b35cf2437"</span>)</a></code></pre></div>
+<p>To obtain a key, please get in touch. Contact details are in <code>DESCRIPTION</code>.</p>
+</div>
+<div id="retailers" class="section level2">
+<h2 class="hasAnchor">
+<a href="#retailers" class="anchor"></a>Retailers</h2>
+<p>Use <code>retailers()</code> to get a list of retailers.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="reference/retailer.html">retailer</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># A tibble: 63 x 4</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">      id name             url                              currency</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">   <span class="op">&lt;</span>int<span class="op">&gt;</span><span class="st"> </span><span class="er">&lt;</span>chr<span class="op">&gt;</span><span class="st">            </span><span class="er">&lt;</span>chr<span class="op">&gt;</span><span class="st">                            </span><span class="er">&lt;</span>chr<span class="op">&gt;</span><span class="st">   </span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="st"> </span><span class="dv">1</span>     <span class="dv">1</span> EEM Technologies https<span class="op">:</span><span class="er">//</span>www.eemtechnologies.com<span class="op">/</span><span class="st"> </span>USD     </a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"> <span class="dv">2</span>     <span class="dv">2</span> Clicks           https<span class="op">:</span><span class="er">//</span>clicks.co.za<span class="op">/</span><span class="st">            </span>ZAR     </a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"> <span class="dv">3</span>     <span class="dv">3</span> Dischem          https<span class="op">:</span><span class="er">//</span>www.dischem.co.za<span class="op">/</span><span class="st">       </span>ZAR     </a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"> <span class="dv">4</span>     <span class="dv">4</span> Game             https<span class="op">:</span><span class="er">//</span>www.game.co.za<span class="op">/</span><span class="st">          </span>ZAR     </a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"> <span class="dv">5</span>     <span class="dv">5</span> Woolworths       https<span class="op">:</span><span class="er">//</span>www.woolworths.co.za<span class="op">/</span><span class="st">    </span>ZAR     </a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"> <span class="dv">6</span>     <span class="dv">6</span> Fortnum <span class="op">&amp;</span><span class="st"> </span>Mason  https<span class="op">:</span><span class="er">//</span>www.fortnumandmason.com<span class="op">/</span><span class="st"> </span>GBP     </a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"> <span class="dv">7</span>     <span class="dv">7</span> John Lewis       https<span class="op">:</span><span class="er">//</span>www.johnlewis.com<span class="op">/</span><span class="st">       </span>GBP     </a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"> <span class="dv">8</span>     <span class="dv">8</span> Marks <span class="op">&amp;</span><span class="st"> </span>Spencer  https<span class="op">:</span><span class="er">//</span>www.marksandspencer.com<span class="op">/</span><span class="st"> </span>GBP     </a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"> <span class="dv">9</span>     <span class="dv">9</span> Pick <span class="st">'n Pay      https://www.pnp.co.za/           ZAR     </span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="st">10    10 Makro            https://www.makro.co.za/         ZAR     </span></a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="st"># … with 53 more rows</span></a></code></pre></div>
+<p>Or you can acccess the details for a specific retailer.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="reference/retailer.html">retailer</a></span>(<span class="dv">2</span>)</a></code></pre></div>
+<pre><code># A tibble: 1 x 4
+     id name   url                   currency
+  &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;                 &lt;chr&gt;   
+1     2 Clicks https://clicks.co.za/ ZAR     </code></pre>
+</div>
 </div>
   </div>
 
