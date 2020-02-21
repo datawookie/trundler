@@ -2,3 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
+retail.Rcheck/
+retail*.tar.gz
+retail*.tgz

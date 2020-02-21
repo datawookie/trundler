@@ -5,3 +5,6 @@ _pkgdown.yml
 docs
 test.R
 .travis.yml
+^retail\.Rcheck$
+^retail.*\.tar\.gz$
+^retail.*\.tgz$
