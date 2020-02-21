@@ -35,7 +35,7 @@ To obtain a key, please get in touch. Contact details are in `DESCRIPTION`.
 
 ## Retailers
 
-Use `retailers()` to get a list of retailers.
+Use `retailer()` to get a list of retailers.
 
 ```{r}
 retailer()
@@ -44,11 +44,11 @@ retailer()
 Or you can acccess the details for a specific retailer.
 
 ```{r}
-retailer(2)
+retailer(56)
 ```
 
 ## Products
 
 ```{r}
-retailer_products(2)
+retailer_products(56)
 ```
