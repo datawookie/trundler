@@ -36,7 +36,7 @@ retailer <- function(retailer_id = NA) {
 #'
 #' @examples
 retailer_products <- function(retailer_id) {
-  url <- paste0(BASE_URL, "retailer/%d/products/") %>%
+  url <- paste0(BASE_URL, "retailer/%d/product/") %>%
     sprintf(retailer_id)
 
   response <- GET(url, UA, add_headers("X-Api-Key" = get_api_key()))

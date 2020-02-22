@@ -35,7 +35,7 @@ product <- function(product_id) {
 #'
 #' @examples
 product_prices <- function(product_id) {
-  url <- paste0(BASE_URL, "product/%d/prices/") %>%
+  url <- paste0(BASE_URL, "product/%d/price/") %>%
     sprintf(product_id)
 
   response <- GET(url, UA, add_headers("X-Api-Key" = get_api_key()))
