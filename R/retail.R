@@ -1,4 +1,5 @@
-BASE_URL <- "http://3.91.58.113:8080/"
+# BASE_URL <- "http://3.91.58.113:8080/"
+BASE_URL <- "http://0.0.0.0:8080/"
 
 UA <- user_agent("Retail R Package")
 

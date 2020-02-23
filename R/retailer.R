@@ -36,16 +36,7 @@ retailer <- function(retailer_id = NA) {
 #'
 #' @examples
 retailer_products <- function(retailer_id) {
-  url <- paste0(BASE_URL, "retailer/%d/product/") %>%
-    sprintf(retailer_id)
-
-  response <- GET(url, UA, add_headers("X-Api-Key" = get_api_key()))
-
-  check_response_error(response)
-  check_response_json(response)
-
-  response %>%
-    content(as = "text", encoding = "UTF-8") %>%
-    fromJSON() %>%
-    as_tibble()
+  paste0(BASE_URL, "retailer/%d/product/") %>%
+    sprintf(retailer_id) %>%
+    paginate()
 }

@@ -1,12 +1,17 @@
 library(retail)
 
-retailer()
+API_KEY = "5bed3ac9-6dc9-4926-aed8-8c97a7cb8057"
+# API_KEY = Sys.getenv("RETAIL_KEY")
 
-set_api_key(Sys.getenv("RETAIL_KEY"))
-get_api_key()
+# retailer()
 
-retailer(1)
+set_api_key(API_KEY)
+# get_api_key()
+
+# retailer(1)
 
 retailer_products(1)
-product(11825)
-product_prices(11825)
+retailer_products(42)
+# product(11825)
+# product_prices(11825)
+product_prices(18355)
