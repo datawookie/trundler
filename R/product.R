@@ -7,7 +7,7 @@
 #'
 #' @examples
 product <- function(product_id) {
-  url <- paste0(BASE_URL, "product/%d/") %>%
+  url <- paste0(BASE_URL, "product/%d") %>%
     sprintf(product_id)
 
   response <- GET(url, UA, add_headers("X-Api-Key" = get_api_key()))
@@ -35,7 +35,7 @@ product <- function(product_id) {
 #'
 #' @examples
 product_prices <- function(product_id) {
-  paste0(BASE_URL, "product/%d/price/") %>%
+  paste0(BASE_URL, "product/%d/price") %>%
     sprintf(product_id) %>%
     paginate()
 }
