@@ -7,6 +7,7 @@
 #'   any results.
 #' - Move the JSON processing outside of the loop. Just accumulate all of the JSON into a single document. Evaluate
 #'   whether this is an improvement!
+#' - Use HEAD to find expected number of results.
 #' - Could avoid final API query by checking if the number of results returned was less than limit.
 #'
 #' @param url API endpoint
@@ -19,6 +20,8 @@ paginate <- function(url, limit = 1000, verbose = TRUE) {
   offset = 0
   results <- list()
 
+  print(url)
+
   while(TRUE) {
     response <- GET(
       sprintf("%s?limit=%d&offset=%d", url, limit, offset),
@@ -26,14 +29,16 @@ paginate <- function(url, limit = 1000, verbose = TRUE) {
       add_headers("X-Api-Key" = get_api_key())
     )
 
+    # Check for "204 NO CONTENT".
+    #
+    if (response$status_code == 204) break
+
     check_response_error(response)
     check_response_json(response)
 
     result <- response %>%
       content(as = "text", encoding = "UTF-8") %>%
       fromJSON()
-
-    if (!length(result)) break
 
     if (verbose) {
       message(sprintf("Retrieved %d results.", nrow(result)))

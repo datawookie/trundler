@@ -23,5 +23,6 @@ Ideas for improvement:
   any results.
 - Move the JSON processing outside of the loop. Just accumulate all of the JSON into a single document. Evaluate
   whether this is an improvement!
+- Use HEAD to find expected number of results.
 - Could avoid final API query by checking if the number of results returned was less than limit.
 }
