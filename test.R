@@ -1,5 +1,7 @@
 library(retail)
 
+set_api_server("0.0.0.0", 8080)
+
 API_KEY = "5bed3ac9-6dc9-4926-aed8-8c97a7cb8057"
 # API_KEY = Sys.getenv("RETAIL_KEY")
 

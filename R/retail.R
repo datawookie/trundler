@@ -1,5 +1,4 @@
-# BASE_URL <- "http://3.91.58.113:8080/"
-BASE_URL <- "http://0.0.0.0:8080/"
+BASE_URL <- "http://3.91.58.113:8080/"
 
 UA <- user_agent("Retail R Package")
 
@@ -8,6 +7,21 @@ UA <- user_agent("Retail R Package")
 #' @import jsonlite
 #' @import tibble
 cache <- new.env()
+
+#' Set IP and port for API server
+#'
+#' @param ip IP address
+#' @param port Port
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' # Use local server
+#' set_api_server("0.0.0.0", 8080)
+set_api_server <- function(ip, port) {
+  BASE_URL <<- sprintf("http://%s:%d/", ip, port)
+}
 
 #' Set API key
 #'
