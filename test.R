@@ -9,11 +9,11 @@ retailer()
 set_api_key(API_KEY)
 get_api_key()
 
-retailer_products(1)
-product(546082)
+retailer_products(9)
+product(546082) %>% select(-retailer_id, -url)
 product_prices(546082)
-product(531589)
-product_prices(531589)
+product(531589) %>% select(-retailer_id, -brand, -url)
+product_prices(531589) %>% select(-available)
 
 # DEV ---------------------------------------------------------------------------------------------
 
