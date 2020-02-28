@@ -8,11 +8,11 @@
 #' @examples
 retailer <- function(retailer_id = NA) {
   if (is.na(retailer_id)) {
-    url <- paste0(BASE_URL, "retailer")
+    url <- paste0(base_url(), "retailer")
 
     response <- GET(url, UA)
   } else {
-    url <- paste0(BASE_URL, "retailer/%d") %>%
+    url <- paste0(base_url(), "retailer/%d") %>%
       sprintf(retailer_id)
 
     response <- GET(url, UA, add_headers("X-Api-Key" = get_api_key()))
@@ -36,7 +36,7 @@ retailer <- function(retailer_id = NA) {
 #'
 #' @examples
 retailer_products <- function(retailer_id) {
-  paste0(BASE_URL, "retailer/%d/product") %>%
+  paste0(base_url(), "retailer/%d/product") %>%
     sprintf(retailer_id) %>%
     paginate()
 }

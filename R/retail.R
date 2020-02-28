@@ -8,6 +8,8 @@ UA <- user_agent("Retail R Package")
 #' @import tibble
 cache <- new.env()
 
+assign("base_url", BASE_URL, envir = cache)
+
 #' Set IP and port for API server
 #'
 #' @param ip IP address
@@ -20,7 +22,11 @@ cache <- new.env()
 #' # Use local server
 #' set_api_server("0.0.0.0", 8080)
 set_api_server <- function(ip, port) {
-  BASE_URL <<- sprintf("http://%s:%d/", ip, port)
+  assign("base_url", sprintf("http://%s:%d/", ip, port), envir = cache)
+}
+
+base_url <- function() {
+  get("base_url", envir = cache)
 }
 
 #' Set API key

@@ -20,8 +20,6 @@ paginate <- function(url, limit = 1000, verbose = TRUE) {
   offset = 0
   results <- list()
 
-  print(url)
-
   while(TRUE) {
     response <- GET(
       sprintf("%s?limit=%d&offset=%d", url, limit, offset),

@@ -7,7 +7,7 @@
 #'
 #' @examples
 product <- function(product_id) {
-  url <- paste0(BASE_URL, "product/%d") %>%
+  url <- paste0(base_url(), "product/%d") %>%
     sprintf(product_id)
 
   response <- GET(url, UA, add_headers("X-Api-Key" = get_api_key()))
@@ -19,6 +19,9 @@ product <- function(product_id) {
     content(as = "text", encoding = "UTF-8") %>%
     fromJSON()
 
+  print(result)
+
+  if (is.null(result$brand)) result$brand = NA
   if (is.null(result$sku)) result$sku = NA
   if (!length(result$barcodes)) result$barcodes = NA
 
@@ -35,7 +38,7 @@ product <- function(product_id) {
 #'
 #' @examples
 product_prices <- function(product_id) {
-  paste0(BASE_URL, "product/%d/price") %>%
+  paste0(base_url(), "product/%d/price") %>%
     sprintf(product_id) %>%
     paginate()
 }
