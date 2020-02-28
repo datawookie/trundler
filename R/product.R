@@ -19,8 +19,6 @@ product <- function(product_id) {
     content(as = "text", encoding = "UTF-8") %>%
     fromJSON()
 
-  print(result)
-
   if (is.null(result$brand)) result$brand = NA
   if (is.null(result$sku)) result$sku = NA
   if (!length(result$barcodes)) result$barcodes = NA
