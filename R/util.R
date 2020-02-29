@@ -8,8 +8,9 @@ check_response_error <- function(response) {
   if (http_error(response)) {
     stop(
       sprintf(
-        "API request failed [%s].",
-        status_code(response)
+        "API request failed [%s]: %s",
+        status_code(response),
+        content(response)$message
       ),
       call. = FALSE
     )
