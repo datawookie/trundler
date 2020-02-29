@@ -17,7 +17,7 @@ product_prices(531589) %>% select(-available)
 
 # DEV ---------------------------------------------------------------------------------------------
 
-set_api_server("0.0.0.0", 8080)
+set_server("0.0.0.0", 8080)
 retail:::base_url()
 
 API_KEY = "5bed3ac9-6dc9-4926-aed8-8c97a7cb8057"

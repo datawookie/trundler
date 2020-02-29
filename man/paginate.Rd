@@ -4,7 +4,7 @@
 \alias{paginate}
 \title{Paginate results from API}
 \usage{
-paginate(url, limit = 1000, verbose = TRUE)
+paginate(url, limit = 1000, verbose = FALSE)
 }
 \arguments{
 \item{url}{API endpoint}

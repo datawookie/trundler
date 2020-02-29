@@ -20,11 +20,30 @@ assign("base_url", BASE_URL, envir = cache)
 #'
 #' @examples
 #' # Use local server
-#' set_api_server("0.0.0.0", 8080)
-set_api_server <- function(ip, port) {
+#' set_server("0.0.0.0", 8080)
+set_server <- function(ip, port) {
   assign("base_url", sprintf("http://%s:%d/", ip, port), envir = cache)
 }
 
+#' Set base URL for API
+#'
+#' @param url URL
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' # Use local server
+#' set_base_url("http://0.0.0.0:8080/")
+set_base_url <- function(url) {
+  assign("base_url", url, envir = cache)
+}
+
+#' Get base URL for API
+#'
+#' @return
+#'
+#' @examples
 base_url <- function() {
   get("base_url", envir = cache)
 }
