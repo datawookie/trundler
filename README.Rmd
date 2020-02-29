@@ -23,12 +23,15 @@ library(retail)
 To access the full API you'll need to first specify an API key.
 
 ```{r eval=FALSE}
-set_api_key("8f9f6c4e-5dd6-4bff-352c-592b35cf2437")
+# Example API key.
+#
+API_KEY <- "8f9f6c4e-5dd6-4bff-352c-592b35cf2437"
+
+set_api_key(API_KEY)
 ```
 
 ```{r include=FALSE}
 set_api_key(Sys.getenv("RETAIL_KEY"))
-get_api_key()
 ```
 
 To obtain a key, please get in touch. Contact details are in `DESCRIPTION`.
@@ -44,11 +47,42 @@ retailer()
 Or you can acccess the details for a specific retailer.
 
 ```{r}
-retailer(56)
+retailer(45)
 ```
 
 ## Products
 
+Get a list of products for a specific retailer.
+
 ```{r}
-retailer_products(56)
+retailer_products(9)
+```
+
+Information on a specific product.
+
+```{r}
+ice_cream <- product(530290)
+```
+
+What fields are available?
+
+```{r}
+names(ice_cream)
+```
+
+Get product name, [SKU](https://en.wikipedia.org/wiki/Stock_keeping_unit) and barcodes.
+
+```{r}
+ice_cream$name
+ice_cream$sku
+ice_cream$barcodes
+```
+
+## Price
+
+Get price history data for a specific product.
+
+
+```{r}
+product_prices(530290)
 ```

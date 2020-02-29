@@ -19,7 +19,11 @@ library(retail)
 To access the full API you’ll need to first specify an API key.
 
 ``` r
-set_api_key("8f9f6c4e-5dd6-4bff-352c-592b35cf2437")
+# Example API key.
+#
+API_KEY <- "8f9f6c4e-5dd6-4bff-352c-592b35cf2437"
+
+set_api_key(API_KEY)
 ```
 
 To obtain a key, please get in touch. Contact details are in
@@ -51,33 +55,92 @@ retailer()
 Or you can acccess the details for a specific retailer.
 
 ``` r
-retailer(56)
+retailer(45)
 ```
 
 ``` 
 # A tibble: 1 x 4
-     id name      url                          currency
-  <int> <chr>     <chr>                        <chr>   
-1    56 Bloomable https://www.bloomable.co.za/ ZAR     
+     id name               url                         currency
+  <int> <chr>              <chr>                       <chr>   
+1    45 Builders Warehouse https://www.builders.co.za/ ZAR     
 ```
 
 ## Products
 
+Get a list of products for a specific retailer.
+
 ``` r
-retailer_products(56)
+retailer_products(9)
 ```
 
-    # A tibble: 464 x 7
-           id retailer_id url                     name          brand sku   barcodes
-        <int>       <int> <chr>                   <chr>         <lgl> <chr> <list>  
-     1 704031          56 https://www.bloomable.… Decadent Slu… NA    9811  <list […
-     2 704032          56 https://www.bloomable.… BOHO-LICIOUS! NA    9863  <list […
-     3 760742          56 https://www.bloomable.… Bunch of Lov… NA    1128  <list […
-     4 721765          56 https://www.bloomable.… Lush Love - … NA    9487  <list […
-     5 760741          56 https://www.bloomable.… Bunch of Lov… NA    1127  <list […
-     6 815407          56 https://www.bloomable.… Rose Bowl - … NA    9725  <list […
-     7  72540          56 https://www.bloomable.… Merlot & Cho… NA    9865  <list […
-     8 852271          56 https://www.bloomable.… White Coffin… NA    10167 <list […
-     9 852274          56 https://www.bloomable.… White Coffin… NA    10168 <list […
-    10 852272          56 https://www.bloomable.… White Coffin… NA    10166 <list […
-    # … with 454 more rows
+    # A tibble: 12,543 x 4
+           id name                                         brand sku                
+        <int> <chr>                                        <lgl> <chr>              
+     1 531906 Band-aid Clear Plaster Strip s 25            NA    000000000000247606…
+     2 531907 Rennie Peppermint Antacid Tablets 48s        NA    000000000000251026…
+     3 531908 Dettol Antiseptic Liquid 125ml               NA    000000000000244558…
+     4 531911 Disprin Regular Pain Tablets 12ea            NA    000000000000244500…
+     5 531912 Panado Pain And Fever Tablets 2ea            NA    000000000000240818…
+     6 531914 Dettol Antiseptic Liquid 50ml                NA    000000000000233057…
+     7 531915 Vicks Acta Plus Cough Syrup 50ml             NA    000000000000232931…
+     8 531917 Woods Great Peppermint Cure Cough Remedy 10… NA    000000000000238698…
+     9 531919 Zam-buk Herbal Balm 60g                      NA    000000000000237642…
+    10 531920 Grand-pa Headache Tablets 10ea               NA    000000000000242053…
+    # … with 12,533 more rows
+
+Information on a specific product.
+
+``` r
+ice_cream <- product(530290)
+```
+
+What fields are
+available?
+
+``` r
+names(ice_cream)
+```
+
+``` 
+[1] "id"          "retailer_id" "url"         "name"        "brand"      
+[6] "sku"         "barcodes"   
+```
+
+Get product name,
+[SKU](https://en.wikipedia.org/wiki/Stock_keeping_unit) and barcodes.
+
+``` r
+ice_cream$name
+```
+
+    [1] "Ola Rich 'n Creamy Magical Unicorn Ice Cream 1.8l"
+
+``` r
+ice_cream$sku
+```
+
+    [1] "000000000000777619_EA"
+
+``` r
+ice_cream$barcodes
+```
+
+    [1] "6001087378543"
+
+## Price
+
+Get price history data for a specific product.
+
+``` r
+product_prices(530290)
+```
+
+``` 
+# A tibble: 4 x 5
+  product_id time                      price price_promotion available
+       <int> <chr>                     <dbl>           <dbl> <lgl>    
+1     530290 2020-02-22T00:31:17+00:00  50.0            NA   NA       
+2     530290 2020-02-15T00:32:47+00:00  50.0            38.0 NA       
+3     530290 2020-02-08T00:32:37+00:00  50.0            38.0 NA       
+4     530290 2020-02-01T00:34:24+00:00  50.0            45.0 NA       
+```

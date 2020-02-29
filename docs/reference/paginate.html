@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • retail</title>
+<title>Paginate results from API — paginate • retail</title>
 
 
 <!-- jquery -->
@@ -35,7 +35,9 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Paginate results from API — paginate" />
+<meta property="og:description" content="Ideas for improvement:" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -54,7 +56,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -101,84 +103,56 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Paginate results from API</h1>
+    <small class="dont-index">Source: <a href='https://github.com/datawookie/retail/blob/master/R/paginate.R'><code>R/paginate.R</code></a></small>
+    <div class="hidden name"><code>paginate.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Ideas for improvement:</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>paginate</span>(<span class='no'>url</span>, <span class='kw'>limit</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="get_api_key.html">get_api_key()</a></code> </p>
-        </td>
-        <td><p>Retrieve API key</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="paginate.html">paginate()</a></code> </p>
-        </td>
-        <td><p>Paginate results from API</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="product.html">product()</a></code> </p>
-        </td>
-        <td><p>Details for a specific product</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="product_prices.html">product_prices()</a></code> </p>
-        </td>
-        <td><p>Price history for a specific product</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="retailer.html">retailer()</a></code> </p>
-        </td>
-        <td><p>Details of a retailer</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="retailer_products.html">retailer_products()</a></code> </p>
-        </td>
-        <td><p>Products for a specific retailer</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="set_api_key.html">set_api_key()</a></code> </p>
-        </td>
-        <td><p>Set API key</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="set_api_server.html">set_api_server()</a></code> </p>
-        </td>
-        <td><p>Set IP and port for API server</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>url</th>
+      <td><p>API endpoint</p></td>
+    </tr>
+    <tr>
+      <th>limit</th>
+      <td><p>Number of items per query</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    
+
+
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>- Paginated endpoints return a 'X-Total-Count' header record with the total number of records. This could be used
+  to pre-allocate space and avoid the while() loop. First call to endpoint could have limit=0 to avoid retrieving
+  any results.
+- Move the JSON processing outside of the loop. Just accumulate all of the JSON into a single document. Evaluate
+  whether this is an improvement!
+- Use HEAD to find expected number of results.
+- Could avoid final API query by checking if the number of results returned was less than limit.</p>
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
     </ul>
+
   </div>
 </div>
 

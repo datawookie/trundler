@@ -76,13 +76,17 @@
 <h2 class="hasAnchor">
 <a href="#set-api-key" class="anchor"></a>Set API Key</h2>
 <p>To access the full API you’ll need to first specify an API key.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="reference/set_api_key.html">set_api_key</a></span>(<span class="st">"8f9f6c4e-5dd6-4bff-352c-592b35cf2437"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># Example API key.</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">API_KEY &lt;-<span class="st"> "8f9f6c4e-5dd6-4bff-352c-592b35cf2437"</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw"><a href="reference/set_api_key.html">set_api_key</a></span>(API_KEY)</a></code></pre></div>
 <p>To obtain a key, please get in touch. Contact details are in <code>DESCRIPTION</code>.</p>
 </div>
 <div id="retailers" class="section level2">
 <h2 class="hasAnchor">
 <a href="#retailers" class="anchor"></a>Retailers</h2>
-<p>Use <code>retailers()</code> to get a list of retailers.</p>
+<p>Use <code><a href="reference/retailer.html">retailer()</a></code> to get a list of retailers.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="reference/retailer.html">retailer</a></span>()</a></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># A tibble: 63 x 4</span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">      id name             url                              currency</a>
@@ -99,11 +103,57 @@
 <a class="sourceLine" id="cb4-13" data-line-number="13"><span class="st">10    10 Makro            https://www.makro.co.za/         ZAR     </span></a>
 <a class="sourceLine" id="cb4-14" data-line-number="14"><span class="st"># … with 53 more rows</span></a></code></pre></div>
 <p>Or you can acccess the details for a specific retailer.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="reference/retailer.html">retailer</a></span>(<span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="reference/retailer.html">retailer</a></span>(<span class="dv">45</span>)</a></code></pre></div>
 <pre><code># A tibble: 1 x 4
-     id name   url                   currency
-  &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;                 &lt;chr&gt;   
-1     2 Clicks https://clicks.co.za/ ZAR     </code></pre>
+     id name               url                         currency
+  &lt;int&gt; &lt;chr&gt;              &lt;chr&gt;                       &lt;chr&gt;   
+1    45 Builders Warehouse https://www.builders.co.za/ ZAR     </code></pre>
+</div>
+<div id="products" class="section level2">
+<h2 class="hasAnchor">
+<a href="#products" class="anchor"></a>Products</h2>
+<p>Get a list of products for a specific retailer.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="reference/retailer_products.html">retailer_products</a></span>(<span class="dv">9</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># A tibble: 12,543 x 4</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">       id name                                         brand sku                </a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">    <span class="op">&lt;</span>int<span class="op">&gt;</span><span class="st"> </span><span class="er">&lt;</span>chr<span class="op">&gt;</span><span class="st">                                        </span><span class="er">&lt;</span>lgl<span class="op">&gt;</span><span class="st"> </span><span class="er">&lt;</span>chr<span class="op">&gt;</span><span class="st">              </span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="st"> </span><span class="dv">1</span> <span class="dv">531906</span> Band<span class="op">-</span>aid Clear Plaster Strip s <span class="dv">25</span>            <span class="ot">NA</span>    000000000000247606…</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"> <span class="dv">2</span> <span class="dv">531907</span> Rennie Peppermint Antacid Tablets 48s        <span class="ot">NA</span>    000000000000251026…</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"> <span class="dv">3</span> <span class="dv">531908</span> Dettol Antiseptic Liquid 125ml               <span class="ot">NA</span>    000000000000244558…</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"> <span class="dv">4</span> <span class="dv">531911</span> Disprin Regular Pain Tablets 12ea            <span class="ot">NA</span>    000000000000244500…</a>
+<a class="sourceLine" id="cb8-8" data-line-number="8"> <span class="dv">5</span> <span class="dv">531912</span> Panado Pain And Fever Tablets 2ea            <span class="ot">NA</span>    000000000000240818…</a>
+<a class="sourceLine" id="cb8-9" data-line-number="9"> <span class="dv">6</span> <span class="dv">531914</span> Dettol Antiseptic Liquid 50ml                <span class="ot">NA</span>    000000000000233057…</a>
+<a class="sourceLine" id="cb8-10" data-line-number="10"> <span class="dv">7</span> <span class="dv">531915</span> Vicks Acta Plus Cough Syrup 50ml             <span class="ot">NA</span>    000000000000232931…</a>
+<a class="sourceLine" id="cb8-11" data-line-number="11"> <span class="dv">8</span> <span class="dv">531917</span> Woods Great Peppermint Cure Cough Remedy 10… <span class="ot">NA</span>    000000000000238698…</a>
+<a class="sourceLine" id="cb8-12" data-line-number="12"> <span class="dv">9</span> <span class="dv">531919</span> Zam<span class="op">-</span>buk Herbal Balm 60g                      <span class="ot">NA</span>    000000000000237642…</a>
+<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="dv">10</span> <span class="dv">531920</span> Grand<span class="op">-</span>pa Headache Tablets 10ea               <span class="ot">NA</span>    000000000000242053…</a>
+<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="co"># … with 12,533 more rows</span></a></code></pre></div>
+<p>Information on a specific product.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">ice_cream &lt;-<span class="st"> </span><span class="kw"><a href="reference/product.html">product</a></span>(<span class="dv">530290</span>)</a></code></pre></div>
+<p>What fields are available?</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(ice_cream)</a></code></pre></div>
+<pre><code>[1] "id"          "retailer_id" "url"         "name"        "brand"      
+[6] "sku"         "barcodes"   </code></pre>
+<p>Get product name, <a href="https://en.wikipedia.org/wiki/Stock_keeping_unit">SKU</a> and barcodes.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">ice_cream<span class="op">$</span>name</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">[<span class="dv">1</span>] <span class="st">"Ola Rich 'n Creamy Magical Unicorn Ice Cream 1.8l"</span></a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">ice_cream<span class="op">$</span>sku</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">[<span class="dv">1</span>] <span class="st">"000000000000777619_EA"</span></a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">ice_cream<span class="op">$</span>barcodes</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">[<span class="dv">1</span>] <span class="st">"6001087378543"</span></a></code></pre></div>
+</div>
+<div id="price" class="section level2">
+<h2 class="hasAnchor">
+<a href="#price" class="anchor"></a>Price</h2>
+<p>Get price history data for a specific product.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw"><a href="reference/product_prices.html">product_prices</a></span>(<span class="dv">530290</span>)</a></code></pre></div>
+<pre><code># A tibble: 4 x 5
+  product_id time                      price price_promotion available
+       &lt;int&gt; &lt;chr&gt;                     &lt;dbl&gt;           &lt;dbl&gt; &lt;lgl&gt;    
+1     530290 2020-02-22T00:31:17+00:00  50.0            NA   NA       
+2     530290 2020-02-15T00:32:47+00:00  50.0            38.0 NA       
+3     530290 2020-02-08T00:32:37+00:00  50.0            38.0 NA       
+4     530290 2020-02-01T00:34:24+00:00  50.0            45.0 NA       </code></pre>
 </div>
 </div>
   </div>
