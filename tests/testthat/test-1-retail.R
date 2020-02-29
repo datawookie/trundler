@@ -1,6 +1,7 @@
 context("retail")
 
 test_that("API key", {
+  expect_error(get_api_key())
   expect_error(set_api_key(API_KEY), NA)
   expect_equal(get_api_key(), API_KEY)
 })
