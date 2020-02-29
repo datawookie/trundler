@@ -16,7 +16,7 @@
 #' @return
 #'
 #' @examples
-paginate <- function(url, limit = 1000, verbose = TRUE) {
+paginate <- function(url, limit = 1000, verbose = FALSE) {
   offset = 0
   results <- list()
 
