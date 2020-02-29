@@ -7,9 +7,9 @@
 set_server(ip, port)
 }
 \arguments{
-\item{ip}{IP address}
+\item{ip}{IP address for API server.}
 
-\item{port}{Port}
+\item{port}{Port on which API is running.}
 }
 \value{
 

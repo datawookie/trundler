@@ -30,13 +30,14 @@ retailer <- function(retailer_id = NA) {
 #' Products for a specific retailer
 #'
 #' @param retailer_id A retailer ID.
+#' @param ... Arguments passed through to \code{paginate()}.
 #'
 #' @return Details of all products for a specific retailer as a \code{data.frame}.
 #' @export
 #'
 #' @examples
-retailer_products <- function(retailer_id) {
+retailer_products <- function(retailer_id, ...) {
   paste0(base_url(), "retailer/%d/product") %>%
     sprintf(retailer_id) %>%
-    paginate()
+    paginate(...)
 }

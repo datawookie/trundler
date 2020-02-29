@@ -4,10 +4,12 @@
 \alias{product_prices}
 \title{Price history for a specific product}
 \usage{
-product_prices(product_id)
+product_prices(product_id, ...)
 }
 \arguments{
 \item{product_id}{A product ID.}
+
+\item{...}{Arguments passed through to \code{paginate()}.}
 }
 \value{
 Price history as a \code{data.frame}.

@@ -12,8 +12,8 @@ assign("base_url", BASE_URL, envir = cache)
 
 #' Set IP and port for API server
 #'
-#' @param ip IP address
-#' @param port Port
+#' @param ip IP address for API server.
+#' @param port Port on which API is running.
 #'
 #' @return
 #' @export
@@ -27,7 +27,7 @@ set_server <- function(ip, port) {
 
 #' Set base URL for API
 #'
-#' @param url URL
+#' @param url URL to access API.
 #'
 #' @return
 #' @export

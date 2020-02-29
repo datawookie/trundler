@@ -7,7 +7,7 @@
 set_base_url(url)
 }
 \arguments{
-\item{url}{URL}
+\item{url}{URL to access API.}
 }
 \value{
 

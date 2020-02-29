@@ -4,10 +4,12 @@
 \alias{retailer_products}
 \title{Products for a specific retailer}
 \usage{
-retailer_products(retailer_id)
+retailer_products(retailer_id, ...)
 }
 \arguments{
 \item{retailer_id}{A retailer ID.}
+
+\item{...}{Arguments passed through to \code{paginate()}.}
 }
 \value{
 Details of all products for a specific retailer as a \code{data.frame}.

@@ -30,13 +30,14 @@ product <- function(product_id) {
 #' Price history for a specific product
 #'
 #' @param product_id A product ID.
+#' @param ... Arguments passed through to \code{paginate()}.
 #'
 #' @return Price history as a \code{data.frame}.
 #' @export
 #'
 #' @examples
-product_prices <- function(product_id) {
+product_prices <- function(product_id, ...) {
   paste0(base_url(), "product/%d/price") %>%
     sprintf(product_id) %>%
-    paginate()
+    paginate(...)
 }
