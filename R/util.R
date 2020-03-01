@@ -20,13 +20,15 @@ check_response_json <- function(response) {
 #' @examples
 check_response_error <- function(response) {
   if (http_error(response)) {
-    stop(
-      sprintf(
-        "API request failed [%s]: %s",
-        status_code(response),
-        # content(response)$message
-      ),
-      call. = FALSE
+    status <- status_code(response)
+    error = glue("API request failed [{status}]")
+
+    message <- content(response)$message
+    if (!is.null(message)) {
+      error = glue("{error}: {message}")
+    }
+
+    stop(error, call. = FALSE
     )
   }
 }
