@@ -18,3 +18,15 @@ test_that("product prices (correct columns)", {
 
   expect_equal(names(first_product_prices), c("product_id", "time", "price", "price_promotion", "available"))
 })
+
+test_that("brand is NULL", {
+  product_null_brand <- product(product_id_null_brand)
+
+  expect_equal(product_null_brand$brand, NA)
+})
+
+test_that("sku is NULL", {
+  product_null_sku <- product(product_id_null_sku)
+
+  expect_equal(product_null_sku$sku, NA)
+})
