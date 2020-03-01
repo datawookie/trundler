@@ -2,11 +2,13 @@ BASE_URL <- "http://3.91.58.113:8080/"
 
 UA <- user_agent("Retail R Package")
 
+cache <- new.env()
+
 #' @import magrittr
 #' @import httr
 #' @import jsonlite
 #' @import tibble
-cache <- new.env()
+#' @import glue
 
 assign("base_url", BASE_URL, envir = cache)
 
