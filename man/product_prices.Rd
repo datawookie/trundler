@@ -19,5 +19,7 @@ Price history for a specific product
 }
 \examples{
 # Price history for a specific product.
+\dontrun{
 product_prices(1)
+}
 }
