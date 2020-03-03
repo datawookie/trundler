@@ -12,3 +12,6 @@ API key.
 \description{
 Retrieve API key
 }
+\examples{
+get_api_key()
+}

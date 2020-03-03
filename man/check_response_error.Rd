@@ -7,10 +7,10 @@
 check_response_error(response)
 }
 \arguments{
-\item{response}{}
+\item{response}{A response object.}
 }
 \value{
-
+NULL. Raises an error if response has an error code.
 }
 \description{
 Check API response for errors

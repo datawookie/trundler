@@ -15,3 +15,7 @@ Product details as a \code{data.frame}.
 \description{
 Details for a specific product
 }
+\examples{
+# Detailts of a specific product.
+product(1)
+}

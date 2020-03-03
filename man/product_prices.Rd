@@ -17,3 +17,7 @@ Price history as a \code{data.frame}.
 \description{
 Price history for a specific product
 }
+\examples{
+# Price history for a specific product.
+product_prices(1)
+}

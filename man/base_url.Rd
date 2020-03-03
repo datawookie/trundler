@@ -7,7 +7,7 @@
 base_url()
 }
 \value{
-
+API base URL.
 }
 \description{
 Get base URL for API

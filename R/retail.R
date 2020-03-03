@@ -43,9 +43,7 @@ set_base_url <- function(url) {
 
 #' Get base URL for API
 #'
-#' @return
-#'
-#' @examples
+#' @return API base URL.
 base_url <- function() {
   get("base_url", envir = cache)
 }
@@ -57,6 +55,7 @@ base_url <- function() {
 #' @export
 #'
 #' @examples
+#' set_api_key("8f9f3c4e-5dd6-4bff-3a2c-592b45cf2437")
 set_api_key <- function(api_key) {
   assign("api_key", api_key, envir = cache)
 }
@@ -67,6 +66,7 @@ set_api_key <- function(api_key) {
 #' @export
 #'
 #' @examples
+#' get_api_key()
 get_api_key <- function() {
   api_key <- try(get("api_key", envir = cache), silent = TRUE)
 

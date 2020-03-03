@@ -7,10 +7,10 @@
 check_response_json(response)
 }
 \arguments{
-\item{response}{}
+\item{response}{A response object.}
 }
 \value{
-
+NULL. Raises an error if the response is not JSON.
 }
 \description{
 Check that API response is JSON

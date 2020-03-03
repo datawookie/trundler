@@ -15,3 +15,10 @@ Details of either all retailers or a specific retailer as a \code{data.frame}.
 \description{
 Details of a retailer
 }
+\examples{
+# Get a table of all retailers.
+retailer()
+
+# Get details of specific retailer.
+retailer(1)
+}

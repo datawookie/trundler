@@ -10,6 +10,8 @@ paginate(url, limit = 1000, verbose = FALSE)
 \item{url}{API endpoint}
 
 \item{limit}{Number of items per query}
+
+\item{verbose}{Whether to produce verbose output.}
 }
 \value{
 

@@ -12,3 +12,6 @@ set_api_key(api_key)
 \description{
 Set API key
 }
+\examples{
+set_api_key("8f9f3c4e-5dd6-4bff-3a2c-592b45cf2437")
+}

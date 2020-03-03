@@ -17,3 +17,7 @@ Details of all products for a specific retailer as a \code{data.frame}.
 \description{
 Products for a specific retailer
 }
+\examples{
+# Get products for a specific retailer.
+retailer_products(1)
+}

@@ -6,6 +6,11 @@
 #' @export
 #'
 #' @examples
+#' # Get a table of all retailers.
+#' retailer()
+#'
+#' # Get details of specific retailer.
+#' retailer(1)
 retailer <- function(retailer_id = NA) {
   if (is.na(retailer_id)) {
     url <- paste0(base_url(), "retailer")
@@ -36,6 +41,8 @@ retailer <- function(retailer_id = NA) {
 #' @export
 #'
 #' @examples
+#' # Get products for a specific retailer.
+#' retailer_products(1)
 retailer_products <- function(retailer_id, ...) {
   paste0(base_url(), "retailer/%d/product") %>%
     sprintf(retailer_id) %>%

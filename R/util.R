@@ -1,10 +1,8 @@
 #' Check that API response is JSON
 #'
-#' @param response
+#' @param response A response object.
 #'
-#' @return
-#'
-#' @examples
+#' @return NULL. Raises an error if the response is not JSON.
 check_response_json <- function(response) {
   if (http_type(response) != "application/json") {
     stop("API did not return json.", call. = FALSE)
@@ -13,11 +11,9 @@ check_response_json <- function(response) {
 
 #' Check API response for errors
 #'
-#' @param response
+#' @param response A response object.
 #'
-#' @return
-#'
-#' @examples
+#' @return NULL. Raises an error if response has an error code.
 check_response_error <- function(response) {
   if (http_error(response)) {
     status <- status_code(response)
