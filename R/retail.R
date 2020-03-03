@@ -17,7 +17,6 @@ assign("base_url", BASE_URL, envir = cache)
 #' @param ip IP address for API server.
 #' @param port Port on which API is running.
 #'
-#' @return
 #' @export
 #'
 #' @examples
@@ -31,7 +30,6 @@ set_server <- function(ip, port) {
 #'
 #' @param url URL to access API.
 #'
-#' @return
 #' @export
 #'
 #' @examples
@@ -66,6 +64,7 @@ set_api_key <- function(api_key) {
 #' @export
 #'
 #' @examples
+#' set_api_key("8f9f3c4e-5dd6-4bff-3a2c-592b45cf2437")
 #' get_api_key()
 get_api_key <- function() {
   api_key <- try(get("api_key", envir = cache), silent = TRUE)

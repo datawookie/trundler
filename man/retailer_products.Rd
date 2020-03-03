@@ -19,5 +19,7 @@ Products for a specific retailer
 }
 \examples{
 # Get products for a specific retailer.
+\dontrun{
 retailer_products(1)
+}
 }

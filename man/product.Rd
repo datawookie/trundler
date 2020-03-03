@@ -17,5 +17,7 @@ Details for a specific product
 }
 \examples{
 # Detailts of a specific product.
+\dontrun{
 product(1)
+}
 }

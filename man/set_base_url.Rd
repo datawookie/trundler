@@ -9,9 +9,6 @@ set_base_url(url)
 \arguments{
 \item{url}{URL to access API.}
 }
-\value{
-
-}
 \description{
 Set base URL for API
 }

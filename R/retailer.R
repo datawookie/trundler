@@ -42,7 +42,9 @@ retailer <- function(retailer_id = NA) {
 #'
 #' @examples
 #' # Get products for a specific retailer.
+#' \dontrun{
 #' retailer_products(1)
+#' }
 retailer_products <- function(retailer_id, ...) {
   paste0(base_url(), "retailer/%d/product") %>%
     sprintf(retailer_id) %>%

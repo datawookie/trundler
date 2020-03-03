@@ -11,9 +11,6 @@ set_server(ip, port)
 
 \item{port}{Port on which API is running.}
 }
-\value{
-
-}
 \description{
 Set IP and port for API server
 }

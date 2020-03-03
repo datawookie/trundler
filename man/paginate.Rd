@@ -13,9 +13,6 @@ paginate(url, limit = 1000, verbose = FALSE)
 
 \item{verbose}{Whether to produce verbose output.}
 }
-\value{
-
-}
 \description{
 Ideas for improvement:
 }
