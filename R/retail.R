@@ -1,4 +1,4 @@
-BASE_URL <- "http://3.91.58.113:8080/"
+BASE_URL <- "https://retail-api.exegetic.biz/"
 
 UA <- user_agent("Retail R Package")
 
