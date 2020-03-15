@@ -28,7 +28,8 @@ product <- function(product_id) {
   if (!length(result$barcodes)) result$barcodes = NA
 
   result %>%
-    as_tibble()
+    as_tibble() %>%
+    rename(product_id = id)
 }
 
 #' Price history for a specific product

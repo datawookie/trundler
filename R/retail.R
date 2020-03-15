@@ -5,7 +5,8 @@ cache <- new.env()
 #' @import magrittr
 #' @import jsonlite
 #' @import tibble
-#' @import glue
+#' @import dplyr
+#' @importFrom glue glue
 
 assign("base_url", BASE_URL, envir = cache)
 

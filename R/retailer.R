@@ -29,7 +29,8 @@ retailer <- function(retailer_id = NA) {
   response %>%
     content(as = "text", encoding = "UTF-8") %>%
     fromJSON() %>%
-    as_tibble()
+    as_tibble() %>%
+    rename(retailer_id = id)
 }
 
 #' Products for a specific retailer
@@ -48,5 +49,6 @@ retailer <- function(retailer_id = NA) {
 retailer_products <- function(retailer_id, ...) {
   paste0(base_url(), "retailer/%d/product") %>%
     sprintf(retailer_id) %>%
-    paginate(...)
+    paginate(...) %>%
+    rename(product_id = id)
 }
