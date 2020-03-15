@@ -1,11 +1,8 @@
 BASE_URL <- "https://retail-api.exegetic.biz/"
 
-UA <- user_agent("Retail R Package")
-
 cache <- new.env()
 
 #' @import magrittr
-#' @import httr
 #' @import jsonlite
 #' @import tibble
 #' @import glue
