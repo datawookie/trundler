@@ -23,9 +23,9 @@ library(retail)
 To access the full API you'll need to first specify an API key.
 
 ```{r eval=FALSE}
-# Example API key.
+# Example API key. This key will not work.
 #
-API_KEY <- "8f9f3c4e-5dd6-4bff-3a2c-592b45cf2437"
+API_KEY <- "5bed3ac9-6dc9-4926-aed8-8c97a7cb8057"
 
 set_api_key(API_KEY)
 ```
@@ -61,21 +61,21 @@ retailer_products(9)
 Information on a specific product.
 
 ```{r}
-ice_cream <- product(530290)
+item <- product(530290)
 ```
 
 What fields are available?
 
 ```{r}
-names(ice_cream)
+names(item)
 ```
 
 Get product name, [SKU](https://en.wikipedia.org/wiki/Stock_keeping_unit) and barcodes.
 
 ```{r}
-ice_cream$name
-ice_cream$sku
-ice_cream$barcodes
+item$name
+item$sku
+item$barcodes
 ```
 
 ## Price
