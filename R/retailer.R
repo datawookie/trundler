@@ -47,8 +47,14 @@ retailer <- function(retailer_id = NA) {
 #' retailer_products(1)
 #' }
 retailer_products <- function(retailer_id, ...) {
-  paste0(base_url(), "retailer/%d/product") %>%
+  products <- paste0(base_url(), "retailer/%d/product") %>%
     sprintf(retailer_id) %>%
-    paginate(...) %>%
-    rename(product_id = id)
+    paginate(...)
+
+  if (nrow(products)) {
+    products %>% rename(product_id = id)
+  } else {
+    message("No products are currently available for this retailer.")
+    invisible(NULL)
+  }
 }
