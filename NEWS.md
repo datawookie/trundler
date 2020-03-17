@@ -1,6 +1,7 @@
 # retail 0.0.7
 
-* Add ability to search by product name in retailer_products().
+* Add filter by product name in retailer_products().
+* Add filter by product brand in retailer_products().
 
 # retail 0.0.6
 
