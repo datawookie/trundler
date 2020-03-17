@@ -4,10 +4,12 @@
 \alias{retailer_products}
 \title{Products for a specific retailer}
 \usage{
-retailer_products(retailer_id, ...)
+retailer_products(retailer_id, name = NA, ...)
 }
 \arguments{
 \item{retailer_id}{A retailer ID.}
+
+\item{name}{A product name to search for (treated as a regular expression).}
 
 \item{...}{Arguments passed through to \code{paginate()}.}
 }
@@ -21,5 +23,6 @@ Products for a specific retailer
 # Get products for a specific retailer.
 \dontrun{
 retailer_products(1)
+retailer_products(9, name = "Nescafe")
 }
 }

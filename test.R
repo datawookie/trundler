@@ -11,6 +11,7 @@ set_api_key(API_KEY)
 get_api_key()
 
 retailer_products(9, verbose = TRUE)
+retailer_products(9, name = "nescafe")
 product(546082) %>% select(-retailer_id, -url)
 product_prices(546082)
 product(531589) %>% select(-retailer_id, -brand, -url)

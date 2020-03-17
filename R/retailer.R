@@ -36,6 +36,7 @@ retailer <- function(retailer_id = NA) {
 #' Products for a specific retailer
 #'
 #' @param retailer_id A retailer ID.
+#' @param name A product name to search for (treated as a regular expression).
 #' @param ... Arguments passed through to \code{paginate()}.
 #'
 #' @return Details of all products for a specific retailer as a \code{data.frame}.
@@ -45,11 +46,17 @@ retailer <- function(retailer_id = NA) {
 #' # Get products for a specific retailer.
 #' \dontrun{
 #' retailer_products(1)
+#' retailer_products(9, name = "Nescafe")
 #' }
-retailer_products <- function(retailer_id, ...) {
-  products <- paste0(base_url(), "retailer/%d/product") %>%
-    sprintf(retailer_id) %>%
-    paginate(...)
+retailer_products <- function(retailer_id, name = NA,...) {
+  url <- paste0(base_url(), "retailer/%d/product") %>%
+    sprintf(retailer_id)
+
+  if (!is.na(name)) {
+    url <- param_set(url, key = "name", value = name)
+  }
+
+  products <- paginate(url, ...)
 
   if (nrow(products)) {
     products %>% rename(product_id = id)
