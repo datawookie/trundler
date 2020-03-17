@@ -18,10 +18,11 @@ paginate <- function(url, limit = 10000, verbose = FALSE) {
   results <- list()
 
   while(TRUE) {
-    response <- GET(
-      sprintf("%s?limit=%d&offset=%d", url, limit, offset),
-      add_headers("X-Api-Key" = get_api_key())
-    )
+    url <- url %>%
+      param_set(key = "limit", value = limit) %>%
+      param_set(key = "offset", value = offset)
+
+    response <- GET(url, add_headers("X-Api-Key" = get_api_key()))
 
     # Check for "204 NO CONTENT".
     #

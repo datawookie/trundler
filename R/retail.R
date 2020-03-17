@@ -12,6 +12,7 @@ cache <- new.env()
 #' @importFrom httr http_type
 #' @importFrom httr content
 #' @importFrom httr status_code
+#' @importFrom urltools param_set
 
 assign("base_url", BASE_URL, envir = cache)
 
