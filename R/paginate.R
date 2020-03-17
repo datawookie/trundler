@@ -41,6 +41,11 @@ paginate <- function(url, limit = 10000, verbose = FALSE) {
 
     results <- c(results, list(result))
 
+    if (nrow(result) < limit) {
+      if (verbose) message("Received fewer rows than requested.")
+      break
+    }
+
     offset = offset + limit
   }
 
