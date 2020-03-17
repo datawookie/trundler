@@ -14,7 +14,7 @@ product <- function(product_id) {
   url <- paste0(base_url(), "product/%d") %>%
     sprintf(product_id)
 
-  response <- GET(url, UA, add_headers("X-Api-Key" = get_api_key()))
+  response <- GET(url, add_headers("X-Api-Key" = get_api_key()))
 
   check_response_error(response)
   check_response_json(response)

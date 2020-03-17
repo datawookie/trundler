@@ -15,12 +15,12 @@ retailer <- function(retailer_id = NA) {
   if (is.na(retailer_id)) {
     url <- paste0(base_url(), "retailer")
 
-    response <- GET(url, UA)
+    response <- GET(url)
   } else {
     url <- paste0(base_url(), "retailer/%d") %>%
       sprintf(retailer_id)
 
-    response <- GET(url, UA, add_headers("X-Api-Key" = get_api_key()))
+    response <- GET(url, add_headers("X-Api-Key" = get_api_key()))
   }
 
   check_response_error(response)

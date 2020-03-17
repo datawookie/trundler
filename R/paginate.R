@@ -20,7 +20,6 @@ paginate <- function(url, limit = 10000, verbose = FALSE) {
   while(TRUE) {
     response <- GET(
       sprintf("%s?limit=%d&offset=%d", url, limit, offset),
-      UA,
       add_headers("X-Api-Key" = get_api_key())
     )
 
