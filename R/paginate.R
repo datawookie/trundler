@@ -20,7 +20,6 @@ paginate <- function(url, limit = 10000, verbose = FALSE) {
   while(TRUE) {
     response <- GET(
       sprintf("%s?limit=%d&offset=%d", url, limit, offset),
-      UA,
       add_headers("X-Api-Key" = get_api_key())
     )
 
@@ -40,6 +39,11 @@ paginate <- function(url, limit = 10000, verbose = FALSE) {
     }
 
     results <- c(results, list(result))
+
+    if (nrow(result) < limit) {
+      if (verbose) message("Received fewer rows than requested.")
+      break
+    }
 
     offset = offset + limit
   }

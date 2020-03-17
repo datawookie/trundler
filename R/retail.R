@@ -7,6 +7,11 @@ cache <- new.env()
 #' @import tibble
 #' @import dplyr
 #' @importFrom glue glue
+#' @importFrom httr add_headers
+#' @importFrom httr http_error
+#' @importFrom httr http_type
+#' @importFrom httr content
+#' @importFrom httr status_code
 
 assign("base_url", BASE_URL, envir = cache)
 
