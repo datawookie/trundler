@@ -21,5 +21,5 @@ test_that("retailer products", {
 
   first_retailer_products <- retailer_products(product_id)
 
-  expect_equal(names(first_retailer_products), c("product_id", "name", "brand", "sku"))
+  expect_equal(names(first_retailer_products), c("product_id", "name", "brand", "model", "sku"))
 })
