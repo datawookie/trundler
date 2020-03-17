@@ -24,6 +24,7 @@ product <- function(product_id) {
     fromJSON()
 
   if (is.null(result$brand)) result$brand = NA
+  if (is.null(result$model)) result$model = NA
   if (is.null(result$sku)) result$sku = NA
   if (!length(result$barcodes)) result$barcodes = NA
 
