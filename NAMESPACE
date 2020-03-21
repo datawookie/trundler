@@ -2,6 +2,7 @@
 
 export(get_api_key)
 export(product)
+export(product_filter)
 export(product_prices)
 export(retailer)
 export(retailer_products)

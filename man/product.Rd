@@ -16,7 +16,7 @@ Product details as a \code{data.frame}.
 Details for a specific product
 }
 \examples{
-# Detailts of a specific product.
+# Details of a specific product.
 \dontrun{
 product(1)
 }
