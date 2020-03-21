@@ -50,5 +50,7 @@ paginate <- function(url, limit = 10000, verbose = FALSE) {
   }
 
   do.call(rbind, results) %>%
-    as_tibble()
+    as_tibble() %>%
+    mutate_at(vars(any_of(c("brand", "model", "sku"))), as.character) %>%
+    mutate_at(vars(any_of(c("price", "price_promotion"))), as.numeric)
 }
