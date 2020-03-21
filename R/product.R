@@ -23,10 +23,10 @@ product <- function(product_id) {
     content(as = "text", encoding = "UTF-8") %>%
     fromJSON()
 
-  if (is.null(result$brand)) result$brand = NA
-  if (is.null(result$model)) result$model = NA
-  if (is.null(result$sku)) result$sku = NA
-  if (!length(result$barcodes)) result$barcodes = NA
+  if (is.null(result$brand)) result$brand = NA_character_
+  if (is.null(result$model)) result$model = NA_character_
+  if (is.null(result$sku)) result$sku = NA_character_
+  if (!length(result$barcodes)) result$barcodes = NA_character_
 
   result %>%
     as_tibble() %>%
