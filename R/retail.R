@@ -6,6 +6,7 @@ cache <- new.env()
 #' @import jsonlite
 #' @import tibble
 #' @import dplyr
+#' @import tidyselect
 #' @importFrom glue glue
 #' @importFrom httr add_headers
 #' @importFrom httr http_error
