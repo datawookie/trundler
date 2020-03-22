@@ -4,6 +4,8 @@ output: github_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, comment=NA)
+
+# options(tibble.width = Inf)
 ```
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -55,7 +57,20 @@ retailer(45)
 Get a list of products for a specific retailer.
 
 ```{r}
-retailer_products(9)
+retailer_products(5)
+```
+
+Products can be filtered by name and brand.
+
+```{r}
+retailer_products(5, name = "coffee", brand = "nespresso")
+```
+
+A similar search can be applied across *all* retailers.
+
+```{r}
+products(name = "coffee", brand = "nespresso|nescafe")
+products(name = "tv", brand = "samsung|hisense")
 ```
 
 Information on a specific product.
