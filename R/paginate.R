@@ -20,7 +20,8 @@ paginate <- function(url, limit = 10000, verbose = FALSE) {
   while(TRUE) {
     url <- url %>%
       param_set(key = "limit", value = limit) %>%
-      param_set(key = "offset", value = offset)
+      # Prevent converting to scientific notation because "+" has different meaning in URL.
+      param_set(key = "offset", value = format(offset, scientific = FALSE))
 
     response <- GET(url, add_headers("X-Api-Key" = get_api_key()))
 
