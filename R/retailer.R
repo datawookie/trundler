@@ -67,6 +67,12 @@ retailer_products <- function(retailer_id, name = NA, brand = NA,...) {
     products %>% rename(product_id = id)
   } else {
     message("No products are currently available for this retailer.")
-    invisible(NULL)
+    tibble(
+      product_id = integer(),
+      name = character(),
+      brand = character(),
+      model = character(),
+      sku = character()
+    )
   }
 }

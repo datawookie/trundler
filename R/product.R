@@ -6,7 +6,7 @@
 #' @export
 #'
 #' @examples
-#' # Detailts of a specific product.
+#' # Details of a specific product.
 #' \dontrun{
 #' product(1)
 #' }
@@ -23,14 +23,57 @@ product <- function(product_id) {
     content(as = "text", encoding = "UTF-8") %>%
     fromJSON()
 
-  if (is.null(result$brand)) result$brand = NA
-  if (is.null(result$model)) result$model = NA
-  if (is.null(result$sku)) result$sku = NA
-  if (!length(result$barcodes)) result$barcodes = NA
+  if (is.null(result$brand)) result$brand = NA_character_
+  if (is.null(result$model)) result$model = NA_character_
+  if (is.null(result$sku)) result$sku = NA_character_
+  if (!length(result$barcodes)) result$barcodes = NA_character_
 
   result %>%
     as_tibble() %>%
     rename(product_id = id)
+}
+
+#' Find products by name or brand
+#'
+#' @param name Filter by product name (treated as a regular expression).
+#' @param brand Filter by product brand (treated as a regular expression).
+#' @param ... Arguments passed through to \code{paginate()}.
+#'
+#' @return Product details as a \code{data.frame}.
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' products(name = "coffee")
+#' products(brand = "Illy")
+#' products(name = "coffee", brand = "Illy")
+#' }
+products <- function(name = NA, brand = NA, ...) {
+  url <- paste0(base_url(), "product")
+
+  if (!is.na(name)) {
+    url <- param_set(url, key = "name", value = name)
+  }
+
+  if (!is.na(brand)) {
+    url <- param_set(url, key = "brand", value = brand)
+  }
+
+  products <- paginate(url, ...)
+
+  if (nrow(products)) {
+    products %>% rename(product_id = id)
+  } else {
+    message("No products are currently available for this query")
+    tibble(
+      product_id = integer(),
+      retailer_id = integer(),
+      name = character(),
+      brand = character(),
+      model = character(),
+      sku = character()
+    )
+  }
 }
 
 #' Price history for a specific product

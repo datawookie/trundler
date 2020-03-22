@@ -22,11 +22,11 @@ test_that("product prices (correct columns)", {
 test_that("brand is NULL", {
   product_null_brand <- product(product_id_null_brand)
 
-  expect_equal(product_null_brand$brand, NA)
+  expect_equal(product_null_brand$brand, NA_character_)
 })
 
 test_that("sku is NULL", {
   product_null_sku <- product(product_id_null_sku)
 
-  expect_equal(product_null_sku$sku, NA)
+  expect_equal(product_null_sku$sku, NA_character_)
 })

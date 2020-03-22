@@ -3,7 +3,8 @@
 README.Rmd
 _pkgdown.yml
 docs
-test.R
+scripts
+benchmark.R
 .travis.yml
 ^retail\.Rcheck$
 ^retail.*\.tar\.gz$
