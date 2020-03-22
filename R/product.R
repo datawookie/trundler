@@ -44,11 +44,11 @@ product <- function(product_id) {
 #'
 #' @examples
 #' \dontrun{
-#' product_filter(name = "coffee")
-#' product_filter(brand = "Illy")
-#' product_filter(name = "coffee", brand = "Illy")
+#' products(name = "coffee")
+#' products(brand = "Illy")
+#' products(name = "coffee", brand = "Illy")
 #' }
-product_filter <- function(name = NA, brand = NA, ...) {
+products <- function(name = NA, brand = NA, ...) {
   url <- paste0(base_url(), "product")
 
   if (!is.na(name)) {
