@@ -19,7 +19,7 @@ Imports:
     magrittr,
     tibble,
     dplyr,
-    tidyselect,
+    tidyselect (>= 1.0.0),
     glue,
     urltools
 Suggests:
