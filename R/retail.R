@@ -7,6 +7,7 @@ cache <- new.env()
 #' @import tibble
 #' @import dplyr
 #' @import tidyselect
+#' @importFrom utils URLencode
 #' @importFrom glue glue
 #' @importFrom httr add_headers
 #' @importFrom httr http_error
