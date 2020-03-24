@@ -54,11 +54,11 @@ retailer_products <- function(retailer_id, name = NA, brand = NA,...) {
     sprintf(retailer_id)
 
   if (!is.na(name)) {
-    url <- param_set(url, key = "name", value = name)
+    url <- param_set(url, key = "name", value = URLencode(name))
   }
 
   if (!is.na(brand)) {
-    url <- param_set(url, key = "brand", value = brand)
+    url <- param_set(url, key = "brand", value = URLencode(brand))
   }
 
   products <- paginate(url, ...)

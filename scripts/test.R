@@ -12,7 +12,8 @@ get_api_key()
 
 retailer_products(28)
 
-product_filter(name = "impossible_name")
+products(name = "hand sanitiser")
+products(name = "impossible_name")
 
 retailers = retailer()
 
@@ -39,6 +40,9 @@ retailer()
 
 set_api_key(API_KEY)
 get_api_key()
+
+products()
+products(name = "Nike Flash")
 
 # retailer(1)
 #
