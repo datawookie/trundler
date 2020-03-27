@@ -35,7 +35,7 @@ product <- function(product_id) {
 
 #' Find products by name or brand
 #'
-#' @param name Filter by product name (treated as a regular expression).
+#' @param product Filter by product name (treated as a regular expression).
 #' @param brand Filter by product brand (treated as a regular expression).
 #' @param ... Arguments passed through to \code{paginate()}.
 #'
@@ -44,15 +44,15 @@ product <- function(product_id) {
 #'
 #' @examples
 #' \dontrun{
-#' products(name = "coffee")
+#' products(product = "coffee")
 #' products(brand = "Illy")
-#' products(name = "coffee", brand = "Illy")
+#' products(product = "coffee", brand = "Illy")
 #' }
-products <- function(name = NA, brand = NA, ...) {
+products <- function(product = NA, brand = NA, ...) {
   url <- paste0(base_url(), "product")
 
-  if (!is.na(name)) {
-    url <- param_set(url, key = "name", value = URLencode(name))
+  if (!is.na(product)) {
+    url <- param_set(url, key = "product", value = URLencode(product))
   }
 
   if (!is.na(brand)) {
@@ -68,7 +68,7 @@ products <- function(name = NA, brand = NA, ...) {
     tibble(
       product_id = integer(),
       retailer_id = integer(),
-      name = character(),
+      product = character(),
       brand = character(),
       model = character(),
       sku = character()
