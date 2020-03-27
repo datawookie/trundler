@@ -12,18 +12,20 @@ get_api_key()
 
 retailer_products(28)
 
-products(name = "hand sanitiser")
-products(name = "impossible_name")
+products(product = "hand sanitiser")
+products(product = "impossible_name")
 
 retailers = retailer()
 
-illy_coffee = product_filter(name = "coffee", brand = "Illy")
+illy_coffee = products(product = "coffee", brand = "Illy")
+illy_coffee
+illy_coffee %>% inner_join(retailer())
 
 retailer_products(9, verbose = TRUE)
 retailer_products(15, verbose = TRUE)
-retailer_products(9, name = "nescafe")
+retailer_products(9, product = "nescafe")
 retailer_products(10, brand = "nivea")
-retailer_products(1, brand = "Bosch", name = "CAT")
+retailer_products(1, brand = "Bosch", product = "CAT")
 product(546082) %>% select(-retailer_id, -url)
 product_prices(546082)
 product(531589) %>% select(-retailer_id, -brand, -url)
@@ -42,7 +44,7 @@ set_api_key(API_KEY)
 get_api_key()
 
 products()
-products(name = "Nike Flash")
+products(product = "Nike Flash")
 
 # retailer(1)
 #

@@ -36,7 +36,7 @@ retailer <- function(retailer_id = NA) {
 #' Products for a specific retailer
 #'
 #' @param retailer_id A retailer ID.
-#' @param name Filter by product name (treated as a regular expression).
+#' @param product Filter by product name (treated as a regular expression).
 #' @param brand Filter by product brand (treated as a regular expression).
 #' @param ... Arguments passed through to \code{paginate()}.
 #'
@@ -47,14 +47,14 @@ retailer <- function(retailer_id = NA) {
 #' # Get products for a specific retailer.
 #' \dontrun{
 #' retailer_products(1)
-#' retailer_products(9, name = "Nescafe")
+#' retailer_products(9, product = "Nescafe")
 #' }
-retailer_products <- function(retailer_id, name = NA, brand = NA,...) {
+retailer_products <- function(retailer_id, product = NA, brand = NA,...) {
   url <- paste0(base_url(), "retailer/%d/product") %>%
     sprintf(retailer_id)
 
-  if (!is.na(name)) {
-    url <- param_set(url, key = "name", value = URLencode(name))
+  if (!is.na(product)) {
+    url <- param_set(url, key = "product", value = URLencode(product))
   }
 
   if (!is.na(brand)) {
@@ -69,7 +69,7 @@ retailer_products <- function(retailer_id, name = NA, brand = NA,...) {
     message("No products are currently available for this retailer.")
     tibble(
       product_id = integer(),
-      name = character(),
+      product = character(),
       brand = character(),
       model = character(),
       sku = character()
