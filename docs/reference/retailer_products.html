@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">retail</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.9</span>
       </span>
     </div>
 
@@ -117,7 +117,7 @@
     <p>Products for a specific retailer</p>
     </div>
 
-    <pre class="usage"><span class='fu'>retailer_products</span>(<span class='no'>retailer_id</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>retailer_products</span>(<span class='no'>retailer_id</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>brand</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -125,6 +125,14 @@
     <tr>
       <th>retailer_id</th>
       <td><p>A retailer ID.</p></td>
+    </tr>
+    <tr>
+      <th>name</th>
+      <td><p>Filter by product name (treated as a regular expression).</p></td>
+    </tr>
+    <tr>
+      <th>brand</th>
+      <td><p>Filter by product brand (treated as a regular expression).</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -140,6 +148,7 @@
     <pre class="examples"><div class='input'><span class='co'># Get products for a specific retailer.</span>
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='fu'>retailer_products</span>(<span class='fl'>1</span>)
+<span class='fu'>retailer_products</span>(<span class='fl'>9</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Nescafe"</span>)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

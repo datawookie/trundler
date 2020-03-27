@@ -37,8 +37,8 @@ Use `retailer()` to get a list of retailers.
 retailer()
 ```
 
-    # A tibble: 71 x 4
-       retailer_id name             url                              currency
+    # A tibble: 79 x 4
+       retailer_id retailer         url                              currency
              <int> <chr>            <chr>                            <chr>   
      1           1 EEM Technologies https://www.eemtechnologies.com/ USD     
      2           2 Clicks           https://clicks.co.za/            ZAR     
@@ -50,7 +50,7 @@ retailer()
      8           8 Marks & Spencer  https://www.marksandspencer.com/ GBP     
      9           9 Pick 'n Pay      https://www.pnp.co.za/           ZAR     
     10          10 Makro            https://www.makro.co.za/         ZAR     
-    # … with 61 more rows
+    # … with 69 more rows
 
 Or you can acccess the details for a specific retailer.
 
@@ -60,7 +60,7 @@ retailer(45)
 
 ``` 
 # A tibble: 1 x 4
-  retailer_id name               url                         currency
+  retailer_id retailer           url                         currency
         <int> <chr>              <chr>                       <chr>   
 1          45 Builders Warehouse https://www.builders.co.za/ ZAR     
 ```
@@ -73,8 +73,8 @@ Get a list of products for a specific retailer.
 retailer_products(5)
 ```
 
-    # A tibble: 64,602 x 5
-       product_id name                            brand              model sku      
+    # A tibble: 69,845 x 5
+       product_id product                         brand              model sku      
             <int> <chr>                           <chr>              <chr> <chr>    
      1     606751 Belted Chinos                   Woolworths Classi… <NA>  60092117…
      2     606756 Cropped Leggings                Woolworths Classi… <NA>  60092110…
@@ -86,62 +86,81 @@ retailer_products(5)
      8     608341 144TC Cotton Blend Fitted Sheet <NA>               <NA>  60092146…
      9     608419 All Year Round Temperature Com… <NA>               <NA>  60091789…
     10     609106 Floral Cotton Rich Socks        <NA>               <NA>  60092149…
-    # … with 64,592 more rows
+    # … with 69,835 more rows
 
 Products can be filtered by name and brand.
 
 ``` r
-retailer_products(5, name = "coffee", brand = "nespresso")
+retailer_products(5, product = "coffee", brand = "nespresso")
 ```
 
     # A tibble: 5 x 5
-      product_id name                                   brand     model sku         
-           <int> <chr>                                  <chr>     <chr> <chr>       
-    1     667365 NESPRESSO Essenza Mini Coffee Machine  Nespresso <NA>  76300396187…
-    2     667426 NESPRESSO Citiz&Milk Coffee Machine    Nespresso <NA>  76300544309…
-    3     667654 NESPRESSO Lattissima Touch Coffee Mac… Nespresso <NA>  76300476151…
-    4     667815 NESPRESSO Lattissima One Coffee Machi… Nespresso <NA>  76300396464…
-    5     729093 NESPRESSO Creatista Plus Coffee Machi… Nespresso <NA>  76300396488…
+      product_id product                                 brand    model sku         
+           <int> <chr>                                   <chr>    <chr> <chr>       
+    1     667365 NESPRESSO Essenza Mini Coffee Machine   Nespres… <NA>  76300396187…
+    2     667426 NESPRESSO Citiz&Milk Coffee Machine     Nespres… <NA>  76300544309…
+    3     667654 NESPRESSO Lattissima Touch Coffee Mach… Nespres… <NA>  76300476151…
+    4     667815 NESPRESSO Lattissima One Coffee Machine Nespres… <NA>  76300396464…
+    5     729093 NESPRESSO Creatista Plus Coffee Machine Nespres… <NA>  76300396488…
 
 A similar search can be applied across *all* retailers.
 
 ``` r
-products(name = "coffee", brand = "nespresso|nescafe")
+products(product = "hand sanitiser")
+```
+
+    # A tibble: 70 x 6
+       product_id retailer_id product                     brand   model sku         
+            <int>       <int> <chr>                       <chr>   <chr> <chr>       
+     1     284382          10 DETTOL Hand Sanitiser Orig… DETTOL  <NA>  00000000018…
+     2     282722          10 DETTOL Hand Sanitiser Spri… DETTOL  <NA>  00000000018…
+     3     284384          10 DETTOL Hand Sanitiser Flor… DETTOL  <NA>  00000000018…
+     4     582165           2 Lemon Fresh Hand Sanitiser… Lifebu… <NA>  321918      
+     5     286540          10 LIFEBUOY Hand Sanitiser To… LIFEBU… <NA>  00000000038…
+     6     286797          33 Stuf Hand Sanitiser 50ml T… Stuf    <NA>  1121979     
+     7     535758           9 Dettol Floral Hand Sanitis… <NA>    <NA>  00000000000…
+     8     535759           9 Dettol Floral Hand Sanitis… <NA>    <NA>  00000000000…
+     9     535782           9 Dettol Hand Sanitiser 50ml  <NA>    <NA>  00000000000…
+    10     535783           9 Dettol Hand Sanitiser 200ml <NA>    <NA>  00000000000…
+    # … with 60 more rows
+
+``` r
+products(product = "coffee", brand = "nespresso|nescafe")
 ```
 
     # A tibble: 101 x 6
-       product_id retailer_id name                         brand   model sku        
-            <int>       <int> <chr>                        <chr>   <chr> <chr>      
-     1     197759          28 Nespresso Vertuo Plus Coffe… Nespre… <NA>  798806     
-     2     477109          10 Nespresso Lattissima Touch … NESPRE… <NA>  0000000000…
-     3     459419          10 Nescafe Dolce Gusto Coffee … NESCAFE <NA>  0000000002…
-     4     459494          10 NESCAFE Ricoffy Coffee Deca… NESCAFE <NA>  0000000000…
-     5     459497          10 NESCAFE Dolce Gusto Coffee … NESCAFE <NA>  0000000002…
-     6     459541          10 NESCAFE Gold Coffee Blend S… NESCAFE <NA>  0000000000…
-     7     459652          10 NESCAFE Coffee Jar Gold Dec… NESCAFE <NA>  0000000003…
-     8     459658          10 Nescafe Coffee Espresso (6 … NESCAFE <NA>  0000000003…
-     9     459665          10 Nescafe Coffee Alta Rica (6… NESCAFE <NA>  0000000003…
-    10     459710          10 Nescafe Dolce Gusto Coffee … NESCAFE <NA>  0000000002…
+       product_id retailer_id product                       brand  model sku        
+            <int>       <int> <chr>                         <chr>  <chr> <chr>      
+     1     459419          10 Nescafe Dolce Gusto Coffee P… NESCA… <NA>  0000000002…
+     2     197759          28 Nespresso Vertuo Plus Coffee… Nespr… <NA>  798806     
+     3     459494          10 NESCAFE Ricoffy Coffee Decaf… NESCA… <NA>  0000000000…
+     4     459497          10 NESCAFE Dolce Gusto Coffee P… NESCA… <NA>  0000000002…
+     5     459541          10 NESCAFE Gold Coffee Blend St… NESCA… <NA>  0000000000…
+     6     459652          10 NESCAFE Coffee Jar Gold Deca… NESCA… <NA>  0000000003…
+     7     459658          10 Nescafe Coffee Espresso (6 x… NESCA… <NA>  0000000003…
+     8     459665          10 Nescafe Coffee Alta Rica (6 … NESCA… <NA>  0000000003…
+     9     459710          10 Nescafe Dolce Gusto Coffee P… NESCA… <NA>  0000000002…
+    10     459716          10 Nescafe Dolce Gusto Coffee P… NESCA… <NA>  0000000002…
     # … with 91 more rows
 
 ``` r
-products(name = "tv", brand = "samsung|hisense")
+products(product = "tv", brand = "samsung|hisense")
 ```
 
-    # A tibble: 572 x 6
-       product_id retailer_id name                     brand  model     sku         
-            <int>       <int> <chr>                    <chr>  <chr>     <chr>       
-     1     332220          10 "Samsung 70\" (179 cm) … SAMSU… 70RU7100… 00000000000…
-     2     331236          10 "Samsung 190 cm (75\") … SAMSU… QA75Q900… 00000000000…
-     3     331238          10 "Hisense 70\" (177cm) S… HISEN… 70B7100UW 00000000000…
-     4     331256          10 "Samsung 163 cm (65\") … SAMSU… UA65RU73… 00000000000…
-     5     331271          10 "Hisense 139 cm (55\") … HISEN… 55Q8600U… 00000000000…
-     6     331613          10 "HISENSE 108 cm (43\") … HISEN… 43B7100   00000000000…
-     7     331616          10 "HISENSE 139 cm (55\") … HISEN… 55B7100W  00000000000…
-     8     331617          10 "HISENSE 80 cm (32\") S… HISEN… 32B6000HW 00000000000…
-     9     331620          10 "SAMSUNG 208 cm (82\") … SAMSU… QA82Q90R… 00000000000…
-    10     331622          10 "Samsung 208 cm (82\") … SAMSU… QA82Q60R… 00000000000…
-    # … with 562 more rows
+    # A tibble: 619 x 6
+       product_id retailer_id product                   brand  model     sku        
+            <int>       <int> <chr>                     <chr>  <chr>     <chr>      
+     1     331236          10 "Samsung 190 cm (75\") S… SAMSU… QA75Q900… 0000000000…
+     2     331238          10 "Hisense 70\" (177cm) Sm… HISEN… 70B7100UW 0000000000…
+     3     331256          10 "Samsung 163 cm (65\") S… SAMSU… UA65RU73… 0000000000…
+     4     331271          10 "Hisense 139 cm (55\") S… HISEN… 55Q8600U… 0000000000…
+     5     331613          10 "HISENSE 108 cm (43\") S… HISEN… 43B7100   0000000000…
+     6     331616          10 "HISENSE 139 cm (55\") S… HISEN… 55B7100W  0000000000…
+     7     331617          10 "HISENSE 80 cm (32\") Sm… HISEN… 32B6000HW 0000000000…
+     8     331620          10 "SAMSUNG 208 cm (82\") S… SAMSU… QA82Q90R… 0000000000…
+     9     331622          10 "Samsung 208 cm (82\") S… SAMSU… QA82Q60R… 0000000000…
+    10     331624          10 "SAMSUNG 190 cm (75\") S… SAMSU… QA75Q80R… 0000000000…
+    # … with 609 more rows
 
 Information on a specific product.
 
@@ -149,14 +168,15 @@ Information on a specific product.
 item <- product(530290)
 ```
 
-What fields are available?
+What fields are
+available?
 
 ``` r
 names(item)
 ```
 
 ``` 
-[1] "product_id"  "retailer_id" "url"         "name"        "brand"      
+[1] "product_id"  "retailer_id" "url"         "product"     "brand"      
 [6] "model"       "sku"         "barcodes"   
 ```
 
@@ -164,7 +184,7 @@ Get product name,
 [SKU](https://en.wikipedia.org/wiki/Stock_keeping_unit) and barcodes.
 
 ``` r
-item$name
+item$product
 ```
 
     [1] "Ola Rich 'n Creamy Magical Unicorn Ice Cream 1.8l"
@@ -190,15 +210,19 @@ product_prices(530290)
 ```
 
 ``` 
-# A tibble: 8 x 5
-  product_id time                      price price_promotion available
-       <int> <chr>                     <dbl>           <dbl> <lgl>    
-1     530290 2020-03-22T03:38:30+00:00  50.0            40.0 NA       
-2     530290 2020-03-21T01:50:25+00:00  50.0            40.0 NA       
-3     530290 2020-03-14T00:32:25+00:00  50.0            40.0 NA       
-4     530290 2020-03-07T00:32:36+00:00  50.0            40.0 NA       
-5     530290 2020-02-22T00:31:17+00:00  50.0            NA   NA       
-6     530290 2020-02-15T00:32:47+00:00  50.0            38.0 NA       
-7     530290 2020-02-08T00:32:37+00:00  50.0            38.0 NA       
-8     530290 2020-02-01T00:34:24+00:00  50.0            45.0 NA       
+# A tibble: 12 x 5
+   product_id time                      price price_promotion available
+        <int> <chr>                     <dbl>           <dbl> <lgl>    
+ 1     530290 2020-03-26T01:43:34+00:00  50.0            NA   NA       
+ 2     530290 2020-03-25T01:43:56+00:00  50.0            NA   NA       
+ 3     530290 2020-03-24T01:50:30+00:00  50.0            NA   NA       
+ 4     530290 2020-03-23T01:51:03+00:00  50.0            NA   NA       
+ 5     530290 2020-03-22T03:38:30+00:00  50.0            40.0 NA       
+ 6     530290 2020-03-21T01:50:25+00:00  50.0            40.0 NA       
+ 7     530290 2020-03-14T00:32:25+00:00  50.0            40.0 NA       
+ 8     530290 2020-03-07T00:32:36+00:00  50.0            40.0 NA       
+ 9     530290 2020-02-22T00:31:17+00:00  50.0            NA   NA       
+10     530290 2020-02-15T00:32:47+00:00  50.0            38.0 NA       
+11     530290 2020-02-08T00:32:37+00:00  50.0            38.0 NA       
+12     530290 2020-02-01T00:34:24+00:00  50.0            45.0 NA       
 ```

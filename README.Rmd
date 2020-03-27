@@ -63,14 +63,15 @@ retailer_products(5)
 Products can be filtered by name and brand.
 
 ```{r}
-retailer_products(5, name = "coffee", brand = "nespresso")
+retailer_products(5, product = "coffee", brand = "nespresso")
 ```
 
 A similar search can be applied across *all* retailers.
 
 ```{r}
-products(name = "coffee", brand = "nespresso|nescafe")
-products(name = "tv", brand = "samsung|hisense")
+products(product = "hand sanitiser")
+products(product = "coffee", brand = "nespresso|nescafe")
+products(product = "tv", brand = "samsung|hisense")
 ```
 
 Information on a specific product.
@@ -88,7 +89,7 @@ names(item)
 Get product name, [SKU](https://en.wikipedia.org/wiki/Stock_keeping_unit) and barcodes.
 
 ```{r}
-item$name
+item$product
 item$sku
 item$barcodes
 ```
