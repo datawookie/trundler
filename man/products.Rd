@@ -4,10 +4,10 @@
 \alias{products}
 \title{Find products by name or brand}
 \usage{
-products(name = NA, brand = NA, ...)
+products(product = NA, brand = NA, ...)
 }
 \arguments{
-\item{name}{Filter by product name (treated as a regular expression).}
+\item{product}{Filter by product name (treated as a regular expression).}
 
 \item{brand}{Filter by product brand (treated as a regular expression).}
 
@@ -21,8 +21,8 @@ Find products by name or brand
 }
 \examples{
 \dontrun{
-products(name = "coffee")
+products(product = "coffee")
 products(brand = "Illy")
-products(name = "coffee", brand = "Illy")
+products(product = "coffee", brand = "Illy")
 }
 }

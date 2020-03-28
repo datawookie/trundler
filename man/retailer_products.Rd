@@ -4,12 +4,12 @@
 \alias{retailer_products}
 \title{Products for a specific retailer}
 \usage{
-retailer_products(retailer_id, name = NA, brand = NA, ...)
+retailer_products(retailer_id, product = NA, brand = NA, ...)
 }
 \arguments{
 \item{retailer_id}{A retailer ID.}
 
-\item{name}{Filter by product name (treated as a regular expression).}
+\item{product}{Filter by product name (treated as a regular expression).}
 
 \item{brand}{Filter by product brand (treated as a regular expression).}
 
@@ -25,6 +25,6 @@ Products for a specific retailer
 # Get products for a specific retailer.
 \dontrun{
 retailer_products(1)
-retailer_products(9, name = "Nescafe")
+retailer_products(9, product = "Nescafe")
 }
 }
