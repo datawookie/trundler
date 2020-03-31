@@ -6,9 +6,6 @@
 \usage{
 admin_stats_status()
 }
-\value{
-
-}
 \description{
 Get status statistics per crawl
 }

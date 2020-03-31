@@ -6,9 +6,6 @@
 \usage{
 admin_stats()
 }
-\value{
-
-}
 \description{
 Get statistics per crawl
 }

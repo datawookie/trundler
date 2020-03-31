@@ -6,9 +6,6 @@
 \usage{
 admin_auth_count()
 }
-\value{
-
-}
 \description{
 Usage statistics on all API keys
 }

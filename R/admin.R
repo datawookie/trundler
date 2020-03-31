@@ -1,6 +1,5 @@
 #' Information on all API keys
 #'
-#' @return
 #' @export
 admin_auth <- function() {
   url <- paste0(base_url(), "admin/auth")
@@ -17,7 +16,6 @@ admin_auth <- function() {
 
 #' Usage statistics on all API keys
 #'
-#' @return
 #' @export
 admin_auth_count <- function() {
   url <- paste0(base_url(), "admin/auth/count")
@@ -33,7 +31,6 @@ admin_auth_count <- function() {
 
 #' Get statistics per crawl
 #'
-#' @return
 #' @export
 admin_stats <- function() {
   url <- paste0(base_url(), "admin/stats")
@@ -48,7 +45,6 @@ admin_stats <- function() {
 
 #' Get status statistics per crawl
 #'
-#' @return
 #' @export
 admin_stats_status <- function() {
   url <- paste0(base_url(), "admin/stats/status")
@@ -63,7 +59,6 @@ admin_stats_status <- function() {
 
 #' Get statistics per retailer per day
 #'
-#' @return
 #' @export
 admin_stats_daily <- function() {
   url <- paste0(base_url(), "admin/stats/daily")

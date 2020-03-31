@@ -6,9 +6,6 @@
 \usage{
 admin_auth()
 }
-\value{
-
-}
 \description{
 Information on all API keys
 }

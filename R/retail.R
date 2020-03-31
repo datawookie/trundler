@@ -2,6 +2,10 @@ BASE_URL <- "https://retail-api.exegetic.biz/"
 
 cache <- new.env()
 
+# Avoid some NOTEs with devtools::check().
+#
+globalVariables(c("auth_id", "retailer_id"))
+
 #' @import magrittr
 #' @import jsonlite
 #' @import tibble

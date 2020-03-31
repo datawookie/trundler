@@ -6,9 +6,6 @@
 \usage{
 admin_stats_daily()
 }
-\value{
-
-}
 \description{
 Get statistics per retailer per day
 }
