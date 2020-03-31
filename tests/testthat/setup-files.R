@@ -1,3 +1,7 @@
+# Avoid timedatectl warning in tests?
+#
+Sys.setenv(TZ = "Etc/UTC")
+
 library(RPostgres)
 
 API_KEY = Sys.getenv("RETAIL_KEY")
