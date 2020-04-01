@@ -2,7 +2,7 @@ BASE_URL <- "https://retail-api.exegetic.biz/"
 
 cache <- new.env()
 
-# Avoid some NOTEs with devtools::check().
+# Avoid some "no visible binding" notes with devtools::check().
 #
 globalVariables(c("auth_id", "retailer_id"))
 

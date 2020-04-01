@@ -40,7 +40,11 @@ admin_stats <- function() {
   response %>%
     content(as = "text", encoding = "UTF-8") %>%
     fromJSON() %>%
-    rename(stats_id = id)
+    rename(stats_id = id) %>%
+    mutate(
+      start_time = as.POSIXct(strptime(start_time, "%Y-%m-%dT%H:%M:%S", tz = "UTC")),
+      finish_time = as.POSIXct(strptime(finish_time, "%Y-%m-%dT%H:%M:%S", tz = "UTC"))
+    )
 }
 
 #' Get status statistics per crawl
