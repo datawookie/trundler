@@ -4,7 +4,7 @@ cache <- new.env()
 
 # Avoid some "no visible binding" notes with devtools::check().
 #
-globalVariables(c("auth_id", "retailer_id"))
+globalVariables(c("auth_id", "retailer_id", "start_time", "finish_time"))
 
 #' @import magrittr
 #' @import jsonlite
