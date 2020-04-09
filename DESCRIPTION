@@ -1,7 +1,7 @@
 Package: retail
 Type: Package
 Title: Retrieve data from Retail Pricing API
-Version: 0.0.9
+Version: 0.0.10
 Authors@R: 
     c(person(given = c("Andrew", "B."),
              family = "Collier",
@@ -26,5 +26,6 @@ Suggests:
     hexSticker,
     showtext,
     testthat (>= 2.1.0),
+    devtools,
     RPostgres
 RoxygenNote: 7.0.2

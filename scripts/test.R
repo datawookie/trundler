@@ -10,6 +10,12 @@ retailer()
 set_api_key(API_KEY)
 get_api_key()
 
+admin_auth()
+admin_auth_count()
+admin_stats() %>% head()
+admin_stats_status() %>% head()
+admin_stats_daily() %>% head()
+
 retailer_products(28)
 
 products(product = "hand sanitiser")
