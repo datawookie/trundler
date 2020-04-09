@@ -4,12 +4,14 @@
 \alias{GET}
 \title{Wrapper for httr::GET()}
 \usage{
-GET(url = NULL, config = list(), ...)
+GET(url = NULL, config = list(), retry = 5, ...)
 }
 \arguments{
 \item{url}{URL to retrieve.}
 
 \item{config}{Additional configuration settings.}
+
+\item{retry}{Number of times to retry request on failure.}
 
 \item{...}{Further named parameters.}
 }
