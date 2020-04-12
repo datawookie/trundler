@@ -73,5 +73,6 @@ admin_stats_daily <- function() {
     content(as = "text", encoding = "UTF-8") %>%
     fromJSON() %>%
     select(date, retailer_id, count) %>%
+    mutate(date = as.Date(date)) %>%
     arrange(desc(date), retailer_id)
 }
