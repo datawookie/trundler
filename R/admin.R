@@ -72,7 +72,8 @@ admin_stats_daily <- function() {
   response %>%
     content(as = "text", encoding = "UTF-8") %>%
     fromJSON() %>%
-    select(date, retailer_id, count) %>%
+    as_tibble() %>%
+    select(date, retailer_id, count, price_total) %>%
     mutate(date = as.Date(date)) %>%
     arrange(desc(date), retailer_id)
 }
