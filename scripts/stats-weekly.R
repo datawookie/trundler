@@ -4,6 +4,7 @@ library(dplyr)
 library(tidyr)
 library(glue)
 library(ggplot2)
+library(patchwork)
 library(assertthat)
 
 COLOUR_BLUE <- "#3498db"
@@ -97,13 +98,13 @@ stats <- stats %>%
 
 # PLOT ----------------------------------------------------------------------------------------------------------------
 
-retailer_week_count_boxplot <- function(id) {
+retailer_week_boxplot <- function(id) {
   data_history <- stats %>% filter(retailer_id == id, current == FALSE)
   data_current <- stats %>% filter(retailer_id == id, current == TRUE)
 
   BAR_WIDTH <- 0.75
 
-  ggplot(data_current, aes(x = dow, y = count)) +
+  plot_count <- ggplot(data_current, aes(x = dow, y = count)) +
     geom_boxplot(
       data = data_history,
       width = BAR_WIDTH,
@@ -120,21 +121,13 @@ retailer_week_count_boxplot <- function(id) {
       colour = COLOUR_BLUE,
       size = 2
     ) +
-    labs(x = NULL, y = "Number of products", title = glue("{retailer_name(id)}")) +
+    labs(x = NULL, y = "Number of products") +
     theme_classic()
-}
-retailer_week_count_boxplot(5)
-
-retailer_week_price_boxplot <- function(id) {
-  data_history <- stats %>% filter(retailer_id == id, current == FALSE)
-  data_current <- stats %>% filter(retailer_id == id, current == TRUE)
-
-  BAR_WIDTH <- 0.75
 
   data_history <- na.omit(data_history)
   data_current <- na.omit(data_current)
 
-  ggplot(data_current, aes(x = dow, y = price_mean)) +
+  plot_price <- ggplot(data_current, aes(x = dow, y = price_mean)) +
     geom_boxplot(
       data = data_history,
       width = BAR_WIDTH,
@@ -151,26 +144,37 @@ retailer_week_price_boxplot <- function(id) {
       colour = COLOUR_ORANGE,
       size = 2
     ) +
-    labs(x = NULL, y = glue("Average price ({retailer_currency(id)})"), title = glue("{retailer_name(id)}")) +
+    labs(x = NULL, y = glue("Average price ({retailer_currency(id)})")) +
     theme_classic()
+
+  (plot_count / plot_price)  + plot_annotation(
+    title = glue("{retailer_name(id)}")
+  )
 }
-retailer_week_price_boxplot(5)
-retailer_week_price_boxplot(9)
+retailer_week_boxplot(5)
+retailer_week_boxplot(9)
 
 retailer_price <- function(id) {
   data <- stats %>% filter(retailer_id == id)
 
-  print(data)
-
   data_week <- data %>% filter(dow == "Sun")
 
-  print(data_week)
-
-  ggplot(data, aes(x = date, y = price_mean)) +
+  plot_count <- ggplot(data, aes(x = date, y = count)) +
     geom_step() +
     geom_vline(data = data_week, aes(xintercept = date), lty = "dashed", colour = COLOUR_GREY) +
-    labs(x = NULL, y = glue("Average price ({retailer_currency(id)})"), title = glue("{retailer_name(id)}")) +
+    labs(x = NULL, y = "Number of products") +
     theme_classic()
+
+  plot_price <- ggplot(data, aes(x = date, y = price_mean)) +
+    geom_step() +
+    geom_vline(data = data_week, aes(xintercept = date), lty = "dashed", colour = COLOUR_GREY) +
+    labs(x = NULL, y = glue("Average price ({retailer_currency(id)})")) +
+    theme_classic()
+
+  (plot_count / plot_price)  + plot_annotation(
+    title = glue("{retailer_name(id)}")
+  )
 }
 retailer_price(5)
 retailer_price(9)
+retailer_price(10)
