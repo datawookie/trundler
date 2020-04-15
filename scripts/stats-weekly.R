@@ -98,9 +98,11 @@ stats <- stats %>%
 
 # PLOT ----------------------------------------------------------------------------------------------------------------
 
-retailer_week_boxplot <- function(id) {
-  data_history <- stats %>% filter(retailer_id == id, current == FALSE)
-  data_current <- stats %>% filter(retailer_id == id, current == TRUE)
+retailer_plot <- function(id) {
+  data <- stats %>% filter(retailer_id == id)
+
+  data_history <- data %>% filter(current == FALSE)
+  data_current <- data %>% filter(current == TRUE)
 
   BAR_WIDTH <- 0.75
 
@@ -119,22 +121,21 @@ retailer_week_boxplot <- function(id) {
         yend=count
       ),
       colour = COLOUR_BLUE,
-      size = 2
+      size = 2,
+      alpha = 0.75
     ) +
     labs(x = NULL, y = "Number of products") +
     theme_classic()
-
-  data_history <- na.omit(data_history)
-  data_current <- na.omit(data_current)
 
   plot_price <- ggplot(data_current, aes(x = dow, y = price_mean)) +
     geom_boxplot(
       data = data_history,
       width = BAR_WIDTH,
       colour = COLOUR_GREY,
-      fill = COLOUR_GREY_LIGHT
+      fill = COLOUR_GREY_LIGHT,
+      na.rm=TRUE
     ) +
-    geom_text(aes(label = as.character(date)), vjust = -0.75, size = 3) +
+    geom_text(aes(label = as.character(date)), vjust = -0.75, size = 3, na.rm=TRUE) +
     geom_segment(
       aes(
         x=as.numeric(dow) - BAR_WIDTH / 2,
@@ -142,39 +143,48 @@ retailer_week_boxplot <- function(id) {
         yend=price_mean
       ),
       colour = COLOUR_ORANGE,
-      size = 2
+      size = 2,
+      alpha = 0.75,
+      na.rm=TRUE
     ) +
     labs(x = NULL, y = glue("Average price ({retailer_currency(id)})")) +
     theme_classic()
 
-  (plot_count / plot_price)  + plot_annotation(
-    title = glue("{retailer_name(id)}")
-  )
-}
-retailer_week_boxplot(5)
-retailer_week_boxplot(9)
-
-retailer_price <- function(id) {
-  data <- stats %>% filter(retailer_id == id)
-
   data_week <- data %>% filter(dow == "Sun")
 
-  plot_count <- ggplot(data, aes(x = date, y = count)) +
+  plot_series_count <- ggplot(data, aes(x = date, y = count)) +
     geom_step() +
     geom_vline(data = data_week, aes(xintercept = date), lty = "dashed", colour = COLOUR_GREY) +
-    labs(x = NULL, y = "Number of products") +
+    labs(x = NULL, y = NULL) +
     theme_classic()
 
-  plot_price <- ggplot(data, aes(x = date, y = price_mean)) +
-    geom_step() +
+  plot_series_price <- ggplot(data, aes(x = date, y = price_mean)) +
+    geom_step(na.rm = TRUE) +
     geom_vline(data = data_week, aes(xintercept = date), lty = "dashed", colour = COLOUR_GREY) +
-    labs(x = NULL, y = glue("Average price ({retailer_currency(id)})")) +
+    labs(x = NULL, y = NULL) +
     theme_classic()
 
-  (plot_count / plot_price)  + plot_annotation(
+  (plot_count / plot_price / plot_series_count / plot_series_price)  + plot_annotation(
     title = glue("{retailer_name(id)}")
   )
+
+  plot_count + plot_series_count + plot_price + plot_series_price +
+    plot_layout(ncol = 1, nrow = 4, heights = c(3, 1, 3, 1)) +
+    plot_annotation(
+      title = glue("{retailer_name(id)}")
+    )
 }
-retailer_price(5)
-retailer_price(9)
-retailer_price(10)
+retailer_plot(1)
+retailer_plot(5)
+retailer_plot(9)
+retailer_plot(38)
+
+# ---------------------------------------------------------------------------------------------------------------------
+
+retailers %>%
+  slice(1:3) %>%
+  select(retailer_id) %>%
+  pmap(function(retailer_id) {
+    retailer_plot(retailer_id)
+  })
+
