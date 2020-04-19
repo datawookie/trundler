@@ -30,7 +30,8 @@ product <- function(product_id) {
 
   result %>%
     as_tibble() %>%
-    rename(product_id = id)
+    rename(product_id = id) %>%
+    select(product_id, retailer_id, url, product, brand, model, sku, barcodes)
 }
 
 #' Find products by name or brand

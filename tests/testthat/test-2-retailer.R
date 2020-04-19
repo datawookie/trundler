@@ -17,9 +17,9 @@ test_that("specific retailer", {
 })
 
 test_that("retailer products", {
-  expect_error(retailer_products(product_id), NA)
+  expect_error(retailer_products(retailer_id), NA)
 
-  first_retailer_products <- retailer_products(product_id)
+  first_retailer_products <- retailer_products(retailer_id)
 
   expect_equal(names(first_retailer_products), c("product_id", "product", "brand", "model", "sku"))
 })

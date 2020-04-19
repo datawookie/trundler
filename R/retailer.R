@@ -64,7 +64,9 @@ retailer_products <- function(retailer_id, product = NA, brand = NA,...) {
   products <- paginate(url, ...)
 
   if (nrow(products)) {
-    products %>% rename(product_id = id)
+    products %>%
+      rename(product_id = id) %>%
+      select(product_id, product, brand, model, sku)
   } else {
     message("No products are currently available for this retailer.")
     tibble(
