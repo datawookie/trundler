@@ -7,7 +7,7 @@ API_KEY <- Sys.getenv("RETAIL_KEY")
 
 set_api_key(API_KEY)
 
-products <- retailer_products(28)
+products <- retailer_products(5)
 
 # Hit API moderately hard.
 #

@@ -178,6 +178,8 @@ retailer_plot(1)
 retailer_plot(5)
 retailer_plot(9)
 retailer_plot(38)
+retailer_plot(57)
+retailer_plot(58)
 
 # ---------------------------------------------------------------------------------------------------------------------
 
