@@ -5,7 +5,7 @@
 #' @param ... Further named parameters.
 #' @param retry Number of times to retry request on failure.
 GET <- function(url = NULL, config = list(), retry = 5,...) {
-  httr::RETRY(
+  response <- httr::RETRY(
     "GET",
     url,
     config,
@@ -13,6 +13,14 @@ GET <- function(url = NULL, config = list(), retry = 5,...) {
     ...,
     handle = NULL,
     times = retry,
-    terminate_on = c(401, 404)
+    terminate_on = c(401, 404, 429)
   )
+
+  # Check for "429 LIMIT EXCEEDED".
+  #
+  if (response$status_code == 429) {
+    stop(content(response)$message, call. = FALSE)
+  }
+
+  response
 }
