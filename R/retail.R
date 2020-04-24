@@ -1,4 +1,4 @@
-BASE_URL <- "https://retail-api.exegetic.biz/"
+BASE_URL <- "https://api.trundler.dev/"
 
 cache <- new.env()
 
