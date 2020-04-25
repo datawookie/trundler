@@ -3,6 +3,6 @@
 .RData
 .Ruserdata
 .Renviron
-retail.Rcheck/
-retail*.tar.gz
-retail*.tgz
+trundler.Rcheck/
+trundler*.tar.gz
+trundler*.tgz

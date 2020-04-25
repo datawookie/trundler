@@ -9,7 +9,7 @@ GET <- function(url = NULL, config = list(), retry = 5,...) {
     "GET",
     url,
     config,
-    httr::user_agent("Retail R Package"),
+    httr::user_agent(glue("trundler [R] ({PKG_VERSION})")),
     ...,
     handle = NULL,
     times = retry,

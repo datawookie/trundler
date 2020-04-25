@@ -1,5 +1,7 @@
 BASE_URL <- "https://api.trundler.dev/"
 
+PKG_VERSION <- utils::packageDescription('trundler')$Version
+
 cache <- new.env()
 
 # Avoid some "no visible binding" notes with devtools::check().

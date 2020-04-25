@@ -1,7 +1,7 @@
-Package: retail
+Package: trundler
 Type: Package
 Title: Retrieve data from Retail Pricing API
-Version: 0.0.11
+Version: 0.0.12
 Authors@R: 
     c(person(given = c("Andrew", "B."),
              family = "Collier",
