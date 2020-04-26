@@ -1,6 +1,10 @@
 library(retail)
 library(dplyr)
 
+# Print all records in tibble.
+#
+# options(tibble.print_max = Inf)
+
 # PRD ---------------------------------------------------------------------------------------------
 
 API_KEY = Sys.getenv("RETAIL_KEY")

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Products for a specific retailer — retailer_products • retail</title>
+<title>Get statistics per retailer per day — admin_stats_daily • retail</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="Products for a specific retailer — retailer_products" />
-<meta property="og:description" content="Products for a specific retailer" />
+<meta property="og:title" content="Get statistics per retailer per day — admin_stats_daily" />
+<meta property="og:description" content="Get statistics per retailer per day" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -108,55 +108,23 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Products for a specific retailer</h1>
-    <small class="dont-index">Source: <a href='https://github.com/datawookie/retail/blob/master/R/retailer.R'><code>R/retailer.R</code></a></small>
-    <div class="hidden name"><code>retailer_products.Rd</code></div>
+    <h1>Get statistics per retailer per day</h1>
+    <small class="dont-index">Source: <a href='https://github.com/datawookie/retail/blob/master/R/admin.R'><code>R/admin.R</code></a></small>
+    <div class="hidden name"><code>admin_stats_daily.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Products for a specific retailer</p>
+    <p>Get statistics per retailer per day</p>
     </div>
 
-    <pre class="usage"><span class='fu'>retailer_products</span>(<span class='no'>retailer_id</span>, <span class='kw'>product</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>brand</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>admin_stats_daily</span>()</pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>retailer_id</th>
-      <td><p>A retailer ID.</p></td>
-    </tr>
-    <tr>
-      <th>product</th>
-      <td><p>Filter by product name (treated as a regular expression).</p></td>
-    </tr>
-    <tr>
-      <th>brand</th>
-      <td><p>Filter by product brand (treated as a regular expression).</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Arguments passed through to <code><a href='paginate.html'>paginate()</a></code>.</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Details of all products for a specific retailer as a <code>data.frame</code>.</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Get products for a specific retailer.</span>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'>retailer_products</span>(<span class='fl'>1</span>)
-<span class='fu'>retailer_products</span>(<span class='fl'>9</span>, <span class='kw'>product</span> <span class='kw'>=</span> <span class='st'>"Nescafe"</span>)
-}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

@@ -1,10 +1,12 @@
-BASE_URL <- "https://retail-api.exegetic.biz/"
+BASE_URL <- "https://api.trundler.dev/"
+
+PKG_VERSION <- utils::packageDescription('trundler')$Version
 
 cache <- new.env()
 
 # Avoid some "no visible binding" notes with devtools::check().
 #
-globalVariables(c("auth_id", "retailer_id", "start_time", "finish_time"))
+globalVariables(c("auth_id", "retailer_id", "product_id", "start_time", "finish_time", "price_total", "brand", "model", "sku", "barcodes"))
 
 #' @import magrittr
 #' @import jsonlite

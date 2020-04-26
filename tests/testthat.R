@@ -1,4 +1,4 @@
 library(testthat)
-library(retail)
+library(trundler)
 
-test_check("retail")
+test_check("trundler")

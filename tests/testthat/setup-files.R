@@ -35,12 +35,12 @@ db_send_statement <- function(sql) {
 }
 
 db_get_product <- function(where) {
-  SQL <- glue("SELECT product.id FROM price INNER JOIN product ON price.product_id = product.id WHERE {where} GROUP BY product.id, product.brand, product.sku LIMIT 1;")
+  SQL <- glue("SELECT product.id FROM price INNER JOIN product ON price.product_id = product.id INNER JOIN retailer ON retailer.id = product.retailer_id WHERE {where} AND visible GROUP BY product.id, product.brand, product.sku LIMIT 1;")
 
   db_fetch_query(SQL)$id
 }
 db_get_retailer <- function(where) {
-  SQL <- glue("SELECT retailer.id FROM retailer LIMIT 1;")
+  SQL <- glue("SELECT retailer.id FROM retailer WHERE visible LIMIT 1;")
 
   db_fetch_query(SQL)$id
 }

@@ -30,3 +30,11 @@ test_that("sku is NULL", {
 
   expect_equal(product_null_sku$sku, NA_character_)
 })
+
+test_that("product name has apostrophe", {
+  expect_error(products(product = "Jerry's"), NA)
+})
+
+test_that("brand name has apostrophe", {
+  expect_error(products(brand = "Jerry's"), NA)
+})
