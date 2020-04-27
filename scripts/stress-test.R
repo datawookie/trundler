@@ -3,7 +3,7 @@
 library(retail)
 library(dplyr)
 
-API_KEY <- Sys.getenv("RETAIL_KEY")
+API_KEY <- Sys.getenv("TRUNDLER_KEY")
 
 set_api_key(API_KEY)
 

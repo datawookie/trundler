@@ -4,7 +4,7 @@ Sys.setenv(TZ = "Etc/UTC")
 
 library(RPostgres)
 
-API_KEY = Sys.getenv("RETAIL_KEY")
+API_KEY = Sys.getenv("TRUNDLER_KEY")
 
 base_url_original <- base_url()
 
