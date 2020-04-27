@@ -5,7 +5,7 @@ test_that("product", {
 
   first_product <- product(product_id)
 
-  expect_equal(names(first_product), c("product_id", "retailer_id", "url", "product", "brand", "model", "sku", "barcodes"))
+  expect_equal(names(first_product), c("product_id", "retailer_id", "product_url", "product", "brand", "model", "sku", "barcodes"))
 })
 
 test_that("product prices (call succeeds)", {
