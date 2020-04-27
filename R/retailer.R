@@ -30,7 +30,7 @@ retailer <- function(retailer_id = NA) {
     content(as = "text", encoding = "UTF-8") %>%
     fromJSON() %>%
     as_tibble() %>%
-    rename(retailer_id = id)
+    rename(retailer_id = id, retailer_url = url)
 }
 
 #' Products for a specific retailer
