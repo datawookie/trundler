@@ -1,10 +1,9 @@
 # This script is for (internal) API testing only. Please don't run it!
 
-library(retail)
+library(trundler)
 library(dplyr)
 
 API_KEY <- Sys.getenv("TRUNDLER_KEY")
-
 set_api_key(API_KEY)
 
 products <- retailer_products(5)
