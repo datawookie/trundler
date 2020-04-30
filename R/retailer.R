@@ -30,10 +30,7 @@ retailer <- function(retailer_id = NA) {
     content(as = "text", encoding = "UTF-8") %>%
     fromJSON() %>%
     as_tibble() %>%
-    rename(retailer_id = id, retailer_url = url) %>%
-    mutate(
-      retailer_id = as.factor(retailer_id)
-    )
+    rename(retailer_id = id, retailer_url = url)
 }
 
 #' Products for a specific retailer
@@ -73,7 +70,7 @@ retailer_products <- function(retailer_id, product = NA, brand = NA,...) {
   } else {
     message("No products are currently available for this retailer.")
     tibble(
-      product_id = factor(),
+      product_id = integer(),
       product = character(),
       brand = character(),
       model = character(),

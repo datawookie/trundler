@@ -59,6 +59,5 @@ paginate <- function(url, limit = 10000, verbose = FALSE) {
     as_tibble() %>%
     mutate_at(vars(any_of(c("brand", "model", "sku"))), as.character) %>%
     mutate_at(vars(any_of(c("price", "price_promotion"))), as.numeric) %>%
-    mutate_at(vars(any_of(c("id", "retailer_id", "product_id"))), as.factor) %>%
     mutate_at(vars(any_of(c("time"))), function(time) {as.POSIXct(time, format = "%Y-%m-%dT%H:%M:%S", tz = "UTC")})
 }
