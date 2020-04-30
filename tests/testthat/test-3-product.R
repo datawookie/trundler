@@ -16,7 +16,7 @@ test_that("product prices (call succeeds)", {
 test_that("product prices (correct columns)", {
   first_product_prices <- product_prices(product_id)
 
-  expect_equal(names(first_product_prices), c("product_id", "time", "price", "price_promotion", "available"))
+  expect_equal(names(first_product_prices), c("product_id", "time", "price", "price_promotion", "price_effective", "available"))
 })
 
 test_that("brand is NULL", {

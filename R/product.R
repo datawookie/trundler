@@ -95,5 +95,9 @@ products <- function(product = NA, brand = NA, ...) {
 product_prices <- function(product_id, ...) {
   paste0(base_url(), "product/%d/price") %>%
     sprintf(product_id) %>%
-    paginate(...)
+    paginate(...) %>%
+    mutate(
+      price_effective = coalesce(price_promotion, price)
+    ) %>%
+    select(-available, available)
 }
