@@ -40,6 +40,11 @@ paginate <- function(url, limit = 10000, verbose = FALSE) {
       message(sprintf("Retrieved %d results.", nrow(result)))
     }
 
+    if (!length(result)) {
+      if (verbose) message("No more rows.")
+      break
+    }
+
     results <- c(results, list(result))
 
     if (nrow(result) < limit) {
