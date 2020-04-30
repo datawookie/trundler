@@ -40,6 +40,11 @@ paginate <- function(url, limit = 10000, verbose = FALSE) {
       message(sprintf("Retrieved %d results.", nrow(result)))
     }
 
+    if (!length(result)) {
+      if (verbose) message("No more rows.")
+      break
+    }
+
     results <- c(results, list(result))
 
     if (nrow(result) < limit) {
@@ -53,5 +58,7 @@ paginate <- function(url, limit = 10000, verbose = FALSE) {
   do.call(rbind, results) %>%
     as_tibble() %>%
     mutate_at(vars(any_of(c("brand", "model", "sku"))), as.character) %>%
-    mutate_at(vars(any_of(c("price", "price_promotion"))), as.numeric)
+    mutate_at(vars(any_of(c("price", "price_promotion"))), as.numeric) %>%
+    mutate_at(vars(any_of(c("id", "retailer_id", "product_id"))), as.factor) %>%
+    mutate_at(vars(any_of(c("time"))), function(time) {as.POSIXct(time, format = "%Y-%m-%dT%H:%M:%S", tz = "UTC")})
 }
