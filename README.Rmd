@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE, comment=NA)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# retail <img src="man/figures/retail-hex.png" align="right" alt="" width="120" />
+# trundler <img src="man/figures/trundler-hex.png" align="right" alt="" width="120" />
 
 [![Travis-CI build status](https://travis-ci.org/datawookie/trundler.svg?branch=master)](https://travis-ci.org/datawookie/trundler)
 [![Codecov test coverage](https://img.shields.io/codecov/c/github/datawookie/trundler.svg)](https://codecov.io/github/datawookie/trundler)
