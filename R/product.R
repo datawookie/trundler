@@ -31,11 +31,7 @@ product <- function(product_id) {
   result %>%
     as_tibble() %>%
     rename(product_id = id) %>%
-    select(product_id, retailer_id, product_url = url, product, brand, model, sku, barcodes) %>%
-    mutate(
-      product_id = factor(product_id),
-      retailer_id = factor(retailer_id)
-    )
+    select(product_id, retailer_id, product_url = url, product, brand, model, sku, barcodes)
 }
 
 #' Find products by name or brand
@@ -73,8 +69,8 @@ products <- function(product = NA, brand = NA, ...) {
   } else {
     message("No products are currently available for this query")
     tibble(
-      product_id = factor(),
-      retailer_id = factor(),
+      product_id = integer(),
+      retailer_id = integer(),
       product = character(),
       brand = character(),
       model = character(),
