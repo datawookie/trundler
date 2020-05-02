@@ -10,7 +10,6 @@ latex: false
 
 cache: packages
 r_packages:
-  - rmarkdown
   - pkgdown
   - covr
 addons:
@@ -28,11 +27,18 @@ notifications:
 after_success:
   - Rscript -e 'library(covr); codecov()'
 before_deploy:
-  - Rscript -e 'devtools::install(); rmarkdown::render("README.Rmd")'
+  # This will build the pkgdown site from README.md.
+  #
+  # To get README.md from README.Rmd you need to run another step first which does:
+  #
+  # devtools::install()
+  # rmarkdown::render("README.Rmd")
+  #
+  # but it doesn't make sense to do this in Travis.
+  #
   - Rscript -e 'pkgdown::build_site()'
 deploy:
   provider: pages
-  # Don't delete artefacts from build.
   skip_cleanup: true
   github_token: "$GITHUB_TOKEN"
   on:
@@ -48,7 +54,4 @@ env:
   - secure: I9rO2W5RRBDpfPjvI6wq3O3brPu3pixU2BaBH5xt5ymAFzdeS/CZG5DfEpH+/xomuLit8BqVASwZeo5rfp43YQnMNnw8R9HwiTLENSkMX++h9/uhkdqH/2gZ43KVx610nXaSNTYnv1cc7NeP/u7lrgV08MHARF8qVZxlrn6rFfMShq0sY/KB/nMtyvyiXKB6WOohiGX7btMGpnr2x6S7e89ZQV1EuCpFeP2nbpIf/mwe+u6+4lG+mOmsKCBhVBQO7qibRLSgZReDx8L5paa+vhCt5Ce25Ixc893IKarkXchsxLGK7uxa6j3WHVJM+ZRboOMHlpxhUr8PSP5Vwo/0dHNam3XFVjy5LpC2LVhlAcRM8M0GC1MvuxDNZ65wkTmdifO9mD/arg0AAT0qvTtHIa4W2E/UuvSQklx+XFnvGnbDf77khn8veOd1HFUbPbf+HX/tTENsRn2+QkkFROhtNCC51wn70zAca5t4Yc2OPWVhEuOpcaiNqefKD4+zp+sp2YKXBqrpPfd1557OMVQAupLErg34gsVbLk3KRaF4A77CSnqbt3s+/WaKFtCL5dA6UVqIjGOeHxP8Z3YbSyyy9BCZEXmSi+MGUVaX4udajnnI0SDaAyP6kMVifW0qDtnzwhUq3CgtQw3kL2otm3n9dn6s5gvsO+mu2iDF1mQI6aA=
   - secure: geu1cUDfwlTY2IU7wa/gX18j6YIVVTyjw6ojdpViAciP571Na7QQOlJPSrTSV/QuOKem1Y7DPYiWAZSVr4Aa4Mqf+iV6feNdz06YYOalt+4UyBfEcG9TFjbwe20XXq8vNm2a5bxLclwYIgZ5rPyu9I2dsyyNqyXjNTZZ/5q+iRcZLhJA03/h/vApI1frhKsgosfsvFcL8/eQNsAn7ip43UEJn0zjnGHWXN5xyvtGYZUE+qrHolhxY/kPMHtKHBx5VFgvwsczqQnmso4TLQYb3xdCLm5K9AxGL1iJ48ABt4GCQBQ4cD3t+jNWb6M3EDMmWEtzM+urFS0BC6G8uhedjlsWfBeR+FSkYPdFrEe7Iu6wYmsyL2WFok/NXxSku8IEGbtO8r8HU87xEgFgX+tfROkMvNMOZSb/TfA1Ngb3EPtaFnnIXCRFcIGJrp9NlIyATSHyqG3ugNDshlHsjVFfk8FWLlDRX2SsFiyzz+UklNm1ILFGvjfo+ExVpT4tDN1Y2CdHNVSNgEnPSUWG5yLtG69B7uaCL74P4WEt6ETHeVrWx2PU8Ck5/d4Vvash20/ZLeJ502T5ILTKdnpH/tvN80Oa6UZG0w4Lxe0LNGcCfCw3WEujYdd7lMoCLMblWGVkVidVs4NkdFljyKASRmM4EzXyj2axb+Du0H4Bf7KIdSQ=
   - secure: O/EqPmGfYpr1gPZFk0CB3snUB5CO2ZB4zfVTpW7ThO5JaoZN1cvMLzgXgcIBsU6MpFv6+k2m08aC1n/K0B7/JH8DPPgql7m1Q+CL1KRaG/iMxASzDNRvrIRfitVWQKkkoAGIqhzdbltMNCBElb8oTvlgdAqBYXYcZtvoToGYqqcUBoIF9pRqmsMJp8GniZlvfSfPXXdF5MdtOaEF1bQD8Gk3ort1mcL4tUqdHhqjQVS88imqYpf4P8+C2wfpMoBRQSJbHjWwLFPqO6ZNZDY7qn3SmtAfKPJYsFwf5v6Hv1tsHC3NrELkeH9yEq52UDB5WSFNtA6cIcL2t9CF/87eD3FukrWGaPSPqJgDnuA1dXpgW45ZG24w1F643/dQojgI90T420b3xR8c0u3PaRyQ3CC+bYweGRuSIl6d1KjZ/3hosiGf/j+lhTde1+BA5RuB5DibSFnPPjLbxndnpnNjQI+fP/KgAWxidqY6/AD12elHcz9IUcDln62hbkwwnvRkraOv7V4XDDaELRqcdepvpEBG9JYxxiNs9uxDtxyAqg9bCVUgwmR6um6OErFVYP5MxS+ayol8JKNxgiJEY1YwoLxlP0OGIdAHTGrIwGOFACc6FOu8UKRDGWh9+6d2a+uUFZDvEuRzZuqDbHaRCJxEUuk+xqDOxdCSbYj9u4+Ezpc=
-  # GITHUB_TOKEN
   - secure: W7a9VuvGHAx+aoIYXsdOSHjWR/eA8Dr+s+WEoZR1OqqFFjz6ulzXTOfw++GxbJz+PjQ7Mh+8D6w+Mn6u9RKk5u8X41MyVp53HDxhghG9pSGFs6dsPirb+TVNPZwwwooOvrTCyzIhoQOseepGa3xmfiiLx00nxLJdBTyoV0yogEG9S3y0XvEzNuQRhqyQogpcjV1dYkv3jUL218ycXIcIqNs2lpNmeeF5e86tFc2btHePQphJGlCfOpf8szmN2TMMKsh2sWVYsbg5wt0D7VjmuVVd2L2P1kQi1Q7L2KTYf0Cg8H1c6Q89LiNDYuEvU1G1wi7CisU9CkN+RE0pgPUHZ/Aa620q5xpxmHwRD0I1PeLdnahup6ES2jxIEoickcR16YU9oAM5gMVIcWk4kAM8E/Aln4u3xY0l67lRZPvPGO1YoiMa2fC0Z9b1q/zJXQtz2GYQ7n/+NKCbokV9v+vEnFPXR7mmv1NNB5dSzBai0z4D4F+icR7PVXTZzynuAt83Pd0mAJaq2/WylqpuOv8emUun/SnvYiM2lW0/nDnoo+gVpJ5G4BhyHe9UxC7T1LYkwf0aqx31KCfuHODn0EC6fIoC4+kiGBqs1IF0F3sqxweW46wjV5zv1aFg3pi0VmdG2tJXIHsjR/XjZEpD9vTSFpcJjIfcSxwuweU3atjscGU=
-  # TRAVIS_TOKEN
-  - secure: FGuMZ87+WUyOQJNgqosndO4pyX0RWPP6Y5+HlsMOSuzH/X5ztSHVkGaZDeGUyPML1/NNhl5Kpowhqdl73Q5ySWAwcBjSGZHW96LZDnu2cDMITFeY1XNM9U/ShLVSD9I5GTu0G1ClzdZQxHQNpTQBYLtk0gP8OIsngDpFyihJMh7G+YwipwEk30m86jM9KjqjBehfXJb5i/5McFT8k/Q5ihm8ND9WRxAWYGGwqoub6BJA9CzNCXA4FvuVjl5VNabZoW8pWs5O5NuEkkB22HqeieFtB90IVVTPIYCnBE93rpxDtKANz50XO/3//v1psSoYy+68KCXTB8KvZ/AqdsX/foUFRLrXk+1dUyzC+G2J+JF379xV+/lF/hzfo7ZiFlY5ISefgkkhIxq+HO4a2L64QsFoKhI0JRRcBGfvwgkFp1C65UbYYdNVLUlrwr5mW42zrfTq7Nc6JBVAFbcVb7vwQTBqKO9Be6K3M2C2SmiR7TEvOmaa2JU0wZy9nTwF032LyKjMQNv3xrzlQD1VesUwfL/Kub3fOS+YLK/+C/iWAyJMXYkS6dZPy4aUn+sMCxvCkKoj0e3/1KMHSQ0zqHZn0cIZD0jgOQ8n4dZ8i2laeLf4j9MF9R3WEaZV4IfjlD/so7VqHxlGO+cB2f0TnfGnNDeKg2OWZndyU7VnenHq6Ps=
