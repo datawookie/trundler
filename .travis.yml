@@ -14,7 +14,7 @@ r_packages:
 addons:
   apt:
     packages:
-    - libmagick++-dev
+      - libmagick++-dev
 
 notifications:
   email:
@@ -23,8 +23,6 @@ notifications:
     on_success: change
     on_failure: change
 
-after_success:
-  - Rscript -e 'library(covr); codecov()'
 before_deploy:
   # This will build the pkgdown site from README.md.
   #
