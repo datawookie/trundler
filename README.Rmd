@@ -16,6 +16,8 @@ knitr::opts_chunk$set(echo = TRUE, comment=NA)
 [![Codecov test coverage](https://img.shields.io/codecov/c/github/datawookie/trundler.svg)](https://codecov.io/github/datawookie/trundler)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
+## Usage
+
 ```{r load-package}
 library(trundler)
 ```
@@ -26,7 +28,7 @@ Check version.
 packageVersion("trundler")
 ```
 
-## Set API Key
+### Set API Key
 
 To access the full API you'll need to first specify an API key.
 
@@ -44,7 +46,7 @@ set_api_key(Sys.getenv("TRUNDLER_KEY"))
 
 To obtain a key, please get in touch. Contact details are in `DESCRIPTION`.
 
-## Retailers
+### Retailers
 
 Use `retailer()` to get a list of retailers.
 
@@ -58,7 +60,7 @@ Or you can acccess the details for a specific retailer.
 retailer(45)
 ```
 
-## Products
+### Products
 
 Get a list of products for a specific retailer.
 
@@ -100,11 +102,23 @@ item$sku
 item$barcodes
 ```
 
-## Price
+### Prices
 
 Get price history data for a specific product.
 
 
 ```{r}
 product_prices(530290)
+```
+
+## Package Maintenance
+
+### Managing Version
+
+Use [bumpversion](https://pypi.org/project/bumpversion/) to cleanly increment the version.
+
+```{bash eval = FALSE}
+$ bumpversion patch
+$ bumpversion minor
+$ bumpversion major
 ```
