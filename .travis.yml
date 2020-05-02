@@ -23,6 +23,33 @@ jobs:
     - stage: test
       after_success:
         - Rscript -e 'library(covr); codecov()'
+#     - stage: doc
+#       deploy:
+#         provider: pages
+#         skip_cleanup: true
+#         github_token: "$GITHUB_PAT"
+#         # on:
+#         #  branch: blog
+#         # local_dir: public
+#         target_branch: gh-pages
+
+# https://pkgdown.r-lib.org/reference/deploy_site_github.html
+#
+# before_cache: Rscript -e 'remotes::install_cran("pkgdown")'
+# deploy:
+#  provider: script
+#  script: Rscript -e 'pkgdown::deploy_site_github()'
+#  skip_cleanup: true
+
+before_cache: Rscript -e 'remotes::install_cran("pkgdown")'
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: "$GITHUB_PAT"
+  on:
+    branch: blog
+  local_dir: public
+  target_branch: gh-pages
 
 notifications:
   email:
