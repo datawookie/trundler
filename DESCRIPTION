@@ -1,6 +1,6 @@
 Package: trundler
 Type: Package
-Title: Retrieve data from Retail Pricing API
+Title: Retrieve data from Trundler API
 Version: 0.1.2
 Authors@R: 
     c(person(given = c("Andrew", "B."),
@@ -8,8 +8,8 @@ Authors@R:
              role = c("aut", "cre"),
              email = "andrew@exegetic.biz"))
 Description: Retrieve data from Retail Pricing API.
-URL: https://github.com/datawookie/retail/
-BugReports: https://github.com/datawookie/retail/issues/
+URL: https://github.com/datawookie/trundler/
+BugReports: https://github.com/datawookie/trundler/issues/
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -23,8 +23,6 @@ Imports:
     glue,
     urltools
 Suggests:
-    hexSticker,
-    showtext,
     tidyr,
     patchwork,
     testthat (>= 2.1.0),
