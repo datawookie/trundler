@@ -1,11 +1,6 @@
 language: R
 sudo: false
 warnings_are_errors: false
-branches:
-  only:
-    - master
-    - dev
-    - favicon
 latex: false
 
 cache: packages
