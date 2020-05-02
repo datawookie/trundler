@@ -30,7 +30,7 @@ jobs:
     - stage: test
       after_success:
         - Rscript -e 'library(covr); codecov()'
-        - Rscript -e 'knitr::knit("README.Rmd")'
+        - Rscript -e 'devtools::install(); knitr::knit("README.Rmd")'
         - Rscript -e "devtools::install(); library(trundler); retailer()"
     - stage: xxx
       script: echo "TEST 1 ----------------------------------------------"
@@ -44,7 +44,8 @@ jobs:
 deploy:
   provider: script
   github_token: "GITHUB_TOKEN"
-  script: Rscript -e 'pkgdown::deploy_site_github(ssh_id = Sys.getenv("TRAVIS_TOKEN"))'
+  # script: Rscript -e 'pkgdown::deploy_site_github(ssh_id = Sys.getenv("TRAVIS_TOKEN"))'
+  script: Rscript -e 'pkgdown::build_site()'
   skip_cleanup: true
   on:
     branch: doc
