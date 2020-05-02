@@ -1,6 +1,5 @@
 language: R
 sudo: false
-cache: packages
 warnings_are_errors: false
 branches:
   only:
@@ -9,6 +8,7 @@ branches:
     - doc
 latex: false
 
+cache: packages
 r_packages:
   - knitr
   - pkgdown
@@ -27,15 +27,14 @@ notifications:
 
 jobs:
   include:
-  - script: echo "TEST 1 ----------------------------------------------"
-  - script: echo "TEST 2 ----------------------------------------------"
-  - stage: test
-    after_success:
-      - Rscript -e 'library(covr); codecov()'
-      - Rscript -e 'knitr::knit("README.Rmd")'
-      - Rscript -e "library(trundler); retailer()"
+    - stage: test
+      after_success:
+        - Rscript -e 'library(covr); codecov()'
+        - Rscript -e 'knitr::knit("README.Rmd")'
+        - Rscript -e "devtools::install(); library(trundler); retailer()"
+    - stage: xxx
+      script: echo "TEST 1 ----------------------------------------------"
 
-# before_cache: Rscript -e 'remotes::install_cran("pkgdown")'
 # deploy:
 #  provider: pages
 #  on:
