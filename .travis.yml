@@ -8,17 +8,21 @@ branches:
   - dev
 latex: false
 
+r_packages:
+  - covr
 addons:
   apt:
     packages:
       - libmagick++-dev
 
-r_packages:
-  - covr
-# before_install:
-#   - sudo apt-get -y install libmagick++-dev
-after_success:
-  - Rscript -e 'library(covr); codecov()'
+# after_success:
+#  - Rscript -e 'library(covr); codecov()'
+
+jobs:
+  include:
+    - stage: test
+      after_success:
+        - Rscript -e 'library(covr); codecov()'
 
 notifications:
   email:
