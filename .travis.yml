@@ -30,6 +30,7 @@ jobs:
   - stage: test
     after_success:
       - Rscript -e 'library(covr); codecov()'
+      - Rscript -e 'knitr::knit("README.Rmd")'
 
 # before_cache: Rscript -e 'remotes::install_cran("pkgdown")'
 # deploy:
@@ -38,13 +39,13 @@ jobs:
 #    branch: blog
 #  local_dir: public
 #  target_branch: gh-pages
-deploy:
-  provider: script
-  github_token: "GITHUB_TOKEN"
-  script: Rscript -e 'knitr::knit("README.Rmd"); pkgdown::deploy_site_github()'
-  skip_cleanup: true
-  on:
-    branch: doc
+# deploy:
+#  provider: script
+#  github_token: "GITHUB_TOKEN"
+#  script: Rscript -e 'knitr::knit("README.Rmd"); pkgdown::deploy_site_github()'
+#  skip_cleanup: true
+#  on:
+#    branch: doc
 
 env:
   global:
