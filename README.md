@@ -14,6 +14,14 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 library(trundler)
 ```
 
+Check version.
+
+``` r
+packageVersion("trundler")
+```
+
+    [1] '0.1.2'
+
 ## Set API Key
 
 To access the full API you’ll need to first specify an API key.
@@ -73,7 +81,7 @@ Get a list of products for a specific retailer.
 retailer_products(5)
 ```
 
-    # A tibble: 86,321 x 5
+    # A tibble: 87,290 x 5
        product_id product                         brand              model sku      
             <int> <chr>                           <chr>              <chr> <chr>    
      1    2591731 Soft Touch Bikinis 2 Pack       <NA>               <NA>  60092074…
@@ -86,7 +94,7 @@ retailer_products(5)
      8     608276 Extra Depth & Length 144TC Cot… <NA>               <NA>  60092146…
      9     608341 144TC Cotton Blend Fitted Sheet <NA>               <NA>  60092146…
     10     608419 All Year Round Temperature Com… <NA>               <NA>  60091789…
-    # … with 86,311 more rows
+    # … with 87,280 more rows
 
 Products can be filtered by name and brand.
 
@@ -109,57 +117,57 @@ A similar search can be applied across *all* retailers.
 products(product = "hand sanitiser")
 ```
 
-    # A tibble: 107 x 6
-       product_id retailer_id product                   brand     model sku         
-            <int>       <int> <chr>                     <chr>     <chr> <chr>       
-     1    2247139          95 Dettol Spring Fresh Inst… <NA>      <NA>  10335419EA  
-     2    2265399          95 Peppertree Waterless Han… <NA>      <NA>  10619401EA  
-     3    2250059          95 Pepper Tree Hand Sanitis… <NA>      <NA>  10494425EA  
-     4    2256663          95 Dettol Instant Hand Sani… <NA>      <NA>  10207865EA  
-     5    2265497          95 Dettol Instant Hand Sani… <NA>      <NA>  10614438EA  
-     6    2305837          88 Waterless Hand Sanitiser  CHARLOTT… <NA>  36327360    
-     7    2305838          88 Waterless Hand Sanitiser  CHARLOTT… <NA>  36327379    
-     8    2380059          30 Dr. Bronner's Lavender O… <NA>      <NA>  362030011   
-     9    2339798           4 HAND SANITISER 50ML FLOR… DETTOL    50ML  00700660    
-    10    2339368          10 Lifebuoy Hand Sanitiser … LIFEBUOY  <NA>  00000000038…
-    # … with 97 more rows
+    # A tibble: 109 x 6
+       product_id retailer_id product                      brand     model sku      
+            <int>       <int> <chr>                        <chr>     <chr> <chr>    
+     1     820722          33 Stuf Hand Sanitiser 50ml Tu… Stuf      <NA>  <NA>     
+     2     763695           3 Dettol Hand Sanitiser 200ml  Dettol    <NA>  00000000…
+     3     806750           5 FRESH DELIGHTS Hand Sanitis… W Bath&B… <NA>  60092112…
+     4     906277          63 Herbal Hand Sanitiser, 30ml  The Apot… <NA>  TA021    
+     5     864780          19 Nilaqua Alcohol Free Hand S… Waterless <NA>  7924380  
+     6     864800          19 Nilaqua Hand Sanitiser 500ml Waterless <NA>  7924372  
+     7     864812          19 EcoHydra Alcohol Free Antib… Ecohydra  <NA>  6291562  
+     8     864815          19 EcoHydra Alcohol Free Antib… Ecohydra  <NA>  1559087  
+     9     882456          33 Stuf Hand Sanitiser 50ml Tu… Stuf      <NA>  <NA>     
+    10     845565          30 Dr. Bronner's Organic Hand … Dr Bronn… <NA>  362030011
+    # … with 99 more rows
 
 ``` r
 products(product = "coffee", brand = "nespresso|nescafe")
 ```
 
-    # A tibble: 177 x 6
-       product_id retailer_id product                     brand    model  sku       
-            <int>       <int> <chr>                       <chr>    <chr>  <chr>     
-     1    2530360          10 Nescafe Dolce Gusto Coffee… NESCAFE  <NA>   000000000…
-     2    2423310          10 Nescafe Classic Coffee (1 … NESCAFE  <NA>   000000000…
-     3    2480402          10 NESCAFE GOLD Cappuccino Co… NESCAFE… <NA>   000000000…
-     4    2422180          10 Nescafe Esperta Capsule Co… NESCAFE  12397… 000000000…
-     5    2530361          10 Nescafe Dolce Gusto Coffee… NESCAFE  <NA>   000000000…
-     6    2530372          10 Nescafe Dolce Gusto Coffee… NESCAFE  <NA>   000000000…
-     7    2530373          10 Nescafe Dolce Gusto Coffee… NESCAFE  <NA>   000000000…
-     8    2530374          10 Nescafe Dolce Gusto Coffee… NESCAFE  <NA>   000000000…
-     9    2530375          10 Nescafe Dolce Gusto Coffee… NESCAFE  <NA>   000000000…
-    10    2530376          10 Nescafe Dolce Gusto Coffee… NESCAFE  <NA>   000000000…
-    # … with 167 more rows
+    # A tibble: 179 x 6
+       product_id retailer_id product                    brand  model    sku        
+            <int>       <int> <chr>                      <chr>  <chr>    <chr>      
+     1    1141614          35 NESPRESSO Magimix Vertuo … NESPR… <NA>     311-820409…
+     2     747269          10 Nespresso CitiZ & Milk Co… NESPR… C123-ZA… 0000000000…
+     3     904762          10 Nescafe Coffee Alta Rica … NESCA… <NA>     0000000003…
+     4     904763          10 Nescafe Coffee Gold Mild … NESCA… <NA>     0000000003…
+     5    1381129          10 Nescafe Dolce Gusto Coffe… NESCA… <NA>     0000000002…
+     6    1223437          10 Nescafe Coffee Espresso (… NESCA… <NA>     0000000003…
+     7    1224156          10 Nescafe Esperta Capsule C… NESCA… 12397948 0000000000…
+     8    1177845          35 NESPRESSO Magimix CitiZ &… NESPR… <NA>     311-820409…
+     9    1177846          35 NESPRESSO Magimix CitiZ c… NESPR… <NA>     311-820409…
+    10    1177848          35 NESPRESSO Magimix CitiZ c… NESPR… <NA>     311-820409…
+    # … with 169 more rows
 
 ``` r
 products(product = "tv", brand = "samsung|hisense")
 ```
 
     # A tibble: 947 x 6
-       product_id retailer_id product                            brand  model sku   
-            <int>       <int> <chr>                              <chr>  <chr> <chr> 
-     1    2268492          47 "Hisense 203cm (80\") Laser TV- H… Hisen… <NA>  67939 
-     2    2267838          47 "Hisense 124cm(49\") FHD TV - 49B… Hisen… <NA>  68557…
-     3    2267839          47 "Samsung 81cm(32\") HD Smart TV -… Samsu… <NA>  64484 
-     4    2267843          47 "Samsung 249cm(98\") QLED TV - QA… Samsu… <NA>  72123 
-     5    2267844          47 "Samsung 81cm(32\") HD Smart TV -… Samsu… <NA>  64484 
-     6    2268287          47 "Samsung 208cm(82\") Q900R QLED 8… Samsu… <NA>  67630 
-     7    2268294          47 "Samsung 249cm(98\") QLED TV - QA… Samsu… <NA>  72123 
-     8    2268313          47 "Samsung 208cm(82\") Q900R QLED 8… Samsu… <NA>  67630 
-     9    2268534          47 "Hisense 165cm(65\") ULED Smart T… Hisen… <NA>  68546 
-    10    2268585          47 "Hisense 124cm(49\") FHD TV - 49B… Hisen… <NA>  68557…
+       product_id retailer_id product                          brand  model  sku    
+            <int>       <int> <chr>                            <chr>  <chr>  <chr>  
+     1     751014          46 "Samsung 43 Inch UHD 4K Flat Sm… Samsu… <NA>   UA43RU…
+     2     750911          46 "Samsung 40 Inch FHD Flat TV UA… Samsu… <NA>   UA40N5…
+     3     770948           4 "Hisense 58\" Android UHD TV"    HISEN… 58B72… 008009…
+     4     750953          46 "Samsung 65 Inch UHD 4K Flat Sm… Samsu… <NA>   UA65RU…
+     5     753374          47 "Samsung 190cm(75\") Q900R QLED… Samsu… <NA>   69173WD
+     6     753361          47 "Samsung 190cm(75\") Q900R QLED… Samsu… <NA>   69173WD
+     7     753363          47 "Samsung 208cm(82\") QLED Smart… Samsu… <NA>   67637WD
+     8     753369          47 "Samsung 190cm(75\") Q900R QLED… Samsu… <NA>   69173WD
+     9     753372          47 "Samsung 165cm (65\") Q900R QLE… Samsu… <NA>   67631  
+    10     753373          47 "Samsung 208cm(82\") QLED Smart… Samsu… <NA>   67637WD
     # … with 937 more rows
 
 Information on a specific product.
@@ -209,17 +217,17 @@ Get price history data for a specific product.
 product_prices(530290)
 ```
 
-    # A tibble: 32 x 6
+    # A tibble: 34 x 6
        product_id time                price price_promotion price_effective
             <int> <dttm>              <dbl>           <dbl>           <dbl>
-     1     530290 2020-04-30 02:21:07  50.0            40.0            40.0
-     2     530290 2020-04-29 02:21:04  50.0            40.0            40.0
-     3     530290 2020-04-28 02:50:09  50.0            40.0            40.0
-     4     530290 2020-04-27 01:55:26  50.0            40.0            40.0
-     5     530290 2020-04-26 01:59:51  50.0            40.0            40.0
-     6     530290 2020-04-25 02:00:59  50.0            40.0            40.0
-     7     530290 2020-04-24 01:32:45  50.0            40.0            40.0
-     8     530290 2020-04-23 02:09:10  50.0            40.0            40.0
-     9     530290 2020-04-22 01:58:53  50.0            NA              50.0
-    10     530290 2020-04-21 02:00:44  50.0            NA              50.0
-    # … with 22 more rows, and 1 more variable: available <lgl>
+     1     530290 2020-05-02 04:27:22  50.0            40.0            40.0
+     2     530290 2020-05-01 02:20:50  50.0            40.0            40.0
+     3     530290 2020-04-30 02:21:07  50.0            40.0            40.0
+     4     530290 2020-04-29 02:21:04  50.0            40.0            40.0
+     5     530290 2020-04-28 02:50:09  50.0            40.0            40.0
+     6     530290 2020-04-27 01:55:26  50.0            40.0            40.0
+     7     530290 2020-04-26 01:59:51  50.0            40.0            40.0
+     8     530290 2020-04-25 02:00:59  50.0            40.0            40.0
+     9     530290 2020-04-24 01:32:45  50.0            40.0            40.0
+    10     530290 2020-04-23 02:09:10  50.0            40.0            40.0
+    # … with 24 more rows, and 1 more variable: available <lgl>
