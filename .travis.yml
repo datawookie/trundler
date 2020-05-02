@@ -5,7 +5,7 @@ branches:
   only:
     - master
     - dev
-    - doc
+    - favicon
 latex: false
 
 cache: packages
@@ -36,13 +36,14 @@ before_deploy:
   #
   # but it doesn't make sense to do this in Travis.
   #
+  - Rscript -e 'pkgdown::build_favicons()'
   - Rscript -e 'pkgdown::build_site()'
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: "$GITHUB_TOKEN"
   on:
-    branch: master
+    branch: favicon
   local_dir: docs
   target_branch: gh-pages
 
