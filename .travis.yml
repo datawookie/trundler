@@ -43,6 +43,8 @@ deploy:
   github_token: "GITHUB_TOKEN"
   script: Rscript -e 'knitr::knit("README.Rmd"); pkgdown::deploy_site_github()'
   skip_cleanup: true
+  on:
+    branch: doc
 
 env:
   global:
