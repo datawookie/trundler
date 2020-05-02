@@ -23,8 +23,6 @@ Imports:
     glue,
     urltools
 Suggests:
-    hexSticker,
-    showtext,
     tidyr,
     patchwork,
     testthat (>= 2.1.0),

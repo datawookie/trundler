@@ -1,5 +1,6 @@
 library(hexSticker)
 library(showtext)
+library(here)
 
 # Load Google font.
 #
@@ -33,7 +34,7 @@ sticker(
         # Spotlight
         spotlight = FALSE,
         # Output
-        filename = here::here("man/figures/trundler-hex.png"),
+        filename = here("man/figures/trundler-hex.png"),
         dpi = 600,
         angle = 30
 )
