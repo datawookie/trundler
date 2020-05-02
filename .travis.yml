@@ -31,19 +31,22 @@ jobs:
       after_success:
         - Rscript -e 'library(covr); codecov()'
         - Rscript -e 'devtools::install(); knitr::knit("README.Rmd")'
-        - Rscript -e "devtools::install(); library(trundler); retailer()"
+    - stage: doc-build
+      script: Rscript -e 'pkgdown::build_site()'
+      on:
+        branch: doc
 
-deploy:
-  provider: script
-  github_token: "GITHUB_TOKEN"
-  # script: Rscript -e 'pkgdown::deploy_site_github(ssh_id = Sys.getenv("TRAVIS_TOKEN"))'
-  script: Rscript -e 'pkgdown::build_site()'
-  skip_cleanup: true
-  on:
-    branch: doc
+# deploy:
+#   provider: script
+#   github_token: "GITHUB_TOKEN"
+#   # script: Rscript -e 'pkgdown::deploy_site_github(ssh_id = Sys.getenv("TRAVIS_TOKEN"))'
+#   script: Rscript -e 'pkgdown::build_site()'
+#   skip_cleanup: true
+#   on:
+#     branch: doc
   # Directory to push to gh-pages.
-  local_dir: docs
-  target_branch: gh-pages
+#  local_dir: docs
+#  target_branch: gh-pages
 
 env:
   global:
