@@ -20,6 +20,12 @@ knitr::opts_chunk$set(echo = TRUE, comment=NA)
 library(trundler)
 ```
 
+Check version.
+
+```{r}
+packageVersion("trundler")
+```
+
 ## Set API Key
 
 To access the full API you'll need to first specify an API key.
@@ -33,7 +39,7 @@ set_api_key(API_KEY)
 ```
 
 ```{r include=FALSE}
-set_api_key(Sys.getenv("RETAIL_KEY"))
+set_api_key(Sys.getenv("TRUNDLER_KEY"))
 ```
 
 To obtain a key, please get in touch. Contact details are in `DESCRIPTION`.

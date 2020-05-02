@@ -10,6 +10,8 @@ branches:
 latex: false
 
 r_packages:
+  - knitr
+  - pkgdown
   - covr
 addons:
   apt:
@@ -29,18 +31,17 @@ jobs:
     after_success:
     - Rscript -e 'library(covr); codecov()'
 
-before_cache: Rscript -e 'remotes::install_cran("pkgdown")'
+# before_cache: Rscript -e 'remotes::install_cran("pkgdown")'
 # deploy:
 #  provider: pages
-#  skip_cleanup: true
-#  github_token: "GITHUB_TOKEN"
 #  on:
 #    branch: blog
 #  local_dir: public
 #  target_branch: gh-pages
 deploy:
   provider: script
-  script: Rscript -e 'pkgdown::deploy_site_github()'
+  github_token: "GITHUB_TOKEN"
+  script: Rscript -e 'knitr::knit("README.Rmd"); pkgdown::deploy_site_github()'
   skip_cleanup: true
 
 env:
