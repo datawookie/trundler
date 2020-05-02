@@ -39,7 +39,7 @@ sticker(
         # Spotlight
         spotlight = FALSE,
         # Output
-        filename = here("man/figures/trundler-hex.png"),
+        filename = here("man/figures/logo.png"),
         dpi = 600,
         angle = 30
 )
