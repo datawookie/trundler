@@ -16,6 +16,9 @@ addons:
     packages:
       - libmagick++-dev
 
+after_success:
+  - Rscript -e 'library(covr); codecov()'
+
 notifications:
   email:
     recipients:
