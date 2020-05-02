@@ -4,9 +4,9 @@ cache: packages
 warnings_are_errors: false
 branches:
   only:
-  - master
-  - dev
-  - doc
+    - master
+    - dev
+    - doc
 latex: false
 
 r_packages:
@@ -29,7 +29,7 @@ jobs:
   include:
   - stage: test
     after_success:
-    - Rscript -e 'library(covr); codecov()'
+      - Rscript -e 'library(covr); codecov()'
 
 # before_cache: Rscript -e 'remotes::install_cran("pkgdown")'
 # deploy:
