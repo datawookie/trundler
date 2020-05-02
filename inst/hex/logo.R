@@ -6,15 +6,10 @@ library(showtext)
 font_add_google("Cantarell", "cantarell")
 showtext_auto()
 
-# IMAGE = "shopping-bag-red.png"
-# IMAGE = "shopping-bag-brown.png"
-
-# IMAGE = tempfile(fileext = ".png")
 IMAGE = tempfile(fileext = ".svg")
 #
 IMAGE = path.expand(IMAGE)
 #
-# download.file("https://github.com/datawookie/www-trundler-dev-academic/raw/dev/assets/images/icon.png", IMAGE)
 download.file("https://raw.githubusercontent.com/datawookie/www-trundler-dev-academic/dev/assets/images/trolley-branding.svg", IMAGE)
 
 sticker(

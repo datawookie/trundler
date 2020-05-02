@@ -6,6 +6,8 @@ latex: false
 cache: packages
 r_packages:
   - pkgdown
+  - hexSticker
+  - showtext
   - covr
 addons:
   apt:
@@ -31,6 +33,7 @@ before_deploy:
   #
   # but it doesn't make sense to do this in Travis.
   #
+  - Rscript inst/hex/logo.R
   - Rscript -e 'pkgdown::build_favicons()'
   - Rscript -e 'pkgdown::build_site()'
 deploy:
