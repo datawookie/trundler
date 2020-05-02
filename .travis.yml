@@ -8,6 +8,7 @@ r_packages:
   - pkgdown
   - hexSticker
   - showtext
+  - rsvg
   - here
   - covr
 addons:
