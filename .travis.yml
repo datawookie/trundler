@@ -10,7 +10,7 @@ latex: false
 
 cache: packages
 r_packages:
-  - knitr
+  - rmarkdown
   - pkgdown
   - covr
 addons:
@@ -25,42 +25,20 @@ notifications:
     on_success: change
     on_failure: change
 
-# jobs:
-#   include:
-#     - stage: test
-#       after_success:
-#         - Rscript -e 'library(covr); codecov()'
-#         - Rscript -e 'devtools::install(); knitr::knit("README.Rmd")'
-#     - stage: doc-build
-#       script: Rscript -e 'pkgdown::build_site()'
-#       on:
-#         branch: doc
-
 after_success:
   - Rscript -e 'library(covr); codecov()'
 before_deploy:
-  - Rscript -e 'devtools::install(); knitr::knit("README.Rmd")'
+  - Rscript -e 'devtools::install(); rmarkdown::render("README.Rmd")'
   - Rscript -e 'pkgdown::build_site()'
 deploy:
   provider: pages
+  # Don't delete artefacts from build.
   skip_cleanup: true
   github_token: "$GITHUB_TOKEN"
   on:
     branch: doc
   local_dir: docs
   target_branch: gh-pages
-
-# deploy:
-#   provider: script
-#   github_token: "$GITHUB_TOKEN"
-#   # script: Rscript -e 'pkgdown::deploy_site_github(ssh_id = Sys.getenv("TRAVIS_TOKEN"))'
-#   script: Rscript -e 'pkgdown::build_site()'
-#   skip_cleanup: true
-#   on:
-#     branch: doc
-  # Directory to push to gh-pages.
-#  local_dir: docs
-#  target_branch: gh-pages
 
 env:
   global:
