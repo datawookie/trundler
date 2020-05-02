@@ -13,6 +13,11 @@ IMAGE = path.expand(IMAGE)
 #
 download.file("https://raw.githubusercontent.com/datawookie/www-trundler-dev-academic/dev/assets/images/trolley-branding.svg", IMAGE)
 
+LOGO_PATH = here("man/figures/")
+LOGO_FILE = file.path(LOGO_PATH, "logo.png")
+
+dir.create(LOGO_PATH, recursive = TRUE)
+
 sticker(
         # Image
         # here::here("inst/hex/", IMAGE),
