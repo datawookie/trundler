@@ -16,8 +16,14 @@ knitr::opts_chunk$set(echo = TRUE, comment=NA)
 [![Codecov test coverage](https://img.shields.io/codecov/c/github/datawookie/trundler.svg)](https://codecov.io/github/datawookie/trundler)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
-```{r}
+```{r load-package}
 library(trundler)
+```
+
+Check version.
+
+```{r check-version}
+packageVersion("trundler")
 ```
 
 ## Set API Key
@@ -33,7 +39,7 @@ set_api_key(API_KEY)
 ```
 
 ```{r include=FALSE}
-set_api_key(Sys.getenv("RETAIL_KEY"))
+set_api_key(Sys.getenv("TRUNDLER_KEY"))
 ```
 
 To obtain a key, please get in touch. Contact details are in `DESCRIPTION`.
