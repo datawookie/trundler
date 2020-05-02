@@ -32,15 +32,7 @@ jobs:
         - Rscript -e 'library(covr); codecov()'
         - Rscript -e 'devtools::install(); knitr::knit("README.Rmd")'
         - Rscript -e "devtools::install(); library(trundler); retailer()"
-    - stage: xxx
-      script: echo "TEST 1 ----------------------------------------------"
 
-# deploy:
-#  provider: pages
-#  on:
-#    branch: blog
-#  local_dir: public
-#  target_branch: gh-pages
 deploy:
   provider: script
   github_token: "GITHUB_TOKEN"
@@ -49,6 +41,9 @@ deploy:
   skip_cleanup: true
   on:
     branch: doc
+  # Directory to push to gh-pages.
+  local_dir: docs
+  target_branch: gh-pages
 
 env:
   global:
