@@ -1,16 +1,15 @@
 language: R
 sudo: false
 warnings_are_errors: false
-branches:
-  only:
-    - master
-    - dev
-    - doc
 latex: false
 
 cache: packages
 r_packages:
   - pkgdown
+  - hexSticker
+  - showtext
+  - rsvg
+  - here
   - covr
 addons:
   apt:
@@ -36,6 +35,8 @@ before_deploy:
   #
   # but it doesn't make sense to do this in Travis.
   #
+  - Rscript inst/hex/logo.R
+  - Rscript -e 'pkgdown::build_favicons()'
   - Rscript -e 'pkgdown::build_site()'
 deploy:
   provider: pages
