@@ -16,9 +16,10 @@ GET <- function(url = NULL, config = list(), retry = 5,...) {
     terminate_on = c(401, 404, 429)
   )
 
+  # Check for "401 UNAUTHORISED".
   # Check for "429 LIMIT EXCEEDED".
   #
-  if (response$status_code == 429) {
+  if (response$status_code %in% c(401, 429)) {
     stop(content(response)$message, call. = FALSE)
   }
 

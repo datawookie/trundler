@@ -4,7 +4,6 @@
 admin_auth <- function() {
   url <- paste0(base_url(), "admin/auth")
 
-  # response <- GET(url)
   response <- GET(url, add_headers("X-Api-Key" = get_api_key()))
 
   response %>%
