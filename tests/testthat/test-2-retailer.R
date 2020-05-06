@@ -5,7 +5,7 @@ test_that("retailer list", {
 
   retailer_list <- retailer()
 
-  expect_equal(names(retailer_list), c("retailer_id", "retailer", "retailer_url", "currency"))
+  expect_equal(names(retailer_list), c("retailer_id", "retailer", "retailer_url", "currency", "premium"))
 })
 
 test_that("specific retailer", {
@@ -13,7 +13,7 @@ test_that("specific retailer", {
 
   first_retailer <- retailer(retailer_id)
 
-  expect_equal(names(first_retailer), c("retailer_id", "retailer", "retailer_url", "currency"))
+  expect_equal(names(first_retailer), c("retailer_id", "retailer", "retailer_url", "currency", "premium"))
 })
 
 test_that("retailer products", {
