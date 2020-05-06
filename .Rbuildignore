@@ -6,6 +6,7 @@ docs
 scripts
 benchmark.R
 .travis.yml
+.bumpversion.cfg
 ^trundler\.Rcheck$
 ^trundler.*\.tar\.gz$
 ^trundler.*\.tgz$
