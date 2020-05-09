@@ -46,6 +46,12 @@ set_api_key(Sys.getenv("TRUNDLER_KEY"))
 
 To obtain a key, please get in touch. Contact details are in `DESCRIPTION`.
 
+You can also subscribe via [RapidAPI](https://rapidapi.com/datawookie/api/trundler), in which case you use a different function to register your key.
+
+```{r eval=FALSE}
+set_rapidapi_key("5a1ae0ce24mshd483dae6ab7308dp129ef6jsn1f473053d6b0")
+```
+
 ### Retailers
 
 Use `retailer()` to get a list of retailers.

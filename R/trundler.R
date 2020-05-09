@@ -87,3 +87,30 @@ get_api_key <- function() {
     api_key
   }
 }
+
+#' Set RapidAPI key
+#'
+#' @param api_key API key for RapidAPI.
+#'
+#' @export
+#'
+#' @examples
+#' set_rapidapi_key("5a1ae0ce24mshd483dae6ab7308dp129ef6jsn1f473053d6b0")
+set_rapidapi_key <- function(api_key) {
+  assign("rapidapi_key", api_key, envir = cache)
+  set_base_url("https://trundler.p.rapidapi.com/")
+}
+
+#' Retrieve RapidAPI key
+#'
+#' @return API key for RapidAPI.
+#' @export
+get_rapidapi_key <- function() {
+  api_key <- try(get("rapidapi_key", envir = cache), silent = TRUE)
+
+  if (class(api_key) == "try-error" || api_key == "") {
+    stop("Use set_rapidapi_key() to specify a RapidAPI key.", call. = FALSE)
+  } else {
+    api_key
+  }
+}

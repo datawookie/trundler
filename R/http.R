@@ -5,13 +5,20 @@
 #' @param ... Further named parameters.
 #' @param retry Number of times to retry request on failure.
 GET <- function(url = NULL, config = list(), retry = 5, ...) {
+  headers = list()
+
   api_key <- NULL
   try(api_key <- get_api_key(), silent = TRUE)
   #
   if (!is.null(api_key)) {
     headers = list("X-Api-Key" = api_key)
-  } else {
-    headers = list()
+  }
+
+  api_key <- NULL
+  try(api_key <- get_rapidapi_key(), silent = TRUE)
+  #
+  if (!is.null(api_key)) {
+    headers = list("x-rapidapi-key" = api_key, "x-rapidapi-host" = "trundler.p.rapidapi.com")
   }
 
   response <- httr::RETRY(
