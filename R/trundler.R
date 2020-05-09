@@ -1,4 +1,5 @@
 BASE_URL <- "https://api.trundler.dev/"
+RAPIDAPI_URL <- "https://trundler.p.rapidapi.com/"
 
 PKG_VERSION <- utils::packageDescription('trundler')$Version
 
@@ -98,7 +99,7 @@ get_api_key <- function() {
 #' set_rapidapi_key("5a1ae0ce24mshd483dae6ab7308dp129ef6jsn1f473053d6b0")
 set_rapidapi_key <- function(api_key) {
   assign("rapidapi_key", api_key, envir = cache)
-  set_base_url("https://trundler.p.rapidapi.com/")
+  set_base_url(RAPIDAPI_URL)
 }
 
 #' Retrieve RapidAPI key

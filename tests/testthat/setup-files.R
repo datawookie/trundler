@@ -5,6 +5,7 @@ Sys.setenv(TZ = "Etc/UTC")
 library(RPostgres)
 
 TRUNDLER_KEY = Sys.getenv("TRUNDLER_KEY")
+RAPIDAPI_KEY = Sys.getenv("RAPIDAPI_KEY")
 
 base_url_original <- base_url()
 
