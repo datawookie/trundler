@@ -23,7 +23,7 @@ paginate <- function(url, limit = 10000, verbose = FALSE) {
       # Prevent converting to scientific notation because "+" has different meaning in URL.
       param_set(key = "offset", value = format(offset, scientific = FALSE))
 
-    response <- GET(url, add_headers("X-Api-Key" = get_api_key()))
+    response <- GET(url)
 
     # Check for "204 NO CONTENT".
     #

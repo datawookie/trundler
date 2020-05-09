@@ -20,7 +20,7 @@ retailer <- function(retailer_id = NA) {
     url <- paste0(base_url(), "retailer/%d") %>%
       sprintf(retailer_id)
 
-    response <- GET(url, add_headers("X-Api-Key" = get_api_key()))
+    response <- GET(url)
   }
 
   check_response_error(response)

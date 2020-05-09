@@ -4,7 +4,7 @@
 admin_auth <- function() {
   url <- paste0(base_url(), "admin/auth")
 
-  response <- GET(url, add_headers("X-Api-Key" = get_api_key()))
+  response <- GET(url)
 
   response %>%
     content(as = "text", encoding = "UTF-8") %>%
@@ -19,7 +19,7 @@ admin_auth <- function() {
 admin_auth_count <- function() {
   url <- paste0(base_url(), "admin/auth/count")
 
-  response <- GET(url, add_headers("X-Api-Key" = get_api_key()))
+  response <- GET(url)
 
   response %>%
     content(as = "text", encoding = "UTF-8") %>%
@@ -34,7 +34,7 @@ admin_auth_count <- function() {
 admin_stats <- function() {
   url <- paste0(base_url(), "admin/stats")
 
-  response <- GET(url, add_headers("X-Api-Key" = get_api_key()))
+  response <- GET(url)
 
   response %>%
     content(as = "text", encoding = "UTF-8") %>%
@@ -52,7 +52,7 @@ admin_stats <- function() {
 admin_stats_status <- function() {
   url <- paste0(base_url(), "admin/stats/status")
 
-  response <- GET(url, add_headers("X-Api-Key" = get_api_key()))
+  response <- GET(url)
 
   response %>%
     content(as = "text", encoding = "UTF-8") %>%
@@ -66,7 +66,7 @@ admin_stats_status <- function() {
 admin_stats_daily <- function() {
   url <- paste0(base_url(), "admin/stats/daily")
 
-  response <- GET(url, add_headers("X-Api-Key" = get_api_key()))
+  response <- GET(url)
 
   response %>%
     content(as = "text", encoding = "UTF-8") %>%
