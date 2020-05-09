@@ -11,8 +11,8 @@ test_that("invalid API key", {
 })
 
 test_that("API key", {
-  expect_error(set_api_key(API_KEY), NA)
-  expect_equal(get_api_key(), API_KEY)
+  expect_error(set_api_key(TRUNDLER_KEY), NA)
+  expect_equal(get_api_key(), TRUNDLER_KEY)
 })
 
 test_that("URL", {
