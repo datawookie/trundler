@@ -13,5 +13,7 @@ set_rapidapi_key(api_key)
 Set RapidAPI key
 }
 \examples{
+\dontrun{
 set_rapidapi_key("5a1ae0ce24mshd483dae6ab7308dp129ef6jsn1f473053d6b0")
+}
 }

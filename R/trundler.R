@@ -77,8 +77,10 @@ set_api_key <- function(api_key) {
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' set_api_key("8f9f3c4e-5dd6-4bff-3a2c-592b45cf2437")
 #' get_api_key()
+#' }
 get_api_key <- function() {
   api_key <- try(get("api_key", envir = cache), silent = TRUE)
 
@@ -96,7 +98,9 @@ get_api_key <- function() {
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' set_rapidapi_key("5a1ae0ce24mshd483dae6ab7308dp129ef6jsn1f473053d6b0")
+#' }
 set_rapidapi_key <- function(api_key) {
   assign("rapidapi_key", api_key, envir = cache)
   set_base_url(RAPIDAPI_URL)
