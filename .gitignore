@@ -6,7 +6,6 @@
 trundler.Rcheck/
 trundler*.tar.gz
 trundler*.tgz
-README.md
 docs/
 pkgdown/
 man/figures/

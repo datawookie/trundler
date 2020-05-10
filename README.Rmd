@@ -16,6 +16,8 @@ knitr::opts_chunk$set(echo = TRUE, comment=NA)
 [![Codecov test coverage](https://img.shields.io/codecov/c/github/datawookie/trundler.svg)](https://codecov.io/github/datawookie/trundler)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
+The homepage for the {trundler} R package is at https://datawookie.github.io/trundler/.
+
 ## Usage
 
 ```{r load-package}
