@@ -35,11 +35,9 @@ packageVersion("trundler")
 To access the full API you'll need to first specify an API key.
 
 ```{r eval=FALSE}
-# Example API key. This key will not work.
+# Example API key (this key will not work).
 #
-API_KEY <- "5bed3ac9-6dc9-4926-aed8-8c97a7cb8057"
-
-set_api_key(API_KEY)
+set_api_key("5bed3ac9-6dc9-4926-aed8-8c97a7cb8057")
 ```
 
 ```{r include=FALSE}

@@ -25,18 +25,16 @@ Check version.
 packageVersion("trundler")
 ```
 
-    [1] '0.1.4'
+    [1] '0.1.5'
 
 ### Set API Key
 
 To access the full API you’ll need to first specify an API key.
 
 ``` r
-# Example API key. This key will not work.
+# Example API key (this key will not work).
 #
-API_KEY <- "5bed3ac9-6dc9-4926-aed8-8c97a7cb8057"
-
-set_api_key(API_KEY)
+set_api_key("5bed3ac9-6dc9-4926-aed8-8c97a7cb8057")
 ```
 
 To obtain a key, please get in touch. Contact details are in
@@ -94,7 +92,7 @@ Get a list of products for a specific retailer.
 retailer_products(5)
 ```
 
-    # A tibble: 92,127 x 5
+    # A tibble: 92,237 x 5
        product_id product                         brand              model sku      
             <int> <chr>                           <chr>              <chr> <chr>    
      1    2591731 Soft Touch Bikinis 2 Pack       <NA>               <NA>  60092074…
@@ -107,7 +105,7 @@ retailer_products(5)
      8     608276 Extra Depth & Length 144TC Cot… <NA>               <NA>  60092146…
      9     608341 144TC Cotton Blend Fitted Sheet <NA>               <NA>  60092146…
     10     608419 All Year Round Temperature Com… <NA>               <NA>  60091789…
-    # … with 92,117 more rows
+    # … with 92,227 more rows
 
 Products can be filtered by name and brand.
 
@@ -133,16 +131,16 @@ products(product = "hand sanitiser")
     # A tibble: 123 x 6
        product_id retailer_id product                     brand     model sku       
             <int>       <int> <chr>                       <chr>     <chr> <chr>     
-     1    1782558           3 Aquashield Hand Sanitiser … <NA>      <NA>  000000000…
-     2    1753347          63 Waterless Hand Sanitiser -… Charlott… <NA>  FCR075HAN…
-     3    1753348          63 Waterless Hand Sanitiser -… Charlott… <NA>  FCR300WHS 
-     4    1427238           5 CHARLOTTE RHYS St Thomas W… Charlott… <NA>  606110261…
-     5    1782566           3 Aquashield Hand Sanitiser … <NA>      <NA>  000000000…
-     6    1782675           3 Aquashield Hand Sanitiser … <NA>      <NA>  000000000…
-     7    1782684           3 Aquashield Hand Sanitiser … <NA>      <NA>  000000000…
-     8    2121127          63 Kids Waterless Hand Saniti… Handtizer <NA>  KID330    
-     9    2121135          63 Waterless Hand Sanitiser -… Handtizer <NA>  HAND330   
-    10    2250059          95 Pepper Tree Hand Sanitiser… <NA>      <NA>  10494425EA
+     1    1427238           5 CHARLOTTE RHYS St Thomas W… Charlott… <NA>  606110261…
+     2    2256663          95 Dettol Instant Hand Saniti… <NA>      <NA>  10207865EA
+     3    1753347          63 Waterless Hand Sanitiser -… Charlott… <NA>  FCR075HAN…
+     4    1753348          63 Waterless Hand Sanitiser -… Charlott… <NA>  FCR300WHS 
+     5    1782558           3 Aquashield Hand Sanitiser … <NA>      <NA>  000000000…
+     6    1782566           3 Aquashield Hand Sanitiser … <NA>      <NA>  000000000…
+     7    2121127          63 Kids Waterless Hand Saniti… Handtizer <NA>  KID330    
+     8    2121135          63 Waterless Hand Sanitiser -… Handtizer <NA>  HAND330   
+     9    2250059          95 Pepper Tree Hand Sanitiser… <NA>      <NA>  10494425EA
+    10    1782675           3 Aquashield Hand Sanitiser … <NA>      <NA>  000000000…
     # … with 113 more rows
 
 ``` r
@@ -150,18 +148,18 @@ products(product = "coffee", brand = "nespresso|nescafe")
 ```
 
     # A tibble: 179 x 6
-       product_id retailer_id product                     brand      model sku      
-            <int>       <int> <chr>                       <chr>      <chr> <chr>    
-     1    1472985          13 Nescafe Dolce Gusto X16 La… NESCAFE D… <NA>  304406089
-     2    1471626          35 NESPRESSO Magimix CitiZ & … NESPRESSO  <NA>  311-8204…
-     3    1486022          13 Nescafe Dolce Gusto Flat W… NESCAFE D… <NA>  301217330
-     4    1486010          13 Nescafe Dolce Gusto Americ… NESCAFE D… <NA>  276686404
-     5    1486025          13 Nescafe Dolce Gusto Cafe A… NESCAFE D… <NA>  282108148
-     6    1486050          13 Nescafe Original Instant C… NESCAFE    <NA>  254889590
-     7    1486060          13 Nescafe Gold Blend Instant… NESCAFE    <NA>  297334369
-     8    1486041          13 Nescafe Cap Colombie Coffe… NESCAFE    <NA>  297860949
-     9    1486043          13 Nescafe Alta Rica Instant … NESCAFE    <NA>  298116183
-    10    1486065          13 Nescafe Gold Crema Instant… NESCAFE    <NA>  274510564
+       product_id retailer_id product                    brand      model sku       
+            <int>       <int> <chr>                      <chr>      <chr> <chr>     
+     1    2530317          10 Nescafe Dolce Gusto Coffe… NESCAFE    <NA>  000000000…
+     2    1486022          13 Nescafe Dolce Gusto Flat … NESCAFE D… <NA>  301217330 
+     3    1486010          13 Nescafe Dolce Gusto Ameri… NESCAFE D… <NA>  276686404 
+     4    1486025          13 Nescafe Dolce Gusto Cafe … NESCAFE D… <NA>  282108148 
+     5    1486050          13 Nescafe Original Instant … NESCAFE    <NA>  254889590 
+     6    1486060          13 Nescafe Gold Blend Instan… NESCAFE    <NA>  297334369 
+     7    1486041          13 Nescafe Cap Colombie Coff… NESCAFE    <NA>  297860949 
+     8    1486043          13 Nescafe Alta Rica Instant… NESCAFE    <NA>  298116183 
+     9    1486065          13 Nescafe Gold Crema Instan… NESCAFE    <NA>  274510564 
+    10    1486063          13 Nescafe Barista Gold Blen… NESCAFE    <NA>  279344027 
     # … with 169 more rows
 
 ``` r
@@ -230,20 +228,20 @@ Get price history data for a specific product.
 product_prices(530290)
 ```
 
-    # A tibble: 40 x 6
+    # A tibble: 41 x 6
        product_id time                price price_promotion price_effective
             <int> <dttm>              <dbl>           <dbl>           <dbl>
-     1     530290 2020-05-09 02:56:09  50.0            40.0            40.0
-     2     530290 2020-05-08 01:36:36  50.0            40.0            40.0
-     3     530290 2020-05-06 03:06:50  50.0            40.0            40.0
-     4     530290 2020-05-05 01:34:16  50.0            40.0            40.0
-     5     530290 2020-05-04 02:56:37  50.0            40.0            40.0
-     6     530290 2020-05-03 03:01:05  50.0            40.0            40.0
-     7     530290 2020-05-02 04:27:22  50.0            40.0            40.0
-     8     530290 2020-05-01 02:20:50  50.0            40.0            40.0
-     9     530290 2020-04-30 02:21:07  50.0            40.0            40.0
-    10     530290 2020-04-29 02:21:04  50.0            40.0            40.0
-    # … with 30 more rows, and 1 more variable: available <lgl>
+     1     530290 2020-05-10 03:23:38  50.0            40.0            40.0
+     2     530290 2020-05-09 02:56:09  50.0            40.0            40.0
+     3     530290 2020-05-08 01:36:36  50.0            40.0            40.0
+     4     530290 2020-05-06 03:06:50  50.0            40.0            40.0
+     5     530290 2020-05-05 01:34:16  50.0            40.0            40.0
+     6     530290 2020-05-04 02:56:37  50.0            40.0            40.0
+     7     530290 2020-05-03 03:01:05  50.0            40.0            40.0
+     8     530290 2020-05-02 04:27:22  50.0            40.0            40.0
+     9     530290 2020-05-01 02:20:50  50.0            40.0            40.0
+    10     530290 2020-04-30 02:21:07  50.0            40.0            40.0
+    # … with 31 more rows, and 1 more variable: available <lgl>
 
 ## Package Maintenance
 
