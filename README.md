@@ -13,6 +13,14 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 The homepage for the {trundler} R package is at
 <https://datawookie.github.io/trundler/>.
 
+## Installation
+
+Install from GitHub.
+
+``` r
+remotes::install_github("datawookie/trundler")
+```
+
 ## Usage
 
 ``` r
@@ -56,19 +64,19 @@ Use `retailer()` to get a list of retailers.
 retailer()
 ```
 
-    # A tibble: 103 x 5
-       retailer_id retailer         retailer_url                    currency premium
-             <int> <chr>            <chr>                           <chr>    <lgl>  
-     1           1 EEM Technologies https://www.eemtechnologies.co… USD      TRUE   
-     2           2 Clicks           https://clicks.co.za/           ZAR      TRUE   
-     3           3 Dischem          https://www.dischem.co.za/      ZAR      TRUE   
-     4           4 Game             https://www.game.co.za/         ZAR      TRUE   
-     5           5 Woolworths       https://www.woolworths.co.za/   ZAR      TRUE   
-     6           6 Fortnum & Mason  https://www.fortnumandmason.co… GBP      TRUE   
-     7           7 John Lewis       https://www.johnlewis.com/      GBP      TRUE   
-     8           8 Marks & Spencer  https://www.marksandspencer.co… GBP      TRUE   
-     9           9 Pick 'n Pay      https://www.pnp.co.za/          ZAR      TRUE   
-    10          10 Makro            https://www.makro.co.za/        ZAR      TRUE   
+    # A tibble: 103 x 4
+       retailer_id retailer         retailer_url                     currency
+             <int> <chr>            <chr>                            <chr>   
+     1           1 EEM Technologies https://www.eemtechnologies.com/ USD     
+     2           2 Clicks           https://clicks.co.za/            ZAR     
+     3           3 Dischem          https://www.dischem.co.za/       ZAR     
+     4           4 Game             https://www.game.co.za/          ZAR     
+     5           5 Woolworths       https://www.woolworths.co.za/    ZAR     
+     6           6 Fortnum & Mason  https://www.fortnumandmason.com/ GBP     
+     7           7 John Lewis       https://www.johnlewis.com/       GBP     
+     8           8 Marks & Spencer  https://www.marksandspencer.com/ GBP     
+     9           9 Pick 'n Pay      https://www.pnp.co.za/           ZAR     
+    10          10 Makro            https://www.makro.co.za/         ZAR     
     # … with 93 more rows
 
 Or you can acccess the details for a specific retailer.
@@ -78,10 +86,10 @@ retailer(45)
 ```
 
 ``` 
-# A tibble: 1 x 5
-  retailer_id retailer           retailer_url                currency premium
-        <int> <chr>              <chr>                       <chr>    <lgl>  
-1          45 Builders Warehouse https://www.builders.co.za/ ZAR      TRUE   
+# A tibble: 1 x 4
+  retailer_id retailer           retailer_url                currency
+        <int> <chr>              <chr>                       <chr>   
+1          45 Builders Warehouse https://www.builders.co.za/ ZAR     
 ```
 
 ### Products
@@ -92,7 +100,7 @@ Get a list of products for a specific retailer.
 retailer_products(5)
 ```
 
-    # A tibble: 92,237 x 5
+    # A tibble: 92,284 x 5
        product_id product                         brand              model sku      
             <int> <chr>                           <chr>              <chr> <chr>    
      1    2591731 Soft Touch Bikinis 2 Pack       <NA>               <NA>  60092074…
@@ -105,7 +113,7 @@ retailer_products(5)
      8     608276 Extra Depth & Length 144TC Cot… <NA>               <NA>  60092146…
      9     608341 144TC Cotton Blend Fitted Sheet <NA>               <NA>  60092146…
     10     608419 All Year Round Temperature Com… <NA>               <NA>  60091789…
-    # … with 92,227 more rows
+    # … with 92,274 more rows
 
 Products can be filtered by name and brand.
 
@@ -128,38 +136,38 @@ A similar search can be applied across *all* retailers.
 products(product = "hand sanitiser")
 ```
 
-    # A tibble: 123 x 6
+    # A tibble: 126 x 6
        product_id retailer_id product                     brand     model sku       
             <int>       <int> <chr>                       <chr>     <chr> <chr>     
-     1    1427238           5 CHARLOTTE RHYS St Thomas W… Charlott… <NA>  606110261…
-     2    2256663          95 Dettol Instant Hand Saniti… <NA>      <NA>  10207865EA
+     1    2121127          63 Kids Waterless Hand Saniti… Handtizer <NA>  KID330    
+     2    1427238           5 CHARLOTTE RHYS St Thomas W… Charlott… <NA>  606110261…
      3    1753347          63 Waterless Hand Sanitiser -… Charlott… <NA>  FCR075HAN…
      4    1753348          63 Waterless Hand Sanitiser -… Charlott… <NA>  FCR300WHS 
      5    1782558           3 Aquashield Hand Sanitiser … <NA>      <NA>  000000000…
      6    1782566           3 Aquashield Hand Sanitiser … <NA>      <NA>  000000000…
-     7    2121127          63 Kids Waterless Hand Saniti… Handtizer <NA>  KID330    
-     8    2121135          63 Waterless Hand Sanitiser -… Handtizer <NA>  HAND330   
-     9    2250059          95 Pepper Tree Hand Sanitiser… <NA>      <NA>  10494425EA
-    10    1782675           3 Aquashield Hand Sanitiser … <NA>      <NA>  000000000…
-    # … with 113 more rows
+     7    1782675           3 Aquashield Hand Sanitiser … <NA>      <NA>  000000000…
+     8    1782684           3 Aquashield Hand Sanitiser … <NA>      <NA>  000000000…
+     9    2121135          63 Waterless Hand Sanitiser -… Handtizer <NA>  HAND330   
+    10    2265497          95 Dettol Instant Hand Saniti… <NA>      <NA>  10614438EA
+    # … with 116 more rows
 
 ``` r
 products(product = "coffee", brand = "nespresso|nescafe")
 ```
 
     # A tibble: 179 x 6
-       product_id retailer_id product                    brand      model sku       
-            <int>       <int> <chr>                      <chr>      <chr> <chr>     
-     1    2530317          10 Nescafe Dolce Gusto Coffe… NESCAFE    <NA>  000000000…
-     2    1486022          13 Nescafe Dolce Gusto Flat … NESCAFE D… <NA>  301217330 
-     3    1486010          13 Nescafe Dolce Gusto Ameri… NESCAFE D… <NA>  276686404 
-     4    1486025          13 Nescafe Dolce Gusto Cafe … NESCAFE D… <NA>  282108148 
-     5    1486050          13 Nescafe Original Instant … NESCAFE    <NA>  254889590 
-     6    1486060          13 Nescafe Gold Blend Instan… NESCAFE    <NA>  297334369 
-     7    1486041          13 Nescafe Cap Colombie Coff… NESCAFE    <NA>  297860949 
-     8    1486043          13 Nescafe Alta Rica Instant… NESCAFE    <NA>  298116183 
-     9    1486065          13 Nescafe Gold Crema Instan… NESCAFE    <NA>  274510564 
-    10    1486063          13 Nescafe Barista Gold Blen… NESCAFE    <NA>  279344027 
+       product_id retailer_id product                      brand     model sku      
+            <int>       <int> <chr>                        <chr>     <chr> <chr>    
+     1    1515084          13 Nescafe Original Instant Co… NESCAFE   <NA>  254889601
+     2    1471626          35 NESPRESSO Magimix CitiZ & M… NESPRESSO <NA>  311-8204…
+     3    1492620          13 Nescafe Original Decaffeina… NESCAFE   <NA>  254889371
+     4    1513042          13 Nescafe Dolce Gusto Preludi… NESCAFE … <NA>  296837064
+     5    1486019          13 Nescafe Dolce Gusto Cafe Au… NESCAFE … <NA>  301217353
+     6    1486026          13 Nescafe Dolce Gusto America… NESCAFE … <NA>  266292846
+     7    1492565          13 Nescafe Original Decaffeina… NESCAFE   <NA>  254889388
+     8    1492555          13 Nescafe Black Gold Instant … NESCAFE   <NA>  297876954
+     9    1486022          13 Nescafe Dolce Gusto Flat Wh… NESCAFE … <NA>  301217330
+    10    1486010          13 Nescafe Dolce Gusto America… NESCAFE … <NA>  276686404
     # … with 169 more rows
 
 ``` r

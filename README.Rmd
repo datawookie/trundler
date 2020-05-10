@@ -18,6 +18,14 @@ knitr::opts_chunk$set(echo = TRUE, comment=NA)
 
 The homepage for the {trundler} R package is at https://datawookie.github.io/trundler/.
 
+## Installation
+
+Install from GitHub.
+
+```{r eval=FALSE}
+remotes::install_github("datawookie/trundler")
+```
+
 ## Usage
 
 ```{r load-package}
