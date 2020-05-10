@@ -52,6 +52,10 @@ product <- function(product_id) {
 products <- function(product = NA, brand = NA, ...) {
   url <- paste0(base_url(), "product")
 
+  if (is.na(product) && is.na(brand)) {
+    warning("Without filter parameters this function will execute a large number of API calls and return a lot of data!", immediate. = TRUE)
+  }
+
   if (!is.na(product)) {
     url <- param_set(url, key = "product", value = URLencode(product))
   }
