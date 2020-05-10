@@ -7,7 +7,7 @@ Authors@R:
              family = "Collier",
              role = c("aut", "cre"),
              email = "andrew@exegetic.biz"))
-Description: Retrieve data from Retail Pricing API.
+Description: Retrieve data from Trundler API.
 URL: https://github.com/datawookie/trundler/
 BugReports: https://github.com/datawookie/trundler/issues/
 License: GPL-3
