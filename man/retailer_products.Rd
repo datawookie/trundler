@@ -4,7 +4,14 @@
 \alias{retailer_products}
 \title{Products for a specific retailer}
 \usage{
-retailer_products(retailer_id, product = NA, brand = NA, ...)
+retailer_products(
+  retailer_id,
+  product = NA,
+  brand = NA,
+  regex = TRUE,
+  ignore_case = TRUE,
+  ...
+)
 }
 \arguments{
 \item{retailer_id}{A retailer ID.}
@@ -12,6 +19,10 @@ retailer_products(retailer_id, product = NA, brand = NA, ...)
 \item{product}{Filter by product name (treated as a regular expression).}
 
 \item{brand}{Filter by product brand (treated as a regular expression).}
+
+\item{regex}{Should filter be treated as a Regular Expression?}
+
+\item{ignore_case}{Should case be ignore?}
 
 \item{...}{Arguments passed through to \code{paginate()}.}
 }

@@ -4,12 +4,16 @@
 \alias{products}
 \title{Find products by name or brand}
 \usage{
-products(product = NA, brand = NA, ...)
+products(product = NA, brand = NA, regex = TRUE, ignore_case = TRUE, ...)
 }
 \arguments{
 \item{product}{Filter by product name (treated as a regular expression).}
 
 \item{brand}{Filter by product brand (treated as a regular expression).}
+
+\item{regex}{Should filter be treated as a Regular Expression?}
+
+\item{ignore_case}{Should case be ignore?}
 
 \item{...}{Arguments passed through to \code{paginate()}.}
 }

@@ -28,3 +28,12 @@ check_response_error <- function(response) {
     )
   }
 }
+
+#' Convert URL parameter into Boolean.
+#'
+#' @param bool A Boolean string (either "true" or "false").
+#'
+#' @return A Boolean value (either TRUE or FALSE).
+param_boolean <- function(bool) {
+  ifelse(bool, "true", "false")
+}

@@ -38,6 +38,8 @@ retailer <- function(retailer_id = NA) {
 #' @param retailer_id A retailer ID.
 #' @param product Filter by product name (treated as a regular expression).
 #' @param brand Filter by product brand (treated as a regular expression).
+#' @param regex Should filter be treated as a Regular Expression?
+#' @param ignore_case	Should case be ignore?
 #' @param ... Arguments passed through to \code{paginate()}.
 #'
 #' @return Details of all products for a specific retailer as a \code{data.frame}.
@@ -49,7 +51,7 @@ retailer <- function(retailer_id = NA) {
 #' retailer_products(1)
 #' retailer_products(9, product = "Nescafe")
 #' }
-retailer_products <- function(retailer_id, product = NA, brand = NA,...) {
+retailer_products <- function(retailer_id, product = NA, brand = NA, regex = TRUE, ignore_case = TRUE, ...) {
   url <- paste0(base_url(), "retailer/%d/product") %>%
     sprintf(retailer_id)
 
@@ -60,6 +62,12 @@ retailer_products <- function(retailer_id, product = NA, brand = NA,...) {
   if (!is.na(brand)) {
     url <- param_set(url, key = "brand", value = URLencode(brand))
   }
+
+  url <- param_set(url, key = "regex", value = param_boolean(regex))
+
+  url <- param_set(url, key = "ignore_case", value = param_boolean(ignore_case))
+
+  print(url)
 
   products <- paginate(url, ...)
 
