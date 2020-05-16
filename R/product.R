@@ -33,7 +33,11 @@ product <- function(product_id) {
   result %>%
     as_tibble() %>%
     rename(product_id = id) %>%
-    select(product_id, retailer_id, product_url = url, product, brand, model, sku, barcodes)
+    select(product_id, retailer_id, product_url = url, product, brand, model, sku, barcodes) %>%
+    # Deal with duplicate barcodes.
+    group_by_at(vars(-barcodes)) %>%
+    summarise(barcodes = ifelse(sum(!is.na(barcodes)), list(barcodes), NA)) %>%
+    ungroup()
 }
 
 #' Find products by name or brand
