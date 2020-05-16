@@ -37,3 +37,15 @@ check_response_error <- function(response) {
 param_boolean <- function(bool) {
   ifelse(bool, "true", "false")
 }
+
+check_retailer_id <- function(retailer_id) {
+  if (!is.integer(retailer_id) && !is.numeric(retailer_id)) {
+    stop("Retailer ID must be a number.", call. = FALSE)
+  }
+}
+
+check_product_id <- function(product_id) {
+  if (!is.integer(product_id) && !is.numeric(product_id)) {
+    stop("Product ID must be a number.", call. = FALSE)
+  }
+}

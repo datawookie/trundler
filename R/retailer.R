@@ -17,6 +17,8 @@ retailer <- function(retailer_id = NA) {
 
     response <- GET(url)
   } else {
+    check_retailer_id(retailer_id)
+
     url <- paste0(base_url(), "retailer/%d") %>%
       sprintf(retailer_id)
 
@@ -52,6 +54,8 @@ retailer <- function(retailer_id = NA) {
 #' retailer_products(9, product = "Nescafe")
 #' }
 retailer_products <- function(retailer_id, product = NA, brand = NA, regex = TRUE, ignore_case = TRUE, ...) {
+  check_retailer_id(retailer_id)
+
   url <- paste0(base_url(), "retailer/%d/product") %>%
     sprintf(retailer_id)
 
@@ -66,8 +70,6 @@ retailer_products <- function(retailer_id, product = NA, brand = NA, regex = TRU
   url <- param_set(url, key = "regex", value = param_boolean(regex))
 
   url <- param_set(url, key = "ignore_case", value = param_boolean(ignore_case))
-
-  print(url)
 
   products <- paginate(url, ...)
 

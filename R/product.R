@@ -11,6 +11,8 @@
 #' product(1)
 #' }
 product <- function(product_id) {
+  check_product_id(product_id)
+
   url <- paste0(base_url(), "product/%d") %>%
     sprintf(product_id)
 
