@@ -28,6 +28,12 @@ Install from GitHub.
 remotes::install_github("datawookie/trundler")
 ```
 
+If you want to be closer to the bleeding edge then you can also install from the development branch.
+
+```{r eval=FALSE}
+remotes::install_github("datawookie/trundler", ref = "dev")
+```
+
 ## Usage
 
 ```{r load-package}
