@@ -16,6 +16,31 @@ categories <- function() {
   rename(category_id = id, parent_category_id = parent_id)
 }
 
+#' Create graph of category hierarchy
+#'
+#' @return Categories as a \code{tbl_graph}.
+#' @export
+#'
+#' @examples
+#' library(ggraph)
+#'
+#' graph <- categories_graph()
+#' ggraph(graph, 'tree') +
+#'   geom_edge_link() +
+#'   geom_node_point() +
+#'   geom_node_label(aes(label = label)) +
+#'   theme_graph()
+categories_graph <- function() {
+  taxonomy <- categories()
+
+  taxonomy_nodes <- taxonomy %>% select(label)
+  taxonomy_edges <- taxonomy %>%
+    select(from = parent_category_id, to = category_id) %>%
+    filter(!(is.na(from) | is.na(to)))
+
+  tbl_graph(nodes = taxonomy_nodes, edges = taxonomy_edges)
+}
+
 #' Products for a specific retailer
 #'
 #' @param category_id A category ID.

@@ -7,13 +7,36 @@ cache <- new.env()
 
 # Avoid some "no visible binding" notes with devtools::check().
 #
-globalVariables(c("auth_id", "retailer_id", "product_id", "parent_id", "start_time", "finish_time", "price_total", "brand", "model", "sku", "barcodes", "price", "price_promotion", "available"))
+globalVariables(
+  c(
+    "auth_id",
+    "retailer_id",
+    "product_id",
+    "parent_id",
+    "category_id",
+    "parent_category_id",
+    "from",
+    "to",
+    "start_time",
+    "finish_time",
+    "price_total",
+    "brand",
+    "model",
+    "sku",
+    "label",
+    "barcodes",
+    "price",
+    "price_promotion",
+    "available"
+  )
+)
 
 #' @import magrittr
 #' @import jsonlite
 #' @import tibble
 #' @import dplyr
 #' @import tidyselect
+#' @import tidygraph
 #' @importFrom utils URLencode
 #' @importFrom glue glue
 #' @importFrom httr add_headers
