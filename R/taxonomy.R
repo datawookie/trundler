@@ -13,7 +13,7 @@ categories <- function() {
     content(as = "text", encoding = "UTF-8") %>%
     fromJSON() %>%
     as_tibble() %>%
-  rename(category_id = id, category_parent_id = parent_id, category_label = label, category_path = path)
+    rename(category_id = id, category_parent_id = parent_id, category_label = label, category_path = path)
 }
 
 #' Create graph of category hierarchy
@@ -44,6 +44,7 @@ categories_graph <- function() {
 #' Products for a specific retailer
 #'
 #' @param category_id A category ID.
+#' @param recursive Should all sub-categories be included?
 #' @param ... Arguments passed through to \code{paginate()}.
 #'
 #' @return Details of all products for a specific category as a \code{data.frame}.

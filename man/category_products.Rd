@@ -9,6 +9,8 @@ category_products(category_id, recursive = TRUE, ...)
 \arguments{
 \item{category_id}{A category ID.}
 
+\item{recursive}{Should all sub-categories be included?}
+
 \item{...}{Arguments passed through to \code{paginate()}.}
 }
 \value{
