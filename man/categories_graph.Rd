@@ -19,6 +19,6 @@ graph <- categories_graph()
 ggraph(graph, 'tree') +
   geom_edge_link() +
   geom_node_point() +
-  geom_node_label(aes(label = label)) +
+  geom_node_label(aes(label = category_label)) +
   theme_graph()
 }

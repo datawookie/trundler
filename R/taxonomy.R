@@ -13,7 +13,7 @@ categories <- function() {
     content(as = "text", encoding = "UTF-8") %>%
     fromJSON() %>%
     as_tibble() %>%
-  rename(category_id = id, parent_category_id = parent_id)
+  rename(category_id = id, category_parent_id = parent_id, category_label = label, category_path = path)
 }
 
 #' Create graph of category hierarchy
@@ -28,14 +28,14 @@ categories <- function() {
 #' ggraph(graph, 'tree') +
 #'   geom_edge_link() +
 #'   geom_node_point() +
-#'   geom_node_label(aes(label = label)) +
+#'   geom_node_label(aes(label = category_label)) +
 #'   theme_graph()
 categories_graph <- function() {
   taxonomy <- categories()
 
-  taxonomy_nodes <- taxonomy %>% select(label)
+  taxonomy_nodes <- taxonomy %>% select(category_label)
   taxonomy_edges <- taxonomy %>%
-    select(from = parent_category_id, to = category_id) %>%
+    select(from = category_parent_id, to = category_id) %>%
     filter(!(is.na(from) | is.na(to)))
 
   tbl_graph(nodes = taxonomy_nodes, edges = taxonomy_edges)
@@ -52,24 +52,23 @@ categories_graph <- function() {
 #' @examples
 #' # Get products for a specific category.
 #' \dontrun{
-#' category_id = categories() %>% filter(label == "red wine") %>% pull(category_id)
+#' category_id = categories() %>% filter(category_label == "red wine") %>% pull(category_id)
 #' category_products(category_id)
 #' }
-category_products <- function(category_id, ...) {
+category_products <- function(category_id, recursive=TRUE, ...) {
   url <- paste0(base_url(), "category/%d") %>%
     sprintf(category_id)
+
+  url <- param_set(url, key = "recursive", value = param_boolean(recursive))
 
   products <- paginate(url, ...)
 
   if (nrow(products)) {
     products %>%
-      rename(product_id = id) %>%
-      mutate(category_id = category_id) %>%
-      select(category_id, product_id, retailer_id, product, brand, model, sku)
+      select(product_id = id, retailer_id, product, brand, model, sku)
   } else {
     message("No products are currently available for this category.")
     tibble(
-      category_id = integer(),
       product_id = integer(),
       retailer_id = integer(),
       product = character(),

@@ -4,7 +4,7 @@
 \alias{category_products}
 \title{Products for a specific retailer}
 \usage{
-category_products(category_id, ...)
+category_products(category_id, recursive = TRUE, ...)
 }
 \arguments{
 \item{category_id}{A category ID.}
@@ -20,7 +20,7 @@ Products for a specific retailer
 \examples{
 # Get products for a specific category.
 \dontrun{
-category_id = categories() \%>\% filter(label == "red wine") \%>\% pull(category_id)
+category_id = categories() \%>\% filter(category_label == "red wine") \%>\% pull(category_id)
 category_products(category_id)
 }
 }
