@@ -46,6 +46,7 @@ product <- function(product_id) {
 #' @param brand Filter by product brand (treated as a regular expression).
 #' @param regex Should filter be treated as a Regular Expression?
 #' @param ignore_case	Should case be ignore?
+#' @param barcode Filter by barcode.
 #' @param ... Arguments passed through to \code{paginate()}.
 #'
 #' @return Product details as a \code{data.frame}.
@@ -57,10 +58,10 @@ product <- function(product_id) {
 #' products(brand = "Illy")
 #' products(product = "coffee", brand = "Illy")
 #' }
-products <- function(product = NA, brand = NA, regex = TRUE, ignore_case = TRUE, ...) {
+products <- function(product = NA, brand = NA, regex = TRUE, ignore_case = TRUE, barcode = NA, ...) {
   url <- paste0(base_url(), "product")
 
-  if (is.na(product) && is.na(brand)) {
+  if (is.na(product) && is.na(brand) && is.na(barcode)) {
     warning("Without filter parameters this function will execute a large number of API calls and return a lot of data!", immediate. = TRUE)
   }
 
@@ -75,6 +76,10 @@ products <- function(product = NA, brand = NA, regex = TRUE, ignore_case = TRUE,
   url <- param_set(url, key = "regex", value = param_boolean(regex))
 
   url <- param_set(url, key = "ignore_case", value = param_boolean(ignore_case))
+
+  if (!is.na(barcode)) {
+    url <- param_set(url, key = "barcode", value = URLencode(barcode))
+  }
 
   products <- paginate(url, ...)
 
