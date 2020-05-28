@@ -25,6 +25,15 @@ notifications:
     on_success: change
     on_failure: change
 before_deploy:
+# This will build the pkgdown site from README.md.
+#
+# To get README.md from README.Rmd you need to run another step first which does:
+#
+# devtools::install()
+# rmarkdown::render("README.Rmd")
+#
+# but it doesn't make sense to do this in Travis.
+#
 - Rscript inst/hex/logo.R
 - Rscript -e 'pkgdown::build_favicons()'
 - Rscript -e 'pkgdown::build_site()'
@@ -35,6 +44,19 @@ deploy:
     branch: master
   local_dir: docs
   target_branch: gh-pages
+
+# These are the environment variables:
+#
+# TRUNDLER_KEY
+# RAPIDAPI_KEY
+# TRAVIS_KEY
+# DB_HOST
+# DB_DATABASE
+# DB_SCHEMA
+# DB_USER
+# DB_PASSWD
+#
+# How to add environment variables: https://docs.travis-ci.com/user/environment-variables/.
 env:
   global:
   - secure: tsyccD9QpjIUp7NtWdow3W1D8rdV693rfottV8bspVW/hyviw5R8gmy+c/mdSGfzNN7RGyH/sMFGJMiF56zeFsVlKptLPYRE3rHRc8Gwv80F27Un2lnYHZApKSGIUT7bgZPXUtOd5QYWrE/u84wkqyJhyvDKGx8SzMSpL7dcrgkXuQzD4suAFBufBk1msMQx3p4bhBZZsrDFpWTu8pQbfYhP9ysZRyY8YaMxLSdaE2V5/UTg/i+64cMDs+a7kcj7It6sQNAVpVb9KrrCQ6+q/Hhdi9foMvGxSKtEPVGKkLZuQQGE8pIsWm9ZrOyAdWdzrfumsdiYo8DEKDNM+MQFrAjAUL5cxrarKIUjDjninSF2sKgelwT4laZlOAoova5WxVZUwFPWigiZo/fFGgVqlimL8CaJzwtxp1Nq7Tb2I4FSilnJJYpbSCsn/vmX2H6vpE0EEMGrqdPrlcM28cgmO1/OzsFR02W/K/dJis1er6baIBdi0pJmrCv+wbvZDmO2wj0RUgLfpTqUDkdYBcLGrOVOqEKXfbw99V0BIgbxNCacydEquubmntZvBb73sQZiPmvF7FKwgBpILGm0LXp+IzwXgFv3Jr0ztVfOug/HQbhsaIdZwmpEgr8XdCmzqz68plg0jGR26o6FY0mhWsLkSwhzat+Mg9AiSuUC+DNoaa8=
