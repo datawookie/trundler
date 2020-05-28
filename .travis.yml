@@ -1,5 +1,4 @@
 language: R
-sudo: false
 warnings_are_errors: false
 latex: false
 
@@ -41,7 +40,6 @@ before_deploy:
   - Rscript -e 'pkgdown::build_site()'
 deploy:
   provider: pages
-  skip_cleanup: true
   github_token: "$GITHUB_TOKEN"
   on:
     branch: master
