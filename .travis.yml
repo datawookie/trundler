@@ -1,6 +1,7 @@
 language: r
 r:
-- 3.6.3
+- 3.6
+- 3.5
 warnings_are_errors: false
 latex: false
 cache: packages
