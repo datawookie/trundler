@@ -15,6 +15,11 @@ DB_SCHEMA = Sys.getenv("DB_SCHEMA")
 DB_USER = Sys.getenv("DB_USER")
 DB_PASSWD = Sys.getenv("DB_PASSWD")
 
+print("This is print.")
+cat("This is cat.")
+message("This is message.")
+warning("This is warning.")
+
 db <- dbConnect(
   Postgres(),
   dbname = DB_DATABASE,
