@@ -19,7 +19,8 @@ set_api_key(API_KEY)
 
 retailers <- retailer()
 
-stats_raw <- admin_stats_daily()
+stats_daily_raw <- admin_stats_daily()
+stats_raw <- admin_stats()
 
 # UTILITY -------------------------------------------------------------------------------------------------------------
 
@@ -37,7 +38,7 @@ retailer_currency <- function(id) {
 
 # WRANGLE -------------------------------------------------------------------------------------------------------------
 
-stats <- stats_raw %>%
+stats_daily <- stats_daily_raw %>%
   # Fill explicit missing values.
   complete(
     date = do.call(seq.Date, c(as.list(range(.$date)), "day")),
@@ -54,12 +55,12 @@ stats <- stats_raw %>%
 # Wide view.
 #
 if (interactive()) {
-  stats %>% spread(retailer_id, count) %>% View()
+  stats_daily %>% spread(retailer_id, count) %>% View()
 }
 
 # Sort out dates.
 #
-stats <- stats %>%
+stats_daily <- stats_daily %>%
   mutate(
     dow = wday(date, label = TRUE),
     year = year(as.POSIXlt(date)),
@@ -74,7 +75,7 @@ stats <- stats %>%
 
 # Day of week order.
 #
-DOW_LEVELS <- stats %>%
+DOW_LEVELS <- stats_daily %>%
   select(date, dow) %>%
   unique() %>%
   # Probably not necessary since already sorted, but let's be safe!
@@ -89,7 +90,7 @@ DOW_LEVELS <- stats %>%
 #
 are_equal(length(DOW_LEVELS), 7)
 
-stats <- stats %>%
+stats_daily <- stats_daily %>%
   mutate(
     # Change order of "day of week" levels (most recent at end).
     dow = factor(dow, levels = DOW_LEVELS)
@@ -98,7 +99,7 @@ stats <- stats %>%
 # PLOT ----------------------------------------------------------------------------------------------------------------
 
 retailer_plot <- function(id) {
-  data <- stats %>% filter(retailer_id == id)
+  data <- stats_daily %>% filter(retailer_id == id)
 
   data_history <- data %>% filter(current == FALSE)
   data_current <- data %>% filter(current == TRUE)
@@ -151,24 +152,46 @@ retailer_plot <- function(id) {
 
   data_week <- data %>% filter(dow == "Sun")
 
+  date_range <- range(data$date)
+
   plot_series_count <- ggplot(data, aes(x = date, y = count)) +
     geom_step() +
     geom_vline(data = data_week, aes(xintercept = date), lty = "dashed", colour = COLOUR_GREY) +
     labs(x = NULL, y = NULL) +
-    theme_classic()
+    scale_x_date(limits = date_range) +
+    theme_classic() +
+    theme(
+      axis.ticks.x = element_blank(),
+      axis.text.x = element_blank()
+    )
 
   plot_series_price <- ggplot(data, aes(x = date, y = price_avg)) +
     geom_step(na.rm = TRUE) +
     geom_vline(data = data_week, aes(xintercept = date), lty = "dashed", colour = COLOUR_GREY) +
     labs(x = NULL, y = NULL) +
-    theme_classic()
+    scale_x_date(limits = date_range) +
+    theme_classic() +
+    theme(
+      axis.ticks.x = element_blank(),
+      axis.text.x = element_blank()
+    )
 
-  (plot_count / plot_price / plot_series_count / plot_series_price)  + plot_annotation(
-    title = glue("{retailer_name(id)}")
-  )
+  data <- stats_raw %>% filter(retailer_id == id)
 
-  plot_count + plot_series_count + plot_price + plot_series_price +
-    plot_layout(ncol = 1, nrow = 4, heights = c(3, 1, 3, 1)) +
+  plot_overlap <- ggplot(data) +
+    geom_segment(aes(x = start_time, xend = finish_time), y = 0, yend = 0, lwd = 5, alpha = 0.25, color = COLOUR_BLUE) +
+    scale_y_continuous(limits = c(-0.5, 0.5)) +
+    scale_x_datetime(limits = as.POSIXct(date_range)) +
+    labs(x = NULL, y = NULL) +
+    theme_classic() +
+    theme(
+      axis.ticks.y = element_blank(),
+      axis.text.y = element_blank(),
+      axis.line.y = element_blank()
+    )
+
+  plot_count + plot_price + plot_series_count + plot_series_price + plot_overlap +
+    plot_layout(ncol = 1, nrow = 5, heights = c(6, 6, 2, 2, 1)) +
     plot_annotation(
       title = glue("{retailer_name(id)}")
     )
@@ -188,4 +211,5 @@ retailers %>%
   pmap(function(retailer_id) {
     retailer_plot(retailer_id)
   })
+
 
