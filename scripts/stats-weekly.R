@@ -1,4 +1,4 @@
-library(retail)
+library(trundler)
 library(lubridate)
 library(dplyr)
 library(tidyr)
@@ -14,8 +14,7 @@ COLOUR_GREY_LIGHT <- "#edeeee"
 
 # DATA FROM API -------------------------------------------------------------------------------------------------------
 
-API_KEY = Sys.getenv("RETAIL_KEY")
-
+API_KEY <- Sys.getenv("TRUNDLER_KEY")
 set_api_key(API_KEY)
 
 retailers <- retailer()
@@ -41,16 +40,16 @@ retailer_currency <- function(id) {
 stats <- stats_raw %>%
   # Fill explicit missing values.
   complete(
-    date = do.call(seq.Date, c(as.list(range(stats$date)), "day")),
+    date = do.call(seq.Date, c(as.list(range(.$date)), "day")),
     retailer_id,
     fill = list(count = 0)
   ) %>%
   # Remove current date.
   filter(date < max(date)) %>%
-  mutate(
-    price_mean = price_total / count
-  ) %>%
-  select(-price_total)
+  # mutate(
+  #   price_mean = price_total / count
+  # ) %>%
+  select(-price_sum)
 
 # Wide view.
 #
@@ -127,7 +126,7 @@ retailer_plot <- function(id) {
     labs(x = NULL, y = "Number of products") +
     theme_classic()
 
-  plot_price <- ggplot(data_current, aes(x = dow, y = price_mean)) +
+  plot_price <- ggplot(data_current, aes(x = dow, y = price_avg)) +
     geom_boxplot(
       data = data_history,
       width = BAR_WIDTH,
@@ -140,7 +139,7 @@ retailer_plot <- function(id) {
       aes(
         x=as.numeric(dow) - BAR_WIDTH / 2,
         xend=as.numeric(dow) + BAR_WIDTH / 2,
-        yend=price_mean
+        yend=price_avg
       ),
       colour = COLOUR_ORANGE,
       size = 2,
@@ -158,7 +157,7 @@ retailer_plot <- function(id) {
     labs(x = NULL, y = NULL) +
     theme_classic()
 
-  plot_series_price <- ggplot(data, aes(x = date, y = price_mean)) +
+  plot_series_price <- ggplot(data, aes(x = date, y = price_avg)) +
     geom_step(na.rm = TRUE) +
     geom_vline(data = data_week, aes(xintercept = date), lty = "dashed", colour = COLOUR_GREY) +
     labs(x = NULL, y = NULL) +
