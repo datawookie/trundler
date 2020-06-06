@@ -168,7 +168,7 @@ retailer_plot <- function(id) {
   plot_series_price <- ggplot(data, aes(x = date, y = price_avg)) +
     geom_step(na.rm = TRUE) +
     geom_vline(data = data_week, aes(xintercept = date), lty = "dashed", colour = COLOUR_GREY) +
-    labs(x = NULL, y = NULL) +
+    labs(x = NULL, y = glue("{retailer_currency(id)}")) +
     scale_x_date(limits = date_range) +
     theme_classic() +
     theme(
@@ -179,8 +179,9 @@ retailer_plot <- function(id) {
   data <- stats_raw %>% filter(retailer_id == id)
 
   plot_overlap <- ggplot(data) +
-    geom_segment(aes(x = start_time, xend = finish_time), y = 0, yend = 0, lwd = 5, alpha = 0.25, color = COLOUR_BLUE) +
-    scale_y_continuous(limits = c(-0.5, 0.5)) +
+    geom_rect(aes(xmin = start_time, xmax = finish_time, ymin = -1, ymax = 1), alpha = 0.25, fill = COLOUR_BLUE) +
+    geom_segment(aes(x = start_time, xend = start_time), y = -1, yend = 1, lwd = 0.5, color = "black") +
+    scale_y_continuous(limits = c(-1, 1)) +
     scale_x_datetime(limits = as.POSIXct(date_range)) +
     labs(x = NULL, y = NULL) +
     theme_classic() +
@@ -196,8 +197,8 @@ retailer_plot <- function(id) {
       title = glue("{retailer_name(id)}")
     )
 }
-retailer_plot(1)
 retailer_plot(5)
+retailer_plot(1)
 retailer_plot(9)
 retailer_plot(38)
 retailer_plot(57)
