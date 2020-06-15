@@ -11,3 +11,4 @@ benchmark.R
 ^trundler.*\.tar\.gz$
 ^trundler.*\.tgz$
 ^docs$
+^\.pre-commit-config\.yaml$
