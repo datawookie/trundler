@@ -26,11 +26,11 @@ Imports:
     tidyselect (>= 1.0.0),
     glue,
     urltools,
-    tidygraph
+    tidygraph,
+    ggraph
 Suggests:
     tidyr,
     patchwork,
-    ggraph,
     testthat (>= 2.1.0),
     devtools,
     RPostgres
