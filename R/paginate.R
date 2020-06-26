@@ -13,7 +13,7 @@
 #' @param url API endpoint
 #' @param limit Number of items per query
 #' @param verbose Whether to produce verbose output.
-paginate <- function(url, limit = 10000, verbose = FALSE, head = FALSE) {
+paginate <- function(url, head = FALSE, limit = 10000, verbose = FALSE) {
   offset = 0
   results <- list()
 
