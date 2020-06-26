@@ -1,6 +1,8 @@
 ---
 title: "trundler"
 output: html_document
+description: 
+  Learn how to make use of the Trundler API in R 
 ---
 
 ```{r setup, include=FALSE}
@@ -12,12 +14,16 @@ set_api_key(Sys.getenv("TRUNDLER_KEY"))
 
 ## Overview
 
-[Trundler](https://www.trundler.dev/#about) is a curated repository of historical pricing data from major retailers. Data from the Trundler [API](https://api.trundler.dev/) can be pulled into R easily with this package for use by suppliers who want to monitor mark-ups on their products, retailers who want to understand the pricing strategies of their competitors or regulators who want to monitor regulatory compliance. 
+[Trundler](https://www.trundler.dev/#about) is a curated repository of historical pricing data from major retailers. Data from the Trundler [API](https://api.trundler.dev/) can be pulled into R easily with this package. Trundler is designed for use by suppliers who want to monitor mark-ups on their products, retailers who want to understand the pricing strategies of their competitors or regulators who want to monitor regulatory compliance. 
+
+This vignette describes the use of central Trundler functions `retailer()`, `products()` and `product_prices()` as well as some examples to get you started on your journey into retail transparency. 
+
+Browse the [blog](https://www.trundler.dev/blog/) to see additional examples of Trundler in action.  
 
 
 ## Installation
 
-Install from GitHub.
+Install from GitHub:
 
 ```{r install, eval=F}
 remotes::install_github("datawookie/trundler")
@@ -26,6 +32,7 @@ remotes::install_github("datawookie/trundler")
 <br>
 
 ## Usage 
+To load the trundler package in R:
 
 ```{r usage, eval=F}
 library(trundler)
@@ -57,7 +64,7 @@ set_rapidapi_key("5a1ae0ce24mshd483dae6ab7308dp129ef6jsn1f473053d6b0")
 
 <br>
 
-## Retailers()
+## Retailers
 
 Use `retailer()` to obtain a list of retailers: 
 
@@ -119,27 +126,30 @@ item$barcodes
 
 ## Prices
 
-Get price history data for a specific product:
+Get price history data for a specific product of interest:
 ```{r p_hist}
 product_prices(530290)
 ```
 
 
-## Example: Surgical Mask Price Comparison
+## Example: Surgical Mask Price Comparison 
 
-```{r get-data, cache=TRUE}
+Here we have utilised [tidyverse](https://www.tidyverse.org/) tools to compare the prices of similar surgical masks sold by two South African retailers. 
+
+To find the products and match them up to retailers of interest:
+```{r mask-products, cache=TRUE}
+library(tidyverse)
 mask_products <- products(product="surgical( face)? masks") %>%
   inner_join(retailer(), by = "retailer_id") %>%
   filter(retailer %in% c("Dischem", "Clicks"))
+```
 
+To obtain tidy historical pricing data for both retailers: 
+```{r mask-prices, cache=TRUE}
 mask_prices <- mask_products %>%
   mutate(
     price = map(product_id, product_prices)
-  )
-```
-
-```{r wrangle}
-mask_prices <- mask_prices %>%
+  )%>%
   select(-product_id) %>%
   unnest(cols = c(price)) %>%
   mutate(
@@ -155,4 +165,4 @@ mask_prices <- mask_prices %>%
   ) %>%
   ungroup() %>%
   select(-step)
-
+```
