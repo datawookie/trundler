@@ -12,6 +12,7 @@
 #'
 #' @param url API endpoint
 #' @param limit Number of items per query
+#' @param head Should the query return the data (head = FALSE) or the number of records that would be returned (head = TRUE)?
 #' @param verbose Whether to produce verbose output.
 paginate <- function(url, head = FALSE, limit = 10000, verbose = FALSE) {
   offset = 0
