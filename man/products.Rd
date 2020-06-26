@@ -21,9 +21,11 @@ products(
 
 \item{regex}{Should filter be treated as a Regular Expression?}
 
-\item{ignore_case}{Should case be ignore?}
+\item{ignore_case}{Should case be ignored?}
 
 \item{barcode}{Filter by barcode.}
+
+\item{head}{Should the query return the data (head = FALSE) or the number of records that would be returned (head = TRUE)?}
 
 \item{...}{Arguments passed through to \code{paginate()}.}
 }

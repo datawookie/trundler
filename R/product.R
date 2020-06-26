@@ -45,8 +45,9 @@ product <- function(product_id) {
 #' @param product Filter by product name (treated as a regular expression).
 #' @param brand Filter by product brand (treated as a regular expression).
 #' @param regex Should filter be treated as a Regular Expression?
-#' @param ignore_case	Should case be ignore?
+#' @param ignore_case	Should case be ignored?
 #' @param barcode Filter by barcode.
+#' @param head Should the query return the data (head = FALSE) or the number of records that would be returned (head = TRUE)?
 #' @param ... Arguments passed through to \code{paginate()}.
 #'
 #' @return Product details as a \code{data.frame}.
@@ -81,11 +82,9 @@ products <- function(product = NA, brand = NA, regex = TRUE, ignore_case = TRUE,
     url <- param_set(url, key = "barcode", value = URLencode(barcode))
   }
 
-  print(url)
+  products <- paginate(url, head, ...)
 
   if (!head) {
-    products <- paginate(url, ...)
-
     if (nrow(products)) {
       products %>%
         rename(product_id = id) %>%
@@ -102,7 +101,8 @@ products <- function(product = NA, brand = NA, regex = TRUE, ignore_case = TRUE,
       )
     }
   } else {
-
+    message(paste0(products, " products will be returned for this query"))
+    products
   }
 
 }
