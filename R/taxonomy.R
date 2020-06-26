@@ -22,6 +22,7 @@ categories <- function() {
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' library(ggraph)
 #'
 #' graph <- categories_graph()
@@ -30,6 +31,7 @@ categories <- function() {
 #'   geom_node_point() +
 #'   geom_node_label(aes(label = category_label)) +
 #'   theme_graph()
+#' }
 categories_graph <- function() {
   taxonomy <- categories()
 

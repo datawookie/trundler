@@ -13,6 +13,7 @@ Categories as a \code{tbl_graph}.
 Create graph of category hierarchy
 }
 \examples{
+\dontrun{
 library(ggraph)
 
 graph <- categories_graph()
@@ -21,4 +22,5 @@ ggraph(graph, 'tree') +
   geom_node_point() +
   geom_node_label(aes(label = category_label)) +
   theme_graph()
+}
 }
