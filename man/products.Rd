@@ -10,6 +10,7 @@ products(
   regex = TRUE,
   ignore_case = TRUE,
   barcode = NA,
+  head = FALSE,
   ...
 )
 }

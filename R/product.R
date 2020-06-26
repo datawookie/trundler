@@ -58,7 +58,7 @@ product <- function(product_id) {
 #' products(brand = "Illy")
 #' products(product = "coffee", brand = "Illy")
 #' }
-products <- function(product = NA, brand = NA, regex = TRUE, ignore_case = TRUE, barcode = NA, ...) {
+products <- function(product = NA, brand = NA, regex = TRUE, ignore_case = TRUE, barcode = NA, head = FALSE, ...) {
   url <- paste0(base_url(), "product")
 
   if (is.na(product) && is.na(brand) && is.na(barcode)) {
@@ -81,23 +81,30 @@ products <- function(product = NA, brand = NA, regex = TRUE, ignore_case = TRUE,
     url <- param_set(url, key = "barcode", value = URLencode(barcode))
   }
 
-  products <- paginate(url, ...)
+  print(url)
 
-  if (nrow(products)) {
-    products %>%
-      rename(product_id = id) %>%
-      select(product_id, retailer_id, product, brand, model, sku)
+  if (!head) {
+    products <- paginate(url, ...)
+
+    if (nrow(products)) {
+      products %>%
+        rename(product_id = id) %>%
+        select(product_id, retailer_id, product, brand, model, sku)
+    } else {
+      message("No products are currently available for this query")
+      tibble(
+        product_id = integer(),
+        retailer_id = integer(),
+        product = character(),
+        brand = character(),
+        model = character(),
+        sku = character()
+      )
+    }
   } else {
-    message("No products are currently available for this query")
-    tibble(
-      product_id = integer(),
-      retailer_id = integer(),
-      product = character(),
-      brand = character(),
-      model = character(),
-      sku = character()
-    )
+
   }
+
 }
 
 #' Price history for a specific product
