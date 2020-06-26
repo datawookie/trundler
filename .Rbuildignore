@@ -12,3 +12,4 @@ benchmark.R
 ^trundler.*\.tgz$
 ^docs$
 ^\.pre-commit-config\.yaml$
+cran-comments.md
