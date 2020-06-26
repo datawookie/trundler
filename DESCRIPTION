@@ -26,12 +26,12 @@ Imports:
     tidyselect (>= 1.0.0),
     glue,
     urltools,
-    tidygraph,
-    ggraph
+    tidygraph
 Suggests:
     tidyr,
     patchwork,
     testthat (>= 2.1.0),
     devtools,
+    ggraph,
     RPostgres
 RoxygenNote: 7.0.2
