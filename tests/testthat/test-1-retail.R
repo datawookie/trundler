@@ -11,6 +11,8 @@ test_that("invalid API key", {
 })
 
 test_that("API key", {
+  skip_on_cran()
+
   expect_error(set_api_key(TRUNDLER_KEY), NA)
   expect_equal(get_api_key(), TRUNDLER_KEY)
 })
