@@ -47,7 +47,7 @@ product <- function(product_id) {
 #' @param regex Should filter be treated as a Regular Expression?
 #' @param ignore_case	Should case be ignored?
 #' @param barcode Filter by barcode.
-#' @param head Should the query return the data (head = FALSE) or the number of records that would be returned (head = TRUE)?
+#' @param head Should the query return the product data (head = FALSE) or the number of records that would be returned (head = TRUE)?
 #' @param ... Arguments passed through to \code{paginate()}.
 #'
 #' @return Product details as a \code{data.frame} if \code{head = FALSE}, otherwise if \code{head = TRUE} then the number of products that would be returned from the query.
@@ -111,7 +111,7 @@ products <- function(product = NA, brand = NA, regex = TRUE, ignore_case = TRUE,
 #'
 #' @param product_id A product ID.
 #' @param ... Arguments passed through to \code{paginate()}.
-#' @param head Should the query return the data (head = FALSE) or the number of records that would be returned (head = TRUE)?
+#' @param head Should the query return the history data (head = FALSE) or the number of records that would be returned (head = TRUE)?
 #'
 #' @return Price history as a \code{data.frame} if \code{head = FALSE}, otherwise if \code{head = TRUE} then the number of price history entries that would be returned.
 #' @export
