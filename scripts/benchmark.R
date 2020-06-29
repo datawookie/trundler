@@ -26,3 +26,11 @@ microbenchmark(
   retailer_products(10, limit = 10000),
   times = 10
 )
+
+# Test effect of REGEX search.
+#
+microbenchmark(
+  products(product = "coffee", regex = TRUE),
+  products(product = "coffee", regex = FALSE),
+  times = 10
+)
