@@ -7,4 +7,5 @@
 
 There were no ERRORs, WARNINGs or NOTEs. 
 
-## Downstream dependencies
+- Most of the examples and tests are set to not run or skip on CRAN as they require an API key and database credentials.
+
