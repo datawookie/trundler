@@ -50,7 +50,7 @@ product <- function(product_id) {
 #' @param head Should the query return the data (head = FALSE) or the number of records that would be returned (head = TRUE)?
 #' @param ... Arguments passed through to \code{paginate()}.
 #'
-#' @return Product details as a \code{data.frame}.
+#' @return Product details as a \code{data.frame} if \code{head = FALSE}, otherwise if \code{head = TRUE} then the number of products that would be returned from the query.
 #' @export
 #'
 #' @examples
@@ -111,8 +111,9 @@ products <- function(product = NA, brand = NA, regex = TRUE, ignore_case = TRUE,
 #'
 #' @param product_id A product ID.
 #' @param ... Arguments passed through to \code{paginate()}.
+#' @param head Should the query return the data (head = FALSE) or the number of records that would be returned (head = TRUE)?
 #'
-#' @return Price history as a \code{data.frame}.
+#' @return Price history as a \code{data.frame} if \code{head = FALSE}, otherwise if \code{head = TRUE} then the number of price history entries that would be returned.
 #' @export
 #'
 #' @examples
@@ -120,12 +121,19 @@ products <- function(product = NA, brand = NA, regex = TRUE, ignore_case = TRUE,
 #' \dontrun{
 #' product_prices(1)
 #' }
-product_prices <- function(product_id, ...) {
-  paste0(base_url(), "product/%d/price") %>%
-    sprintf(product_id) %>%
-    paginate(...) %>%
-    mutate(
-      price_effective = coalesce(price_promotion, price)
-    ) %>%
-    select(-available, available)
+product_prices <- function(product_id, head = FALSE, ...) {
+  url <- paste0(base_url(), "product/%d/price") %>%
+    sprintf(product_id)
+
+  prices <- paginate(url, head)
+
+  if (!head) {
+    prices %>%
+      mutate(price_effective = coalesce(price_promotion, price)
+            ) %>%
+      select(-available, available)
+  } else {
+    message(paste0(prices, " price history entries will be returned for this product query"))
+    prices
+  }
 }

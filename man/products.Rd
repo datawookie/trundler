@@ -30,7 +30,7 @@ products(
 \item{...}{Arguments passed through to \code{paginate()}.}
 }
 \value{
-Product details as a \code{data.frame}.
+Product details as a \code{data.frame} if \code{head = FALSE}, otherwise if \code{head = TRUE} then the number of products that would be returned from the query.
 }
 \description{
 Find products by name or brand

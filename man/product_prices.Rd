@@ -4,15 +4,17 @@
 \alias{product_prices}
 \title{Price history for a specific product}
 \usage{
-product_prices(product_id, ...)
+product_prices(product_id, head = FALSE, ...)
 }
 \arguments{
 \item{product_id}{A product ID.}
 
+\item{head}{Should the query return the data (head = FALSE) or the number of records that would be returned (head = TRUE)?}
+
 \item{...}{Arguments passed through to \code{paginate()}.}
 }
 \value{
-Price history as a \code{data.frame}.
+Price history as a \code{data.frame} if \code{head = FALSE}, otherwise if \code{head = TRUE} then the number of price history entries that would be returned.
 }
 \description{
 Price history for a specific product
