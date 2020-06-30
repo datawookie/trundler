@@ -47,10 +47,10 @@ product <- function(product_id) {
 #' @param regex Should filter be treated as a Regular Expression?
 #' @param ignore_case	Should case be ignored?
 #' @param barcode Filter by barcode.
-#' @param head Should the query return the product data (head = FALSE) or the number of records that would be returned (head = TRUE)?
+#' @param head Return the data (\code{FALSE}) or the number of records (\code{TRUE})?
 #' @param ... Arguments passed through to \code{paginate()}.
 #'
-#' @return Product details as a \code{data.frame} if \code{head = FALSE}, otherwise if \code{head = TRUE} then the number of products that would be returned from the query.
+#' @return Product details as a \code{data.frame} if \code{head} is \code{FALSE}, otherwise the number of products that would be returned.
 #' @export
 #'
 #' @examples
@@ -58,6 +58,7 @@ product <- function(product_id) {
 #' products(product = "coffee")
 #' products(brand = "Illy")
 #' products(product = "coffee", brand = "Illy")
+#' products(product = "coffee", brand = "Illy", head = TRUE)
 #' }
 products <- function(product = NA, brand = NA, regex = TRUE, ignore_case = TRUE, barcode = NA, head = FALSE, ...) {
   url <- paste0(base_url(), "product")
@@ -101,25 +102,27 @@ products <- function(product = NA, brand = NA, regex = TRUE, ignore_case = TRUE,
       )
     }
   } else {
-    message(paste0(products, " products will be returned for this query"))
+    message(paste0(products, " products will be returned."))
     products
   }
-
 }
 
 #' Price history for a specific product
 #'
 #' @param product_id A product ID.
 #' @param ... Arguments passed through to \code{paginate()}.
-#' @param head Should the query return the history data (head = FALSE) or the number of records that would be returned (head = TRUE)?
+#' @param head Return the data (\code{FALSE}) or the number of records (\code{TRUE})?
 #'
-#' @return Price history as a \code{data.frame} if \code{head = FALSE}, otherwise if \code{head = TRUE} then the number of price history entries that would be returned.
+#' @return Price history as a \code{data.frame} if if \code{head} is \code{FALSE}, otherwise the number of price history entries that would be returned.
 #' @export
 #'
 #' @examples
 #' # Price history for a specific product.
 #' \dontrun{
+#' # Detailed price history for product with ID = 1.
 #' product_prices(1)
+#' # Number of entries in price history for product with ID = 1.
+#' product_prices(1, head = TRUE)
 #' }
 product_prices <- function(product_id, head = FALSE, ...) {
   url <- paste0(base_url(), "product/%d/price") %>%

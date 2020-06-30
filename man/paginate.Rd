@@ -9,7 +9,7 @@ paginate(url, head = FALSE, limit = 10000, verbose = FALSE)
 \arguments{
 \item{url}{API endpoint}
 
-\item{head}{Should the query return the data (head = FALSE) or the number of records that would be returned (head = TRUE)?}
+\item{head}{Return the data (\code{FALSE}) or the number of records (\code{TRUE})?}
 
 \item{limit}{Number of items per query}
 

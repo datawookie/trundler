@@ -9,7 +9,7 @@ product_prices(product_id, head = FALSE, ...)
 \arguments{
 \item{product_id}{A product ID.}
 
-\item{head}{Should the query return the data (head = FALSE) or the number of records that would be returned (head = TRUE)?}
+\item{head}{Should the query return the history data (head = FALSE) or the number of records that would be returned (head = TRUE)?}
 
 \item{...}{Arguments passed through to \code{paginate()}.}
 }

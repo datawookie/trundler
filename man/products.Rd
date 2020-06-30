@@ -25,12 +25,12 @@ products(
 
 \item{barcode}{Filter by barcode.}
 
-\item{head}{Should the query return the data (head = FALSE) or the number of records that would be returned (head = TRUE)?}
+\item{head}{Return the data (\code{FALSE}) or the number of records (\code{TRUE})?}
 
 \item{...}{Arguments passed through to \code{paginate()}.}
 }
 \value{
-Product details as a \code{data.frame} if \code{head = FALSE}, otherwise if \code{head = TRUE} then the number of products that would be returned from the query.
+Product details as a \code{data.frame} if \code{head} is \code{FALSE}, otherwise the number of products that would be returned.
 }
 \description{
 Find products by name or brand
@@ -40,5 +40,6 @@ Find products by name or brand
 products(product = "coffee")
 products(brand = "Illy")
 products(product = "coffee", brand = "Illy")
+products(product = "coffee", brand = "Illy", head = TRUE)
 }
 }
