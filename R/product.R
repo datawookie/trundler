@@ -113,7 +113,7 @@ products <- function(product = NA, brand = NA, regex = TRUE, ignore_case = TRUE,
 #' @param ... Arguments passed through to \code{paginate()}.
 #' @param head Return the data (\code{FALSE}) or the number of records (\code{TRUE})?
 #'
-#' @return Price history as a \code{data.frame} if if \code{head} is \code{FALSE}, otherwise the number of price history entries that would be returned.
+#' @return Price history as a \code{data.frame} if \code{head} is \code{FALSE}, otherwise the number of price history entries that would be returned.
 #' @export
 #'
 #' @examples
