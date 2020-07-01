@@ -10,6 +10,7 @@ products(
   regex = TRUE,
   ignore_case = TRUE,
   barcode = NA,
+  head = FALSE,
   ...
 )
 }
@@ -20,14 +21,16 @@ products(
 
 \item{regex}{Should filter be treated as a Regular Expression?}
 
-\item{ignore_case}{Should case be ignore?}
+\item{ignore_case}{Should case be ignored?}
 
 \item{barcode}{Filter by barcode.}
+
+\item{head}{Return the data (\code{FALSE}) or the number of records (\code{TRUE})?}
 
 \item{...}{Arguments passed through to \code{paginate()}.}
 }
 \value{
-Product details as a \code{data.frame}.
+Product details as a \code{data.frame} if \code{head} is \code{FALSE}, otherwise the number of products that would be returned.
 }
 \description{
 Find products by name or brand
@@ -37,5 +40,6 @@ Find products by name or brand
 products(product = "coffee")
 products(brand = "Illy")
 products(product = "coffee", brand = "Illy")
+products(product = "coffee", brand = "Illy", head = TRUE)
 }
 }

@@ -10,21 +10,6 @@ test_that("product", {
   expect_equal(names(first_product), c("product_id", "retailer_id", "product_url", "product", "brand", "model", "sku", "barcodes"))
 })
 
-test_that("product prices (call succeeds)", {
-  skip_on_cran()
-
-  expect_error(product_prices(product_id), NA)
-  expect_error(product_prices(product_id, verbose = TRUE), NA)
-})
-
-test_that("product prices (correct columns)", {
-  skip_on_cran()
-
-  first_product_prices <- product_prices(product_id)
-
-  expect_equal(names(first_product_prices), c("product_id", "time", "price", "price_promotion", "price_effective", "available"))
-})
-
 test_that("brand is NULL", {
   skip_on_cran()
 
@@ -51,4 +36,13 @@ test_that("brand name has apostrophe", {
   skip_on_cran()
 
   expect_error(products(brand = "Jerry's"), NA)
+})
+
+test_that("product count", {
+  skip_on_cran()
+
+  product_count <- products(head = TRUE)
+
+  expect_type(product_count, "integer")
+  expect_length(product_count, 1)
 })

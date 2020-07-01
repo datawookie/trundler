@@ -29,3 +29,10 @@ test_that("retailer products", {
 
   expect_equal(names(first_retailer_products), c("product_id", "product", "brand", "model", "sku"))
 })
+
+test_that("retailer product count", {
+  product_count <- retailer_products(retailer_id, head = TRUE)
+
+  expect_type(product_count, "integer")
+  expect_length(product_count, 1)
+})
