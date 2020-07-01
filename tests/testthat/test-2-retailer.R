@@ -31,6 +31,8 @@ test_that("retailer products", {
 })
 
 test_that("retailer product count", {
+  skip_on_cran()
+
   product_count <- retailer_products(retailer_id, head = TRUE)
 
   expect_type(product_count, "integer")
