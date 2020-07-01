@@ -63,7 +63,7 @@ product <- function(product_id) {
 products <- function(product = NA, brand = NA, regex = TRUE, ignore_case = TRUE, barcode = NA, head = FALSE, ...) {
   url <- paste0(base_url(), "product")
 
-  if (is.na(product) && is.na(brand) && is.na(barcode)) {
+  if (!head && is.na(product) && is.na(brand) && is.na(barcode)) {
     warning("Without filter parameters this function will execute a large number of API calls and return a lot of data!", immediate. = TRUE)
   }
 
