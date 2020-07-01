@@ -1,7 +1,7 @@
 Package: trundler
 Type: Package
 Title: Retrieve Data from Trundler API
-Version: 0.1.12
+Version: 0.1.13
 Authors@R: 
     c(person(given = c("Andrew", "B."),
              family = "Collier",
