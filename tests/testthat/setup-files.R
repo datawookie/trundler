@@ -15,15 +15,6 @@ DB_DATABASE = Sys.getenv("DB_DATABASE")
 DB_USER = Sys.getenv("DB_USER")
 DB_PASSWD = Sys.getenv("DB_PASSWD")
 
-db <- dbConnect(
-  Postgres(),
-  dbname = DB_DATABASE,
-  host = DB_HOST,
-  user = DB_USER,
-  password = DB_PASSWD
-)
-on.exit(dbDisconnect(db))
-
 db_fetch_query <- function(sql) {
   result <- dbSendQuery(db, sql)
   data <- dbFetch(result)
@@ -55,6 +46,15 @@ db_get_retailer <- function(where) {
 # These feels rather weird, like guilty until proven innocent, but it should work.
 #
 if (!testthat:::on_cran()) {
+  db <- dbConnect(
+    Postgres(),
+    dbname = DB_DATABASE,
+    host = DB_HOST,
+    user = DB_USER,
+    password = DB_PASSWD
+  )
+  on.exit(dbDisconnect(db))
+
   db_send_statement("set search_path to prd, public;")
 
   retailer_id           <- db_get_retailer()
