@@ -29,6 +29,7 @@ categories <- function() {
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' library(ggraph)
 #'
 #' graph <- categories_graph()

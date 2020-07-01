@@ -7,10 +7,13 @@
 #'
 #' @examples
 #' # Get a table of all retailers.
+#' \dontrun{
 #' retailer()
-#'
+#' }
 #' # Get details of specific retailer.
+#' \dontrun{
 #' retailer(1)
+#' }
 retailer <- function(retailer_id = NA) {
   if (is.na(retailer_id)) {
     url <- paste0(base_url(), "retailer")

@@ -3,6 +3,7 @@
 Sys.setenv(TZ = "Etc/UTC")
 
 library(RPostgres)
+library(glue)
 
 TRUNDLER_KEY = Sys.getenv("TRUNDLER_KEY")
 RAPIDAPI_KEY = Sys.getenv("RAPIDAPI_KEY")
@@ -11,7 +12,6 @@ base_url_original <- base_url()
 
 DB_HOST = Sys.getenv("DB_HOST")
 DB_DATABASE = Sys.getenv("DB_DATABASE")
-DB_SCHEMA = Sys.getenv("DB_SCHEMA")
 DB_USER = Sys.getenv("DB_USER")
 DB_PASSWD = Sys.getenv("DB_PASSWD")
 
