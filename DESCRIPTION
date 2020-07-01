@@ -13,7 +13,7 @@ Authors@R:
              email = "megan@exegetic.biz"))
 Description: A wrapper around the 'Trundler' API, which
     gives access to historical retail pricing data and can be found at
-    <https://api.trundler.dev/>,
+    <https://api.trundler.dev/>.
 License: GPL-3
 URL: https://github.com/datawookie/trundler/
 BugReports: https://github.com/datawookie/trundler/issues/
