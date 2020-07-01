@@ -17,8 +17,11 @@ Details of a retailer
 }
 \examples{
 # Get a table of all retailers.
+\dontrun{
 retailer()
-
+}
 # Get details of specific retailer.
+\dontrun{
 retailer(1)
+}
 }

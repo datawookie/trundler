@@ -7,10 +7,13 @@
 #'
 #' @examples
 #' # Get a table of all retailers.
+#' \dontrun{
 #' retailer()
-#'
+#' }
 #' # Get details of specific retailer.
+#' \dontrun{
 #' retailer(1)
+#' }
 retailer <- function(retailer_id = NA) {
   if (is.na(retailer_id)) {
     url <- paste0(base_url(), "retailer")
@@ -42,9 +45,10 @@ retailer <- function(retailer_id = NA) {
 #' @param brand Filter by product brand (treated as a regular expression).
 #' @param regex Should filter be treated as a Regular Expression?
 #' @param ignore_case	Should case be ignore?
+#' @param head Return the data (\code{FALSE}) or the number of records (\code{TRUE})?
 #' @param ... Arguments passed through to \code{paginate()}.
 #'
-#' @return Details of all products for a specific retailer as a \code{data.frame}.
+#' @return Product details as a \code{data.frame} if \code{head} is \code{FALSE}, otherwise the number of products that would be returned.
 #' @export
 #'
 #' @examples
@@ -52,8 +56,9 @@ retailer <- function(retailer_id = NA) {
 #' \dontrun{
 #' retailer_products(1)
 #' retailer_products(9, product = "Nescafe")
+#' retailer_products(9, product = "Nescafe", head = TRUE)
 #' }
-retailer_products <- function(retailer_id, product = NA, brand = NA, regex = TRUE, ignore_case = TRUE, ...) {
+retailer_products <- function(retailer_id, product = NA, brand = NA, regex = TRUE, ignore_case = TRUE, head = FALSE, ...) {
   check_retailer_id(retailer_id)
 
   url <- paste0(base_url(), "retailer/%d/product") %>%
@@ -71,20 +76,25 @@ retailer_products <- function(retailer_id, product = NA, brand = NA, regex = TRU
 
   url <- param_set(url, key = "ignore_case", value = param_boolean(ignore_case))
 
-  products <- paginate(url, ...)
+  products <- paginate(url, head, ...)
 
-  if (nrow(products)) {
-    products %>%
-      rename(product_id = id) %>%
-      select(product_id, product, brand, model, sku)
+  if (!head) {
+    if (nrow(products)) {
+      products %>%
+        rename(product_id = id) %>%
+        select(product_id, product, brand, model, sku)
+    } else {
+      message("No products are currently available for this retailer.")
+      tibble(
+        product_id = integer(),
+        product = character(),
+        brand = character(),
+        model = character(),
+        sku = character()
+      )
+    }
   } else {
-    message("No products are currently available for this retailer.")
-    tibble(
-      product_id = integer(),
-      product = character(),
-      brand = character(),
-      model = character(),
-      sku = character()
-    )
+    message(paste0(products, " products will be returned."))
+    products
   }
 }

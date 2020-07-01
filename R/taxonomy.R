@@ -9,11 +9,18 @@ categories <- function() {
   check_response_error(response)
   check_response_json(response)
 
-  response %>%
+  result <- response %>%
     content(as = "text", encoding = "UTF-8") %>%
     fromJSON() %>%
-    as_tibble() %>%
-    rename(category_id = id, category_parent_id = parent_id, category_label = label, category_path = path)
+    as_tibble()
+
+  if (nrow(result)) {
+    result %>%
+      rename(category_id = id, category_parent_id = parent_id, category_label = label, category_path = path)
+  } else {
+    warning("There are currently no categories defined.", call. = FALSE)
+    NULL
+  }
 }
 
 #' Create graph of category hierarchy
@@ -22,23 +29,31 @@ categories <- function() {
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' library(ggraph)
 #'
 #' graph <- categories_graph()
-#' ggraph(graph, 'tree') +
-#'   geom_edge_link() +
-#'   geom_node_point() +
-#'   geom_node_label(aes(label = category_label)) +
-#'   theme_graph()
+#' # In principle there should be graph data available, but let's check.
+#' if (!is.null(graph)) {
+#'   ggraph(graph, 'tree') +
+#'     geom_edge_link() +
+#'     geom_node_point() +
+#'     geom_node_label(aes(label = category_label)) +
+#'     theme_graph()
+#' }
 categories_graph <- function() {
   taxonomy <- categories()
 
-  taxonomy_nodes <- taxonomy %>% select(category_label)
-  taxonomy_edges <- taxonomy %>%
-    select(from = category_parent_id, to = category_id) %>%
-    filter(!(is.na(from) | is.na(to)))
+  if (is.null(taxonomy)) {
+    NULL
+  } else {
+    taxonomy_nodes <- taxonomy %>% select(category_label)
+    taxonomy_edges <- taxonomy %>%
+      select(from = category_parent_id, to = category_id) %>%
+      filter(!(is.na(from) | is.na(to)))
 
-  tbl_graph(nodes = taxonomy_nodes, edges = taxonomy_edges)
+    tbl_graph(nodes = taxonomy_nodes, edges = taxonomy_edges)
+  }
 }
 
 #' Products for a specific retailer

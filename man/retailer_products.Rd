@@ -10,6 +10,7 @@ retailer_products(
   brand = NA,
   regex = TRUE,
   ignore_case = TRUE,
+  head = FALSE,
   ...
 )
 }
@@ -24,10 +25,12 @@ retailer_products(
 
 \item{ignore_case}{Should case be ignore?}
 
+\item{head}{Return the data (\code{FALSE}) or the number of records (\code{TRUE})?}
+
 \item{...}{Arguments passed through to \code{paginate()}.}
 }
 \value{
-Details of all products for a specific retailer as a \code{data.frame}.
+Product details as a \code{data.frame} if \code{head} is \code{FALSE}, otherwise the number of products that would be returned.
 }
 \description{
 Products for a specific retailer
@@ -37,5 +40,6 @@ Products for a specific retailer
 \dontrun{
 retailer_products(1)
 retailer_products(9, product = "Nescafe")
+retailer_products(9, product = "Nescafe", head = TRUE)
 }
 }

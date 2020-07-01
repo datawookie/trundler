@@ -4,10 +4,12 @@
 \alias{paginate}
 \title{Paginate results from API}
 \usage{
-paginate(url, limit = 10000, verbose = FALSE)
+paginate(url, head = FALSE, limit = 10000, verbose = FALSE)
 }
 \arguments{
 \item{url}{API endpoint}
+
+\item{head}{Return the data (\code{FALSE}) or the number of records (\code{TRUE})?}
 
 \item{limit}{Number of items per query}
 

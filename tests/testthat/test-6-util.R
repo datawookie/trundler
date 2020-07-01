@@ -1,10 +1,7 @@
 context("util")
 
 test_that("check that response is JSON", {
-  response_text <- GET("https://httpbin.org/response-headers?Content-Type=text%2Fplain")
-  response_json <- GET("https://httpbin.org/response-headers?Content-Type=application%2Fjson")
-
-  expect_error(check_response_json(response_text))
+  response_json <- GET("https://httpbin.org/response-headers")
   expect_error(check_response_json(response_json), NA)
 })
 
