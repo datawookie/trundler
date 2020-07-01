@@ -45,11 +45,12 @@ product <- function(product_id) {
 #' @param product Filter by product name (treated as a regular expression).
 #' @param brand Filter by product brand (treated as a regular expression).
 #' @param regex Should filter be treated as a Regular Expression?
-#' @param ignore_case	Should case be ignore?
+#' @param ignore_case	Should case be ignored?
 #' @param barcode Filter by barcode.
+#' @param head Return the data (\code{FALSE}) or the number of records (\code{TRUE})?
 #' @param ... Arguments passed through to \code{paginate()}.
 #'
-#' @return Product details as a \code{data.frame}.
+#' @return Product details as a \code{data.frame} if \code{head} is \code{FALSE}, otherwise the number of products that would be returned.
 #' @export
 #'
 #' @examples
@@ -57,11 +58,12 @@ product <- function(product_id) {
 #' products(product = "coffee")
 #' products(brand = "Illy")
 #' products(product = "coffee", brand = "Illy")
+#' products(product = "coffee", brand = "Illy", head = TRUE)
 #' }
-products <- function(product = NA, brand = NA, regex = TRUE, ignore_case = TRUE, barcode = NA, ...) {
+products <- function(product = NA, brand = NA, regex = TRUE, ignore_case = TRUE, barcode = NA, head = FALSE, ...) {
   url <- paste0(base_url(), "product")
 
-  if (is.na(product) && is.na(brand) && is.na(barcode)) {
+  if (!head && is.na(product) && is.na(brand) && is.na(barcode)) {
     warning("Without filter parameters this function will execute a large number of API calls and return a lot of data!", immediate. = TRUE)
   }
 
@@ -81,22 +83,27 @@ products <- function(product = NA, brand = NA, regex = TRUE, ignore_case = TRUE,
     url <- param_set(url, key = "barcode", value = URLencode(barcode))
   }
 
-  products <- paginate(url, ...)
+  products <- paginate(url, head, ...)
 
-  if (nrow(products)) {
-    products %>%
-      rename(product_id = id) %>%
-      select(product_id, retailer_id, product, brand, model, sku)
+  if (!head) {
+    if (nrow(products)) {
+      products %>%
+        rename(product_id = id) %>%
+        select(product_id, retailer_id, product, brand, model, sku)
+    } else {
+      message("No products are currently available for this query")
+      tibble(
+        product_id = integer(),
+        retailer_id = integer(),
+        product = character(),
+        brand = character(),
+        model = character(),
+        sku = character()
+      )
+    }
   } else {
-    message("No products are currently available for this query")
-    tibble(
-      product_id = integer(),
-      retailer_id = integer(),
-      product = character(),
-      brand = character(),
-      model = character(),
-      sku = character()
-    )
+    message(paste0(products, " products will be returned."))
+    products
   }
 }
 
@@ -104,21 +111,32 @@ products <- function(product = NA, brand = NA, regex = TRUE, ignore_case = TRUE,
 #'
 #' @param product_id A product ID.
 #' @param ... Arguments passed through to \code{paginate()}.
+#' @param head Return the data (\code{FALSE}) or the number of records (\code{TRUE})?
 #'
-#' @return Price history as a \code{data.frame}.
+#' @return Price history as a \code{data.frame} if \code{head} is \code{FALSE}, otherwise the number of price history entries that would be returned.
 #' @export
 #'
 #' @examples
 #' # Price history for a specific product.
 #' \dontrun{
+#' # Detailed price history for product with ID = 1.
 #' product_prices(1)
+#' # Number of entries in price history for product with ID = 1.
+#' product_prices(1, head = TRUE)
 #' }
-product_prices <- function(product_id, ...) {
-  paste0(base_url(), "product/%d/price") %>%
-    sprintf(product_id) %>%
-    paginate(...) %>%
-    mutate(
-      price_effective = coalesce(price_promotion, price)
-    ) %>%
-    select(-available, available)
+product_prices <- function(product_id, head = FALSE, ...) {
+  url <- paste0(base_url(), "product/%d/price") %>%
+    sprintf(product_id)
+
+  prices <- paginate(url, head)
+
+  if (!head) {
+    prices %>%
+      mutate(price_effective = coalesce(price_promotion, price)
+            ) %>%
+      select(-available, available)
+  } else {
+    message(paste0(prices, " price history entries will be returned for this product query"))
+    prices
+  }
 }

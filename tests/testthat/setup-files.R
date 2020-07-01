@@ -3,6 +3,7 @@
 Sys.setenv(TZ = "Etc/UTC")
 
 library(RPostgres)
+library(glue)
 
 TRUNDLER_KEY = Sys.getenv("TRUNDLER_KEY")
 RAPIDAPI_KEY = Sys.getenv("RAPIDAPI_KEY")
@@ -11,7 +12,6 @@ base_url_original <- base_url()
 
 DB_HOST = Sys.getenv("DB_HOST")
 DB_DATABASE = Sys.getenv("DB_DATABASE")
-DB_SCHEMA = Sys.getenv("DB_SCHEMA")
 DB_USER = Sys.getenv("DB_USER")
 DB_PASSWD = Sys.getenv("DB_PASSWD")
 
@@ -46,10 +46,20 @@ db_get_retailer <- function(where) {
   db_fetch_query(SQL)$id
 }
 
-db_send_statement("set search_path to prd, public;")
+# Use on_cran() to check if we are running on CRAN.
+#
+# If you are not CRAN (which applies to most of us), then you need to set an environment variable:
+#
+# NOT_CRAN=true
+#
+# These feels rather weird, like guilty until proven innocent, but it should work.
+#
+if (!testthat:::on_cran()) {
+  db_send_statement("set search_path to prd, public;")
 
-retailer_id           <- db_get_retailer()
+  retailer_id           <- db_get_retailer()
 
-product_id            <- db_get_product("TRUE")
-product_id_null_brand <- db_get_product("brand IS NULL")
-product_id_null_sku   <- db_get_product("sku IS NULL")
+  product_id            <- db_get_product("TRUE")
+  product_id_null_brand <- db_get_product("brand IS NULL")
+  product_id_null_sku   <- db_get_product("sku IS NULL")
+}

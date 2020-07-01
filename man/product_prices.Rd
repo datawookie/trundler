@@ -4,15 +4,17 @@
 \alias{product_prices}
 \title{Price history for a specific product}
 \usage{
-product_prices(product_id, ...)
+product_prices(product_id, head = FALSE, ...)
 }
 \arguments{
 \item{product_id}{A product ID.}
 
+\item{head}{Return the data (\code{FALSE}) or the number of records (\code{TRUE})?}
+
 \item{...}{Arguments passed through to \code{paginate()}.}
 }
 \value{
-Price history as a \code{data.frame}.
+Price history as a \code{data.frame} if \code{head} is \code{FALSE}, otherwise the number of price history entries that would be returned.
 }
 \description{
 Price history for a specific product
@@ -20,6 +22,9 @@ Price history for a specific product
 \examples{
 # Price history for a specific product.
 \dontrun{
+# Detailed price history for product with ID = 1.
 product_prices(1)
+# Number of entries in price history for product with ID = 1.
+product_prices(1, head = TRUE)
 }
 }

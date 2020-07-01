@@ -1,12 +1,16 @@
 Package: trundler
 Type: Package
-Title: Retrieve data from Trundler API
-Version: 0.1.9
+Title: Retrieve Data from Trundler API
+Version: 0.1.11
 Authors@R: 
     c(person(given = c("Andrew", "B."),
              family = "Collier",
              role = c("aut", "cre"),
-             email = "andrew@exegetic.biz"))
+             email = "andrew@exegetic.biz"),
+      person(given = c("Megan"),
+             family = "Beckett",
+             role = c("aut", "pbl"),
+             email = "megan@exegetic.biz"))
 Description: Retrieve data from Trundler API.
 URL: https://github.com/datawookie/trundler/
 BugReports: https://github.com/datawookie/trundler/issues/
@@ -26,8 +30,8 @@ Imports:
 Suggests:
     tidyr,
     patchwork,
-    ggraph,
     testthat (>= 2.1.0),
     devtools,
+    ggraph,
     RPostgres
 RoxygenNote: 7.0.2
