@@ -39,7 +39,10 @@ products %>%
   future_map(product_prices)
 toc()
 
-# TODO: Improve handling of API key. See https://rdrr.io/cran/furrr/man/future_options.html.
+# TODO:
+#
+# - Improve handling of API key. See https://rdrr.io/cran/furrr/man/future_options.html.
+# - Maybe using multicore for the strategy will do the trick?
 #
 plan(strategy = multisession)
 #
