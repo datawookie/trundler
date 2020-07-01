@@ -67,6 +67,6 @@ paginate <- function(url, head = FALSE, limit = 10000, verbose = FALSE) {
 
     check_response_error(response)
 
-    as.numeric(response$headers$`x-total-count`)
+    as.integer(response$headers$`x-total-count`)
   }
 }
