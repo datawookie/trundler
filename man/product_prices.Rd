@@ -14,7 +14,7 @@ product_prices(product_id, head = FALSE, ...)
 \item{...}{Arguments passed through to \code{paginate()}.}
 }
 \value{
-Price history as a \code{data.frame} if if \code{head} is \code{FALSE}, otherwise the number of price history entries that would be returned.
+Price history as a \code{data.frame} if \code{head} is \code{FALSE}, otherwise the number of price history entries that would be returned.
 }
 \description{
 Price history for a specific product
