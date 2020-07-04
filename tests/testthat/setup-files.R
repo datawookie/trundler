@@ -2,7 +2,6 @@
 #
 Sys.setenv(TZ = "Etc/UTC")
 
-library(RPostgres)
 library(glue)
 
 TRUNDLER_KEY = Sys.getenv("TRUNDLER_KEY")
@@ -46,6 +45,9 @@ db_get_retailer <- function(where) {
 # These feels rather weird, like guilty until proven innocent, but it should work.
 #
 if (!testthat:::on_cran()) {
+  # Conditionally include RPostgres because it was generating error (unavailable) on CRAN for r-patched-solaris-x86.
+  library(RPostgres)
+
   db <- dbConnect(
     Postgres(),
     dbname = DB_DATABASE,
