@@ -7,7 +7,7 @@ Authors@R:
              family = "Collier",
              role = c("aut", "cre"),
              email = "andrew@exegetic.biz"),
-      person(given = c("Megan"),
+      person(given = "Megan",
              family = "Beckett",
              role = c("aut", "pbl"),
              email = "megan@exegetic.biz"))
@@ -20,20 +20,20 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports:
+    dplyr,
+    glue,
     httr,
     jsonlite,
     magrittr,
     tibble,
-    dplyr,
+    tidygraph,
     tidyselect (>= 1.0.0),
-    glue,
-    urltools,
-    tidygraph
+    urltools
 Suggests:
-    tidyr,
-    patchwork,
-    testthat (>= 2.1.0),
     devtools,
     ggraph,
-    RPostgres
+    patchwork,
+    RPostgres,
+    testthat (>= 2.1.0),
+    tidyr
 RoxygenNote: 7.0.2
