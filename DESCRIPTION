@@ -1,7 +1,7 @@
 Package: trundler
 Type: Package
-Title: Retrieve Data from Trundler API
-Version: 0.1.12
+Title: Historical Retail Data from the 'Trundler' API
+Version: 0.1.14
 Authors@R: 
     c(person(given = c("Andrew", "B."),
              family = "Collier",
@@ -11,7 +11,9 @@ Authors@R:
              family = "Beckett",
              role = c("aut", "pbl"),
              email = "megan@exegetic.biz"))
-Description: Retrieve data from Trundler API.
+Description: A wrapper around the 'Trundler' API, which gives access to
+    historical retail product and pricing data, and can be found at
+    <https://api.trundler.dev/>.
 URL: https://github.com/datawookie/trundler/
 BugReports: https://github.com/datawookie/trundler/issues/
 License: GPL-3
