@@ -91,7 +91,7 @@ products <- function(product = NA, brand = NA, regex = TRUE, ignore_case = TRUE,
         rename(product_id = id) %>%
         select(product_id, retailer_id, product, brand, model, sku)
     } else {
-      message("No products are currently available for this query")
+      message("No products are currently available for this query.")
       tibble(
         product_id = integer(),
         retailer_id = integer(),
@@ -131,12 +131,24 @@ product_prices <- function(product_id, head = FALSE, ...) {
   prices <- paginate(url, head)
 
   if (!head) {
-    prices %>%
-      mutate(price_effective = coalesce(price_promotion, price)
-            ) %>%
-      select(-available, available)
+    if (nrow(prices)) {
+      prices %>%
+        mutate(price_effective = coalesce(price_promotion, price)
+        ) %>%
+        select(-available, available)
+    } else {
+        message("No prices are currently available for this product.")
+        tibble(
+          product_id = integer(),
+          time = as.POSIXct(integer(), origin = "1970-01-01"),
+          price = numeric(),
+          price_promotion = numeric(),
+          price_effective = numeric(),
+          available = character()
+        )
+    }
   } else {
-    message(paste0(prices, " price history entries will be returned for this product query"))
+    message(paste0(prices, " price history entries will be returned."))
     prices
   }
 }
