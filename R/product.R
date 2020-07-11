@@ -144,7 +144,7 @@ product_prices <- function(product_id, head = FALSE, ...) {
           price = numeric(),
           price_promotion = numeric(),
           price_effective = numeric(),
-          available = character()
+          available = logical()
         )
     }
   } else {
