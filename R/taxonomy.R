@@ -2,8 +2,14 @@
 #'
 #' @return Categories as a \code{data.frame}.
 #' @export
-categories <- function() {
+categories <- function(category_id = NULL) {
   url <- paste0(base_url(), "category")
+
+  if (!is.null(category_id)) {
+    # Only retrieve sub-tree below a specific category ID.
+    url <- param_set(url, key = "apex", value = category_id)
+  }
+
   response <- GET(url)
 
   check_response_error(response)
@@ -25,6 +31,7 @@ categories <- function() {
 
 #' Create graph of category hierarchy
 #'
+#' @param taxonomy A data frame returned by \code{} or NULL.
 #' @return Categories as a \code{tbl_graph}.
 #' @export
 #'
@@ -42,22 +49,37 @@ categories <- function() {
 #'     theme_graph()
 #' }
 #' }
-categories_graph <- function() {
-  taxonomy <- categories()
+categories_graph <- function(taxonomy = NULL) {
+  if (is.null(taxonomy)) {
+    taxonomy <- categories()
+  } else {
+    # Deal with missing category parent ID if not at top of tree.
+    taxonomy <- taxonomy %>%
+      mutate(
+        category_parent_id = ifelse(category_parent_id %in% category_id, category_parent_id, NA)
+      )
+  }
+
+  print(taxonomy)
 
   if (is.null(taxonomy)) {
     NULL
   } else {
-    taxonomy_nodes <- taxonomy %>% select(category_label)
+    taxonomy_nodes <- taxonomy %>%
+      select(category_id, category_label) %>%
+      mutate(
+        category_id = as.character(category_id)
+      )
     taxonomy_edges <- taxonomy %>%
       select(from = category_parent_id, to = category_id) %>%
-      filter(!(is.na(from) | is.na(to)))
+      filter(!(is.na(from) | is.na(to))) %>%
+      mutate_all(as.character)
 
     tbl_graph(nodes = taxonomy_nodes, edges = taxonomy_edges)
   }
 }
 
-#' Products for a specific retailer
+#' Products for a specific category
 #'
 #' @param category_id A category ID.
 #' @param recursive Should all sub-categories be included?

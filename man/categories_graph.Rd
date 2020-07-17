@@ -4,7 +4,10 @@
 \alias{categories_graph}
 \title{Create graph of category hierarchy}
 \usage{
-categories_graph()
+categories_graph(taxonomy = NULL)
+}
+\arguments{
+\item{taxonomy}{A data frame returned by \code{} or NULL.}
 }
 \value{
 Categories as a \code{tbl_graph}.

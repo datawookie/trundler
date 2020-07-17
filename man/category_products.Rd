@@ -2,7 +2,7 @@
 % Please edit documentation in R/taxonomy.R
 \name{category_products}
 \alias{category_products}
-\title{Products for a specific retailer}
+\title{Products for a specific category}
 \usage{
 category_products(category_id, recursive = TRUE, ...)
 }
@@ -17,7 +17,7 @@ category_products(category_id, recursive = TRUE, ...)
 Details of all products for a specific category as a \code{data.frame}.
 }
 \description{
-Products for a specific retailer
+Products for a specific category
 }
 \examples{
 # Get products for a specific category.
