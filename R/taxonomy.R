@@ -66,13 +66,11 @@ categories_graph <- function(taxonomy = NULL) {
     NULL
   } else {
     taxonomy_nodes <- taxonomy %>%
-      select(category_id, category_label) %>%
-      mutate(
-        category_id = as.character(category_id)
-      )
+      select(category_id, category_label)
     taxonomy_edges <- taxonomy %>%
       select(from = category_parent_id, to = category_id) %>%
       filter(!(is.na(from) | is.na(to))) %>%
+      # This is necessary to get correct matching for sub-trees.
       mutate_all(as.character)
 
     tbl_graph(nodes = taxonomy_nodes, edges = taxonomy_edges)
