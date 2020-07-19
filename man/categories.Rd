@@ -6,6 +6,9 @@
 \usage{
 categories(category_id = NULL)
 }
+\arguments{
+\item{category_id}{A category ID.}
+}
 \value{
 Categories as a \code{data.frame}.
 }

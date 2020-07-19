@@ -1,5 +1,7 @@
 #' List all categories
 #'
+#' @param category_id A category ID.
+#'
 #' @return Categories as a \code{data.frame}.
 #' @export
 categories <- function(category_id = NULL) {
