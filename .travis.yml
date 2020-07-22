@@ -1,8 +1,7 @@
 language: r
 r:
-- 4.0
-- 3.6
-- 3.5
+- release
+- oldrel
 warnings_are_errors: false
 latex: false
 cache: packages
@@ -44,6 +43,7 @@ deploy:
   skip_cleanup: true
   on:
     branch: master
+    condition: $TRAVIS_R_VERSION_STRING = release
   local_dir: docs
   target_branch: gh-pages
 
