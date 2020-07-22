@@ -7,9 +7,7 @@ library(tictoc)
 API_KEY <- Sys.getenv("TRUNDLER_KEY")
 set_api_key(API_KEY)
 
-products <- retailer_products(5)
-
-products <- products %>% top_n(100)
+items <- retailer_products(102) %>% top_n(100)
 
 # ---------------------------------------------------------------------------------------------------------------------
 
@@ -18,9 +16,9 @@ products <- products %>% top_n(100)
 library(purrr)
 #
 tic()
-products %>%
+items %>%
   pull(product_id) %>%
-  map(product_prices)
+  map_dfr(product_prices)
 toc()
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -31,12 +29,14 @@ library(furrr)
 #
 options(future.supportsMulticore.unstable = "quiet")
 
+# With sequential plan the timing should be about the same as just using purrr.
+#
 plan(strategy = sequential)
 #
 tic()
-products %>%
+items %>%
   pull(product_id) %>%
-  future_map(product_prices)
+  future_map_dfr(product_prices)
 toc()
 
 # TODO:
