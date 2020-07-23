@@ -19,6 +19,15 @@ paginate <- function(url, head = FALSE, limit = 10000, verbose = FALSE) {
   results <- list()
 
   if (!head) {
+    # How many results are expected? (Call this function again with head = TRUE).
+    #
+    count_result <- paginate(url, head = TRUE, limit = limit, verbose = verbose)
+    count_page   <- ceiling(count_result / limit)
+    #
+    message(glue("Retrieving {count_result} results ({count_page} pages)."))
+
+    stepper <- progressr::progressor(steps = count_page, auto_finish = FALSE)
+
     while(TRUE) {
       url <- url %>%
         param_set(key = "limit", value = limit) %>%
@@ -55,6 +64,8 @@ paginate <- function(url, head = FALSE, limit = 10000, verbose = FALSE) {
       }
 
       offset = offset + limit
+      # Increment progress bar.
+      stepper()
     }
 
     do.call(rbind, results) %>%

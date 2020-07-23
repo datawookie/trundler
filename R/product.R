@@ -83,7 +83,7 @@ products <- function(product = NA, brand = NA, regex = TRUE, ignore_case = TRUE,
     url <- param_set(url, key = "barcode", value = URLencode(barcode))
   }
 
-  products <- paginate(url, head, ...)
+  with_progress(products <- paginate(url, head, ...))
 
   if (!head) {
     if (nrow(products)) {
@@ -128,7 +128,7 @@ product_prices <- function(product_id, head = FALSE, ...) {
   url <- paste0(base_url(), "product/%d/price") %>%
     sprintf(product_id)
 
-  prices <- paginate(url, head)
+  with_progress(prices <- paginate(url, head))
 
   if (!head) {
     if (nrow(prices)) {
