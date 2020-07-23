@@ -76,7 +76,7 @@ retailer_products <- function(retailer_id, product = NA, brand = NA, regex = TRU
 
   url <- param_set(url, key = "ignore_case", value = param_boolean(ignore_case))
 
-  products <- paginate(url, head, ...)
+  with_progress(products <- paginate(url, head, ...))
 
   if (!head) {
     if (nrow(products)) {

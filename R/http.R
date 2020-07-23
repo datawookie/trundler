@@ -1,3 +1,11 @@
+http_error_message <- function(status_code) {
+  case_when(
+    status_code == 401 ~ "Missing or invalid API key.",
+    status_code == 404 ~ "Not found.",
+    status_code == 429 ~ "Limit exceeded."
+  )
+}
+
 #' Wrapper for httr::GET()
 #'
 #' @param url URL to retrieve.
@@ -37,7 +45,7 @@ GET <- function(url = NULL, config = list(), retry = 5, ...) {
   # Check for "429 LIMIT EXCEEDED".
   #
   if (response$status_code %in% c(401, 429)) {
-    stop(content(response)$message, call. = FALSE)
+    stop(http_error_message(response$status_code), call. = FALSE)
   }
 
   response
@@ -82,7 +90,7 @@ HEAD <- function(url = NULL, config = list(), retry = 5, ...) {
   # Check for "429 LIMIT EXCEEDED".
   #
   if (response$status_code %in% c(401, 429)) {
-    stop(content(response)$message, call. = FALSE)
+    stop(http_error_message(response$status_code), call. = FALSE)
   }
 
   response

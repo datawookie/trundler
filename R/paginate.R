@@ -34,6 +34,18 @@ paginate <- function(url, head = FALSE, limit = 10000, verbose = FALSE) {
       check_response_error(response)
       check_response_json(response)
 
+      if (offset == 0) {
+        count_result <- as.integer(response$headers$`x-total-count`)
+        if (length(count_result)) {
+          count_page   <- ceiling(count_result / limit)
+          message(glue("Retrieving {count_result} results ({count_page} pages)."))
+          #
+          stepper <- progressr::progressor(steps = count_page, auto_finish = FALSE)
+        } else {
+          stepper <- NULL
+        }
+      }
+
       result <- response %>%
         content(as = "text", encoding = "UTF-8") %>%
         fromJSON()
@@ -55,6 +67,8 @@ paginate <- function(url, head = FALSE, limit = 10000, verbose = FALSE) {
       }
 
       offset = offset + limit
+      # Increment progress bar.
+      stepper()
     }
 
     do.call(rbind, results) %>%

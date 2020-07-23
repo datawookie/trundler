@@ -7,7 +7,7 @@ test_that("no API key", {
 test_that("invalid API key", {
   set_api_key("00000000-0000-0000-0000-000000000000")
 
-  expect_error(retailer_products(1), "Invalid API key")
+  expect_error(retailer_products(1), "Missing or invalid API key.")
 })
 
 test_that("API key", {

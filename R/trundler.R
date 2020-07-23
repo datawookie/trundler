@@ -39,6 +39,7 @@ globalVariables(
 #' @import dplyr
 #' @import tidyselect
 #' @import tidygraph
+#' @import progressr
 #' @importFrom utils URLencode
 #' @importFrom glue glue
 #' @importFrom httr add_headers

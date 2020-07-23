@@ -100,7 +100,7 @@ category_products <- function(category_id, recursive=TRUE, ...) {
 
   url <- param_set(url, key = "recursive", value = param_boolean(recursive))
 
-  products <- paginate(url, ...)
+  with_progress(products <- paginate(url, ...))
 
   if (nrow(products)) {
     products %>%
