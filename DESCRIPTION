@@ -23,6 +23,7 @@ Imports:
     httr,
     jsonlite,
     magrittr,
+    progressr,
     tibble,
     tidygraph,
     tidyselect (>= 1.0.0),
