@@ -19,15 +19,6 @@ paginate <- function(url, head = FALSE, limit = 10000, verbose = FALSE) {
   results <- list()
 
   if (!head) {
-    # How many results are expected? (Call this function again with head = TRUE).
-    #
-    count_result <- paginate(url, head = TRUE, limit = limit, verbose = verbose)
-    count_page   <- ceiling(count_result / limit)
-    #
-    message(glue("Retrieving {count_result} results ({count_page} pages)."))
-
-    stepper <- progressr::progressor(steps = count_page, auto_finish = FALSE)
-
     while(TRUE) {
       url <- url %>%
         param_set(key = "limit", value = limit) %>%
@@ -42,6 +33,18 @@ paginate <- function(url, head = FALSE, limit = 10000, verbose = FALSE) {
 
       check_response_error(response)
       check_response_json(response)
+
+      if (offset == 0) {
+        count_result <- as.integer(response$headers$`x-total-count`)
+        if (length(count_result)) {
+          count_page   <- ceiling(count_result / limit)
+          message(glue("Retrieving {count_result} results ({count_page} pages)."))
+          #
+          stepper <- progressr::progressor(steps = count_page, auto_finish = FALSE)
+        } else {
+          stepper <- NULL
+        }
+      }
 
       result <- response %>%
         content(as = "text", encoding = "UTF-8") %>%
