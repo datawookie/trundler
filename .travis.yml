@@ -21,6 +21,7 @@ r_packages:
 - httr
 - jsonlite
 - magrittr
+- progress
 - progressr
 - tibble
 - tidygraph

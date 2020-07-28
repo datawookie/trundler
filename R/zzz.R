@@ -5,13 +5,13 @@
 .onLoad <- function(libname, pkgname) {
   # Handlers for {progressr}.
   #
-  handlers(list(
-    handler_progress(
-      format   = ":spin :current/:total [:bar] :percent in :elapsed ETA: :eta",
-      width    = 80,
-      complete = "+"
-    )
-  ))
+  # handlers(list(
+  #   handler_progress(
+  #     format   = ":spin :current/:total [:bar] :percent in :elapsed ETA: :eta",
+  #     width    = 80,
+  #     complete = "+"
+  #   )
+  # ))
 
   invisible()
 }
