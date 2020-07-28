@@ -12,6 +12,22 @@ r_packages:
 - rsvg
 - here
 - covr
+- ggraph
+- patchwork
+- progressr
+- glue
+- httr
+- jsonlite
+- magrittr
+- progressr
+- tibble
+- tidygraph
+- tidyselect
+- urltools
+- devtools
+- RPostgres
+- testthat
+- tidyr
 addons:
   apt:
     packages:
