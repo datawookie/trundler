@@ -6,31 +6,12 @@ warnings_are_errors: false
 latex: false
 cache: packages
 r_packages:
-- dplyr
 - pkgdown
 - hexSticker
 - showtext
 - rsvg
 - here
 - covr
-- ggraph
-- patchwork
-- progress
-- progressr
-- glue
-- httr
-- jsonlite
-- magrittr
-- progress
-- progressr
-- tibble
-- tidygraph
-- tidyselect
-- urltools
-- devtools
-- RPostgres
-- testthat
-- tidyr
 addons:
   apt:
     packages:
