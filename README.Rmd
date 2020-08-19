@@ -133,6 +133,13 @@ Get price history data for a specific product.
 product_prices(530290)
 ```
 
+### Options
+
+You can control the volume of console output with options:
+
+* `options(trundler.chatty = TRUE)`: provide more output; and
+* `options(trundler.chatty = FALSE)`: provide less output.
+
 ## Package Maintenance
 
 ### Managing Version
