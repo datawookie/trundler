@@ -14,9 +14,11 @@
 #' @param limit Number of items per query
 #' @param head Return the data (\code{FALSE}) or the number of records (\code{TRUE})?
 #' @param verbose Whether to produce verbose output.
-paginate <- function(url, head = FALSE, limit = 10000, verbose = FALSE) {
+paginate <- function(url, head = FALSE, limit = 10000, verbose = NULL) {
   offset = 0
   results <- list()
+
+  if (is.null(verbose)) verbose = trundler_chatty()
 
   if (!head) {
     while(TRUE) {
@@ -38,7 +40,7 @@ paginate <- function(url, head = FALSE, limit = 10000, verbose = FALSE) {
         count_result <- as.integer(response$headers$`x-total-count`)
         if (length(count_result)) {
           count_page   <- ceiling(count_result / limit)
-          message(glue("Retrieving {count_result} results ({count_page} pages)."))
+          if (verbose) message(glue("Retrieving {count_result} results ({count_page} pages)."))
           #
           stepper <- progressr::progressor(steps = count_page, auto_finish = FALSE)
         } else {
@@ -50,9 +52,7 @@ paginate <- function(url, head = FALSE, limit = 10000, verbose = FALSE) {
         content(as = "text", encoding = "UTF-8") %>%
         fromJSON()
 
-      if (verbose) {
-        message(sprintf("Retrieved %d results.", nrow(result)))
-      }
+      if (verbose) message(sprintf("Retrieved %d results.", nrow(result)))
 
       if (!length(result)) {
         if (verbose) message("No more rows.")
