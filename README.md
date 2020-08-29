@@ -8,7 +8,7 @@ status](https://travis-ci.org/datawookie/trundler.svg?branch=master)](https://tr
 [![Codecov test
 coverage](https://img.shields.io/codecov/c/github/datawookie/trundler.svg)](https://codecov.io/github/datawookie/trundler)
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-maturing-yellow.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+experimental](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 
 The homepage for the {trundler} R package is at
 <https://datawookie.github.io/trundler/>.
