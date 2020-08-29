@@ -1,7 +1,11 @@
 Type: Package
 Package: trundler
 Title: Historical Retail Data from the 'Trundler' API
+<<<<<<< HEAD
 Version: 0.1.21
+=======
+Version: 0.1.20
+>>>>>>> e97caee... Bump version: 0.1.19 → 0.1.20
 Authors@R: 
     c(person(given = c("Andrew", "B."),
              family = "Collier",
