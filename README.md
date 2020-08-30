@@ -7,6 +7,7 @@
 status](https://travis-ci.org/datawookie/trundler.svg?branch=master)](https://travis-ci.org/datawookie/trundler)
 [![Codecov test
 coverage](https://img.shields.io/codecov/c/github/datawookie/trundler.svg)](https://codecov.io/github/datawookie/trundler)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/895c172dbabe4e148fec2ba169398d81)](https://www.codacy.com/manual/datawookie/trundler?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=datawookie/trundler&amp;utm_campaign=Badge_Grade)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 
