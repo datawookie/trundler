@@ -3,11 +3,16 @@
 library(trundler)
 library(dplyr)
 library(tictoc)
+library(glue)
+
+options(trundler.chatty = FALSE)
 
 API_KEY <- Sys.getenv("TRUNDLER_KEY")
 set_api_key(API_KEY)
 
-items <- retailer_products(102) %>% top_n(100)
+RETAILER_ID = 74
+
+items <- retailer_products(RETAILER_ID) %>% sample_n(1000)
 
 # ---------------------------------------------------------------------------------------------------------------------
 
@@ -26,8 +31,10 @@ toc()
 # Hit API pretty hard (parallel calls).
 #
 library(furrr)
+
+options(mc.cores = 8)
 #
-options(future.supportsMulticore.unstable = "quiet")
+message(glue("Number of cores: {availableCores()}."))
 
 # With sequential plan the timing should be about the same as just using purrr.
 #
@@ -44,7 +51,7 @@ toc()
 # - Improve handling of API key. See https://rdrr.io/cran/furrr/man/future_options.html.
 # - Maybe using multicore for the strategy will do the trick?
 #
-plan(strategy = multisession)
+plan(strategy = multicore)
 #
 parallel_product_prices <- function(product_id) {
   set_api_key(API_KEY)
@@ -52,7 +59,7 @@ parallel_product_prices <- function(product_id) {
 }
 #
 tic()
-products %>%
+items %>%
   pull(product_id) %>%
-  future_map(parallel_product_prices)
+  future_map_dfr(parallel_product_prices)
 toc()
