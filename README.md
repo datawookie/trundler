@@ -43,7 +43,11 @@ Check version.
 packageVersion("trundler")
 ```
 
+<<<<<<< HEAD
     [1] '0.1.21'
+=======
+    [1] '0.1.20'
+>>>>>>> b2b3bc8... Update documentation
 
 ### Set API Key
 
@@ -110,6 +114,7 @@ Get a list of products for a specific retailer.
 retailer_products(5)
 ```
 
+<<<<<<< HEAD
     # A tibble: 203,577 x 5
        product_id product                            brand        model sku         
             <int> <chr>                              <chr>        <chr> <chr>       
@@ -124,6 +129,49 @@ retailer_products(5)
      9    2897921 Mini Floral Skort - WHITE / 7      Country Road <NA>  93383588690…
     10    2897922 Mini Floral Skort - WHITE / 8      Country Road <NA>  93383588690…
     # … with 203,567 more rows
+=======
+    Retrieving 202282 results (21 pages).
+
+    Retrieved 10000 results.
+    Retrieved 10000 results.
+    Retrieved 10000 results.
+    Retrieved 10000 results.
+    Retrieved 10000 results.
+    Retrieved 10000 results.
+    Retrieved 10000 results.
+    Retrieved 10000 results.
+    Retrieved 10000 results.
+    Retrieved 10000 results.
+    Retrieved 10000 results.
+    Retrieved 10000 results.
+    Retrieved 10000 results.
+    Retrieved 10000 results.
+    Retrieved 10000 results.
+    Retrieved 10000 results.
+    Retrieved 10000 results.
+    Retrieved 10000 results.
+    Retrieved 10000 results.
+    Retrieved 10000 results.
+
+    Retrieved 2282 results.
+
+    Received fewer rows than requested.
+
+    # A tibble: 202,282 x 5
+       product_id product                                 brand      model sku      
+            <int> <chr>                                   <chr>      <chr> <chr>    
+     1    2874080 Lace Total Support DD+ Non-wire Bras 2… <NA>       <NA>  60091957…
+     2    2839652 Glam Jasmine EDP - 30ml                 Michael K… <NA>  22548289…
+     3    2839712 Cool Water EDT - 30ml                   Davidoff   <NA>  34142020…
+     4    2874081 Lace Total Support DD+ Non-wire Bras 2… <NA>       <NA>  60091957…
+     5    2839713 Women Original EDP - 30ml               DKNY       <NA>  76351109…
+     6    2874082 Lace Total Support DD+ Non-wire Bras 2… <NA>       <NA>  60091957…
+     7    2874083 Lace Total Support DD+ Non-wire Bras 2… <NA>       <NA>  60091957…
+     8    2874084 Lace Total Support DD+ Non-wire Bras 2… <NA>       <NA>  60091957…
+     9    2839714 Women Original EDP - 50ml               DKNY       <NA>  76351110…
+    10    2874085 Lace Total Support DD+ Non-wire Bras 2… <NA>       <NA>  60091957…
+    # … with 202,272 more rows
+>>>>>>> b2b3bc8... Update documentation
 
 Products can be filtered by name and brand.
 
@@ -151,6 +199,7 @@ A similar search can be applied across *all* retailers.
 products(product = "hand sanitiser")
 ```
 
+<<<<<<< HEAD
     # A tibble: 297 x 6
        product_id retailer_id product                  brand        model sku       
             <int>       <int> <chr>                    <chr>        <chr> <chr>     
@@ -165,11 +214,34 @@ products(product = "hand sanitiser")
      9     864780          19 Nilaqua Alcohol Free Ha… Waterless    <NA>  7924380   
     10     864800          19 Nilaqua Hand Sanitiser … Waterless    <NA>  7924372   
     # … with 287 more rows
+=======
+    Retrieving 296 results (1 pages).
+
+    Retrieved 296 results.
+
+    Received fewer rows than requested.
+
+    # A tibble: 296 x 6
+       product_id retailer_id product                    brand     model sku        
+            <int>       <int> <chr>                      <chr>     <chr> <chr>      
+     1    3327051          32 Lifetrek Hand Sanitiser G… <NA>      <NA>  1031192    
+     2    3327215          32 Lifetrek Hand Sanitiser G… <NA>      <NA>  1031192    
+     3    3353772           3 Dettol Hand Sanitiser 500… <NA>      <NA>  288075     
+     4    3342615          19 Pack of 10 PHR Hand Sanit… <NA>      <NA>  8983720    
+     5    3352829          19 La Roche-Posay Hydroalcoh… La Roche… <NA>  8940843    
+     6    3352887          19 Opal Plus Hand Sanitiser … Boots     <NA>  8927928    
+     7    3352888          19 Dr Palm Hand Sanitiser Bo… Dr Palm   <NA>  8913560    
+     8    3352890          19 Dr Palm Hand Sanitiser Tu… Dr Palm   <NA>  8913552    
+     9    3345113          18 Autoglym Hand Sanitiser 1… Autoglym  <NA>  436046     
+    10     284382          10 DETTOL Hand Sanitiser Ori… DETTOL    <NA>  0000000001…
+    # … with 286 more rows
+>>>>>>> b2b3bc8... Update documentation
 
 ``` r
 products(product = "coffee", brand = "nespresso|nescafe")
 ```
 
+<<<<<<< HEAD
     # A tibble: 307 x 6
        product_id retailer_id product                    brand   model    sku       
             <int>       <int> <chr>                      <chr>   <chr>    <chr>     
@@ -184,11 +256,34 @@ products(product = "coffee", brand = "nespresso|nescafe")
      9    1223327          10 Nescafe Dolce Gusto Coffe… NESCAFE <NA>     000000000…
     10    1223437          10 Nescafe Coffee Espresso (… NESCAFE <NA>     000000000…
     # … with 297 more rows
+=======
+    Retrieving 302 results (1 pages).
+
+    Retrieved 302 results.
+
+    Received fewer rows than requested.
+
+    # A tibble: 302 x 6
+       product_id retailer_id product                           brand  model sku    
+            <int>       <int> <chr>                             <chr>  <chr> <chr>  
+     1       2383          30 Nescafe Gold Blend Instant Coffee Nesca… <NA>  380351…
+     2       2183          30 Nescafe Azera Americano Instant … Nesca… <NA>  113759…
+     3       2231          30 Nescafe Gold Cappuccino Decaf Co… Nesca… <NA>  367529…
+     4       2236          30 Nescafe Gold Cappuccino Coffee 8… Nesca… <NA>  367527…
+     5       2241          30 Nescafe Azera Latte 6 Coffees     Nesca… <NA>  439367…
+     6       2323          30 Nescafe Original Instant Coffee   Nesca… <NA>  212223…
+     7       2324          30 Nescafe Original Instant Coffee   Nesca… <NA>  113815…
+     8       2476          30 Nescafe Dolce Gusto Cafe Au Lait… Nesca… <NA>  290509…
+     9       2515          30 Nescafe Original Decaff Instant … Nesca… <NA>  268419…
+    10       2524          30 Nescafe Original Decaff Instant … Nesca… <NA>  113819…
+    # … with 292 more rows
+>>>>>>> b2b3bc8... Update documentation
 
 ``` r
 products(product = "tv", brand = "samsung|hisense")
 ```
 
+<<<<<<< HEAD
     # A tibble: 1,731 x 6
        product_id retailer_id product                        brand   model   sku    
             <int>       <int> <chr>                          <chr>   <chr>   <chr>  
@@ -203,6 +298,28 @@ products(product = "tv", brand = "samsung|hisense")
      9     701878          31 "SAMSUNG - 49\" SMART LED TV"  SAMSUNG 49N5300 007881…
     10     701880          31 "SAMSUNG - 40\" SMART LED TV"  SAMSUNG 40N5300 007844…
     # … with 1,721 more rows
+=======
+    Retrieving 1703 results (1 pages).
+
+    Retrieved 1703 results.
+
+    Received fewer rows than requested.
+
+    # A tibble: 1,703 x 6
+       product_id retailer_id product                     brand  model    sku       
+            <int>       <int> <chr>                       <chr>  <chr>    <chr>     
+     1    3340772          10 "Samsung 138 cm (55\") Sma… SAMSU… UA55RU7… 000000000…
+     2    3333903          51 "Samsung LED 40 inch Smart… Samsu… <NA>     UA40N5300 
+     3    3334031          10 "Samsung 179 cm (70\") Sma… SAMSU… 70RU710… 000000000…
+     4    3334047          10 "Samsung 138 cm (55\") Sma… SAMSU… UA55RU7… 000000000…
+     5    3336009          51 "Samsung 32” UA32N5003 LED… Samsu… <NA>     UA32N5003 
+     6    3337268          10 "Samsung 179 cm (70\") Sma… SAMSU… 70RU710… 000000000…
+     7    3368372          47 "Hisense 254cm(100\")Laser… Hisen… <NA>     69951     
+     8    3366005          47 "Samsung 190cm (75\") UHD … Samsu… <NA>     67645SAM  
+     9       1882           4 "49\" SMART LED TV"         SAMSU… 49N5300  00788153  
+    10    3369106          47 "Samsung 190cm (75\") UHD … Samsu… <NA>     67645SAM  
+    # … with 1,693 more rows
+>>>>>>> b2b3bc8... Update documentation
 
 Information on a specific product.
 
@@ -251,6 +368,7 @@ Get price history data for a specific product.
 product_prices(530290)
 ```
 
+<<<<<<< HEAD
     # A tibble: 101 x 6
        product_id time                price price_promotion price_effective
             <int> <dttm>              <dbl>           <dbl>           <dbl>
@@ -266,6 +384,28 @@ product_prices(530290)
      9     530290 2020-08-17 04:49:36  50.0            40.0            40.0
     10     530290 2020-08-14 04:09:58  50.0            40.0            40.0
     # … with 91 more rows, and 1 more variable: available <lgl>
+=======
+    Retrieving 100 results (1 pages).
+
+    Retrieved 100 results.
+
+    Received fewer rows than requested.
+
+    # A tibble: 100 x 6
+       product_id time                price price_promotion price_effective
+            <int> <dttm>              <dbl>           <dbl>           <dbl>
+     1     530290 2020-09-04 04:10:46  50.0            NA              50.0
+     2     530290 2020-09-02 03:57:02  50.0            NA              50.0
+     3     530290 2020-08-28 03:52:34  50.0            NA              50.0
+     4     530290 2020-08-26 04:29:28  50.0            NA              50.0
+     5     530290 2020-08-24 04:49:35  50.0            NA              50.0
+     6     530290 2020-08-21 04:57:07  50.0            40.0            40.0
+     7     530290 2020-08-19 01:22:35  50.0            40.0            40.0
+     8     530290 2020-08-17 04:49:36  50.0            40.0            40.0
+     9     530290 2020-08-14 04:09:58  50.0            40.0            40.0
+    10     530290 2020-08-12 04:07:12  50.0            40.0            40.0
+    # … with 90 more rows, and 1 more variable: available <lgl>
+>>>>>>> b2b3bc8... Update documentation
 
 ### Options
 
@@ -275,6 +415,7 @@ You can control the volume of console output with options:
   - `options(trundler.chatty = FALSE)`: provide less output.
 
 ## RMarkdown Template
+<<<<<<< HEAD
 
 You can use the Trundler RMarkdown template to quickly produce
 visualisations for product price histories. After installing the
@@ -295,19 +436,25 @@ restart RStudio before the template shows up in the menu.
     # … with 31 more rows, and 1 more variable: available <lgl>
 
 ## Template
+=======
+>>>>>>> b2b3bc8... Update documentation
 
-You can use the Trundler RMarkdown template to quickly produce visualisations for product price histories.  After installing the package, select "Trundler Report Template" from the **New RMarkdown** dialog.
+You can use the Trundler RMarkdown template to quickly produce
+visualisations for product price histories. After installing the
+package, select “Trundler Report Template” under the “From Template”
+option on the **New RMarkdown** dialog. *Note:* You might need to
+restart RStudio before the template shows up in the menu.
 
 ## Package Maintenance
 
 ### Managing Version
 
-Use [bumpversion](https://pypi.org/project/bumpversion/) to cleanly
+Use [bump2version](https://pypi.org/project/bump2version/) to cleanly
 increment the version.
 
 ``` bash
-$ bumpversion patch
-$ bumpversion minor
-$ bumpversion major
+$ bump2version patch
+$ bump2version minor
+$ bump2version major
 ```
 >>>>>>> 4e1a84c... Added instructions for using report template
