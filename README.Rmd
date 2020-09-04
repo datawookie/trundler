@@ -133,6 +133,10 @@ Get price history data for a specific product.
 product_prices(530290)
 ```
 
+## Template
+
+You can use the Trundler RMarkdown template to quickly produce visualisations for product price histories.  After installing the package, select "Trundler Report Template" from the **New RMarkdown** dialog.
+
 ## Package Maintenance
 
 ### Managing Version

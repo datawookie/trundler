@@ -251,6 +251,10 @@ product_prices(530290)
     10     530290 2020-04-30 02:21:07  50.0            40.0            40.0
     # … with 31 more rows, and 1 more variable: available <lgl>
 
+## Template
+
+You can use the Trundler RMarkdown template to quickly produce visualisations for product price histories.  After installing the package, select "Trundler Report Template" from the **New RMarkdown** dialog.
+
 ## Package Maintenance
 
 ### Managing Version
