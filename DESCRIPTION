@@ -1,7 +1,7 @@
 Type: Package
 Package: trundler
 Title: Historical Retail Data from the 'Trundler' API
-Version: 0.1.20
+Version: 0.1.21
 Authors@R: 
     c(person(given = c("Andrew", "B."),
              family = "Collier",
