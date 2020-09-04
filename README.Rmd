@@ -140,6 +140,10 @@ You can control the volume of console output with options:
 * `options(trundler.chatty = TRUE)`: provide more output; and
 * `options(trundler.chatty = FALSE)`: provide less output.
 
+## Template
+
+You can use the Trundler RMarkdown template to quickly produce visualisations for product price histories.  After installing the package, select "Trundler Report Template" from the **New RMarkdown** dialog.
+
 ## Package Maintenance
 
 ### Managing Version
