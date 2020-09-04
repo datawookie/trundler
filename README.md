@@ -43,7 +43,7 @@ Check version.
 packageVersion("trundler")
 ```
 
-    [1] '0.1.19'
+    [1] '0.1.20'
 
 ### Set API Key
 
@@ -74,7 +74,7 @@ Use `retailer()` to get a list of retailers.
 retailer()
 ```
 
-    # A tibble: 140 x 5
+    # A tibble: 143 x 5
        retailer_id retailer         retailer_url                    currency visible
              <int> <chr>            <chr>                           <chr>    <lgl>  
      1           1 EEM Technologies https://www.eemtechnologies.co… USD      TRUE   
@@ -87,7 +87,7 @@ retailer()
      8           8 Marks & Spencer  https://www.marksandspencer.co… GBP      FALSE  
      9           9 Pick 'n Pay      https://www.pnp.co.za/          ZAR      TRUE   
     10          10 Makro            https://www.makro.co.za/        ZAR      TRUE   
-    # … with 130 more rows
+    # … with 133 more rows
 
 Or you can acccess the details for a specific retailer.
 
@@ -110,7 +110,7 @@ Get a list of products for a specific retailer.
 retailer_products(5)
 ```
 
-    Retrieving 195201 results (20 pages).
+    Retrieving 202282 results (21 pages).
 
     Retrieved 10000 results.
     Retrieved 10000 results.
@@ -131,25 +131,26 @@ retailer_products(5)
     Retrieved 10000 results.
     Retrieved 10000 results.
     Retrieved 10000 results.
+    Retrieved 10000 results.
 
-    Retrieved 5201 results.
+    Retrieved 2282 results.
 
     Received fewer rows than requested.
 
-    # A tibble: 195,201 x 5
-       product_id product                              brand       model sku        
-            <int> <chr>                                <chr>       <chr> <chr>      
-     1    3335833 Chino Short - NAVY / 8               Country Ro… <NA>  9327735033…
-     2    3335978 Plain Cotton Rich Trunks 3 Pack - R… <NA>        <NA>  6009214350…
-     3    3336524 TRENERY Lilith Leather Slide - BLAC… Trenery     <NA>  9327735780…
-     4    3336634 Linen Cami - SAGE / 16               Country Ro… <NA>  9338358694…
-     5    3336685 Crepe Swing Tank - ANTIQUE WHITE / M Country Ro… <NA>  9340243960…
-     6    3336802 Krystal Canvas Sneaker - NAVY / 41   Country Ro… <NA>  9340243965…
-     7    3336846 Fluffy Acrylic Jumper - X GREY / L   Edition     <NA>  6009217246…
-     8    3337033 Britney Suede Boot - BLACK / 36      Witchery    <NA>  9354530249…
-     9    3337402 Cleo Leather Gloves - BLACK / SM     Witchery    <NA>  9354530269…
-    10    3337645 High Waist Straight Jean - ECRU / 6  Country Ro… <NA>  9338358581…
-    # … with 195,191 more rows
+    # A tibble: 202,282 x 5
+       product_id product                                 brand      model sku      
+            <int> <chr>                                   <chr>      <chr> <chr>    
+     1    2874080 Lace Total Support DD+ Non-wire Bras 2… <NA>       <NA>  60091957…
+     2    2839652 Glam Jasmine EDP - 30ml                 Michael K… <NA>  22548289…
+     3    2839712 Cool Water EDT - 30ml                   Davidoff   <NA>  34142020…
+     4    2874081 Lace Total Support DD+ Non-wire Bras 2… <NA>       <NA>  60091957…
+     5    2839713 Women Original EDP - 30ml               DKNY       <NA>  76351109…
+     6    2874082 Lace Total Support DD+ Non-wire Bras 2… <NA>       <NA>  60091957…
+     7    2874083 Lace Total Support DD+ Non-wire Bras 2… <NA>       <NA>  60091957…
+     8    2874084 Lace Total Support DD+ Non-wire Bras 2… <NA>       <NA>  60091957…
+     9    2839714 Women Original EDP - 50ml               DKNY       <NA>  76351110…
+    10    2874085 Lace Total Support DD+ Non-wire Bras 2… <NA>       <NA>  60091957…
+    # … with 202,272 more rows
 
 Products can be filtered by name and brand.
 
@@ -183,76 +184,76 @@ A similar search can be applied across *all* retailers.
 products(product = "hand sanitiser")
 ```
 
-    Retrieving 260 results (1 pages).
+    Retrieving 296 results (1 pages).
 
-    Retrieved 260 results.
+    Retrieved 296 results.
 
     Received fewer rows than requested.
 
-    # A tibble: 260 x 6
-       product_id retailer_id product                       brand      model sku    
-            <int>       <int> <chr>                         <chr>      <chr> <chr>  
-     1    3603789          42 Character Hand Sanitiser - P… MRP Boys … <NA>  472101…
-     2    4105371         105 Foundation Hand Sanitiser 60… Cotton On… <NA>  963015…
-     3    3867434           4 Dettol Hand Sanitiser ORIGIN… Dettol     <NA>  814047…
-     4    3850285          19 Boots Face Mask, Nemesis Han… <NA>       <NA>  1157965
-     5    3684041          42 Hand Sanitiser 100ml          MRP Cosme… <NA>  01_172…
-     6    3867372           4 Dettol Hand Sanitiser FLORAL… Dettol     <NA>  814047…
-     7    3843651          19 Boots Face Mask, Nemesis Han… <NA>       <NA>  1157973
-     8    3950153          42 Hand Sanitiser 60ml - Orange… MRP Cosme… <NA>  172511…
-     9    3950155          42 Hand Sanitiser 60ml - Sunshi… MRP Cosme… <NA>  172511…
-    10    3950156          42 Hand Sanitiser 60ml - Baby B… MRP Cosme… <NA>  172511…
-    # … with 250 more rows
+    # A tibble: 296 x 6
+       product_id retailer_id product                    brand     model sku        
+            <int>       <int> <chr>                      <chr>     <chr> <chr>      
+     1    3327051          32 Lifetrek Hand Sanitiser G… <NA>      <NA>  1031192    
+     2    3327215          32 Lifetrek Hand Sanitiser G… <NA>      <NA>  1031192    
+     3    3353772           3 Dettol Hand Sanitiser 500… <NA>      <NA>  288075     
+     4    3342615          19 Pack of 10 PHR Hand Sanit… <NA>      <NA>  8983720    
+     5    3352829          19 La Roche-Posay Hydroalcoh… La Roche… <NA>  8940843    
+     6    3352887          19 Opal Plus Hand Sanitiser … Boots     <NA>  8927928    
+     7    3352888          19 Dr Palm Hand Sanitiser Bo… Dr Palm   <NA>  8913560    
+     8    3352890          19 Dr Palm Hand Sanitiser Tu… Dr Palm   <NA>  8913552    
+     9    3345113          18 Autoglym Hand Sanitiser 1… Autoglym  <NA>  436046     
+    10     284382          10 DETTOL Hand Sanitiser Ori… DETTOL    <NA>  0000000001…
+    # … with 286 more rows
 
 ``` r
 products(product = "coffee", brand = "nespresso|nescafe")
 ```
 
-    Retrieving 295 results (1 pages).
+    Retrieving 302 results (1 pages).
 
-    Retrieved 295 results.
+    Retrieved 302 results.
 
     Received fewer rows than requested.
 
-    # A tibble: 295 x 6
-       product_id retailer_id product                      brand     model sku      
-            <int>       <int> <chr>                        <chr>     <chr> <chr>    
-     1    3655016          16 Nescafe Dolce Gusto De'Long… Nescafe … <NA>  2391157  
-     2    3654881          16 Nescafe Dolce Gusto by Krup… Nescafe … <NA>  2415057  
-     3    3740883          10 Nescafe Gold Cappuccino Cof… NESCAFE … <NA>  00000000…
-     4    3740885          10 Nescafe Gold Cappuccino Cof… NESCAFE … <NA>  00000000…
-     5    4091684          47 Nespresso Essenza Mini bund… Nespresso <NA>  61399NES 
-     6    4091413          47 Nespresso Gran Lattissima C… Nespresso <NA>  72485NES 
-     7    4091414          47 Nespresso Essenza Mini C30 … Nespresso <NA>  61394NES 
-     8    4091417          47 Nespresso Essenza Mini C30 … Nespresso <NA>  61395NES 
-     9    4091679          47 Nespresso Red Essenza Mini … Nespresso <NA>  61397NES 
-    10    4091681          47 Nespresso Creatista Plus - … Nespresso <NA>  63290NES 
-    # … with 285 more rows
+    # A tibble: 302 x 6
+       product_id retailer_id product                           brand  model sku    
+            <int>       <int> <chr>                             <chr>  <chr> <chr>  
+     1       2383          30 Nescafe Gold Blend Instant Coffee Nesca… <NA>  380351…
+     2       2183          30 Nescafe Azera Americano Instant … Nesca… <NA>  113759…
+     3       2231          30 Nescafe Gold Cappuccino Decaf Co… Nesca… <NA>  367529…
+     4       2236          30 Nescafe Gold Cappuccino Coffee 8… Nesca… <NA>  367527…
+     5       2241          30 Nescafe Azera Latte 6 Coffees     Nesca… <NA>  439367…
+     6       2323          30 Nescafe Original Instant Coffee   Nesca… <NA>  212223…
+     7       2324          30 Nescafe Original Instant Coffee   Nesca… <NA>  113815…
+     8       2476          30 Nescafe Dolce Gusto Cafe Au Lait… Nesca… <NA>  290509…
+     9       2515          30 Nescafe Original Decaff Instant … Nesca… <NA>  268419…
+    10       2524          30 Nescafe Original Decaff Instant … Nesca… <NA>  113819…
+    # … with 292 more rows
 
 ``` r
 products(product = "tv", brand = "samsung|hisense")
 ```
 
-    Retrieving 1606 results (1 pages).
+    Retrieving 1703 results (1 pages).
 
-    Retrieved 1606 results.
+    Retrieved 1703 results.
 
     Received fewer rows than requested.
 
-    # A tibble: 1,606 x 6
-       product_id retailer_id product                            brand  model sku   
-            <int>       <int> <chr>                              <chr>  <chr> <chr> 
-     1    3637494          16 "Samsung 43 Inch UE43RU7410UXXU S… Samsu… <NA>  29993…
-     2    3604265          66 "Hisense H50U7B LED-Fernseher (12… Hisen… <NA>  46153…
-     3    3607697          16 "Samsung 50 Inch UE50RU7410UXXU S… Samsu… <NA>  32873…
-     4    3615344          66 "Hisense 55AE7200F LED-Fernseher … Hisen… <NA>  98510…
-     5    3616796          16 "Samsung 43 Inch The Frame QE43LS… Samsu… <NA>  31900…
-     6    3624147          16 "Samsung 43 Inch UE43RU7020 Smart… Samsu… <NA>  31224…
-     7    3633579          66 "Samsung GQ65Q950T QLED-Fernseher… Samsu… <NA>  76364…
-     8    3633839          16 "Samsung 65 Inch UE65RU7020 Smart… Samsu… <NA>  30610…
-     9    3639072          66 "Hisense H65BE7000 LED-Fernseher … Hisen… <NA>  29622…
-    10    3644844          47 "Samsung 208cm(82\") PUHD Smart T… Samsu… <NA>  69545…
-    # … with 1,596 more rows
+    # A tibble: 1,703 x 6
+       product_id retailer_id product                     brand  model    sku       
+            <int>       <int> <chr>                       <chr>  <chr>    <chr>     
+     1    3340772          10 "Samsung 138 cm (55\") Sma… SAMSU… UA55RU7… 000000000…
+     2    3333903          51 "Samsung LED 40 inch Smart… Samsu… <NA>     UA40N5300 
+     3    3334031          10 "Samsung 179 cm (70\") Sma… SAMSU… 70RU710… 000000000…
+     4    3334047          10 "Samsung 138 cm (55\") Sma… SAMSU… UA55RU7… 000000000…
+     5    3336009          51 "Samsung 32” UA32N5003 LED… Samsu… <NA>     UA32N5003 
+     6    3337268          10 "Samsung 179 cm (70\") Sma… SAMSU… 70RU710… 000000000…
+     7    3368372          47 "Hisense 254cm(100\")Laser… Hisen… <NA>     69951     
+     8    3366005          47 "Samsung 190cm (75\") UHD … Samsu… <NA>     67645SAM  
+     9       1882           4 "49\" SMART LED TV"         SAMSU… 49N5300  00788153  
+    10    3369106          47 "Samsung 190cm (75\") UHD … Samsu… <NA>     67645SAM  
+    # … with 1,693 more rows
 
 Information on a specific product.
 
@@ -301,26 +302,26 @@ Get price history data for a specific product.
 product_prices(530290)
 ```
 
-    Retrieving 94 results (1 pages).
+    Retrieving 100 results (1 pages).
 
-    Retrieved 94 results.
+    Retrieved 100 results.
 
     Received fewer rows than requested.
 
-    # A tibble: 94 x 6
+    # A tibble: 100 x 6
        product_id time                price price_promotion price_effective
             <int> <dttm>              <dbl>           <dbl>           <dbl>
-     1     530290 2020-08-19 01:22:35  50.0            40.0            40.0
-     2     530290 2020-08-17 04:49:36  50.0            40.0            40.0
-     3     530290 2020-08-14 04:09:58  50.0            40.0            40.0
-     4     530290 2020-08-12 04:07:12  50.0            40.0            40.0
-     5     530290 2020-08-10 04:00:57  50.0            NA              50.0
-     6     530290 2020-08-07 03:54:26  50.0            NA              50.0
-     7     530290 2020-08-05 03:39:28  50.0            NA              50.0
-     8     530290 2020-08-03 04:07:52  50.0            NA              50.0
-     9     530290 2020-07-31 03:53:20  50.0            NA              50.0
-    10     530290 2020-07-29 03:02:07  50.0            NA              50.0
-    # … with 84 more rows, and 1 more variable: available <lgl>
+     1     530290 2020-09-04 04:10:46  50.0            NA              50.0
+     2     530290 2020-09-02 03:57:02  50.0            NA              50.0
+     3     530290 2020-08-28 03:52:34  50.0            NA              50.0
+     4     530290 2020-08-26 04:29:28  50.0            NA              50.0
+     5     530290 2020-08-24 04:49:35  50.0            NA              50.0
+     6     530290 2020-08-21 04:57:07  50.0            40.0            40.0
+     7     530290 2020-08-19 01:22:35  50.0            40.0            40.0
+     8     530290 2020-08-17 04:49:36  50.0            40.0            40.0
+     9     530290 2020-08-14 04:09:58  50.0            40.0            40.0
+    10     530290 2020-08-12 04:07:12  50.0            40.0            40.0
+    # … with 90 more rows, and 1 more variable: available <lgl>
 
 ### Options
 
@@ -329,19 +330,23 @@ You can control the volume of console output with options:
   - `options(trundler.chatty = TRUE)`: provide more output; and
   - `options(trundler.chatty = FALSE)`: provide less output.
 
-## Template
+## RMarkdown Template
 
-You can use the Trundler RMarkdown template to quickly produce visualisations for product price histories.  After installing the package, select "Trundler Report Template" from the **New RMarkdown** dialog.
+You can use the Trundler RMarkdown template to quickly produce
+visualisations for product price histories. After installing the
+package, select “Trundler Report Template” under the “From Template”
+option on the **New RMarkdown** dialog. *Note:* You might need to
+restart RStudio before the template shows up in the menu.
 
 ## Package Maintenance
 
 ### Managing Version
 
-Use [bumpversion](https://pypi.org/project/bumpversion/) to cleanly
+Use [bump2version](https://pypi.org/project/bump2version/) to cleanly
 increment the version.
 
 ``` bash
-$ bumpversion patch
-$ bumpversion minor
-$ bumpversion major
+$ bump2version patch
+$ bump2version minor
+$ bump2version major
 ```

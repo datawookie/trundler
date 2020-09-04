@@ -142,16 +142,23 @@ You can control the volume of console output with options:
 
 ## RMarkdown Template
 
-You can use the Trundler RMarkdown template to quickly produce visualisations for product price histories.  After installing the package, restart RStudio and then select "Trundler Report Template" from the **New RMarkdown** dialog.
+You can use the Trundler RMarkdown template to quickly produce visualisations for product price histories.  After installing the package, select "Trundler Report Template" under the "From Template" option on the **New RMarkdown** dialog. _Note:_ You might need to restart RStudio before the template shows up in the menu.
 
 ## Package Maintenance
 
 ### Managing Version
 
-Use [bumpversion](https://pypi.org/project/bumpversion/) to cleanly increment the version.
+Use [bump2version](https://pypi.org/project/bump2version/) to cleanly increment the version.
 
 ```{bash eval = FALSE}
-$ bumpversion patch
-$ bumpversion minor
-$ bumpversion major
+$ bump2version patch
+$ bump2version minor
+$ bump2version major
 ```
+
+### Documentation
+
+Once you've bumped the version, rebuild the documentation.
+
+1. Knit `README.Rmd`.
+2. Run `pkgdown::build_site()`.
