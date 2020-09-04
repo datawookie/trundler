@@ -43,7 +43,7 @@ Check version.
 packageVersion("trundler")
 ```
 
-    [1] '0.1.19'
+    [1] '0.1.21'
 
 ### Set API Key
 
@@ -74,7 +74,7 @@ Use `retailer()` to get a list of retailers.
 retailer()
 ```
 
-    # A tibble: 140 x 5
+    # A tibble: 143 x 5
        retailer_id retailer         retailer_url                    currency visible
              <int> <chr>            <chr>                           <chr>    <lgl>  
      1           1 EEM Technologies https://www.eemtechnologies.co… USD      TRUE   
@@ -87,7 +87,7 @@ retailer()
      8           8 Marks & Spencer  https://www.marksandspencer.co… GBP      FALSE  
      9           9 Pick 'n Pay      https://www.pnp.co.za/          ZAR      TRUE   
     10          10 Makro            https://www.makro.co.za/        ZAR      TRUE   
-    # … with 130 more rows
+    # … with 133 more rows
 
 Or you can acccess the details for a specific retailer.
 
@@ -110,7 +110,7 @@ Get a list of products for a specific retailer.
 retailer_products(5)
 ```
 
-    Retrieving 195201 results (20 pages).
+    Retrieving 202282 results (21 pages).
 
     Retrieved 10000 results.
     Retrieved 10000 results.
@@ -131,25 +131,26 @@ retailer_products(5)
     Retrieved 10000 results.
     Retrieved 10000 results.
     Retrieved 10000 results.
+    Retrieved 10000 results.
 
-    Retrieved 5201 results.
+    Retrieved 2282 results.
 
     Received fewer rows than requested.
 
-    # A tibble: 195,201 x 5
-       product_id product                              brand       model sku        
-            <int> <chr>                                <chr>       <chr> <chr>      
-     1    3335833 Chino Short - NAVY / 8               Country Ro… <NA>  9327735033…
-     2    3335978 Plain Cotton Rich Trunks 3 Pack - R… <NA>        <NA>  6009214350…
-     3    3336524 TRENERY Lilith Leather Slide - BLAC… Trenery     <NA>  9327735780…
-     4    3336634 Linen Cami - SAGE / 16               Country Ro… <NA>  9338358694…
-     5    3336685 Crepe Swing Tank - ANTIQUE WHITE / M Country Ro… <NA>  9340243960…
-     6    3336802 Krystal Canvas Sneaker - NAVY / 41   Country Ro… <NA>  9340243965…
-     7    3336846 Fluffy Acrylic Jumper - X GREY / L   Edition     <NA>  6009217246…
-     8    3337033 Britney Suede Boot - BLACK / 36      Witchery    <NA>  9354530249…
-     9    3337402 Cleo Leather Gloves - BLACK / SM     Witchery    <NA>  9354530269…
-    10    3337645 High Waist Straight Jean - ECRU / 6  Country Ro… <NA>  9338358581…
-    # … with 195,191 more rows
+    # A tibble: 202,282 x 5
+       product_id product                                  brand   model sku        
+            <int> <chr>                                    <chr>   <chr> <chr>      
+     1    3386147 Moon Stripe Fleece Hoodies 2 Pack - X G… <NA>    <NA>  6009214873…
+     2    3386148 Moon Stripe Fleece Hoodies 2 Pack - X G… <NA>    <NA>  6009214873…
+     3    3386149 Moon Stripe Fleece Hoodies 2 Pack - X G… <NA>    <NA>  6009214873…
+     4    3386150 Moon Stripe Fleece Hoodies 2 Pack - X G… <NA>    <NA>  6009214873…
+     5    3386151 Moon Stripe Fleece Hoodies 2 Pack - X G… <NA>    <NA>  6009214873…
+     6    3386152 Moon Stripe Fleece Hoodies 2 Pack - X G… <NA>    <NA>  6009214873…
+     7    3316131 Black Push Up Jeggings - BLACK / 20      RE:     <NA>  6009217179…
+     8    3316118 Tie Neck Blouse Blouse - LIME / 16       Edition <NA>  6009217225…
+     9    3316119 Tie Neck Blouse Blouse - LIME / 10       Edition <NA>  6009217225…
+    10    3316120 Tie Neck Blouse Blouse - LIME / 20       Edition <NA>  6009217225…
+    # … with 202,272 more rows
 
 Products can be filtered by name and brand.
 
@@ -166,11 +167,11 @@ retailer_products(5, product = "coffee", brand = "nespresso")
     # A tibble: 10 x 5
        product_id product                                brand    model sku         
             <int> <chr>                                  <chr>    <chr> <chr>       
-     1     729093 NESPRESSO Creatista Plus Coffee Machi… Nespres… <NA>  76300396488…
-     2     667365 NESPRESSO Essenza Mini Coffee Machine  Nespres… <NA>  76300396187…
-     3     667426 NESPRESSO Citiz&Milk Coffee Machine    Nespres… <NA>  76300544309…
-     4     667654 NESPRESSO Lattissima Touch Coffee Mac… Nespres… <NA>  76300476151…
-     5     667815 NESPRESSO Lattissima One Coffee Machi… Nespres… <NA>  76300396464…
+     1     667365 NESPRESSO Essenza Mini Coffee Machine  Nespres… <NA>  76300396187…
+     2     667426 NESPRESSO Citiz&Milk Coffee Machine    Nespres… <NA>  76300544309…
+     3     667654 NESPRESSO Lattissima Touch Coffee Mac… Nespres… <NA>  76300476151…
+     4     667815 NESPRESSO Lattissima One Coffee Machi… Nespres… <NA>  76300396464…
+     5     729093 NESPRESSO Creatista Plus Coffee Machi… Nespres… <NA>  76300396488…
      6    2918572 Creatista Plus Coffee Machine - SILVER Nespres… <NA>  76300396488…
      7    2918582 Citiz&Milk Coffee Machine - WHITE      Nespres… <NA>  76300544309…
      8    2918584 Lattissima One Coffee Machine - WHITE  Nespres… <NA>  76300396464…
@@ -183,76 +184,76 @@ A similar search can be applied across *all* retailers.
 products(product = "hand sanitiser")
 ```
 
-    Retrieving 260 results (1 pages).
+    Retrieving 296 results (1 pages).
 
-    Retrieved 260 results.
+    Retrieved 296 results.
 
     Received fewer rows than requested.
 
-    # A tibble: 260 x 6
-       product_id retailer_id product                       brand      model sku    
-            <int>       <int> <chr>                         <chr>      <chr> <chr>  
-     1    3603789          42 Character Hand Sanitiser - P… MRP Boys … <NA>  472101…
-     2    4105371         105 Foundation Hand Sanitiser 60… Cotton On… <NA>  963015…
-     3    3867434           4 Dettol Hand Sanitiser ORIGIN… Dettol     <NA>  814047…
-     4    3850285          19 Boots Face Mask, Nemesis Han… <NA>       <NA>  1157965
-     5    3684041          42 Hand Sanitiser 100ml          MRP Cosme… <NA>  01_172…
-     6    3867372           4 Dettol Hand Sanitiser FLORAL… Dettol     <NA>  814047…
-     7    3843651          19 Boots Face Mask, Nemesis Han… <NA>       <NA>  1157973
-     8    3950153          42 Hand Sanitiser 60ml - Orange… MRP Cosme… <NA>  172511…
-     9    3950155          42 Hand Sanitiser 60ml - Sunshi… MRP Cosme… <NA>  172511…
-    10    3950156          42 Hand Sanitiser 60ml - Baby B… MRP Cosme… <NA>  172511…
-    # … with 250 more rows
+    # A tibble: 296 x 6
+       product_id retailer_id product                    brand      model sku       
+            <int>       <int> <chr>                      <chr>      <chr> <chr>     
+     1    3398418           2 Hand Sanitiser Total 10 1… Lifebuoy   <NA>  337506    
+     2     535758           9 Dettol Floral Hand Saniti… <NA>       <NA>  000000000…
+     3     535759           9 Dettol Floral Hand Saniti… <NA>       <NA>  000000000…
+     4     535782           9 Dettol Hand Sanitiser 50ml <NA>       <NA>  000000000…
+     5     535783           9 Dettol Hand Sanitiser 200… <NA>       <NA>  000000000…
+     6    3400372           2 Hand Sanitiser Original C… Dettol     <NA>  338710    
+     7    3400839           2 Waterless Hand Sanitiser … Clicks Ex… <NA>  336320    
+     8    3400847           2 Hand Sanitiser 200ml       Clere      <NA>  337181    
+     9    3403148          19 Vichy Hand Sanitiser Gel … Vichy      <NA>  1104268   
+    10    3482998          42 Character Hand Sanitiser … MRP Girls… <NA>  472101009…
+    # … with 286 more rows
 
 ``` r
 products(product = "coffee", brand = "nespresso|nescafe")
 ```
 
-    Retrieving 295 results (1 pages).
+    Retrieving 302 results (1 pages).
 
-    Retrieved 295 results.
+    Retrieved 302 results.
 
     Received fewer rows than requested.
 
-    # A tibble: 295 x 6
-       product_id retailer_id product                      brand     model sku      
-            <int>       <int> <chr>                        <chr>     <chr> <chr>    
-     1    3655016          16 Nescafe Dolce Gusto De'Long… Nescafe … <NA>  2391157  
-     2    3654881          16 Nescafe Dolce Gusto by Krup… Nescafe … <NA>  2415057  
-     3    3740883          10 Nescafe Gold Cappuccino Cof… NESCAFE … <NA>  00000000…
-     4    3740885          10 Nescafe Gold Cappuccino Cof… NESCAFE … <NA>  00000000…
-     5    4091684          47 Nespresso Essenza Mini bund… Nespresso <NA>  61399NES 
-     6    4091413          47 Nespresso Gran Lattissima C… Nespresso <NA>  72485NES 
-     7    4091414          47 Nespresso Essenza Mini C30 … Nespresso <NA>  61394NES 
-     8    4091417          47 Nespresso Essenza Mini C30 … Nespresso <NA>  61395NES 
-     9    4091679          47 Nespresso Red Essenza Mini … Nespresso <NA>  61397NES 
-    10    4091681          47 Nespresso Creatista Plus - … Nespresso <NA>  63290NES 
-    # … with 285 more rows
+    # A tibble: 302 x 6
+       product_id retailer_id product                    brand      model sku       
+            <int>       <int> <chr>                      <chr>      <chr> <chr>     
+     1    3395848          10 Nescafe Ricoffy Coffee (1… NESCAFE    <NA>  000000000…
+     2    3394146          10 Nescafe Ricoffy Coffee (1… NESCAFE    <NA>  000000000…
+     3    3430293          16 Nespresso by Krups Citiz … Nespresso  <NA>  8909914   
+     4    3422813          16 Nescafe Dolce Gusto Krups… Nescafe D… <NA>  9344004   
+     5    3433349          16 Nespresso by Magimix Citi… Nespresso  <NA>  8809344   
+     6    3430600          16 Nespresso by Magimix Esse… Nespresso  <NA>  8898441   
+     7    3430630          16 Nespresso by Magimix Citi… Nespresso  <NA>  8897789   
+     8    3430957          16 Nespresso by Krups Citiz … Nespresso  <NA>  8890638   
+     9    3435877          16 Nescafe Dolce Gusto Krups… Nescafe D… <NA>  8642848   
+    10    3433794          16 Nescafe Dolce Gusto by Kr… Nescafe D… <NA>  8800350   
+    # … with 292 more rows
 
 ``` r
 products(product = "tv", brand = "samsung|hisense")
 ```
 
-    Retrieving 1606 results (1 pages).
+    Retrieving 1703 results (1 pages).
 
-    Retrieved 1606 results.
+    Retrieved 1703 results.
 
     Received fewer rows than requested.
 
-    # A tibble: 1,606 x 6
-       product_id retailer_id product                            brand  model sku   
-            <int>       <int> <chr>                              <chr>  <chr> <chr> 
-     1    3637494          16 "Samsung 43 Inch UE43RU7410UXXU S… Samsu… <NA>  29993…
-     2    3604265          66 "Hisense H50U7B LED-Fernseher (12… Hisen… <NA>  46153…
-     3    3607697          16 "Samsung 50 Inch UE50RU7410UXXU S… Samsu… <NA>  32873…
-     4    3615344          66 "Hisense 55AE7200F LED-Fernseher … Hisen… <NA>  98510…
-     5    3616796          16 "Samsung 43 Inch The Frame QE43LS… Samsu… <NA>  31900…
-     6    3624147          16 "Samsung 43 Inch UE43RU7020 Smart… Samsu… <NA>  31224…
-     7    3633579          66 "Samsung GQ65Q950T QLED-Fernseher… Samsu… <NA>  76364…
-     8    3633839          16 "Samsung 65 Inch UE65RU7020 Smart… Samsu… <NA>  30610…
-     9    3639072          66 "Hisense H65BE7000 LED-Fernseher … Hisen… <NA>  29622…
-    10    3644844          47 "Samsung 208cm(82\") PUHD Smart T… Samsu… <NA>  69545…
-    # … with 1,596 more rows
+    # A tibble: 1,703 x 6
+       product_id retailer_id product                         brand  model sku      
+            <int>       <int> <chr>                           <chr>  <chr> <chr>    
+     1    3523877          66 Hisense 55AE7010F LED-Fernsehe… Hisen… <NA>  70811257…
+     2     525111           4 55 QLED TV                      SAMSU… 55Q6… 00800380 
+     3     526360          12 Samsung 40inch FHD Smart TV Se… SAMSU… <NA>  00000000…
+     4    3525374          66 Samsung GQ85Q95T QLED-Fernsehe… Samsu… <NA>  36558354…
+     5    3533875          66 Samsung GU55TU8509 LED-Fernseh… Samsu… <NA>  43409142…
+     6    3529519          66 Hisense H43BE7200 LED-Fernsehe… Hisen… <NA>  61280428…
+     7    3421443          16 Samsung 65 Inch UE65RU7300KXXU… Samsu… <NA>  9420636  
+     8    3421477          16 Samsung 55 Inch UE55RU7100KXXU… Samsu… <NA>  9417539  
+     9    3421594          16 Hisense 50 Inch H50B7500UK Sma… Hisen… <NA>  9406038  
+    10    3421648          16 Samsung 65 Inch UE65RU7400UXXU… Samsu… <NA>  9403402  
+    # … with 1,693 more rows
 
 Information on a specific product.
 
@@ -301,26 +302,26 @@ Get price history data for a specific product.
 product_prices(530290)
 ```
 
-    Retrieving 94 results (1 pages).
+    Retrieving 100 results (1 pages).
 
-    Retrieved 94 results.
+    Retrieved 100 results.
 
     Received fewer rows than requested.
 
-    # A tibble: 94 x 6
+    # A tibble: 100 x 6
        product_id time                price price_promotion price_effective
             <int> <dttm>              <dbl>           <dbl>           <dbl>
-     1     530290 2020-08-19 01:22:35  50.0            40.0            40.0
-     2     530290 2020-08-17 04:49:36  50.0            40.0            40.0
-     3     530290 2020-08-14 04:09:58  50.0            40.0            40.0
-     4     530290 2020-08-12 04:07:12  50.0            40.0            40.0
-     5     530290 2020-08-10 04:00:57  50.0            NA              50.0
-     6     530290 2020-08-07 03:54:26  50.0            NA              50.0
-     7     530290 2020-08-05 03:39:28  50.0            NA              50.0
-     8     530290 2020-08-03 04:07:52  50.0            NA              50.0
-     9     530290 2020-07-31 03:53:20  50.0            NA              50.0
-    10     530290 2020-07-29 03:02:07  50.0            NA              50.0
-    # … with 84 more rows, and 1 more variable: available <lgl>
+     1     530290 2020-09-04 04:10:46  50.0            NA              50.0
+     2     530290 2020-09-02 03:57:02  50.0            NA              50.0
+     3     530290 2020-08-28 03:52:34  50.0            NA              50.0
+     4     530290 2020-08-26 04:29:28  50.0            NA              50.0
+     5     530290 2020-08-24 04:49:35  50.0            NA              50.0
+     6     530290 2020-08-21 04:57:07  50.0            40.0            40.0
+     7     530290 2020-08-19 01:22:35  50.0            40.0            40.0
+     8     530290 2020-08-17 04:49:36  50.0            40.0            40.0
+     9     530290 2020-08-14 04:09:58  50.0            40.0            40.0
+    10     530290 2020-08-12 04:07:12  50.0            40.0            40.0
+    # … with 90 more rows, and 1 more variable: available <lgl>
 
 ### Options
 
@@ -329,19 +330,30 @@ You can control the volume of console output with options:
   - `options(trundler.chatty = TRUE)`: provide more output; and
   - `options(trundler.chatty = FALSE)`: provide less output.
 
-## Template
+## RMarkdown Template
 
-You can use the Trundler RMarkdown template to quickly produce visualisations for product price histories.  After installing the package, select "Trundler Report Template" from the **New RMarkdown** dialog.
+You can use the Trundler RMarkdown template to quickly produce
+visualisations for product price histories. After installing the
+package, select “Trundler Report Template” under the “From Template”
+option on the **New RMarkdown** dialog. *Note:* You might need to
+restart RStudio before the template shows up in the menu.
 
 ## Package Maintenance
 
 ### Managing Version
 
-Use [bumpversion](https://pypi.org/project/bumpversion/) to cleanly
+Use [bump2version](https://pypi.org/project/bump2version/) to cleanly
 increment the version.
 
 ``` bash
-$ bumpversion patch
-$ bumpversion minor
-$ bumpversion major
+$ bump2version patch
+$ bump2version minor
+$ bump2version major
 ```
+
+### Documentation
+
+Once you’ve bumped the version, rebuild the documentation.
+
+1.  Knit `README.Rmd`.
+2.  Run `pkgdown::build_site()`.
