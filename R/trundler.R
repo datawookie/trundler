@@ -33,13 +33,13 @@ globalVariables(
   )
 )
 
-#' @import magrittr
 #' @import jsonlite
 #' @import tibble
 #' @import dplyr
 #' @import tidyselect
 #' @import tidygraph
 #' @import progressr
+#' @importFrom magrittr %>%
 #' @importFrom utils URLencode
 #' @importFrom glue glue
 #' @importFrom httr add_headers
