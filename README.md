@@ -254,6 +254,7 @@ product_prices(530290)
     # A tibble: 101 x 6
        product_id time                price price_promotion price_effective
             <int> <dttm>              <dbl>           <dbl>           <dbl>
+<<<<<<< HEAD
      1     530290 2020-09-07 04:17:00  50.0            NA              50.0
      2     530290 2020-09-04 04:10:46  50.0            NA              50.0
      3     530290 2020-09-02 03:57:02  50.0            NA              50.0
@@ -280,3 +281,33 @@ visualisations for product price histories. After installing the
 package, select “Trundler Report Template” under the “From Template”
 option on the **New RMarkdown** dialog. *Note:* You might need to
 restart RStudio before the template shows up in the menu.
+=======
+     1     530290 2020-05-10 03:23:38  50.0            40.0            40.0
+     2     530290 2020-05-09 02:56:09  50.0            40.0            40.0
+     3     530290 2020-05-08 01:36:36  50.0            40.0            40.0
+     4     530290 2020-05-06 03:06:50  50.0            40.0            40.0
+     5     530290 2020-05-05 01:34:16  50.0            40.0            40.0
+     6     530290 2020-05-04 02:56:37  50.0            40.0            40.0
+     7     530290 2020-05-03 03:01:05  50.0            40.0            40.0
+     8     530290 2020-05-02 04:27:22  50.0            40.0            40.0
+     9     530290 2020-05-01 02:20:50  50.0            40.0            40.0
+    10     530290 2020-04-30 02:21:07  50.0            40.0            40.0
+    # … with 31 more rows, and 1 more variable: available <lgl>
+
+## Template
+
+You can use the Trundler RMarkdown template to quickly produce visualisations for product price histories.  After installing the package, select "Trundler Report Template" from the **New RMarkdown** dialog.
+
+## Package Maintenance
+
+### Managing Version
+
+Use [bumpversion](https://pypi.org/project/bumpversion/) to cleanly
+increment the version.
+
+``` bash
+$ bumpversion patch
+$ bumpversion minor
+$ bumpversion major
+```
+>>>>>>> 4e1a84c... Added instructions for using report template
