@@ -43,11 +43,7 @@ Check version.
 packageVersion("trundler")
 ```
 
-<<<<<<< HEAD
     [1] '0.1.21'
-=======
-    [1] '0.1.20'
->>>>>>> b2b3bc8... Update documentation
 
 ### Set API Key
 
@@ -114,64 +110,20 @@ Get a list of products for a specific retailer.
 retailer_products(5)
 ```
 
-<<<<<<< HEAD
-    # A tibble: 203,577 x 5
-       product_id product                            brand        model sku         
-            <int> <chr>                              <chr>        <chr> <chr>       
-     1    2897993 Quilted Sweat Skirt - PALE PINK /… Country Road <NA>  93545301350…
-     2    2897908 Puffer Jacket - CHARCOAL / 10-11   Country Road <NA>  93545301915…
-     3    2897909 Puffer Jacket - CHARCOAL / 8-9     Country Road <NA>  93545301915…
-     4    2897910 Puffer Jacket - CHARCOAL / 6-7     Country Road <NA>  93545301916…
-     5    2897911 Puffer Jacket - CHARCOAL / 4-5     Country Road <NA>  93545301916…
-     6    2897912 Puffer Jacket - CHARCOAL / 2-3     Country Road <NA>  93545301915…
-     7    2897919 Mini Floral Skort - WHITE / 5      Country Road <NA>  93383588690…
-     8    2897920 Mini Floral Skort - WHITE / 10     Country Road <NA>  93383588691…
-     9    2897921 Mini Floral Skort - WHITE / 7      Country Road <NA>  93383588690…
-    10    2897922 Mini Floral Skort - WHITE / 8      Country Road <NA>  93383588690…
-    # … with 203,567 more rows
-=======
-    Retrieving 202282 results (21 pages).
-
-    Retrieved 10000 results.
-    Retrieved 10000 results.
-    Retrieved 10000 results.
-    Retrieved 10000 results.
-    Retrieved 10000 results.
-    Retrieved 10000 results.
-    Retrieved 10000 results.
-    Retrieved 10000 results.
-    Retrieved 10000 results.
-    Retrieved 10000 results.
-    Retrieved 10000 results.
-    Retrieved 10000 results.
-    Retrieved 10000 results.
-    Retrieved 10000 results.
-    Retrieved 10000 results.
-    Retrieved 10000 results.
-    Retrieved 10000 results.
-    Retrieved 10000 results.
-    Retrieved 10000 results.
-    Retrieved 10000 results.
-
-    Retrieved 2282 results.
-
-    Received fewer rows than requested.
-
-    # A tibble: 202,282 x 5
-       product_id product                                 brand      model sku      
-            <int> <chr>                                   <chr>      <chr> <chr>    
-     1    2874080 Lace Total Support DD+ Non-wire Bras 2… <NA>       <NA>  60091957…
-     2    2839652 Glam Jasmine EDP - 30ml                 Michael K… <NA>  22548289…
-     3    2839712 Cool Water EDT - 30ml                   Davidoff   <NA>  34142020…
-     4    2874081 Lace Total Support DD+ Non-wire Bras 2… <NA>       <NA>  60091957…
-     5    2839713 Women Original EDP - 30ml               DKNY       <NA>  76351109…
-     6    2874082 Lace Total Support DD+ Non-wire Bras 2… <NA>       <NA>  60091957…
-     7    2874083 Lace Total Support DD+ Non-wire Bras 2… <NA>       <NA>  60091957…
-     8    2874084 Lace Total Support DD+ Non-wire Bras 2… <NA>       <NA>  60091957…
-     9    2839714 Women Original EDP - 50ml               DKNY       <NA>  76351110…
-    10    2874085 Lace Total Support DD+ Non-wire Bras 2… <NA>       <NA>  60091957…
-    # … with 202,272 more rows
->>>>>>> b2b3bc8... Update documentation
+    # A tibble: 206,865 x 5
+       product_id product                             brand        model sku        
+            <int> <chr>                               <chr>        <chr> <chr>      
+     1    1038294 CHARLOTTE RHYS St Thomas Shower Gel Charlotte R… <NA>  6061102572…
+     2    1038316 LONGMARKET Bath & Body Gift Box     W Bath&Body  <NA>  6009214571…
+     3    1038325 SIMPLY FLORAL Travel Set            W Bath&Body  <NA>  6009214797…
+     4    1038356 CHARLOTTE RHYS Spring Flowers Liqu… Charlotte R… <NA>  6061102561…
+     5    1038370 SIMPLY FLORAL Body Soufflé          W Bath&Body  <NA>  6009214170…
+     6    1038395 Fresh Lemon Zest Hand Wash & Lotio… W Bath&Body  <NA>  6009214464…
+     7    1038409 TOM FORD Oud Wood Shower Gel        Tom Ford     <NA>  8880660240…
+     8    1038428 SIMPLY FLORAL Mini Hand & Nail Cre… W Bath&Body  <NA>  6009214169…
+     9    1038458 EXTRACTS FROM NATURE Hand Wash      W Bath&Body  <NA>  6009207048…
+    10    1038469 EVERYDAY Body Butter                W Bath&Body  <NA>  6009101665…
+    # … with 206,855 more rows
 
 Products can be filtered by name and brand.
 
@@ -182,16 +134,16 @@ retailer_products(5, product = "coffee", brand = "nespresso")
     # A tibble: 10 x 5
        product_id product                                brand    model sku         
             <int> <chr>                                  <chr>    <chr> <chr>       
-     1     667654 NESPRESSO Lattissima Touch Coffee Mac… Nespres… <NA>  76300476151…
-     2     729093 NESPRESSO Creatista Plus Coffee Machi… Nespres… <NA>  76300396488…
-     3    2918572 Creatista Plus Coffee Machine - SILVER Nespres… <NA>  76300396488…
-     4    2918582 Citiz&Milk Coffee Machine - WHITE      Nespres… <NA>  76300544309…
-     5    2918584 Lattissima One Coffee Machine - WHITE  Nespres… <NA>  76300396464…
-     6    2918599 Essenza Mini Coffee Machine - BLACK    Nespres… <NA>  76300396187…
-     7    2918601 Lattissima Touch Coffee Machine - SIL… Nespres… <NA>  76300476151…
-     8     667365 NESPRESSO Essenza Mini Coffee Machine  Nespres… <NA>  76300396187…
-     9     667815 NESPRESSO Lattissima One Coffee Machi… Nespres… <NA>  76300396464…
-    10     667426 NESPRESSO Citiz&Milk Coffee Machine    Nespres… <NA>  76300544309…
+     1    2918572 Creatista Plus Coffee Machine - SILVER Nespres… <NA>  76300396488…
+     2    2918582 Citiz&Milk Coffee Machine - WHITE      Nespres… <NA>  76300544309…
+     3    2918584 Lattissima One Coffee Machine - WHITE  Nespres… <NA>  76300396464…
+     4    2918599 Essenza Mini Coffee Machine - BLACK    Nespres… <NA>  76300396187…
+     5    2918601 Lattissima Touch Coffee Machine - SIL… Nespres… <NA>  76300476151…
+     6     667815 NESPRESSO Lattissima One Coffee Machi… Nespres… <NA>  76300396464…
+     7     667365 NESPRESSO Essenza Mini Coffee Machine  Nespres… <NA>  76300396187…
+     8     667426 NESPRESSO Citiz&Milk Coffee Machine    Nespres… <NA>  76300544309…
+     9     667654 NESPRESSO Lattissima Touch Coffee Mac… Nespres… <NA>  76300476151…
+    10     729093 NESPRESSO Creatista Plus Coffee Machi… Nespres… <NA>  76300396488…
 
 A similar search can be applied across *all* retailers.
 
@@ -199,127 +151,58 @@ A similar search can be applied across *all* retailers.
 products(product = "hand sanitiser")
 ```
 
-<<<<<<< HEAD
     # A tibble: 297 x 6
-       product_id retailer_id product                  brand        model sku       
-            <int>       <int> <chr>                    <chr>        <chr> <chr>     
-     1     704378           5 FRESH DELIGHTS Hand San… W Bath&Body  <NA>  600921122…
-     2     707065           3 Nature's Nourishment Ha… Nature's No… <NA>  000000000…
-     3     734941          33 Stuf Hand Sanitiser 50m… Stuf         <NA>  <NA>      
-     4     763695           3 Dettol Hand Sanitiser 2… Dettol       <NA>  000000000…
-     5     806750           5 FRESH DELIGHTS Hand San… W Bath&Body  <NA>  600921122…
-     6    1282330           3 Nature's Nourishment Ha… Nature's No… <NA>  000000000…
-     7     820722          33 Stuf Hand Sanitiser 50m… Stuf         <NA>  <NA>      
-     8     845565          30 Dr. Bronner's Organic H… Dr Bronner   <NA>  362030011 
-     9     864780          19 Nilaqua Alcohol Free Ha… Waterless    <NA>  7924380   
-    10     864800          19 Nilaqua Hand Sanitiser … Waterless    <NA>  7924372   
+       product_id retailer_id product                     brand     model sku       
+            <int>       <int> <chr>                       <chr>     <chr> <chr>     
+     1    1427238           5 CHARLOTTE RHYS St Thomas W… Charlott… <NA>  606110261…
+     2    1782675           3 Aquashield Hand Sanitiser … <NA>      <NA>  000000000…
+     3    1753347          63 Waterless Hand Sanitiser -… Charlott… <NA>  FCR075HAN…
+     4    1753348          63 Waterless Hand Sanitiser -… Charlott… <NA>  FCR300WHS 
+     5    1782558           3 Aquashield Hand Sanitiser … <NA>      <NA>  000000000…
+     6    1782566           3 Aquashield Hand Sanitiser … <NA>      <NA>  000000000…
+     7    1782684           3 Aquashield Hand Sanitiser … <NA>      <NA>  000000000…
+     8    1403656           5 BATH TIME Hand Sanitiser    W Bath&B… <NA>  600921127…
+     9    1322118           2 Total 10 Hand Sanitiser 50… Lifebuoy  <NA>  309637    
+    10    1202656          33 Stuf Hand Sanitiser 50ml T… Stuf      <NA>  <NA>      
     # … with 287 more rows
-=======
-    Retrieving 296 results (1 pages).
-
-    Retrieved 296 results.
-
-    Received fewer rows than requested.
-
-    # A tibble: 296 x 6
-       product_id retailer_id product                    brand     model sku        
-            <int>       <int> <chr>                      <chr>     <chr> <chr>      
-     1    3327051          32 Lifetrek Hand Sanitiser G… <NA>      <NA>  1031192    
-     2    3327215          32 Lifetrek Hand Sanitiser G… <NA>      <NA>  1031192    
-     3    3353772           3 Dettol Hand Sanitiser 500… <NA>      <NA>  288075     
-     4    3342615          19 Pack of 10 PHR Hand Sanit… <NA>      <NA>  8983720    
-     5    3352829          19 La Roche-Posay Hydroalcoh… La Roche… <NA>  8940843    
-     6    3352887          19 Opal Plus Hand Sanitiser … Boots     <NA>  8927928    
-     7    3352888          19 Dr Palm Hand Sanitiser Bo… Dr Palm   <NA>  8913560    
-     8    3352890          19 Dr Palm Hand Sanitiser Tu… Dr Palm   <NA>  8913552    
-     9    3345113          18 Autoglym Hand Sanitiser 1… Autoglym  <NA>  436046     
-    10     284382          10 DETTOL Hand Sanitiser Ori… DETTOL    <NA>  0000000001…
-    # … with 286 more rows
->>>>>>> b2b3bc8... Update documentation
 
 ``` r
 products(product = "coffee", brand = "nespresso|nescafe")
 ```
 
-<<<<<<< HEAD
-    # A tibble: 307 x 6
-       product_id retailer_id product                    brand   model    sku       
-            <int>       <int> <chr>                      <chr>   <chr>    <chr>     
-     1     729093           5 NESPRESSO Creatista Plus … Nespre… <NA>     763003964…
-     2    1141614          35 NESPRESSO Magimix Vertuo … NESPRE… <NA>     311-82040…
-     3     904762          10 Nescafe Coffee Alta Rica … NESCAFE <NA>     000000000…
-     4     904763          10 Nescafe Coffee Gold Mild … NESCAFE <NA>     000000000…
-     5    1177845          35 NESPRESSO Magimix CitiZ &… NESPRE… <NA>     311-82040…
-     6    1177846          35 NESPRESSO Magimix CitiZ c… NESPRE… <NA>     311-82040…
-     7    1177848          35 NESPRESSO Magimix CitiZ c… NESPRE… <NA>     311-82040…
-     8     747269          10 Nespresso CitiZ & Milk Co… NESPRE… C123-ZA… 000000000…
-     9    1223327          10 Nescafe Dolce Gusto Coffe… NESCAFE <NA>     000000000…
-    10    1223437          10 Nescafe Coffee Espresso (… NESCAFE <NA>     000000000…
-    # … with 297 more rows
-=======
-    Retrieving 302 results (1 pages).
-
-    Retrieved 302 results.
-
-    Received fewer rows than requested.
-
-    # A tibble: 302 x 6
-       product_id retailer_id product                           brand  model sku    
-            <int>       <int> <chr>                             <chr>  <chr> <chr>  
-     1       2383          30 Nescafe Gold Blend Instant Coffee Nesca… <NA>  380351…
-     2       2183          30 Nescafe Azera Americano Instant … Nesca… <NA>  113759…
-     3       2231          30 Nescafe Gold Cappuccino Decaf Co… Nesca… <NA>  367529…
-     4       2236          30 Nescafe Gold Cappuccino Coffee 8… Nesca… <NA>  367527…
-     5       2241          30 Nescafe Azera Latte 6 Coffees     Nesca… <NA>  439367…
-     6       2323          30 Nescafe Original Instant Coffee   Nesca… <NA>  212223…
-     7       2324          30 Nescafe Original Instant Coffee   Nesca… <NA>  113815…
-     8       2476          30 Nescafe Dolce Gusto Cafe Au Lait… Nesca… <NA>  290509…
-     9       2515          30 Nescafe Original Decaff Instant … Nesca… <NA>  268419…
-    10       2524          30 Nescafe Original Decaff Instant … Nesca… <NA>  113819…
-    # … with 292 more rows
->>>>>>> b2b3bc8... Update documentation
+    # A tibble: 308 x 6
+       product_id retailer_id product                      brand    model sku       
+            <int>       <int> <chr>                        <chr>    <chr> <chr>     
+     1    1492620          13 Nescafe Original Decaffeina… NESCAFE  <NA>  254889371 
+     2    1471626          35 NESPRESSO Magimix CitiZ & M… NESPRES… <NA>  311-82040…
+     3    1492559          13 Nescafe Gold Blend Decaffei… NESCAFE  <NA>  297334444 
+     4    1492561          13 Nescafe Original Instant Co… NESCAFE  <NA>  254889618 
+     5    1492562          13 Nescafe Azera Americano Ins… NESCAFE… <NA>  273581584 
+     6    1492579          13 Nescafe Azera Americano Cof… NESCAFE  <NA>  304366804 
+     7    1492566          13 Nescafe Gold Blend Coffee 2… NESCAFE  <NA>  297876977 
+     8    1492573          13 Nescafe Azera Americano Ins… NESCAFE  <NA>  276731645 
+     9    1492577          13 Nescafe Azera Intenso Insta… NESCAFE  <NA>  276731680 
+    10    1492576          13 Nescafe Azera Americano Dec… NESCAFE  <NA>  296836819 
+    # … with 298 more rows
 
 ``` r
 products(product = "tv", brand = "samsung|hisense")
 ```
 
-<<<<<<< HEAD
-    # A tibble: 1,731 x 6
-       product_id retailer_id product                        brand   model   sku    
-            <int>       <int> <chr>                          <chr>   <chr>   <chr>  
-     1     701860          31 "HISENSE - 65\" ULED TV"       HISENSE 65B8000 008027…
-     2     701877          31 "HISENSE - Hisense 50\" UHD S… HISENSE 50B710… 008009…
-     3     702121          31 "SAMSUNG - 65 8K QLED TV"      SAMSUNG 65Q900R 008009…
-     4     702120          31 "SAMSUNG - 55 QLED TV"         SAMSUNG 55Q60R  008003…
-     5     701864          31 "HISENSE - 65\" UHD Smart TV"  HISENSE 65B710… 008031…
-     6     701865          31 "SAMSUNG - 55 Smart UHD TV"    SAMSUNG 55RU71… 007986…
-     7     701866          31 "SAMSUNG - 32\" SMART HD TV"   SAMSUNG 32N5300 007858…
-     8     701875          31 "SAMSUNG - 43 UHD TV"          SAMSUNG 43RU71… 008003…
-     9     701878          31 "SAMSUNG - 49\" SMART LED TV"  SAMSUNG 49N5300 007881…
-    10     701880          31 "SAMSUNG - 40\" SMART LED TV"  SAMSUNG 40N5300 007844…
-    # … with 1,721 more rows
-=======
-    Retrieving 1703 results (1 pages).
-
-    Retrieved 1703 results.
-
-    Received fewer rows than requested.
-
-    # A tibble: 1,703 x 6
-       product_id retailer_id product                     brand  model    sku       
-            <int>       <int> <chr>                       <chr>  <chr>    <chr>     
-     1    3340772          10 "Samsung 138 cm (55\") Sma… SAMSU… UA55RU7… 000000000…
-     2    3333903          51 "Samsung LED 40 inch Smart… Samsu… <NA>     UA40N5300 
-     3    3334031          10 "Samsung 179 cm (70\") Sma… SAMSU… 70RU710… 000000000…
-     4    3334047          10 "Samsung 138 cm (55\") Sma… SAMSU… UA55RU7… 000000000…
-     5    3336009          51 "Samsung 32” UA32N5003 LED… Samsu… <NA>     UA32N5003 
-     6    3337268          10 "Samsung 179 cm (70\") Sma… SAMSU… 70RU710… 000000000…
-     7    3368372          47 "Hisense 254cm(100\")Laser… Hisen… <NA>     69951     
-     8    3366005          47 "Samsung 190cm (75\") UHD … Samsu… <NA>     67645SAM  
-     9       1882           4 "49\" SMART LED TV"         SAMSU… 49N5300  00788153  
-    10    3369106          47 "Samsung 190cm (75\") UHD … Samsu… <NA>     67645SAM  
-    # … with 1,693 more rows
->>>>>>> b2b3bc8... Update documentation
+    # A tibble: 1,759 x 6
+       product_id retailer_id product                          brand  model sku     
+            <int>       <int> <chr>                            <chr>  <chr> <chr>   
+     1    1417371          51 "Samsung LED 49\" Curved UHD Sm… Samsu… <NA>  UA49RU7…
+     2    1417643          51 "Samsung Ua32n5300 LED TV 32 in… Samsu… <NA>  UA32N53…
+     3    1417684          51 "Samsung 55\" UA55RU7100 LED UH… Samsu… <NA>  UA55RU7…
+     4    1417685          51 "Samsung 43\" UA43RU7100 LED UH… Samsu… <NA>  UA43RU7…
+     5    1417686          51 "Samsung 49\" UA49N5300 LED FHD… Samsu… <NA>  UA49N53…
+     6    1417977          51 "Samsung 49\" UA49RU7100 LED UH… Samsu… <NA>  UA49RU7…
+     7    1417983          51 "Samsung 55\" QA55Q60RAK QLED 4… Samsu… <NA>  QA55Q60…
+     8    1417984          51 "Samsung 65” QA65Q60RAK QLED UH… Samsu… <NA>  QA65Q60…
+     9    1417987          51 "Samsung 65” QA65Q900RBK QLED 8… Samsu… <NA>  QA65Q90…
+    10    1417988          51 "Samsung 65\" QA65Q70RAK QLED U… Samsu… <NA>  QA65Q70…
+    # … with 1,749 more rows
 
 Information on a specific product.
 
@@ -368,44 +251,20 @@ Get price history data for a specific product.
 product_prices(530290)
 ```
 
-<<<<<<< HEAD
-    # A tibble: 101 x 6
+    # A tibble: 103 x 6
        product_id time                price price_promotion price_effective
             <int> <dttm>              <dbl>           <dbl>           <dbl>
-<<<<<<< HEAD
-     1     530290 2020-09-07 04:17:00  50.0            NA              50.0
-     2     530290 2020-09-04 04:10:46  50.0            NA              50.0
-     3     530290 2020-09-02 03:57:02  50.0            NA              50.0
-     4     530290 2020-08-28 03:52:34  50.0            NA              50.0
-     5     530290 2020-08-26 04:29:28  50.0            NA              50.0
-     6     530290 2020-08-24 04:49:35  50.0            NA              50.0
-     7     530290 2020-08-21 04:57:07  50.0            40.0            40.0
-     8     530290 2020-08-19 01:22:35  50.0            40.0            40.0
-     9     530290 2020-08-17 04:49:36  50.0            40.0            40.0
-    10     530290 2020-08-14 04:09:58  50.0            40.0            40.0
-    # … with 91 more rows, and 1 more variable: available <lgl>
-=======
-    Retrieving 100 results (1 pages).
-
-    Retrieved 100 results.
-
-    Received fewer rows than requested.
-
-    # A tibble: 100 x 6
-       product_id time                price price_promotion price_effective
-            <int> <dttm>              <dbl>           <dbl>           <dbl>
-     1     530290 2020-09-04 04:10:46  50.0            NA              50.0
-     2     530290 2020-09-02 03:57:02  50.0            NA              50.0
-     3     530290 2020-08-28 03:52:34  50.0            NA              50.0
-     4     530290 2020-08-26 04:29:28  50.0            NA              50.0
-     5     530290 2020-08-24 04:49:35  50.0            NA              50.0
-     6     530290 2020-08-21 04:57:07  50.0            40.0            40.0
-     7     530290 2020-08-19 01:22:35  50.0            40.0            40.0
-     8     530290 2020-08-17 04:49:36  50.0            40.0            40.0
-     9     530290 2020-08-14 04:09:58  50.0            40.0            40.0
-    10     530290 2020-08-12 04:07:12  50.0            40.0            40.0
-    # … with 90 more rows, and 1 more variable: available <lgl>
->>>>>>> b2b3bc8... Update documentation
+     1     530290 2020-09-11 03:43:14  50.0            NA              50.0
+     2     530290 2020-09-09 03:42:51  50.0            NA              50.0
+     3     530290 2020-09-07 04:17:00  50.0            NA              50.0
+     4     530290 2020-09-04 04:10:46  50.0            NA              50.0
+     5     530290 2020-09-02 03:57:02  50.0            NA              50.0
+     6     530290 2020-08-28 03:52:34  50.0            NA              50.0
+     7     530290 2020-08-26 04:29:28  50.0            NA              50.0
+     8     530290 2020-08-24 04:49:35  50.0            NA              50.0
+     9     530290 2020-08-21 04:57:07  50.0            40.0            40.0
+    10     530290 2020-08-19 01:22:35  50.0            40.0            40.0
+    # … with 93 more rows, and 1 more variable: available <lgl>
 
 ### Options
 
@@ -415,46 +274,11 @@ You can control the volume of console output with options:
   - `options(trundler.chatty = FALSE)`: provide less output.
 
 ## RMarkdown Template
-<<<<<<< HEAD
 
 You can use the Trundler RMarkdown template to quickly produce
 visualisations for product price histories. After installing the
 package, select “Trundler Report Template” under the “From Template”
-option on the **New RMarkdown** dialog. *Note:* You might need to
-restart RStudio before the template shows up in the menu.
-=======
-     1     530290 2020-05-10 03:23:38  50.0            40.0            40.0
-     2     530290 2020-05-09 02:56:09  50.0            40.0            40.0
-     3     530290 2020-05-08 01:36:36  50.0            40.0            40.0
-     4     530290 2020-05-06 03:06:50  50.0            40.0            40.0
-     5     530290 2020-05-05 01:34:16  50.0            40.0            40.0
-     6     530290 2020-05-04 02:56:37  50.0            40.0            40.0
-     7     530290 2020-05-03 03:01:05  50.0            40.0            40.0
-     8     530290 2020-05-02 04:27:22  50.0            40.0            40.0
-     9     530290 2020-05-01 02:20:50  50.0            40.0            40.0
-    10     530290 2020-04-30 02:21:07  50.0            40.0            40.0
-    # … with 31 more rows, and 1 more variable: available <lgl>
+option on the **New RMarkdown** dialog.
 
-## Template
-=======
->>>>>>> b2b3bc8... Update documentation
-
-You can use the Trundler RMarkdown template to quickly produce
-visualisations for product price histories. After installing the
-package, select “Trundler Report Template” under the “From Template”
-option on the **New RMarkdown** dialog. *Note:* You might need to
-restart RStudio before the template shows up in the menu.
-
-## Package Maintenance
-
-### Managing Version
-
-Use [bump2version](https://pypi.org/project/bump2version/) to cleanly
-increment the version.
-
-``` bash
-$ bump2version patch
-$ bump2version minor
-$ bump2version major
-```
->>>>>>> 4e1a84c... Added instructions for using report template
+*Note:* You might need to restart RStudio before the template shows up
+in the menu.

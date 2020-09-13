@@ -143,4 +143,6 @@ You can control the volume of console output with options:
 
 ## RMarkdown Template
 
-You can use the Trundler RMarkdown template to quickly produce visualisations for product price histories.  After installing the package, select "Trundler Report Template" under the "From Template" option on the **New RMarkdown** dialog. _Note:_ You might need to restart RStudio before the template shows up in the menu.
+You can use the Trundler RMarkdown template to quickly produce visualisations for product price histories.  After installing the package, select "Trundler Report Template" under the "From Template" option on the **New RMarkdown** dialog.
+
+_Note:_ You might need to restart RStudio before the template shows up in the menu.
