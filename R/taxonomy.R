@@ -62,8 +62,6 @@ categories_graph <- function(taxonomy = NULL) {
       )
   }
 
-  print(taxonomy)
-
   if (is.null(taxonomy)) {
     NULL
   } else {
