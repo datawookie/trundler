@@ -9,27 +9,32 @@ cache <- new.env()
 #
 globalVariables(
   c(
+    "annotation_custom",
     "auth_id",
-    "retailer_id",
-    "product_id",
-    "parent_id",
-    "category_id",
-    "category_parent_id",
-    "path",
-    "from",
-    "to",
-    "start_time",
-    "finish_time",
-    "price_total",
-    "brand",
-    "model",
-    "sku",
-    "label",
-    "category_label",
+    "available",
     "barcodes",
+    "brand",
+    "category_id",
+    "category_label",
+    "category_parent_id",
+    "element_text",
+    "finish_time",
+    "from",
+    "label",
+    "margin",
+    "model",
+    "parent_id",
+    "path",
     "price",
     "price_promotion",
-    "available"
+    "price_total",
+    "product_id",
+    "retailer_id",
+    "sku",
+    "start_time",
+    "theme",
+    "theme_classic",
+    "to"
   )
 )
 
@@ -39,6 +44,7 @@ globalVariables(
 #' @import tidyselect
 #' @import tidygraph
 #' @import progressr
+#' @import ggtext
 #' @importFrom magrittr %>%
 #' @importFrom utils URLencode
 #' @importFrom glue glue
