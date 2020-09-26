@@ -43,8 +43,8 @@ theme_trundler_title <- function(title = TRUE, subtitle = TRUE, caption = TRUE) 
 #' Trundler theme
 #'
 #' @export
-theme_trundler <- function() {
-  theme_classic(base_size = 11) +
+theme_trundler <- function(base_size = 11) {
+  theme_classic(base_size = base_size) +
     theme(
       axis.text.y = element_text(size = 10, angle = 90, hjust = 0.5),
       axis.text.x = element_text(size = 10),
