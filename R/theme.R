@@ -58,7 +58,8 @@ theme_trundler <- function(base_size = 11) {
 #'
 #' Make this the first layer in the plot so that it's below all the content.
 #'
-#' @param label
+#' @param label Text for watermark
+#' @param fontsize Font size for watermark
 #'
 #' @export
 theme_trundler_watermark <- function(label = "WIP", fontsize = 256) {

@@ -7,7 +7,9 @@
 theme_trundler_watermark(label = "WIP", fontsize = 256)
 }
 \arguments{
-\item{label}{}
+\item{label}{Text for watermark}
+
+\item{fontsize}{Font size for watermark}
 }
 \description{
 Make this the first layer in the plot so that it's below all the content.

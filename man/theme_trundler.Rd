@@ -4,7 +4,7 @@
 \alias{theme_trundler}
 \title{Trundler theme}
 \usage{
-theme_trundler()
+theme_trundler(base_size = 11)
 }
 \description{
 Trundler theme
