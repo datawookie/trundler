@@ -3,6 +3,7 @@
 #' A selection of "standard" colours to be used in Trundler plots.
 #'
 #' @name palette
+#' @format NULL
 NULL
 
 #' @rdname palette

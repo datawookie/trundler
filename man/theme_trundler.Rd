@@ -6,6 +6,9 @@
 \usage{
 theme_trundler(base_size = 11)
 }
+\arguments{
+\item{base_size}{Base font size (in pts)}
+}
 \description{
 Trundler theme
 }

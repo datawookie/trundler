@@ -44,6 +44,7 @@ globalVariables(
 #' @import tidyselect
 #' @import tidygraph
 #' @import progressr
+#' @import ggplot2
 #' @import ggtext
 #' @importFrom magrittr %>%
 #' @importFrom utils URLencode

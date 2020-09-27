@@ -42,6 +42,8 @@ theme_trundler_title <- function(title = TRUE, subtitle = TRUE, caption = TRUE) 
 
 #' Trundler theme
 #'
+#' @param base_size Base font size (in pts)
+#'
 #' @export
 theme_trundler <- function(base_size = 11) {
   theme_classic(base_size = base_size) +
