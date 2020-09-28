@@ -4,15 +4,9 @@
 \alias{theme_trundler_title}
 \title{Format plot title, subtitle and caption}
 \usage{
-theme_trundler_title(title = TRUE, subtitle = TRUE, caption = TRUE)
-}
-\arguments{
-\item{title}{Plot title}
-
-\item{subtitle}{Plot subtitle}
-
-\item{caption}{Plot caption}
+theme_trundler_title()
 }
 \description{
-Format plot title, subtitle and caption
+This is a separate function so that it can be applied to plots which are
+constructed using {patchwork}.
 }

@@ -1,11 +1,10 @@
 #' Format plot title, subtitle and caption
 #'
-#' @param title Plot title
-#' @param subtitle Plot subtitle
-#' @param caption Plot caption
+#' This is a separate function so that it can be applied to plots which are
+#' constructed using {patchwork}.
 #'
 #' @export
-theme_trundler_title <- function(title = TRUE, subtitle = TRUE, caption = TRUE) {
+theme_trundler_title <- function() {
   theme(
     plot.title.position = "plot",
     plot.caption.position = "plot",
@@ -13,7 +12,7 @@ theme_trundler_title <- function(title = TRUE, subtitle = TRUE, caption = TRUE) 
       size = rel(22/11),
       lineheight = 1,
       padding = margin(7.5, 5.5, 5.5, 5.5),
-      margin = margin(0, 0, ifelse(subtitle, 0, 5.5), 0),
+      margin = margin(0, 0, 0, 0),
       fill = TRUNDLER_SLATE,
       colour = "white"
     ),
