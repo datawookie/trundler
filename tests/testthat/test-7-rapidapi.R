@@ -3,7 +3,7 @@ context("rapidapi")
 test_that("API key", {
   skip_on_cran()
 
-  expect_error(set_rapidapi_key(RAPIDAPI_KEY), NA)
+  expect_error(set_api_key(RAPIDAPI_KEY), NA)
   expect_equal(get_rapidapi_key(), RAPIDAPI_KEY)
 })
 

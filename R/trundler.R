@@ -94,14 +94,33 @@ base_url <- function() {
 
 #' Set API key
 #'
+#' Specify the key for accessing the Trundler API. You can either get an internal
+#' key directly from us or a RapidAPI key from the \href{https://rapidapi.com/datawookie/api/trundler}{Trundler page on RapidAPI}.
+#'
+#' Automatically determines which type of key is being used and authenticates appropriately.
+#'
 #' @param api_key API key.
 #'
 #' @export
 #'
 #' @examples
+#' # Authenticate using an internal API key.
 #' set_api_key("8f9f3c4e-5dd6-4bff-3a2c-592b45cf2437")
+#'
+#' # Authenticate using a RapidAPI key.
+#' set_api_key("5a1ae0ce24mshd483dae6ab7308dp129ef6jsn1f473053d6b0")
 set_api_key <- function(api_key) {
-  assign("api_key", api_key, envir = cache)
+  if (grepl("^[[:lower:][:digit:]]{50}$", api_key)) {
+    message("Using a RapidAPI key.")
+    assign("rapidapi_key", api_key, envir = cache)
+    set_base_url(RAPIDAPI_URL)
+  }
+  else if (grepl("^[[:lower:][:digit:]-]{36}$", api_key)) {
+    assign("api_key", api_key, envir = cache)
+  }
+  else {
+    stop("Unknown key type.", call. = FALSE)
+  }
 }
 
 #' Retrieve API key
@@ -122,21 +141,6 @@ get_api_key <- function() {
   } else {
     api_key
   }
-}
-
-#' Set RapidAPI key
-#'
-#' @param api_key API key for RapidAPI.
-#'
-#' @export
-#'
-#' @examples
-#' \dontrun{
-#' set_rapidapi_key("5a1ae0ce24mshd483dae6ab7308dp129ef6jsn1f473053d6b0")
-#' }
-set_rapidapi_key <- function(api_key) {
-  assign("rapidapi_key", api_key, envir = cache)
-  set_base_url(RAPIDAPI_URL)
 }
 
 #' Retrieve RapidAPI key

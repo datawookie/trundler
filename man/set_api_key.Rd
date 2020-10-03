@@ -10,8 +10,15 @@ set_api_key(api_key)
 \item{api_key}{API key.}
 }
 \description{
-Set API key
+Specify the key for accessing the Trundler API. You can either get an internal
+key directly from us or a RapidAPI key from the \href{https://rapidapi.com/datawookie/api/trundler}{Trundler page on RapidAPI}.
+}
+\details{
+Automatically determines which type of key is being used and authenticates appropriately.
 }
 \examples{
+# Authenticate using an internal API key.
 set_api_key("8f9f3c4e-5dd6-4bff-3a2c-592b45cf2437")
+# Authenticate using a RapidAPI key.
+set_api_key("5a1ae0ce24mshd483dae6ab7308dp129ef6jsn1f473053d6b0")
 }
