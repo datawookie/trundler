@@ -43,7 +43,7 @@ Check version.
 packageVersion("trundler")
 ```
 
-    [1] '0.1.21'
+    [1] '0.1.23'
 
 ### Set API Key
 
@@ -51,19 +51,18 @@ To access the full API you’ll need to first specify an API key.
 
 ``` r
 # Example API key (this key will not work).
-#
-set_api_key("5bed3ac9-6dc9-4926-aed8-8c97a7cb8057")
+set_api_key("8f9f3c4e-5dd6-4bff-3a2c-592b45cf2437")
 ```
 
 To obtain a key, please get in touch. Contact details are in
 `DESCRIPTION`.
 
 You can also subscribe via
-[RapidAPI](https://rapidapi.com/datawookie/api/trundler), in which case
-you use a different function to register your key.
+[RapidAPI](https://rapidapi.com/datawookie/api/trundler).
 
 ``` r
-set_rapidapi_key("5a1ae0ce24mshd483dae6ab7308dp129ef6jsn1f473053d6b0")
+# Example RapidAPI key (this key will not work).
+set_api_key("5a1ae0ce24mshd483dae6ab7308dp129ef6jsn1f473053d6b0")
 ```
 
 ### Retailers
@@ -74,7 +73,7 @@ Use `retailer()` to get a list of retailers.
 retailer()
 ```
 
-    # A tibble: 143 x 5
+    # A tibble: 148 x 5
        retailer_id retailer         retailer_url                    currency visible
              <int> <chr>            <chr>                           <chr>    <lgl>  
      1           1 EEM Technologies https://www.eemtechnologies.co… USD      TRUE   
@@ -87,7 +86,7 @@ retailer()
      8           8 Marks & Spencer  https://www.marksandspencer.co… GBP      FALSE  
      9           9 Pick 'n Pay      https://www.pnp.co.za/          ZAR      TRUE   
     10          10 Makro            https://www.makro.co.za/        ZAR      TRUE   
-    # … with 133 more rows
+    # … with 138 more rows
 
 Or you can acccess the details for a specific retailer.
 
@@ -110,20 +109,20 @@ Get a list of products for a specific retailer.
 retailer_products(5)
 ```
 
-    # A tibble: 206,865 x 5
-       product_id product                             brand        model sku        
-            <int> <chr>                               <chr>        <chr> <chr>      
-     1    1038294 CHARLOTTE RHYS St Thomas Shower Gel Charlotte R… <NA>  6061102572…
-     2    1038316 LONGMARKET Bath & Body Gift Box     W Bath&Body  <NA>  6009214571…
-     3    1038325 SIMPLY FLORAL Travel Set            W Bath&Body  <NA>  6009214797…
-     4    1038356 CHARLOTTE RHYS Spring Flowers Liqu… Charlotte R… <NA>  6061102561…
-     5    1038370 SIMPLY FLORAL Body Soufflé          W Bath&Body  <NA>  6009214170…
-     6    1038395 Fresh Lemon Zest Hand Wash & Lotio… W Bath&Body  <NA>  6009214464…
-     7    1038409 TOM FORD Oud Wood Shower Gel        Tom Ford     <NA>  8880660240…
-     8    1038428 SIMPLY FLORAL Mini Hand & Nail Cre… W Bath&Body  <NA>  6009214169…
-     9    1038458 EXTRACTS FROM NATURE Hand Wash      W Bath&Body  <NA>  6009207048…
-    10    1038469 EVERYDAY Body Butter                W Bath&Body  <NA>  6009101665…
-    # … with 206,855 more rows
+    # A tibble: 215,578 x 5
+       product_id product                                 brand   model sku         
+            <int> <chr>                                   <chr>   <chr> <chr>       
+     1    2849767 Micro Textured Blazer - DEEP BLUE / 48  Trenery <NA>  93402439912…
+     2    2849768 Micro Textured Blazer - DEEP BLUE / 36  Trenery <NA>  93402439912…
+     3    2849769 Micro Textured Blazer - DEEP BLUE / 40  Trenery <NA>  93402439912…
+     4    2849770 Puppytooth Check Blazer - MARINE BLUE … Trenery <NA>  93545301015…
+     5    2849771 Puppytooth Check Blazer - MARINE BLUE … Trenery <NA>  93545301015…
+     6    2849772 Puppytooth Check Blazer - MARINE BLUE … Trenery <NA>  93545301015…
+     7    2849773 Puppytooth Check Blazer - MARINE BLUE … Trenery <NA>  93545301015…
+     8    2849774 Puppytooth Check Blazer - MARINE BLUE … Trenery <NA>  93545301015…
+     9    2849775 Puppytooth Check Blazer - MARINE BLUE … Trenery <NA>  93545301015…
+    10    2849776 Puppytooth Check Blazer - MARINE BLUE … Trenery <NA>  93545301015…
+    # … with 215,568 more rows
 
 Products can be filtered by name and brand.
 
@@ -139,11 +138,11 @@ retailer_products(5, product = "coffee", brand = "nespresso")
      3    2918584 Lattissima One Coffee Machine - WHITE  Nespres… <NA>  76300396464…
      4    2918599 Essenza Mini Coffee Machine - BLACK    Nespres… <NA>  76300396187…
      5    2918601 Lattissima Touch Coffee Machine - SIL… Nespres… <NA>  76300476151…
-     6     667815 NESPRESSO Lattissima One Coffee Machi… Nespres… <NA>  76300396464…
-     7     667365 NESPRESSO Essenza Mini Coffee Machine  Nespres… <NA>  76300396187…
-     8     667426 NESPRESSO Citiz&Milk Coffee Machine    Nespres… <NA>  76300544309…
-     9     667654 NESPRESSO Lattissima Touch Coffee Mac… Nespres… <NA>  76300476151…
-    10     729093 NESPRESSO Creatista Plus Coffee Machi… Nespres… <NA>  76300396488…
+     6     667365 NESPRESSO Essenza Mini Coffee Machine  Nespres… <NA>  76300396187…
+     7     667426 NESPRESSO Citiz&Milk Coffee Machine    Nespres… <NA>  76300544309…
+     8     667654 NESPRESSO Lattissima Touch Coffee Mac… Nespres… <NA>  76300476151…
+     9     729093 NESPRESSO Creatista Plus Coffee Machi… Nespres… <NA>  76300396488…
+    10     667815 NESPRESSO Lattissima One Coffee Machi… Nespres… <NA>  76300396464…
 
 A similar search can be applied across *all* retailers.
 
@@ -151,58 +150,58 @@ A similar search can be applied across *all* retailers.
 products(product = "hand sanitiser")
 ```
 
-    # A tibble: 297 x 6
-       product_id retailer_id product                     brand     model sku       
-            <int>       <int> <chr>                       <chr>     <chr> <chr>     
-     1    1427238           5 CHARLOTTE RHYS St Thomas W… Charlott… <NA>  606110261…
-     2    1782675           3 Aquashield Hand Sanitiser … <NA>      <NA>  000000000…
-     3    1753347          63 Waterless Hand Sanitiser -… Charlott… <NA>  FCR075HAN…
-     4    1753348          63 Waterless Hand Sanitiser -… Charlott… <NA>  FCR300WHS 
-     5    1782558           3 Aquashield Hand Sanitiser … <NA>      <NA>  000000000…
-     6    1782566           3 Aquashield Hand Sanitiser … <NA>      <NA>  000000000…
-     7    1782684           3 Aquashield Hand Sanitiser … <NA>      <NA>  000000000…
-     8    1403656           5 BATH TIME Hand Sanitiser    W Bath&B… <NA>  600921127…
-     9    1322118           2 Total 10 Hand Sanitiser 50… Lifebuoy  <NA>  309637    
-    10    1202656          33 Stuf Hand Sanitiser 50ml T… Stuf      <NA>  <NA>      
-    # … with 287 more rows
+    # A tibble: 315 x 6
+       product_id retailer_id product                    brand     model sku        
+            <int>       <int> <chr>                      <chr>     <chr> <chr>      
+     1    1337317          63 Hand Sanitiser Mist, 50ml  Cape Isl… <NA>  HSSD50     
+     2    1337319          63 Hand Sanitiser Pump, 200ml Cape Isl… <NA>  HSSD200    
+     3    1356101          30 Dr. Bronner's Organic Han… <NA>      <NA>  362030011  
+     4    1357926          30 Organic Children Hand San… <NA>      <NA>  66685011   
+     5    1386565           9 LIFEBUOY HAND SANITISER T… <NA>      <NA>  0000000000…
+     6    1385527           9 LIFEBUOY HAND SANITISER L… <NA>      <NA>  0000000000…
+     7    1385530           9 LIFEBUOY HAND SANITISER T… <NA>      <NA>  0000000000…
+     8    1380393          45 Shield Handex Hand Saniti… Shield    <NA>  661382     
+     9    1782558           3 Aquashield Hand Sanitiser… <NA>      <NA>  0000000000…
+    10    1427238           5 CHARLOTTE RHYS St Thomas … Charlott… <NA>  6061102616…
+    # … with 305 more rows
 
 ``` r
 products(product = "coffee", brand = "nespresso|nescafe")
 ```
 
     # A tibble: 308 x 6
-       product_id retailer_id product                      brand    model sku       
-            <int>       <int> <chr>                        <chr>    <chr> <chr>     
-     1    1492620          13 Nescafe Original Decaffeina… NESCAFE  <NA>  254889371 
-     2    1471626          35 NESPRESSO Magimix CitiZ & M… NESPRES… <NA>  311-82040…
-     3    1492559          13 Nescafe Gold Blend Decaffei… NESCAFE  <NA>  297334444 
-     4    1492561          13 Nescafe Original Instant Co… NESCAFE  <NA>  254889618 
-     5    1492562          13 Nescafe Azera Americano Ins… NESCAFE… <NA>  273581584 
-     6    1492579          13 Nescafe Azera Americano Cof… NESCAFE  <NA>  304366804 
-     7    1492566          13 Nescafe Gold Blend Coffee 2… NESCAFE  <NA>  297876977 
-     8    1492573          13 Nescafe Azera Americano Ins… NESCAFE  <NA>  276731645 
-     9    1492577          13 Nescafe Azera Intenso Insta… NESCAFE  <NA>  276731680 
-    10    1492576          13 Nescafe Azera Americano Dec… NESCAFE  <NA>  296836819 
+       product_id retailer_id product                    brand      model sku       
+            <int>       <int> <chr>                      <chr>      <chr> <chr>     
+     1    1381129          10 Nescafe Dolce Gusto Coffe… NESCAFE    <NA>  000000000…
+     2    1492579          13 Nescafe Azera Americano C… NESCAFE    <NA>  304366804 
+     3    1486078          13 Nescafe Azera Espresso Ro… NESCAFE    <NA>  304366827 
+     4    1471626          35 NESPRESSO Magimix CitiZ &… NESPRESSO  <NA>  311-82040…
+     5    1486022          13 Nescafe Dolce Gusto Flat … NESCAFE D… <NA>  301217330 
+     6    1486010          13 Nescafe Dolce Gusto Ameri… NESCAFE D… <NA>  276686404 
+     7    1486025          13 Nescafe Dolce Gusto Cafe … NESCAFE D… <NA>  282108148 
+     8    1486050          13 Nescafe Original Instant … NESCAFE    <NA>  254889590 
+     9    1486060          13 Nescafe Gold Blend Instan… NESCAFE    <NA>  297334369 
+    10    1486041          13 Nescafe Cap Colombie Coff… NESCAFE    <NA>  297860949 
     # … with 298 more rows
 
 ``` r
 products(product = "tv", brand = "samsung|hisense")
 ```
 
-    # A tibble: 1,759 x 6
-       product_id retailer_id product                          brand  model sku     
-            <int>       <int> <chr>                            <chr>  <chr> <chr>   
-     1    1417371          51 "Samsung LED 49\" Curved UHD Sm… Samsu… <NA>  UA49RU7…
-     2    1417643          51 "Samsung Ua32n5300 LED TV 32 in… Samsu… <NA>  UA32N53…
-     3    1417684          51 "Samsung 55\" UA55RU7100 LED UH… Samsu… <NA>  UA55RU7…
-     4    1417685          51 "Samsung 43\" UA43RU7100 LED UH… Samsu… <NA>  UA43RU7…
-     5    1417686          51 "Samsung 49\" UA49N5300 LED FHD… Samsu… <NA>  UA49N53…
-     6    1417977          51 "Samsung 49\" UA49RU7100 LED UH… Samsu… <NA>  UA49RU7…
-     7    1417983          51 "Samsung 55\" QA55Q60RAK QLED 4… Samsu… <NA>  QA55Q60…
-     8    1417984          51 "Samsung 65” QA65Q60RAK QLED UH… Samsu… <NA>  QA65Q60…
-     9    1417987          51 "Samsung 65” QA65Q900RBK QLED 8… Samsu… <NA>  QA65Q90…
-    10    1417988          51 "Samsung 65\" QA65Q70RAK QLED U… Samsu… <NA>  QA65Q70…
-    # … with 1,749 more rows
+    # A tibble: 1,845 x 6
+       product_id retailer_id product                        brand  model sku       
+            <int>       <int> <chr>                          <chr>  <chr> <chr>     
+     1    1337871          12 "Samsung 49-inch(124cm) Smart… SAMSU… <NA>  000000000…
+     2    1402235          47 "Samsung 49\" UHD TV - UA49RU… Samsu… <NA>  67652SUP  
+     3    1402267          47 "Samsung 139cm(55\") UHD TV -… Samsu… <NA>  67650     
+     4    1401154          47 "Hisense 81cm (32\") HD TV - … Hisen… <NA>  68559     
+     5    1402240          47 "Samsung 147cm(58\") UHD 4K F… Samsu… <NA>  67648SUP  
+     6    1402243          47 "Samsung 109cm(43\") UHD 4K F… Samsu… <NA>  67653     
+     7    1402246          47 "Hisense 81cm (32\") HD TV - … Hisen… <NA>  68559     
+     8    1462280          35 "Black Bezel for The Frame 65… SAMSU… <NA>  5196-1020…
+     9    1417643          51 "Samsung Ua32n5300 LED TV 32 … Samsu… <NA>  UA32N5300 
+    10    1417647          51 "Samsung 82” UA82RU8000 LED U… Samsu… <NA>  UA82RU8000
+    # … with 1,835 more rows
 
 Information on a specific product.
 
@@ -251,20 +250,20 @@ Get price history data for a specific product.
 product_prices(530290)
 ```
 
-    # A tibble: 103 x 6
+    # A tibble: 112 x 6
        product_id time                price price_promotion price_effective
             <int> <dttm>              <dbl>           <dbl>           <dbl>
-     1     530290 2020-09-11 03:43:14  50.0            NA              50.0
-     2     530290 2020-09-09 03:42:51  50.0            NA              50.0
-     3     530290 2020-09-07 04:17:00  50.0            NA              50.0
-     4     530290 2020-09-04 04:10:46  50.0            NA              50.0
-     5     530290 2020-09-02 03:57:02  50.0            NA              50.0
-     6     530290 2020-08-28 03:52:34  50.0            NA              50.0
-     7     530290 2020-08-26 04:29:28  50.0            NA              50.0
-     8     530290 2020-08-24 04:49:35  50.0            NA              50.0
-     9     530290 2020-08-21 04:57:07  50.0            40.0            40.0
-    10     530290 2020-08-19 01:22:35  50.0            40.0            40.0
-    # … with 93 more rows, and 1 more variable: available <lgl>
+     1     530290 2020-10-02 04:15:47  50.0            NA              50.0
+     2     530290 2020-09-30 03:28:43  50.0            NA              50.0
+     3     530290 2020-09-28 04:41:45  50.0            NA              50.0
+     4     530290 2020-09-25 03:00:45  50.0            NA              50.0
+     5     530290 2020-09-23 01:27:21  50.0            NA              50.0
+     6     530290 2020-09-21 04:13:07  50.0            NA              50.0
+     7     530290 2020-09-18 03:48:55  50.0            40.0            40.0
+     8     530290 2020-09-16 03:26:28  50.0            40.0            40.0
+     9     530290 2020-09-14 04:40:09  50.0            40.0            40.0
+    10     530290 2020-09-11 03:43:14  50.0            NA              50.0
+    # … with 102 more rows, and 1 more variable: available <lgl>
 
 ### Options
 

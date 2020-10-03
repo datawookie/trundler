@@ -19,6 +19,7 @@ Automatically determines which type of key is being used and authenticates appro
 \examples{
 # Authenticate using an internal API key.
 set_api_key("8f9f3c4e-5dd6-4bff-3a2c-592b45cf2437")
+
 # Authenticate using a RapidAPI key.
 set_api_key("5a1ae0ce24mshd483dae6ab7308dp129ef6jsn1f473053d6b0")
 }

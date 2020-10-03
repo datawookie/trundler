@@ -9,3 +9,4 @@ trundler*.tgz
 docs/
 pkgdown/
 man/figures/
+*_cache/

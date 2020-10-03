@@ -53,8 +53,7 @@ To access the full API you'll need to first specify an API key.
 
 ```{r eval=FALSE}
 # Example API key (this key will not work).
-#
-set_api_key("5bed3ac9-6dc9-4926-aed8-8c97a7cb8057")
+set_api_key("8f9f3c4e-5dd6-4bff-3a2c-592b45cf2437")
 ```
 
 ```{r include=FALSE}
@@ -63,10 +62,11 @@ set_api_key(Sys.getenv("TRUNDLER_KEY"))
 
 To obtain a key, please get in touch. Contact details are in `DESCRIPTION`.
 
-You can also subscribe via [RapidAPI](https://rapidapi.com/datawookie/api/trundler), in which case you use a different function to register your key.
+You can also subscribe via [RapidAPI](https://rapidapi.com/datawookie/api/trundler).
 
 ```{r eval=FALSE}
-set_rapidapi_key("5a1ae0ce24mshd483dae6ab7308dp129ef6jsn1f473053d6b0")
+# Example RapidAPI key (this key will not work).
+set_api_key("5a1ae0ce24mshd483dae6ab7308dp129ef6jsn1f473053d6b0")
 ```
 
 ### Retailers
@@ -87,19 +87,19 @@ retailer(45)
 
 Get a list of products for a specific retailer.
 
-```{r}
+```{r cache=TRUE}
 retailer_products(5)
 ```
 
 Products can be filtered by name and brand.
 
-```{r}
+```{r cache=TRUE}
 retailer_products(5, product = "coffee", brand = "nespresso")
 ```
 
 A similar search can be applied across *all* retailers.
 
-```{r}
+```{r cache=TRUE}
 products(product = "hand sanitiser")
 products(product = "coffee", brand = "nespresso|nescafe")
 products(product = "tv", brand = "samsung|hisense")
