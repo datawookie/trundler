@@ -119,7 +119,11 @@ set_api_key <- function(api_key) {
     assign("api_key", api_key, envir = cache)
   }
   else {
-    stop("Unknown key type.", call. = FALSE)
+    if (api_key == "" || is.na(api_key) || is.null(api_key)) {
+      stop("API key is missing.", call. = FALSE)
+    } else {
+      stop(glue("Unknown API key type: '{api_key}'."), call. = FALSE)
+    }
   }
 }
 
