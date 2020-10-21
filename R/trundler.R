@@ -43,6 +43,7 @@ globalVariables(
 #' @import dplyr
 #' @import tidyselect
 #' @import tidygraph
+#' @import tidyr
 #' @import progressr
 #' @import ggplot2
 #' @import ggtext
