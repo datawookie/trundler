@@ -13,17 +13,16 @@
 #' price_complete(product_id = 1, date_min = "2020-01-01", date_max = "2020-12-31")
 #' }
 price_complete <- function(product_id, date_min = NULL, date_max = NULL) {
-
   if (!is.null(date_min)) {
-    date_min_check <- try(as.Date(date_min, format="%Y-%m-%d"))
-    if("try-error" %in% class(date_min_check) || is.na(date_min_check)) {
+    date_min <- try(as.Date(date_min, format="%Y-%m-%d"))
+    if("try-error" %in% class(date_min) || is.na(date_min)) {
       stop("Argument date_min must be a character string with format YYYY-mm-dd.")
     }
   }
 
   if (!is.null(date_max)) {
-    date_max_check <- try(as.Date(date_max, format="%Y-%m-%d"))
-    if("try-error" %in% class(date_max_check) || is.na(date_max_check)) {
+    date_max <- try(as.Date(date_max, format="%Y-%m-%d"))
+    if("try-error" %in% class(date_max) || is.na(date_max)) {
       stop("Argument date_max must be a character string with format YYYY-mm-dd.")
     }
   }
@@ -32,22 +31,22 @@ price_complete <- function(product_id, date_min = NULL, date_max = NULL) {
     mutate(date = as.Date(time))
 
   if (is.null(date_min)) {
-    date_start <- min(df$date)
-  } else {
-    date_start <- as.Date(date_min)
+    date_min <- min(df$date)
   }
 
   if (is.null(date_max)) {
-    date_end <- max(df$date)
-  } else {
-    date_end <- as.Date(date_max)
+    date_max <- max(df$date)
   }
 
-  dates <- seq.Date(date_start, date_end, by = "day")
+  dates <- seq.Date(date_min, date_max, by = "day")
 
-  complete(df, date = dates, nesting(product_id)) %>%
+  df <- complete(df, date = dates, nesting(product_id)) %>%
     group_by(product_id) %>%
-    mutate(price = approx(date, price, date, method = "constant", rule = 2)$y,
-           is_interpolated = ifelse(!is.na(time), TRUE, FALSE)) %>%
+    mutate(price = approx(date, price, date, method = "constant", rule = 2)$y)
+
+  df <- df %>%
+    mutate(is_interpolated = ifelse(is.na(time), TRUE, FALSE)) %>%
     select(product_id, date, price, is_interpolated)
+
+  df
 }
