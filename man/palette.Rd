@@ -10,7 +10,19 @@
 \alias{TRUNDLER_GREEN}
 \alias{TRUNDLER_RED}
 \title{Trundler palette}
-\format{}
+\format{
+
+
+
+
+
+
+
+
+
+
+
+}
 \usage{
 TRUNDLER_SLATE
 
