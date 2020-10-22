@@ -45,6 +45,7 @@ globalVariables(
 #' @import dplyr
 #' @import tidyselect
 #' @import tidygraph
+#' @import tidyr
 #' @import progressr
 #' @import ggplot2
 #' @import ggtext
@@ -57,7 +58,6 @@ globalVariables(
 #' @importFrom httr content
 #' @importFrom httr status_code
 #' @importFrom stats approx
-#' @importFrom tidyr complete
 #' @importFrom urltools param_set
 
 assign("base_url", BASE_URL, envir = cache)
