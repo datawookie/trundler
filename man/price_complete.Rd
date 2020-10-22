@@ -20,7 +20,7 @@ Interpolated prices for the specified (or default) date range as a \code{data.fr
 Interpolate prices for a specific product within a given date range.
 }
 \examples{
-Interpolate prices for a specific product within a given date range.
+# Interpolate prices for a specific product within a given date range.
 \dontrun{
 price_complete(product_id = 1, date_min = "2020-01-01", date_max = "2020-12-31")
 }
