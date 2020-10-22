@@ -1,35 +1,46 @@
-#' Interpolate prices within a given date range
+#' Interpolate prices for a specific product within a given date range.
 #'
-#' @param price_data A \code{data.frame} containing the following columns: date, price, SKU.
-#' @param date_min The minimum date for the interpolation range.  Defaults to the minimum date in the data argument.
-#' @param date_max The maximum date for the interpolation range.  Defaults to the maximum date in the data argument.
+#' @param product_id A product ID.
+#' @param date_min The minimum date for the interpolation range as a character string in the format "YYYY-mm-dd".  Defaults to the minimum date available for the specified product ID.
+#' @param date_max The maximum date for the interpolation range as a character string in the format "YYYY-mm-dd".  Defaults to the maximum date available for the specified product ID.
 #'
-#' @return Interpolated prices as a \code{data.frame}.
+#' @return Interpolated prices for the specified (or default) date range as a \code{data.frame}.
 #' @export
-price_complete <- function(price_data, date_min = NULL, date_max = NULL) {
+#'
+#' @examples
+#' Interpolate prices for a specific product within a given date range.
+#' \dontrun{
+#' price_complete(product_id = 1, date_min = "2020-01-01", date_max = "2020-12-31")
+#' }
+price_complete <- function(product_id, date_min = NULL, date_max = NULL) {
 
-  # Consolidate products (multiple product_ids map to a single SKU)
-  price_data <- price_data %>%
-    group_by(date, sku) %>%
-    summarise(price = mean(price), .groups = "drop")
-
-  # If no date is specified, then use the minimum and maximum dates as the date range
-  if (is.null(date_min) && is.null(date_max)) {
-  date_min <- min(price_data$date)
-  date_max <- max(price_data$date)
+  if (!is.null(date_min)) {
+    date_min_check <- try(as.Date(date_min, format="%Y-%m-%d"))
+    if("try-error" %in% class(date_min_check) || is.na(date_min_check)) {
+      stop("Argument date_min must have format %Y-%m-%d")
+    }
+    date_min <- as.Date(date_min)
   }
 
-  # Create a range of dates
-  dates <- seq.Date(as.Date(date_min), as.Date(date_max), by = "day")
+  if (!is.null(date_max)) {
+    date_max_check <- try(as.Date(date_max, format="%Y-%m-%d"))
+    if("try-error" %in% class(date_max_check) || is.na(date_max_check)) {
+      stop("Argument date_max must have format %Y-%m-%d")
+    }
+    date_max <- as.Date(date_max)
+  }
 
-  # Expand to cover full date range, interpolate prices for missing dates, and get the average price for each day
-  complete(price_data, date = dates, nesting(sku)) %>%
-    group_by(sku) %>%
-    mutate(price = approx(date, price, date, method = "constant", rule = 2)$y)
+  df <- product_prices(product_id) %>%
+    mutate(date = as.Date(time))
+
+  date_start <- if_else(is.null(date_min), min(df$date), date_min)
+  date_end <- if_else(is.null(date_max), max(df$date), date_max)
+
+  dates <- seq.Date(date_start, date_end, by = "day")
+
+  complete(df, date = dates, nesting(product_id)) %>%
+    group_by(product_id) %>%
+    mutate(price = approx(date, price, date, method = "constant", rule = 2)$y,
+           is_interpolated = ifelse(!is.na(time), TRUE, FALSE)) %>%
+    select(date, price, is_interpolated)
 }
-
-products <- map_dfr(c(1:3, 10000, 50000), product) %>%
-  inner_join(retailer(), by = 'retailer_id')
-
-prices <- map_dfr(c(1:3, 10000, 50000), product_prices) %>%
-  inner_join(products, by = 'product_id')
