@@ -20,6 +20,7 @@ globalVariables(
     "element_text",
     "finish_time",
     "from",
+    "is_interpolated",
     "label",
     "margin",
     "model",
@@ -32,6 +33,7 @@ globalVariables(
     "retailer_id",
     "sku",
     "start_time",
+    "time",
     "theme",
     "theme_classic",
     "to"
@@ -43,7 +45,6 @@ globalVariables(
 #' @import dplyr
 #' @import tidyselect
 #' @import tidygraph
-#' @import tidyr
 #' @import progressr
 #' @import ggplot2
 #' @import ggtext
@@ -55,6 +56,8 @@ globalVariables(
 #' @importFrom httr http_type
 #' @importFrom httr content
 #' @importFrom httr status_code
+#' @importFrom stats approx
+#' @importFrom tidyr complete
 #' @importFrom urltools param_set
 
 assign("base_url", BASE_URL, envir = cache)
