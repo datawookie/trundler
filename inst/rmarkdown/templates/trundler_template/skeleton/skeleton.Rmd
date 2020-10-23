@@ -14,12 +14,12 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, fig.width 
 ```
 
 ```{r libraries and constants}
-library(trundler) 
-library(dplyr) 
+library(trundler)
+library(dplyr)
 library(stringr)
 library(purrr)
 library(tidyr)
-library(ggplot2) 
+library(ggplot2)
 library(gt)
 library(glue)
 
@@ -39,7 +39,7 @@ set_api_key(API_KEY)
 
 ```{r}
 # Get a dataframe of all available retailers
-retailers <- retailer() 
+retailers <- retailer()
 ```
 
 ## View the retailer catalog
@@ -49,7 +49,7 @@ Trundler collects data from wide range of retailers.  Currently, there are `r le
 <br>
 ```{r}
 # View the first 10 retailers
-gt(retailers[1:10, 1:4]) %>% 
+gt(retailers[1:10, 1:4]) %>%
   tab_header(title = md("**Trundler Retailer Catalog**"),
             subtitle = md("*The first ten retailers in the catalog*")) %>%
   cols_label(retailer_id = md("**Retailer ID**"),
@@ -84,7 +84,7 @@ As you can see, Pick 'n Pay sells a few different Bovril products.  Let's have a
 <br>
 ```{r}
 # Using the corresponding product ID, you can get the product and price data you're interested in.
-bovril_250g_id <- all_bovril %>% 
+bovril_250g_id <- all_bovril %>%
   filter(product == "Bovril Beefy Spread 250g") %>%
   select(product_id) %>%
   unlist()
@@ -102,7 +102,7 @@ bovril_250g_prices <- product_prices(bovril_250g_id) %>%
 retailer <- bovril_250g_prices$retailer[1]
 product <- bovril_250g_prices$product[1]
 
-bovril_250g_prices %>% 
+bovril_250g_prices %>%
   select(date, starts_with("price")) %>%
   slice(1:10) %>%
   arrange(desc(date)) %>%
@@ -135,7 +135,7 @@ ggplot(bovril_250g_prices, aes(x = date)) +
      panel.grid.major.y = element_line(colour = TRUNDLER_GREY, size = 0.125),
      panel.grid.minor.y = element_line(colour = TRUNDLER_GREY, size = 0.125)
    ) +
-  theme_trundler_title(subtitle = FALSE) 
+  theme_trundler_title(subtitle = FALSE)
 ```
 <br>
 
@@ -156,7 +156,7 @@ bovril_products <- search_results %>%
   arrange(retailer)
 
 # View the results
-bovril_products %>% 
+bovril_products %>%
   select(product, retailer, sku) %>%
   group_by(sku) %>%
   slice(1) %>%
@@ -175,8 +175,8 @@ As you can see, it is sold at a number of South African retailers. Now, let's re
 <br>
 ```{r}
 # Get the price data for these bovril products, interpolating prices where necessary.
-bovril_prices <- map_dfr(bovril_products$product_id, 
-                         price_complete, 
+bovril_prices <- map_dfr(bovril_products$product_id,
+                         price_complete,
                          date_min = DATE_MIN,
                          date_max = DATE_MAX) %>%
   unnest(cols = c(price)) %>%
@@ -219,5 +219,5 @@ ggplot(bovril_summary, aes(x = date)) +
   theme(
      panel.grid.major.y = element_line(colour = TRUNDLER_GREY, size = 0.125),
      panel.grid.minor.y = element_line(colour = TRUNDLER_GREY, size = 0.125)
-   ) 
+   )
 ```
