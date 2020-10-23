@@ -3,11 +3,15 @@ title: "Trundler Report Template"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, fig.width = 10, comment = NULL)
-```
+<style type="text/css">
+  body{
+  font-size: 12pt;
+}
+</style>
 
-## Import libraries
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, fig.width = 10, comment = NULL)
+```
 
 ```{r libraries}
 library(trundler) 
@@ -16,42 +20,68 @@ library(stringr)
 library(purrr)
 library(tidyr)
 library(ggplot2) 
+library(gt)
+library(glue)
 ```
 
-## Set the API key
-
-If you don't have an API key yet, you can get one from [RapidAPI](https://rapidapi.com/datawookie/api/trundler).
-
-```{r}
+This report demonstrates how you can quickly generate a report using the Trundler R package.    
+    
+```{r, include = FALSE}
+# You can get an API key from https://rapidapi.com/datawookie/api/trundler
 API_KEY <- Sys.getenv("TRUNDLER_KEY")
 set_api_key(API_KEY)
 ```
 
-## View catalog of retailers
-
-Here's a look at the first 10 retailers in the catalog
-
 ```{r}
 # Get a dataframe of all available retailers
-retailer_df <- retailer()
+retailer_df <- retailer() 
+```
 
+## View the retailer catalog
+
+Trundler collects data from wide range of retailers.  Currently, there are `r length(retailer_df$retailer)` retailers in the Trundler catalog.  Here are the first ten.
+
+<br>
+```{r}
 # View the first 10 retailers
-head(retailer_df, n = 10)
+gt(retailer_df[1:10, 1:4]) %>% 
+  tab_header(title = md("**Trundler Retailer Catalog**"),
+            subtitle = md("*The first ten retailers in the catalog*")) %>%
+  cols_label(retailer_id = md("**Retailer ID**"),
+             retailer = md("**Retailer**"),
+             retailer_url = md("**URL**"),
+             currency = md("**Currency**"))
 ```
 
-## Retrieve data for specific products
+<br>
 
-Let's say you're interested in the price of Bovril at Pick 'n Pay.  You can use the retailer ID for Pick 'n Pay (9) to search for all Bovril products at Pick 'n Pay.
+## Track the price of a product at a specific retailer
+
+It's possible to search a retailer for a product of interest.  Here, we've searched for Bovril products sold at Pick 'n Pay.
+
+<br>
 
 ```{r}
-# Search for Bovril products.
-retailer_products(retailer_id = 9, product = "Bovril")
+# Use the retailer_id to search for Bovril products at a specific retailer (e.g. Pick 'n Pay)
+all_bovril <- retailer_products(retailer_id = 9, product = "Bovril") %>%
+  select(product_id, product, sku)
+
+# Print table
+gt(all_bovril) %>%
+  tab_header(title = md("**All Bovril Products**"),
+             subtitle = md("*At Pick 'n Pay*")) %>%
+  cols_label(product_id = md("**Product ID**"),
+             product = md("**Product**"),
+             sku = md("**SKU**"))
+
 ```
+<br>
 
-Pick 'n Pay sells a few different Bovril products.  Let's choose 'Bovril Beefy Spread 250g'.  Using the corresponding product ID, you can get the product and price data you're interested in.
+As you can see, Pick 'n Pay sells a few different Bovril products.  Let's have a look at the price of the 250g product.  Here are the most recent price records.
 
+<br>
 ```{r}
-# Get the product data 
+# Using the corresponding product ID, you can get the product and price data you're interested in. 
 bovril_250g <- product(543374) 
 
 # Add the historical price data and the retailer information
@@ -59,18 +89,31 @@ bovril_250g_prices <- product_prices(543374) %>%
   inner_join(bovril_250g, by = 'product_id') %>%
   inner_join(retailer_df, by = 'retailer_id') %>%
   select(date = time, product, retailer, starts_with('price')) %>%
-  mutate(date = as.Date(date)) 
+  mutate(date = as.Date(date))
+
+retailer <- bovril_250g_prices$retailer[1]
+product <- bovril_250g_prices$product[1]
+
+bovril_250g_prices %>% 
+  select(date, starts_with("price")) %>%
+  slice(1:10) %>%
+  arrange(desc(date)) %>%
+  gt() %>%
+  tab_header(title = md(glue("**{product}**")),
+             subtitle = md(glue("*At {retailer}*"))) %>%
+  cols_label(date = md("**Date**"),
+             price = md("**Price**"),
+             price_promotion = md("**Promotional Price**"),
+             price_effective = md("**Effective Price**"))
+  
 ```
 
-Let's take a look at the most recent price records.
+<br>
 
-```{r, echo = FALSE}
-head(bovril_250g_prices)
-```
+It's easier to digest how the price of Bovril has changed over time if we plot the data.
 
-Now that we have the data, we can plot it!
-
-```{r, echo = FALSE}
+<br>
+```{r}
 
 ggplot(bovril_250g_prices, aes(x = date)) +
   geom_step(aes(y = price), lwd = 2, alpha = 0.5) +
@@ -92,34 +135,43 @@ ggplot(bovril_250g_prices, aes(x = date)) +
 
 ```
 
-## Get the average prices for a range of products
+<br>
 
-To get the average prices for a particular product or product category, a little more manipulation is required.
+## Track average prices over time
 
-Let's say that you want to create an average price plot for single pineappples.
+It can be useful to track how the average price of a product changes over time.    
+     
+The first step is to search for the product of interest.  In this case, we've searched for all single pineapples of the "Queen" variety.  
 
-First, you'll need to get the data for the products you want to aggregate.
-
+<br>
 ```{r}
 # Search the database
-search_results <- products("pineapple")
+search_results <- products("queen pineapple", regex = FALSE)
 
-# Join the search results to the retailer dataframe, use only single pineapples at South African retailers.
+# Join the search results to the retailer dataframe, use only single queen pineapples at South African retailers.
 pineapple_products <- search_results %>%
   inner_join(retailer_df, by = 'retailer_id') %>%
-  filter(str_detect(product, "Single"),
-         currency == "ZAR") 
+  filter(!str_detect(product, "Juice|[:digit:]g|2|Pack|Half") ,
+         currency == "ZAR") %>%
+  arrange(retailer)
 
 # View the results
-pineapple_products %>% select(product, product_id, sku, retailer, everything())
+pineapple_products %>% 
+  select(product, retailer, sku) %>%
+  unique() %>%
+  gt() %>%
+  tab_header(title = md("**Single Pineapples**"),
+             subtitle = md("*Sold at South African retailers*")) %>%
+  cols_label(product = md("**Product**"),
+             retailer = md("**Retailer**"),
+             sku = md("**SKU**"))
 ```
 
-At a first glance, it looks like there are four distinct products, but there are actually two 'Single Queen Pineapple' products from Woolworths.  These products have the same SKU (Shop Keeping Unit) but different product IDs.  
+<br>
 
-When a retailer changes the way that a product is listed in their catalog, the product is assigned a new ID, but the SKU stays consistent.  
+Now, let's retrieve the price histories for each of these products and combine them into one table.
 
-It's important to retain both product IDs because each ID is associated with a different period in that product's price history.  To get the full price history, combine the data associated with each product ID.  Here's one way to do this:
-
+<br>
 ```{r}
 # Get the price data for these pineapple products
 pineapple_prices <- map_dfr(pineapple_products$product_id, product_prices) %>%
@@ -128,21 +180,27 @@ pineapple_prices <- map_dfr(pineapple_products$product_id, product_prices) %>%
   inner_join(pineapple_products, by = 'product_id') %>%
   select(date, product_id, sku, product, retailer, starts_with("price"))
 
-# Consolidate the product price if any products have more than one product ID
+# Consolidate the product price if any products have more than one product ID - this is where the SKU is really useful!
 pineapple_consolidated <- pineapple_prices %>%
   group_by(date, sku) %>%
   summarise(price = mean(price), .groups = "drop")
-```
 
-Here are the first records of the consolidated pineapple prices dataframe.
-
-```{r, echo = FALSE}
 # Print first few rows 
-head(pineapple_consolidated)
+pineapple_consolidated %>% 
+  slice(1:10) %>%
+  gt() %>%
+  tab_header(title = md("**Single Pineapples: Prices**"),
+             subtitle = md("*First ten records*")) %>%
+  cols_label(date = md("**Date**"),
+             sku = md("**SKU**"),
+             price = md("**Price**"))
 ```
 
-As you can see, the date intervals are irregular.  You can interpolate prices for any missing days.  Then, you'll be able to get the average price of all single pineapples on each day.
+<br>
 
+As you can see, the date intervals are irregular, but we can interpolate the prices for any missing days before calculating the average price.
+
+<br>
 ```{r}
 # First, create a uniform sequence of dates
 dates <- seq.Date(
@@ -157,23 +215,32 @@ pineapple_summary <- complete(pineapple_consolidated, date = dates, nesting(sku)
   mutate(price_interpolate = approx(date, price, date, method = "constant", rule = 2)$y) %>%
   group_by(date) %>%
   summarise(avg_price = mean(price_interpolate))
+
+# View the table
+pineapple_summary %>%
+  arrange(desc(date)) %>%
+    slice(1:10) %>%
+  gt() %>%
+  tab_header(title = md("**Single Pineapples: Average Price**"),
+             subtitle = md("*Past ten days*")) %>%
+  cols_label(date = md("**Date**"),
+             avg_price = md("**Average Price**"))
 ```
 
-Now, there's an average price for each date, and you can plot the data.
+<br>
 
-```{r, echo = FALSE}
-head(pineapple_summary)
-```
+Finally, let's plot the average price!
 
-
-```{r, echo = FALSE}
+<br>
+```{r}
 
 ggplot(pineapple_summary, aes(x = date)) +
   geom_line(aes(y = avg_price), lwd = 2, alpha = 0.75) +
   scale_x_date(NULL, date_breaks = "2 weeks", date_labels = "%e %b") +
   scale_y_continuous("Price (ZAR)") +
   labs(
-    title = "Single Pineapples: Average Price"
+    title = "Single Pineapples: Average Price",
+    subtitle = "Sold in South Africa"
   ) +
   theme_classic() +
   theme(
