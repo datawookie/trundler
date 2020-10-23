@@ -33,6 +33,7 @@ Imports:
 Suggests:
     devtools,
     ggraph,
+    gt,
     patchwork,
     RPostgres,
     testthat (>= 2.1.0),
