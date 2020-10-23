@@ -132,8 +132,8 @@ ggplot(bovril_250g_prices, aes(x = date)) +
   ) +
   theme_trundler() +
   theme(
-     panel.grid.major.y = element_line(colour = TRUNDLER_GREY, size = 0.125),
-     panel.grid.minor.y = element_line(colour = TRUNDLER_GREY, size = 0.125)
+     panel.grid.major.y = element_line(colour = TRUNDLER_GREY, size = 0.25),
+     panel.grid.minor.y = element_line(colour = TRUNDLER_GREY, size = 0.25)
    ) +
   theme_trundler_title(subtitle = FALSE)
 ```
@@ -217,7 +217,7 @@ ggplot(bovril_summary, aes(x = date)) +
   theme_trundler() +
   theme_trundler_title() +
   theme(
-     panel.grid.major.y = element_line(colour = TRUNDLER_GREY, size = 0.125),
-     panel.grid.minor.y = element_line(colour = TRUNDLER_GREY, size = 0.125)
+     panel.grid.major.y = element_line(colour = TRUNDLER_GREY, size = 0.25),
+     panel.grid.minor.y = element_line(colour = TRUNDLER_GREY, size = 0.25)
    )
 ```
