@@ -57,7 +57,6 @@ gt(retailers[1:10, 1:4]) %>%
              retailer_url = md("**URL**"),
              currency = md("**Currency**"))
 ```
-
 <br>
 
 ## Track the price of a product at a specific retailer
@@ -65,7 +64,6 @@ gt(retailers[1:10, 1:4]) %>%
 It's possible to search a retailer for a product of interest.  Here, we've searched for Bovril products sold at Pick 'n Pay.
 
 <br>
-
 ```{r}
 # Use the retailer_id to search for Bovril products at a specific retailer (e.g. Pick 'n Pay)
 all_bovril <- retailer_products(retailer_id = RETAILER_ID_PICKNPAY, product = "Bovril") %>%
@@ -116,7 +114,6 @@ bovril_250g_prices %>%
              price_promotion = md("**Promotional Price**"),
              price_effective = md("**Effective Price**"))
 ```
-
 <br>
 
 It's easier to digest how the price of Bovril has changed over time if we plot the data.
@@ -140,7 +137,6 @@ ggplot(bovril_250g_prices, aes(x = date)) +
    ) +
   theme_trundler_title(subtitle = FALSE) 
 ```
-
 <br>
 
 ## Track average prices over time
@@ -172,7 +168,6 @@ bovril_products %>%
              retailer = md("**Retailer**"),
              sku = md("**SKU**"))
 ```
-
 <br>
 
 As you can see, it is sold at a number of South African retailers. Now, let's retrieve the price data from each retailer, interpolate any missing prices, and find the daily average price.
@@ -203,7 +198,6 @@ bovril_summary %>%
   cols_label(date = md("**Date**"),
              avg_price = md("**Average Price**"))
 ```
-
 <br>
 
 Finally, let's plot the daily average price of a 250g jar of Bovril sold in South Africa.
