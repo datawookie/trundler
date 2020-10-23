@@ -125,22 +125,19 @@ It's easier to digest how the price of Bovril has changed over time if we plot t
 ```{r}
 # Plot the price history of Bovril 250g
 ggplot(bovril_250g_prices, aes(x = date)) +
-  geom_step(aes(y = price), lwd = 2, alpha = 0.5) +
-  geom_point(aes(y = price), size = 4, alpha = 0.725) +
+  geom_step(aes(y = price), lwd = 2, alpha = 0.5, colour = TRUNDLER_BLUE) +
+  geom_point(aes(y = price), size = 4, alpha = 0.725, colour = TRUNDLER_BLUE) +
   scale_x_date(NULL, date_breaks = "2 weeks", date_labels = "%e %b", limits = c(DATE_MIN, DATE_MAX)) +
   scale_y_continuous("Price (ZAR)") +
   labs(
     title = bovril_250g_prices$product[1]
   ) +
-  theme_classic() +
+  theme_trundler() +
   theme(
-    plot.title = element_text(size = 20, face = "bold"),
-    plot.subtitle = element_text(size = 15, face = "italic"),
-    axis.text.y = element_text(size = 10, angle = 90, hjust = 0.5),
-    axis.text.x = element_text(size = 10),
-    axis.title.y = element_text(size = 15),
-    panel.grid.major.y = element_line(colour = "grey", size = 0.125)
-  ) 
+     panel.grid.major.y = element_line(colour = TRUNDLER_GREY, size = 0.125),
+     panel.grid.minor.y = element_line(colour = TRUNDLER_GREY, size = 0.125)
+   ) +
+  theme_trundler_title() 
 ```
 
 <br>
@@ -212,20 +209,17 @@ Finally, let's plot the average price!
 ```{r}
 # Plot the average price
 ggplot(bovril_summary, aes(x = date)) +
-  geom_line(aes(y = avg_price), lwd = 2, alpha = 0.75) +
+  geom_line(aes(y = avg_price), lwd = 2, alpha = 0.75, colour = TRUNDLER_BLUE) +
   scale_x_date(NULL, date_breaks = "2 weeks", date_labels = "%e %b") +
   scale_y_continuous("Price (ZAR)") +
   labs(
     title = "Bovril 250g: Average Price",
     subtitle = "At South African Retailers"
   ) +
-  theme_classic() +
+  theme_trundler() +
+  theme_trundler_title() +
   theme(
-    plot.title = element_text(size = 20, face = "bold"),
-    plot.subtitle = element_text(size = 15, face = "italic"),
-    axis.text.y = element_text(size = 10, angle = 90, hjust = 0.5),
-    axis.text.x = element_text(size = 10),
-    axis.title.y = element_text(size = 15),
-    panel.grid.major.y = element_line(colour = "grey", size = 0.125)
-  ) 
+     panel.grid.major.y = element_line(colour = TRUNDLER_GREY, size = 0.125),
+     panel.grid.minor.y = element_line(colour = TRUNDLER_GREY, size = 0.125)
+   ) 
 ```
