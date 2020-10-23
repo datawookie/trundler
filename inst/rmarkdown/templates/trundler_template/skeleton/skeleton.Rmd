@@ -137,14 +137,14 @@ ggplot(bovril_250g_prices, aes(x = date)) +
      panel.grid.major.y = element_line(colour = TRUNDLER_GREY, size = 0.125),
      panel.grid.minor.y = element_line(colour = TRUNDLER_GREY, size = 0.125)
    ) +
-  theme_trundler_title() 
+  theme_trundler_title(subtitle = FALSE) 
 ```
 
 <br>
 
 ## Track average prices over time
 
-It can be useful to track how the average price of a product changes over time.  Let's now search for bovril products at all South African retailers.
+It can be useful to track how the average price of a product changes over time.  Let's search for the 250g Bovril product at *all* South African retailers.
 
 <br>
 ```{r}
@@ -161,7 +161,9 @@ bovril_products <- search_results %>%
 # View the results
 bovril_products %>% 
   select(product, retailer, sku) %>%
-  unique() %>%
+  group_by(sku) %>%
+  slice(1) %>%
+  ungroup() %>%
   gt() %>%
   tab_header(title = md("**Bovril 250g**"),
              subtitle = md("*Sold at South African retailers*")) %>%
@@ -172,7 +174,7 @@ bovril_products %>%
 
 <br>
 
-Now, let's retrieve the price histories for each of these products, interpolate any missing prices and find the daily average for Bovril 250g at South African retailers.
+As you can see, it is sold at a number of South African retailers. Now, let's retrieve the price data from each retailer, interpolate any missing prices, and find the daily average price.
 
 <br>
 ```{r}
@@ -203,7 +205,7 @@ bovril_summary %>%
 
 <br>
 
-Finally, let's plot the average price!
+Finally, let's plot the daily average price of a 250g jar of Bovril sold in South Africa.
 
 <br>
 ```{r}
