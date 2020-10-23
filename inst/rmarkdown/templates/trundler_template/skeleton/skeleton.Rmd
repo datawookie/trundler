@@ -130,7 +130,8 @@ ggplot(bovril_250g_prices, aes(x = date)) +
   scale_x_date(NULL, date_breaks = "2 weeks", date_labels = "%e %b", limits = c(DATE_MIN, DATE_MAX)) +
   scale_y_continuous("Price (ZAR)") +
   labs(
-    title = bovril_250g_prices$product[1]
+    title = bovril_250g_prices$product[1],
+    caption = paste("Data from Trundler", "www.trundler.dev", sep = "/")
   ) +
   theme_trundler() +
   theme(
@@ -216,7 +217,8 @@ ggplot(bovril_summary, aes(x = date)) +
   scale_y_continuous("Price (ZAR)") +
   labs(
     title = "Bovril 250g: Average Price",
-    subtitle = "At South African Retailers"
+    subtitle = "At South African Retailers",
+    caption = paste("Data from Trundler", "www.trundler.dev", sep = "/")
   ) +
   theme_trundler() +
   theme_trundler_title() +
