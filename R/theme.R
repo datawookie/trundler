@@ -4,7 +4,7 @@
 #' constructed using {patchwork}.
 #'
 #' @export
-theme_trundler_title <- function() {
+theme_trundler_title <- function(title = TRUE, subtitle = TRUE, caption = TRUE) {
   theme(
     plot.title.position = "plot",
     plot.caption.position = "plot",
@@ -12,7 +12,7 @@ theme_trundler_title <- function() {
       size = rel(22/11),
       lineheight = 1,
       padding = margin(7.5, 5.5, 5.5, 5.5),
-      margin = margin(0, 0, 0, 0),
+      margin = margin(0, 0, ifelse(subtitle, 0, 5.5), 0),
       fill = TRUNDLER_SLATE,
       colour = "white"
     ),
