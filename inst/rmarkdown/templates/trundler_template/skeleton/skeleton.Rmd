@@ -13,13 +13,13 @@ body {
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, fig.width = 10, comment = NULL)
 ```
 
-```{r libraries and constants}
-library(trundler) 
-library(dplyr) 
+```{r libraries-and-constants}
+library(trundler)
+library(dplyr)
 library(stringr)
 library(purrr)
 library(tidyr)
-library(ggplot2) 
+library(ggplot2)
 library(gt)
 library(glue)
 
@@ -39,7 +39,7 @@ set_api_key(API_KEY)
 
 ```{r}
 # Get a dataframe of all available retailers
-retailers <- retailer() 
+retailers <- retailer()
 ```
 
 ## View the retailer catalog
@@ -49,7 +49,7 @@ Trundler collects data from wide range of retailers.  Currently, there are `r le
 <br>
 ```{r}
 # View the first 10 retailers
-gt(retailers[1:10, 1:4]) %>% 
+gt(retailers[1:10, 1:4]) %>%
   tab_header(title = md("**Trundler Retailer Catalog**"),
             subtitle = md("*The first ten retailers in the catalog*")) %>%
   cols_label(retailer_id = md("**Retailer ID**"),
@@ -57,7 +57,6 @@ gt(retailers[1:10, 1:4]) %>%
              retailer_url = md("**URL**"),
              currency = md("**Currency**"))
 ```
-
 <br>
 
 ## Track the price of a product at a specific retailer
@@ -65,7 +64,6 @@ gt(retailers[1:10, 1:4]) %>%
 It's possible to search a retailer for a product of interest.  Here, we've searched for Bovril products sold at Pick 'n Pay.
 
 <br>
-
 ```{r}
 # Use the retailer_id to search for Bovril products at a specific retailer (e.g. Pick 'n Pay)
 all_bovril <- retailer_products(retailer_id = RETAILER_ID_PICKNPAY, product = "Bovril") %>%
@@ -86,7 +84,7 @@ As you can see, Pick 'n Pay sells a few different Bovril products.  Let's have a
 <br>
 ```{r}
 # Using the corresponding product ID, you can get the product and price data you're interested in.
-bovril_250g_id <- all_bovril %>% 
+bovril_250g_id <- all_bovril %>%
   filter(product == "Bovril Beefy Spread 250g") %>%
   select(product_id) %>%
   unlist()
@@ -104,7 +102,7 @@ bovril_250g_prices <- product_prices(bovril_250g_id) %>%
 retailer <- bovril_250g_prices$retailer[1]
 product <- bovril_250g_prices$product[1]
 
-bovril_250g_prices %>% 
+bovril_250g_prices %>%
   select(date, starts_with("price")) %>%
   slice(1:10) %>%
   arrange(desc(date)) %>%
@@ -116,7 +114,6 @@ bovril_250g_prices %>%
              price_promotion = md("**Promotional Price**"),
              price_effective = md("**Effective Price**"))
 ```
-
 <br>
 
 It's easier to digest how the price of Bovril has changed over time if we plot the data.
@@ -130,16 +127,16 @@ ggplot(bovril_250g_prices, aes(x = date)) +
   scale_x_date(NULL, date_breaks = "2 weeks", date_labels = "%e %b", limits = c(DATE_MIN, DATE_MAX)) +
   scale_y_continuous("Price (ZAR)") +
   labs(
-    title = bovril_250g_prices$product[1]
+    title = bovril_250g_prices$product[1],
+    caption = "Data from Trundler / trundler.dev"
   ) +
   theme_trundler() +
   theme(
-     panel.grid.major.y = element_line(colour = TRUNDLER_GREY, size = 0.125),
-     panel.grid.minor.y = element_line(colour = TRUNDLER_GREY, size = 0.125)
+     panel.grid.major.y = element_line(colour = TRUNDLER_GREY, size = 0.25),
+     panel.grid.minor.y = element_line(colour = TRUNDLER_GREY, size = 0.25)
    ) +
-  theme_trundler_title(subtitle = FALSE) 
+  theme_trundler_title(subtitle = FALSE)
 ```
-
 <br>
 
 ## Track average prices over time
@@ -159,7 +156,7 @@ bovril_products <- search_results %>%
   arrange(retailer)
 
 # View the results
-bovril_products %>% 
+bovril_products %>%
   select(product, retailer, sku) %>%
   group_by(sku) %>%
   slice(1) %>%
@@ -171,7 +168,6 @@ bovril_products %>%
              retailer = md("**Retailer**"),
              sku = md("**SKU**"))
 ```
-
 <br>
 
 As you can see, it is sold at a number of South African retailers. Now, let's retrieve the price data from each retailer, interpolate any missing prices, and find the daily average price.
@@ -179,8 +175,8 @@ As you can see, it is sold at a number of South African retailers. Now, let's re
 <br>
 ```{r}
 # Get the price data for these bovril products, interpolating prices where necessary.
-bovril_prices <- map_dfr(bovril_products$product_id, 
-                         price_complete, 
+bovril_prices <- map_dfr(bovril_products$product_id,
+                         price_complete,
                          date_min = DATE_MIN,
                          date_max = DATE_MAX) %>%
   unnest(cols = c(price)) %>%
@@ -202,7 +198,6 @@ bovril_summary %>%
   cols_label(date = md("**Date**"),
              avg_price = md("**Average Price**"))
 ```
-
 <br>
 
 Finally, let's plot the daily average price of a 250g jar of Bovril sold in South Africa.
@@ -216,12 +211,13 @@ ggplot(bovril_summary, aes(x = date)) +
   scale_y_continuous("Price (ZAR)") +
   labs(
     title = "Bovril 250g: Average Price",
-    subtitle = "At South African Retailers"
+    subtitle = "At South African Retailers",
+    caption = "Data from Trundler / trundler.dev"
   ) +
   theme_trundler() +
   theme_trundler_title() +
   theme(
-     panel.grid.major.y = element_line(colour = TRUNDLER_GREY, size = 0.125),
-     panel.grid.minor.y = element_line(colour = TRUNDLER_GREY, size = 0.125)
-   ) 
+     panel.grid.major.y = element_line(colour = TRUNDLER_GREY, size = 0.25),
+     panel.grid.minor.y = element_line(colour = TRUNDLER_GREY, size = 0.25)
+   )
 ```
