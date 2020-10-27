@@ -38,11 +38,17 @@ price_complete <- function(product_id, date_min = NULL, date_max = NULL) {
     date_max <- max(df$date)
   }
 
-  dates <- seq.Date(date_min, date_max, by = "day")
+  if (date_min > min(df$date) || date_max < max(df$date)) {
+    dates <- seq.Date(min(df$date), max(df$date), by = "day")
+  } else {
+    dates <- seq.Date(date_min, date_max, by = "day")
+  }
 
-  df <- complete(df, date = dates, nesting(product_id)) %>%
+  df <- df %>%
+    complete(date = dates, nesting(product_id)) %>%
     group_by(product_id) %>%
-    mutate(price = approx(date, price, date, method = "constant", rule = 2)$y)
+    mutate(price = approx(date, price, date, method = "constant", rule = 2)$y) %>%
+    filter(date >= date_min, date <= date_max)
 
   df <- df %>%
     mutate(is_interpolated = ifelse(is.na(time), TRUE, FALSE)) %>%
