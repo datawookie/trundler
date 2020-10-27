@@ -4,7 +4,10 @@
 \alias{theme_trundler_title}
 \title{Format plot title, subtitle and caption}
 \usage{
-theme_trundler_title()
+theme_trundler_title(subtitle = TRUE)
+}
+\arguments{
+\item{subtitle}{Set to TRUE by default.  If FALSE, then increase the margin size to prevent collisions between the title and the plot.}
 }
 \description{
 This is a separate function so that it can be applied to plots which are

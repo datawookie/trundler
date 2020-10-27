@@ -4,7 +4,7 @@ output: html_document
 ---
 
 <style type="text/css">
-  body{
+body {
   font-size: 12pt;
 }
 </style>
@@ -13,38 +13,43 @@ output: html_document
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, fig.width = 10, comment = NULL)
 ```
 
-```{r libraries}
-library(trundler) 
-library(dplyr) 
+```{r libraries-and-constants}
+library(trundler)
+library(dplyr)
 library(stringr)
 library(purrr)
 library(tidyr)
-library(ggplot2) 
+library(ggplot2)
 library(gt)
 library(glue)
+
+DATE_MIN = as.Date("2020-03-01")
+DATE_MAX = strftime(Sys.Date(), format = "%Y-%m-%d")
+RETAILER_ID_PICKNPAY = 9
 ```
 
-This report demonstrates how you can quickly generate a report using the Trundler R package.    
-    
+This is an example of how you can generate a report using the Trundler R package.    
+
 ```{r, include = FALSE}
 # You can get an API key from https://rapidapi.com/datawookie/api/trundler
+# Keep your key safe by storing it in a .Renviron file
 API_KEY <- Sys.getenv("TRUNDLER_KEY")
 set_api_key(API_KEY)
 ```
 
 ```{r}
 # Get a dataframe of all available retailers
-retailer_df <- retailer() 
+retailers <- retailer()
 ```
 
 ## View the retailer catalog
 
-Trundler collects data from wide range of retailers.  Currently, there are `r length(retailer_df$retailer)` retailers in the Trundler catalog.  Here are the first ten.
+Trundler collects data from wide range of retailers.  Currently, there are `r length(retailers$retailer)` retailers in the Trundler catalog.  Here are the first ten.
 
 <br>
 ```{r}
 # View the first 10 retailers
-gt(retailer_df[1:10, 1:4]) %>% 
+gt(retailers[1:10, 1:4]) %>%
   tab_header(title = md("**Trundler Retailer Catalog**"),
             subtitle = md("*The first ten retailers in the catalog*")) %>%
   cols_label(retailer_id = md("**Retailer ID**"),
@@ -52,7 +57,6 @@ gt(retailer_df[1:10, 1:4]) %>%
              retailer_url = md("**URL**"),
              currency = md("**Currency**"))
 ```
-
 <br>
 
 ## Track the price of a product at a specific retailer
@@ -60,20 +64,18 @@ gt(retailer_df[1:10, 1:4]) %>%
 It's possible to search a retailer for a product of interest.  Here, we've searched for Bovril products sold at Pick 'n Pay.
 
 <br>
-
 ```{r}
 # Use the retailer_id to search for Bovril products at a specific retailer (e.g. Pick 'n Pay)
-all_bovril <- retailer_products(retailer_id = 9, product = "Bovril") %>%
+all_bovril <- retailer_products(retailer_id = RETAILER_ID_PICKNPAY, product = "Bovril") %>%
   select(product_id, product, sku)
 
-# Print table
+# View the table
 gt(all_bovril) %>%
   tab_header(title = md("**All Bovril Products**"),
              subtitle = md("*At Pick 'n Pay*")) %>%
   cols_label(product_id = md("**Product ID**"),
              product = md("**Product**"),
              sku = md("**SKU**"))
-
 ```
 <br>
 
@@ -81,20 +83,26 @@ As you can see, Pick 'n Pay sells a few different Bovril products.  Let's have a
 
 <br>
 ```{r}
-# Using the corresponding product ID, you can get the product and price data you're interested in. 
-bovril_250g <- product(543374) 
+# Using the corresponding product ID, you can get the product and price data you're interested in.
+bovril_250g_id <- all_bovril %>%
+  filter(product == "Bovril Beefy Spread 250g") %>%
+  select(product_id) %>%
+  unlist()
+
+bovril_250g <- product(bovril_250g_id)
 
 # Add the historical price data and the retailer information
-bovril_250g_prices <- product_prices(543374) %>%
+bovril_250g_prices <- product_prices(bovril_250g_id) %>%
   inner_join(bovril_250g, by = 'product_id') %>%
-  inner_join(retailer_df, by = 'retailer_id') %>%
+  inner_join(retailers, by = 'retailer_id') %>%
   select(date = time, product, retailer, starts_with('price')) %>%
   mutate(date = as.Date(date))
 
+# View the table
 retailer <- bovril_250g_prices$retailer[1]
 product <- bovril_250g_prices$product[1]
 
-bovril_250g_prices %>% 
+bovril_250g_prices %>%
   select(date, starts_with("price")) %>%
   slice(1:10) %>%
   arrange(desc(date)) %>%
@@ -105,150 +113,111 @@ bovril_250g_prices %>%
              price = md("**Price**"),
              price_promotion = md("**Promotional Price**"),
              price_effective = md("**Effective Price**"))
-  
 ```
-
 <br>
 
 It's easier to digest how the price of Bovril has changed over time if we plot the data.
 
 <br>
 ```{r}
-
+# Plot the price history of Bovril 250g
 ggplot(bovril_250g_prices, aes(x = date)) +
-  geom_step(aes(y = price), lwd = 2, alpha = 0.5) +
-  geom_point(aes(y = price), size = 4, alpha = 0.725) +
-  scale_x_date(NULL, date_breaks = "2 weeks", date_labels = "%e %b") +
+  geom_step(aes(y = price), lwd = 2, alpha = 0.5, colour = TRUNDLER_BLUE) +
+  geom_point(aes(y = price), size = 4, alpha = 0.725, colour = TRUNDLER_BLUE) +
+  scale_x_date(NULL, date_breaks = "2 weeks", date_labels = "%e %b", limits = c(DATE_MIN, DATE_MAX)) +
   scale_y_continuous("Price (ZAR)") +
   labs(
-    title = bovril_250g_prices$product[1]
+    title = bovril_250g_prices$product[1],
+    caption = "Data from Trundler / trundler.dev"
   ) +
-  theme_classic() +
+  theme_trundler() +
   theme(
-    plot.title = element_text(size = 20, face = "bold"),
-    plot.subtitle = element_text(size = 15, face = "italic"),
-    axis.text.y = element_text(size = 10, angle = 90, hjust = 0.5),
-    axis.text.x = element_text(size = 10),
-    axis.title.y = element_text(size = 15),
-    panel.grid.major.y = element_line(colour = "grey", size = 0.125)
-  ) 
-
+     panel.grid.major.y = element_line(colour = TRUNDLER_GREY, size = 0.25),
+     panel.grid.minor.y = element_line(colour = TRUNDLER_GREY, size = 0.25)
+   ) +
+  theme_trundler_title(subtitle = FALSE)
 ```
-
 <br>
 
 ## Track average prices over time
 
-It can be useful to track how the average price of a product changes over time.    
-     
-The first step is to search for the product of interest.  In this case, we've searched for all single pineapples of the "Queen" variety.  
+It can be useful to track how the average price of a product changes over time.  Let's search for the 250g Bovril product at *all* South African retailers.
 
 <br>
 ```{r}
 # Search the database
-search_results <- products("queen pineapple", regex = FALSE)
+search_results <- products("bovril")
 
-# Join the search results to the retailer dataframe, use only single queen pineapples at South African retailers.
-pineapple_products <- search_results %>%
-  inner_join(retailer_df, by = 'retailer_id') %>%
-  filter(!str_detect(product, "Juice|[:digit:]g|2|Pack|Half") ,
+# Join the search results to the retailer dataframe.  Use currency field to select only SA retailers.
+bovril_products <- search_results %>%
+  inner_join(retailers, by = 'retailer_id') %>%
+  filter(str_detect(product, "250") ,
          currency == "ZAR") %>%
   arrange(retailer)
 
 # View the results
-pineapple_products %>% 
+bovril_products %>%
   select(product, retailer, sku) %>%
-  unique() %>%
+  group_by(sku) %>%
+  slice(1) %>%
+  ungroup() %>%
   gt() %>%
-  tab_header(title = md("**Single Pineapples**"),
+  tab_header(title = md("**Bovril 250g**"),
              subtitle = md("*Sold at South African retailers*")) %>%
   cols_label(product = md("**Product**"),
              retailer = md("**Retailer**"),
              sku = md("**SKU**"))
 ```
-
 <br>
 
-Now, let's retrieve the price histories for each of these products and combine them into one table.
+As you can see, it is sold at a number of South African retailers. Now, let's retrieve the price data from each retailer, interpolate any missing prices, and find the daily average price.
 
 <br>
 ```{r}
-# Get the price data for these pineapple products
-pineapple_prices <- map_dfr(pineapple_products$product_id, product_prices) %>%
+# Get the price data for these bovril products, interpolating prices where necessary.
+bovril_prices <- map_dfr(bovril_products$product_id,
+                         price_complete,
+                         date_min = DATE_MIN,
+                         date_max = DATE_MAX) %>%
   unnest(cols = c(price)) %>%
-  mutate(date = as.Date(time)) %>%
-  inner_join(pineapple_products, by = 'product_id') %>%
+  inner_join(bovril_products, by = 'product_id') %>%
   select(date, product_id, sku, product, retailer, starts_with("price"))
 
-# Consolidate the product price if any products have more than one product ID - this is where the SKU is really useful!
-pineapple_consolidated <- pineapple_prices %>%
-  group_by(date, sku) %>%
-  summarise(price = mean(price), .groups = "drop")
-
-# Print first few rows 
-pineapple_consolidated %>% 
-  slice(1:10) %>%
-  gt() %>%
-  tab_header(title = md("**Single Pineapples: Prices**"),
-             subtitle = md("*First ten records*")) %>%
-  cols_label(date = md("**Date**"),
-             sku = md("**SKU**"),
-             price = md("**Price**"))
-```
-
-<br>
-
-As you can see, the date intervals are irregular, but we can interpolate the prices for any missing days before calculating the average price.
-
-<br>
-```{r}
-# First, create a uniform sequence of dates
-dates <- seq.Date(
-  min(pineapple_consolidated$date),
-  max(pineapple_consolidated$date),
-  by = "day"
-)
-
-# Expand to cover full date range, interpolate prices for missing dates, and get the average price for each day
-pineapple_summary <- complete(pineapple_consolidated, date = dates, nesting(sku)) %>%
-  group_by(sku) %>%
-  mutate(price_interpolate = approx(date, price, date, method = "constant", rule = 2)$y) %>%
+# Get the average daily price of Bovril in South Africa
+bovril_summary <- bovril_prices %>%
   group_by(date) %>%
-  summarise(avg_price = mean(price_interpolate))
+  summarise(avg_price = mean(price))
 
 # View the table
-pineapple_summary %>%
+bovril_summary %>%
   arrange(desc(date)) %>%
     slice(1:10) %>%
   gt() %>%
-  tab_header(title = md("**Single Pineapples: Average Price**"),
+  tab_header(title = md("**Bovril 250g: Average Price**"),
              subtitle = md("*Past ten days*")) %>%
   cols_label(date = md("**Date**"),
              avg_price = md("**Average Price**"))
 ```
-
 <br>
 
-Finally, let's plot the average price!
+Finally, let's plot the daily average price of a 250g jar of Bovril sold in South Africa.
 
 <br>
 ```{r}
-
-ggplot(pineapple_summary, aes(x = date)) +
-  geom_line(aes(y = avg_price), lwd = 2, alpha = 0.75) +
+# Plot the average price
+ggplot(bovril_summary, aes(x = date)) +
+  geom_line(aes(y = avg_price), lwd = 2, alpha = 0.75, colour = TRUNDLER_BLUE) +
   scale_x_date(NULL, date_breaks = "2 weeks", date_labels = "%e %b") +
   scale_y_continuous("Price (ZAR)") +
   labs(
-    title = "Single Pineapples: Average Price",
-    subtitle = "Sold in South Africa"
+    title = "Bovril 250g: Average Price",
+    subtitle = "At South African Retailers",
+    caption = "Data from Trundler / trundler.dev"
   ) +
-  theme_classic() +
+  theme_trundler() +
+  theme_trundler_title() +
   theme(
-    plot.title = element_text(size = 20, face = "bold"),
-    plot.subtitle = element_text(size = 15, face = "italic"),
-    axis.text.y = element_text(size = 10, angle = 90, hjust = 0.5),
-    axis.text.x = element_text(size = 10),
-    axis.title.y = element_text(size = 15),
-    panel.grid.major.y = element_line(colour = "grey", size = 0.125)
-  ) 
+     panel.grid.major.y = element_line(colour = TRUNDLER_GREY, size = 0.25),
+     panel.grid.minor.y = element_line(colour = TRUNDLER_GREY, size = 0.25)
+   )
 ```
