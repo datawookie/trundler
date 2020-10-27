@@ -3,8 +3,10 @@
 #' This is a separate function so that it can be applied to plots which are
 #' constructed using {patchwork}.
 #'
+#' @param subtitle Set to TRUE by default.  If FALSE, then increase the margin size to prevent collisions between the title and the plot.
+#'
 #' @export
-theme_trundler_title <- function() {
+theme_trundler_title <- function(subtitle = TRUE) {
   theme(
     plot.title.position = "plot",
     plot.caption.position = "plot",
@@ -12,7 +14,7 @@ theme_trundler_title <- function() {
       size = rel(22/11),
       lineheight = 1,
       padding = margin(7.5, 5.5, 5.5, 5.5),
-      margin = margin(0, 0, 0, 0),
+      margin = margin(0, 0, ifelse(subtitle, 0, 5.5), 0),
       fill = TRUNDLER_SLATE,
       colour = "white"
     ),
