@@ -18,7 +18,8 @@ test_that("categories graph", {
 test_that("category products", {
   skip_on_cran()
 
-  expect_equal(names(category_products(85)), c("product_id", "retailer_id", "product", "brand", "model", "sku"))
+  last_category_id <- tail(categories()$category_id, n = 1)
+  expect_equal(names(category_products(last_category_id)), c("product_id", "retailer_id", "product", "brand", "model", "sku"))
 })
 
 test_that("invalid category", {
