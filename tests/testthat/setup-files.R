@@ -31,7 +31,13 @@ db_get_product <- function(where) {
   db_fetch_query(SQL)$id
 }
 db_get_retailer <- function(where) {
-  SQL <- glue("SELECT retailer.id FROM retailer WHERE visible LIMIT 1;")
+  SQL <- glue("SELECT retailer.id, product.product, product.brand FROM retailer INNER JOIN product ON retailer.id = product.retailer_id WHERE visible AND brand IS NOT NULL LIMIT 1;")
+
+  db_fetch_query(SQL)
+}
+
+db_retailer_no_products <- function(where) {
+  SQL <- glue("SELECT retailer.id FROM retailer LEFT JOIN product ON retailer.id = product.retailer_id WHERE NOT visible AND retailer_id IS NULL LIMIT 1;")
 
   db_fetch_query(SQL)$id
 }
@@ -59,7 +65,11 @@ if (!testthat:::on_cran()) {
 
   db_send_statement("set search_path to prd, public;")
 
-  retailer_id           <- db_get_retailer()
+  retailer_id           <- db_get_retailer()$id
+  retailer_brand        <- db_get_retailer()$brand
+  retailer_product      <- db_get_retailer()$product
+
+  retailer_no_products  <- db_retailer_no_products()
 
   product_id            <- db_get_product("TRUE")
   product_id_null_brand <- db_get_product("brand IS NULL")
