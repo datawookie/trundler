@@ -1,5 +1,16 @@
 context("theme")
 
+plot_data <- product_prices(product_id) %>% mutate(date = as.Date(time))
+
+p <- ggplot(plot_data, aes(x = date, y = price, colour = product_id)) +
+  geom_line() +
+  labs(title = "Trundler Title",
+       subtitle = "Trundler Subtitle",
+       caption = "Trundler Caption") +
+  theme_trundler() +
+  theme_trundler_title() +
+  theme_trundler_watermark()
+
 test_that("theme", {
   skip_on_cran()
 
