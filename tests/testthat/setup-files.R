@@ -42,6 +42,12 @@ db_retailer_no_products <- function(where) {
   db_fetch_query(SQL)$id
 }
 
+db_retailer_product_count <- function(where) {
+  SQL <- glue("SELECT count(*), retailer_id FROM product GROUP BY retailer_id HAVING count(*) > 10000 LIMIT 1;")
+
+  db_fetch_query(SQL)
+}
+
 # Use on_cran() to check if we are running on CRAN.
 #
 # If you are not CRAN (which applies to most of us), then you need to set an environment variable:
@@ -70,6 +76,9 @@ if (!testthat:::on_cran()) {
   retailer_product      <- db_get_retailer()$product
 
   retailer_no_products  <- db_retailer_no_products()
+
+  retailer_product_count <- db_retailer_product_count()$count
+  retailer_product_count_id <- db_retailer_product_count()$retailer_id
 
   product_id            <- db_get_product("TRUE")
   product_id_null_brand <- db_get_product("brand IS NULL")
