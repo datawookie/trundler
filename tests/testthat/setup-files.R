@@ -74,4 +74,15 @@ if (!testthat:::on_cran()) {
   product_id            <- db_get_product("TRUE")
   product_id_null_brand <- db_get_product("brand IS NULL")
   product_id_null_sku   <- db_get_product("sku IS NULL")
+
+  plot_data <- product_prices(product_id) %>% mutate(date = as.Date(time))
+
+  p <- ggplot(plot_data, aes(x = date, y = price, colour = product_id)) +
+    geom_line() +
+    labs(title = "Trundler Title",
+         subtitle = "Trundler Subtitle",
+         caption = "Trundler Caption") +
+    theme_trundler() +
+    theme_trundler_title() +
+    theme_trundler_watermark()
 }
