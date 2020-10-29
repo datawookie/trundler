@@ -17,9 +17,9 @@ test_that("http error message", {
 test_that("HEAD", {
   r = trundler:::HEAD(sprintf("https://api.trundler.dev/retailer/%d/product", retailer_product_count_id))
 
-  product_count <- as.numeric(r$headers$`x-total-count`)
+  product_count <- as.integer(r$headers$`x-total-count`)
 
-  expect_equal(product_count, retailer_product_count)
+  expect_equal(product_count, as.integer(retailer_product_count))
 })
 
 
