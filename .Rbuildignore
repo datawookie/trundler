@@ -1,6 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 README.Rmd
+README_cache/
 pkgdown/
 _pkgdown.yml
 docs
