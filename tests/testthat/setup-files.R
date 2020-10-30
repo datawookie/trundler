@@ -30,19 +30,19 @@ db_get_product <- function(where) {
 
   db_fetch_query(SQL)$id
 }
-db_get_retailer <- function(where) {
+db_get_retailer <- function() {
   SQL <- glue("SELECT retailer.id, product.product, product.brand FROM retailer INNER JOIN product ON retailer.id = product.retailer_id WHERE visible AND brand IS NOT NULL LIMIT 1;")
 
   db_fetch_query(SQL)
 }
 
-db_retailer_no_products <- function(where) {
+db_retailer_no_products <- function() {
   SQL <- glue("SELECT retailer.id FROM retailer LEFT JOIN product ON retailer.id = product.retailer_id WHERE NOT visible AND retailer_id IS NULL LIMIT 1;")
 
   db_fetch_query(SQL)$id
 }
 
-db_retailer_product_count <- function(where) {
+db_retailer_product_count <- function() {
   SQL <- glue("SELECT count(*), retailer_id FROM product GROUP BY retailer_id HAVING count(*) > 10000 LIMIT 1;")
 
   db_fetch_query(SQL)
