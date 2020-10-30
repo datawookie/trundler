@@ -46,3 +46,13 @@ test_that("product count", {
   expect_type(product_count, "integer")
   expect_length(product_count, 1)
 })
+
+test_that("product prices", {
+  skip_on_cran()
+
+  expect_error(product_prices(product_id), NA)
+
+  first_product <- product_prices(product_id)
+
+  expect_equal(names(first_product), c("product_id", "time", "price", "price_promotion", "price_effective", "available"))
+})
