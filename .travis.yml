@@ -28,6 +28,7 @@ notifications:
   email:
     recipients:
     - andrew@exegetic.biz
+    - matt@exegetic.biz
     on_success: change
     on_failure: change
 before_deploy:
