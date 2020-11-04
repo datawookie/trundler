@@ -44,7 +44,7 @@ paginate <- function(url, head = FALSE, limit = 10000, verbose = NULL) {
           #
           stepper <- progressr::progressor(steps = count_page, auto_finish = FALSE)
         } else {
-          break
+          stepper <- function(){}
         }
       }
 
