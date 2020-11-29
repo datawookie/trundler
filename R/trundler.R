@@ -9,37 +9,47 @@ cache <- new.env()
 #
 globalVariables(
   c(
+    "annotation_custom",
     "auth_id",
-    "retailer_id",
-    "product_id",
-    "parent_id",
-    "category_id",
-    "category_parent_id",
-    "path",
-    "from",
-    "to",
-    "start_time",
-    "finish_time",
-    "price_total",
-    "brand",
-    "model",
-    "sku",
-    "label",
-    "category_label",
+    "available",
     "barcodes",
+    "brand",
+    "category_id",
+    "category_label",
+    "category_parent_id",
+    "element_text",
+    "finish_time",
+    "from",
+    "is_interpolated",
+    "label",
+    "margin",
+    "model",
+    "parent_id",
+    "path",
     "price",
     "price_promotion",
-    "available"
+    "price_total",
+    "product_id",
+    "retailer_id",
+    "sku",
+    "start_time",
+    "time",
+    "theme",
+    "theme_classic",
+    "to"
   )
 )
 
-#' @import magrittr
 #' @import jsonlite
 #' @import tibble
 #' @import dplyr
 #' @import tidyselect
 #' @import tidygraph
+#' @import tidyr
 #' @import progressr
+#' @import ggplot2
+#' @import ggtext
+#' @importFrom magrittr %>%
 #' @importFrom utils URLencode
 #' @importFrom glue glue
 #' @importFrom httr add_headers
@@ -47,6 +57,7 @@ globalVariables(
 #' @importFrom httr http_type
 #' @importFrom httr content
 #' @importFrom httr status_code
+#' @importFrom stats approx
 #' @importFrom urltools param_set
 
 assign("base_url", BASE_URL, envir = cache)
@@ -87,14 +98,37 @@ base_url <- function() {
 
 #' Set API key
 #'
+#' Specify the key for accessing the Trundler API. You can either get an internal
+#' key directly from us or a RapidAPI key from the \href{https://rapidapi.com/datawookie/api/trundler}{Trundler page on RapidAPI}.
+#'
+#' Automatically determines which type of key is being used and authenticates appropriately.
+#'
 #' @param api_key API key.
 #'
 #' @export
 #'
 #' @examples
+#' # Authenticate using an internal API key.
 #' set_api_key("8f9f3c4e-5dd6-4bff-3a2c-592b45cf2437")
+#'
+#' # Authenticate using a RapidAPI key.
+#' set_api_key("5a1ae0ce24mshd483dae6ab7308dp129ef6jsn1f473053d6b0")
 set_api_key <- function(api_key) {
-  assign("api_key", api_key, envir = cache)
+  if (grepl("^[[:lower:][:digit:]]{50}$", api_key)) {
+    message("Using a RapidAPI key.")
+    assign("rapidapi_key", api_key, envir = cache)
+    set_base_url(RAPIDAPI_URL)
+  }
+  else if (grepl("^[[:lower:][:digit:]-]{36}$", api_key)) {
+    assign("api_key", api_key, envir = cache)
+  }
+  else {
+    if (api_key == "" || is.na(api_key) || is.null(api_key)) {
+      stop("API key is missing.", call. = FALSE)
+    } else {
+      stop(glue("Unknown API key type: '{api_key}'."), call. = FALSE)
+    }
+  }
 }
 
 #' Retrieve API key
@@ -115,21 +149,6 @@ get_api_key <- function() {
   } else {
     api_key
   }
-}
-
-#' Set RapidAPI key
-#'
-#' @param api_key API key for RapidAPI.
-#'
-#' @export
-#'
-#' @examples
-#' \dontrun{
-#' set_rapidapi_key("5a1ae0ce24mshd483dae6ab7308dp129ef6jsn1f473053d6b0")
-#' }
-set_rapidapi_key <- function(api_key) {
-  assign("rapidapi_key", api_key, envir = cache)
-  set_base_url(RAPIDAPI_URL)
 }
 
 #' Retrieve RapidAPI key

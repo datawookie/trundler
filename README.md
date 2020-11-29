@@ -11,6 +11,9 @@ coverage](https://img.shields.io/codecov/c/github/datawookie/trundler.svg)](http
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 
+[Trundler](https://www.trundler.dev) provides access to product and
+historical price data from a range of online retailers.
+
 The homepage for the {trundler} R package is at
 <https://datawookie.github.io/trundler/>.
 
@@ -20,6 +23,13 @@ Install from GitHub.
 
 ``` r
 remotes::install_github("datawookie/trundler")
+```
+
+If you want to be closer to the bleeding edge then you can also install
+from the development branch.
+
+``` r
+remotes::install_github("datawookie/trundler", ref = "dev")
 ```
 
 ## Usage
@@ -34,7 +44,7 @@ Check version.
 packageVersion("trundler")
 ```
 
-    [1] '0.1.5'
+    [1] '0.1.23'
 
 ### Set API Key
 
@@ -42,19 +52,18 @@ To access the full API you’ll need to first specify an API key.
 
 ``` r
 # Example API key (this key will not work).
-#
-set_api_key("5bed3ac9-6dc9-4926-aed8-8c97a7cb8057")
+set_api_key("8f9f3c4e-5dd6-4bff-3a2c-592b45cf2437")
 ```
 
 To obtain a key, please get in touch. Contact details are in
 `DESCRIPTION`.
 
 You can also subscribe via
-[RapidAPI](https://rapidapi.com/datawookie/api/trundler), in which case
-you use a different function to register your key.
+[RapidAPI](https://rapidapi.com/datawookie/api/trundler).
 
 ``` r
-set_rapidapi_key("5a1ae0ce24mshd483dae6ab7308dp129ef6jsn1f473053d6b0")
+# Example RapidAPI key (this key will not work).
+set_api_key("5a1ae0ce24mshd483dae6ab7308dp129ef6jsn1f473053d6b0")
 ```
 
 ### Retailers
@@ -65,20 +74,20 @@ Use `retailer()` to get a list of retailers.
 retailer()
 ```
 
-    # A tibble: 103 x 4
-       retailer_id retailer         retailer_url                     currency
-             <int> <chr>            <chr>                            <chr>   
-     1           1 EEM Technologies https://www.eemtechnologies.com/ USD     
-     2           2 Clicks           https://clicks.co.za/            ZAR     
-     3           3 Dischem          https://www.dischem.co.za/       ZAR     
-     4           4 Game             https://www.game.co.za/          ZAR     
-     5           5 Woolworths       https://www.woolworths.co.za/    ZAR     
-     6           6 Fortnum & Mason  https://www.fortnumandmason.com/ GBP     
-     7           7 John Lewis       https://www.johnlewis.com/       GBP     
-     8           8 Marks & Spencer  https://www.marksandspencer.com/ GBP     
-     9           9 Pick 'n Pay      https://www.pnp.co.za/           ZAR     
-    10          10 Makro            https://www.makro.co.za/         ZAR     
-    # … with 93 more rows
+    # A tibble: 148 x 5
+       retailer_id retailer         retailer_url                    currency visible
+             <int> <chr>            <chr>                           <chr>    <lgl>  
+     1           1 EEM Technologies https://www.eemtechnologies.co… USD      TRUE   
+     2           2 Clicks           https://clicks.co.za/           ZAR      TRUE   
+     3           3 Dischem          https://www.dischem.co.za/      ZAR      TRUE   
+     4           4 Game             https://www.game.co.za/         ZAR      TRUE   
+     5           5 Woolworths       https://www.woolworths.co.za/   ZAR      TRUE   
+     6           6 Fortnum & Mason  https://www.fortnumandmason.co… GBP      FALSE  
+     7           7 John Lewis       https://www.johnlewis.com/      GBP      FALSE  
+     8           8 Marks & Spencer  https://www.marksandspencer.co… GBP      FALSE  
+     9           9 Pick 'n Pay      https://www.pnp.co.za/          ZAR      TRUE   
+    10          10 Makro            https://www.makro.co.za/        ZAR      TRUE   
+    # … with 138 more rows
 
 Or you can acccess the details for a specific retailer.
 
@@ -87,10 +96,10 @@ retailer(45)
 ```
 
 ``` 
-# A tibble: 1 x 4
-  retailer_id retailer           retailer_url                currency
-        <int> <chr>              <chr>                       <chr>   
-1          45 Builders Warehouse https://www.builders.co.za/ ZAR     
+# A tibble: 1 x 5
+  retailer_id retailer           retailer_url                currency visible
+        <int> <chr>              <chr>                       <chr>    <lgl>  
+1          45 Builders Warehouse https://www.builders.co.za/ ZAR      TRUE   
 ```
 
 ### Products
@@ -101,20 +110,20 @@ Get a list of products for a specific retailer.
 retailer_products(5)
 ```
 
-    # A tibble: 92,284 x 5
-       product_id product                         brand              model sku      
-            <int> <chr>                           <chr>              <chr> <chr>    
-     1    2591731 Soft Touch Bikinis 2 Pack       <NA>               <NA>  60092074…
-     2     606751 Belted Chinos                   Woolworths Classi… <NA>  60092117…
-     3     606756 Cropped Leggings                Woolworths Classi… <NA>  60092110…
-     4     606804 Pure Cotton Towelling Nappies … <NA>               <NA>  60092149…
-     5     607099 Best Baby Ever Cotton Blend T-… <NA>               <NA>  60092149…
-     6     607120 DR. HAUSCHKA Night & Active Kit Dr. Hauschka       <NA>  40208290…
-     7     607465 Non-slip Chrome Hangers 5-Pack  <NA>               <NA>  60091732…
-     8     608276 Extra Depth & Length 144TC Cot… <NA>               <NA>  60092146…
-     9     608341 144TC Cotton Blend Fitted Sheet <NA>               <NA>  60092146…
-    10     608419 All Year Round Temperature Com… <NA>               <NA>  60091789…
-    # … with 92,274 more rows
+    # A tibble: 215,578 x 5
+       product_id product                                 brand   model sku         
+            <int> <chr>                                   <chr>   <chr> <chr>       
+     1    2849767 Micro Textured Blazer - DEEP BLUE / 48  Trenery <NA>  93402439912…
+     2    2849768 Micro Textured Blazer - DEEP BLUE / 36  Trenery <NA>  93402439912…
+     3    2849769 Micro Textured Blazer - DEEP BLUE / 40  Trenery <NA>  93402439912…
+     4    2849770 Puppytooth Check Blazer - MARINE BLUE … Trenery <NA>  93545301015…
+     5    2849771 Puppytooth Check Blazer - MARINE BLUE … Trenery <NA>  93545301015…
+     6    2849772 Puppytooth Check Blazer - MARINE BLUE … Trenery <NA>  93545301015…
+     7    2849773 Puppytooth Check Blazer - MARINE BLUE … Trenery <NA>  93545301015…
+     8    2849774 Puppytooth Check Blazer - MARINE BLUE … Trenery <NA>  93545301015…
+     9    2849775 Puppytooth Check Blazer - MARINE BLUE … Trenery <NA>  93545301015…
+    10    2849776 Puppytooth Check Blazer - MARINE BLUE … Trenery <NA>  93545301015…
+    # … with 215,568 more rows
 
 Products can be filtered by name and brand.
 
@@ -122,14 +131,19 @@ Products can be filtered by name and brand.
 retailer_products(5, product = "coffee", brand = "nespresso")
 ```
 
-    # A tibble: 5 x 5
-      product_id product                                 brand    model sku         
-           <int> <chr>                                   <chr>    <chr> <chr>       
-    1     667365 NESPRESSO Essenza Mini Coffee Machine   Nespres… <NA>  76300396187…
-    2     667426 NESPRESSO Citiz&Milk Coffee Machine     Nespres… <NA>  76300544309…
-    3     667654 NESPRESSO Lattissima Touch Coffee Mach… Nespres… <NA>  76300476151…
-    4     667815 NESPRESSO Lattissima One Coffee Machine Nespres… <NA>  76300396464…
-    5     729093 NESPRESSO Creatista Plus Coffee Machine Nespres… <NA>  76300396488…
+    # A tibble: 10 x 5
+       product_id product                                brand    model sku         
+            <int> <chr>                                  <chr>    <chr> <chr>       
+     1    2918572 Creatista Plus Coffee Machine - SILVER Nespres… <NA>  76300396488…
+     2    2918582 Citiz&Milk Coffee Machine - WHITE      Nespres… <NA>  76300544309…
+     3    2918584 Lattissima One Coffee Machine - WHITE  Nespres… <NA>  76300396464…
+     4    2918599 Essenza Mini Coffee Machine - BLACK    Nespres… <NA>  76300396187…
+     5    2918601 Lattissima Touch Coffee Machine - SIL… Nespres… <NA>  76300476151…
+     6     667365 NESPRESSO Essenza Mini Coffee Machine  Nespres… <NA>  76300396187…
+     7     667426 NESPRESSO Citiz&Milk Coffee Machine    Nespres… <NA>  76300544309…
+     8     667654 NESPRESSO Lattissima Touch Coffee Mac… Nespres… <NA>  76300476151…
+     9     729093 NESPRESSO Creatista Plus Coffee Machi… Nespres… <NA>  76300396488…
+    10     667815 NESPRESSO Lattissima One Coffee Machi… Nespres… <NA>  76300396464…
 
 A similar search can be applied across *all* retailers.
 
@@ -137,58 +151,58 @@ A similar search can be applied across *all* retailers.
 products(product = "hand sanitiser")
 ```
 
-    # A tibble: 126 x 6
-       product_id retailer_id product                     brand     model sku       
-            <int>       <int> <chr>                       <chr>     <chr> <chr>     
-     1    2121127          63 Kids Waterless Hand Saniti… Handtizer <NA>  KID330    
-     2    1427238           5 CHARLOTTE RHYS St Thomas W… Charlott… <NA>  606110261…
-     3    1753347          63 Waterless Hand Sanitiser -… Charlott… <NA>  FCR075HAN…
-     4    1753348          63 Waterless Hand Sanitiser -… Charlott… <NA>  FCR300WHS 
-     5    1782558           3 Aquashield Hand Sanitiser … <NA>      <NA>  000000000…
-     6    1782566           3 Aquashield Hand Sanitiser … <NA>      <NA>  000000000…
-     7    1782675           3 Aquashield Hand Sanitiser … <NA>      <NA>  000000000…
-     8    1782684           3 Aquashield Hand Sanitiser … <NA>      <NA>  000000000…
-     9    2121135          63 Waterless Hand Sanitiser -… Handtizer <NA>  HAND330   
-    10    2265497          95 Dettol Instant Hand Saniti… <NA>      <NA>  10614438EA
-    # … with 116 more rows
+    # A tibble: 315 x 6
+       product_id retailer_id product                    brand     model sku        
+            <int>       <int> <chr>                      <chr>     <chr> <chr>      
+     1    1337317          63 Hand Sanitiser Mist, 50ml  Cape Isl… <NA>  HSSD50     
+     2    1337319          63 Hand Sanitiser Pump, 200ml Cape Isl… <NA>  HSSD200    
+     3    1356101          30 Dr. Bronner's Organic Han… <NA>      <NA>  362030011  
+     4    1357926          30 Organic Children Hand San… <NA>      <NA>  66685011   
+     5    1386565           9 LIFEBUOY HAND SANITISER T… <NA>      <NA>  0000000000…
+     6    1385527           9 LIFEBUOY HAND SANITISER L… <NA>      <NA>  0000000000…
+     7    1385530           9 LIFEBUOY HAND SANITISER T… <NA>      <NA>  0000000000…
+     8    1380393          45 Shield Handex Hand Saniti… Shield    <NA>  661382     
+     9    1782558           3 Aquashield Hand Sanitiser… <NA>      <NA>  0000000000…
+    10    1427238           5 CHARLOTTE RHYS St Thomas … Charlott… <NA>  6061102616…
+    # … with 305 more rows
 
 ``` r
 products(product = "coffee", brand = "nespresso|nescafe")
 ```
 
-    # A tibble: 179 x 6
-       product_id retailer_id product                      brand     model sku      
-            <int>       <int> <chr>                        <chr>     <chr> <chr>    
-     1    1515084          13 Nescafe Original Instant Co… NESCAFE   <NA>  254889601
-     2    1471626          35 NESPRESSO Magimix CitiZ & M… NESPRESSO <NA>  311-8204…
-     3    1492620          13 Nescafe Original Decaffeina… NESCAFE   <NA>  254889371
-     4    1513042          13 Nescafe Dolce Gusto Preludi… NESCAFE … <NA>  296837064
-     5    1486019          13 Nescafe Dolce Gusto Cafe Au… NESCAFE … <NA>  301217353
-     6    1486026          13 Nescafe Dolce Gusto America… NESCAFE … <NA>  266292846
-     7    1492565          13 Nescafe Original Decaffeina… NESCAFE   <NA>  254889388
-     8    1492555          13 Nescafe Black Gold Instant … NESCAFE   <NA>  297876954
-     9    1486022          13 Nescafe Dolce Gusto Flat Wh… NESCAFE … <NA>  301217330
-    10    1486010          13 Nescafe Dolce Gusto America… NESCAFE … <NA>  276686404
-    # … with 169 more rows
+    # A tibble: 308 x 6
+       product_id retailer_id product                    brand      model sku       
+            <int>       <int> <chr>                      <chr>      <chr> <chr>     
+     1    1381129          10 Nescafe Dolce Gusto Coffe… NESCAFE    <NA>  000000000…
+     2    1492579          13 Nescafe Azera Americano C… NESCAFE    <NA>  304366804 
+     3    1486078          13 Nescafe Azera Espresso Ro… NESCAFE    <NA>  304366827 
+     4    1471626          35 NESPRESSO Magimix CitiZ &… NESPRESSO  <NA>  311-82040…
+     5    1486022          13 Nescafe Dolce Gusto Flat … NESCAFE D… <NA>  301217330 
+     6    1486010          13 Nescafe Dolce Gusto Ameri… NESCAFE D… <NA>  276686404 
+     7    1486025          13 Nescafe Dolce Gusto Cafe … NESCAFE D… <NA>  282108148 
+     8    1486050          13 Nescafe Original Instant … NESCAFE    <NA>  254889590 
+     9    1486060          13 Nescafe Gold Blend Instan… NESCAFE    <NA>  297334369 
+    10    1486041          13 Nescafe Cap Colombie Coff… NESCAFE    <NA>  297860949 
+    # … with 298 more rows
 
 ``` r
 products(product = "tv", brand = "samsung|hisense")
 ```
 
-    # A tibble: 954 x 6
-       product_id retailer_id product                          brand  model sku     
-            <int>       <int> <chr>                            <chr>  <chr> <chr>   
-     1    1417977          51 "Samsung 49\" UA49RU7100 LED UH… Samsu… <NA>  UA49RU7…
-     2    1417983          51 "Samsung 55\" QA55Q60RAK QLED 4… Samsu… <NA>  QA55Q60…
-     3    1417984          51 "Samsung 65” QA65Q60RAK QLED UH… Samsu… <NA>  QA65Q60…
-     4    1417987          51 "Samsung 65” QA65Q900RBK QLED 8… Samsu… <NA>  QA65Q90…
-     5    1417988          51 "Samsung 65\" QA65Q70RAK QLED U… Samsu… <NA>  QA65Q70…
-     6    1417989          51 "Samsung 65\" QA65Q80RAK QLED U… Samsu… <NA>  QA65Q80…
-     7    1417991          51 "Samsung 75\" QA75Q60R QLED UHD… Samsu… <NA>  QA75Q60R
-     8    1418018          51 "Samsung 82” Q60R QLED UHD Smar… Samsu… <NA>  QA82Q60 
-     9    1418021          51 "Samsung 40” N5000 LED FHD Tv"   Samsu… <NA>  UA40N50…
-    10    1418023          51 "Samsung 49” N5000 LED FHD Tv"   Samsu… <NA>  UA49N50…
-    # … with 944 more rows
+    # A tibble: 1,845 x 6
+       product_id retailer_id product                        brand  model sku       
+            <int>       <int> <chr>                          <chr>  <chr> <chr>     
+     1    1337871          12 "Samsung 49-inch(124cm) Smart… SAMSU… <NA>  000000000…
+     2    1402235          47 "Samsung 49\" UHD TV - UA49RU… Samsu… <NA>  67652SUP  
+     3    1402267          47 "Samsung 139cm(55\") UHD TV -… Samsu… <NA>  67650     
+     4    1401154          47 "Hisense 81cm (32\") HD TV - … Hisen… <NA>  68559     
+     5    1402240          47 "Samsung 147cm(58\") UHD 4K F… Samsu… <NA>  67648SUP  
+     6    1402243          47 "Samsung 109cm(43\") UHD 4K F… Samsu… <NA>  67653     
+     7    1402246          47 "Hisense 81cm (32\") HD TV - … Hisen… <NA>  68559     
+     8    1462280          35 "Black Bezel for The Frame 65… SAMSU… <NA>  5196-1020…
+     9    1417643          51 "Samsung Ua32n5300 LED TV 32 … Samsu… <NA>  UA32N5300 
+    10    1417647          51 "Samsung 82” UA82RU8000 LED U… Samsu… <NA>  UA82RU8000
+    # … with 1,835 more rows
 
 Information on a specific product.
 
@@ -196,8 +210,7 @@ Information on a specific product.
 item <- product(530290)
 ```
 
-What fields are
-available?
+What fields are available?
 
 ``` r
 names(item)
@@ -227,7 +240,8 @@ item$sku
 item$barcodes
 ```
 
-    [1] NA
+    [[1]]
+    [1] "6001087378543"
 
 ### Prices
 
@@ -237,17 +251,34 @@ Get price history data for a specific product.
 product_prices(530290)
 ```
 
-    # A tibble: 41 x 6
+    # A tibble: 112 x 6
        product_id time                price price_promotion price_effective
             <int> <dttm>              <dbl>           <dbl>           <dbl>
-     1     530290 2020-05-10 03:23:38  50.0            40.0            40.0
-     2     530290 2020-05-09 02:56:09  50.0            40.0            40.0
-     3     530290 2020-05-08 01:36:36  50.0            40.0            40.0
-     4     530290 2020-05-06 03:06:50  50.0            40.0            40.0
-     5     530290 2020-05-05 01:34:16  50.0            40.0            40.0
-     6     530290 2020-05-04 02:56:37  50.0            40.0            40.0
-     7     530290 2020-05-03 03:01:05  50.0            40.0            40.0
-     8     530290 2020-05-02 04:27:22  50.0            40.0            40.0
-     9     530290 2020-05-01 02:20:50  50.0            40.0            40.0
-    10     530290 2020-04-30 02:21:07  50.0            40.0            40.0
-    # … with 31 more rows, and 1 more variable: available <lgl>
+     1     530290 2020-10-02 04:15:47  50.0            NA              50.0
+     2     530290 2020-09-30 03:28:43  50.0            NA              50.0
+     3     530290 2020-09-28 04:41:45  50.0            NA              50.0
+     4     530290 2020-09-25 03:00:45  50.0            NA              50.0
+     5     530290 2020-09-23 01:27:21  50.0            NA              50.0
+     6     530290 2020-09-21 04:13:07  50.0            NA              50.0
+     7     530290 2020-09-18 03:48:55  50.0            40.0            40.0
+     8     530290 2020-09-16 03:26:28  50.0            40.0            40.0
+     9     530290 2020-09-14 04:40:09  50.0            40.0            40.0
+    10     530290 2020-09-11 03:43:14  50.0            NA              50.0
+    # … with 102 more rows, and 1 more variable: available <lgl>
+
+### Options
+
+You can control the volume of console output with options:
+
+  - `options(trundler.chatty = TRUE)`: provide more output; and
+  - `options(trundler.chatty = FALSE)`: provide less output.
+
+## RMarkdown Template
+
+You can use the Trundler RMarkdown template to quickly produce
+visualisations for product price histories. After installing the
+package, select “Trundler Report Template” under the “From Template”
+option on the **New RMarkdown** dialog.
+
+*Note:* You might need to restart RStudio before the template shows up
+in the menu.

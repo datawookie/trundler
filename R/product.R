@@ -137,7 +137,8 @@ product_prices <- function(product_id, head = FALSE, ...) {
         ) %>%
         select(-available, available)
     } else {
-        message("No prices are currently available for this product.")
+      message(paste0("No prices are currently available for product with ID = ",
+                     product_id, "."))
         tibble(
           product_id = integer(),
           time = as.POSIXct(integer(), origin = "1970-01-01"),

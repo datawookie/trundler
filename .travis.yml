@@ -2,7 +2,9 @@ language: r
 r:
 - release
 - oldrel
-warnings_are_errors: false
+dist: bionic
+
+warnings_are_errors: true
 latex: false
 cache: packages
 r_packages:
@@ -16,8 +18,10 @@ addons:
   apt:
     packages:
     - libmagick++-dev
+
 after_success:
-- Rscript -e 'library(covr); codecov()'
+  - Rscript -e 'library(covr); codecov()'
+
 notifications:
   email:
     recipients:
