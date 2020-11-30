@@ -7,6 +7,7 @@
 products(
   product = NA,
   brand = NA,
+  sku = NA,
   regex = TRUE,
   ignore_case = TRUE,
   barcode = NA,
@@ -18,6 +19,8 @@ products(
 \item{product}{Filter by product name (treated as a regular expression).}
 
 \item{brand}{Filter by product brand (treated as a regular expression).}
+
+\item{sku}{Filter by SKU.}
 
 \item{regex}{Should filter be treated as a Regular Expression?}
 
@@ -41,5 +44,6 @@ products(product = "coffee")
 products(brand = "Illy")
 products(product = "coffee", brand = "Illy")
 products(product = "coffee", brand = "Illy", head = TRUE)
+products(sku = "086079")
 }
 }
