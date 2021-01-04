@@ -30,10 +30,22 @@ db_get_product <- function(where) {
 
   db_fetch_query(SQL)$id
 }
-db_get_retailer <- function(where) {
-  SQL <- glue("SELECT retailer.id FROM retailer WHERE visible LIMIT 1;")
+db_get_retailer <- function() {
+  SQL <- glue("SELECT retailer.id, product.product, product.brand FROM retailer INNER JOIN product ON retailer.id = product.retailer_id WHERE visible AND brand IS NOT NULL LIMIT 1;")
+
+  db_fetch_query(SQL)
+}
+
+db_retailer_no_products <- function() {
+  SQL <- glue("SELECT retailer.id FROM retailer LEFT JOIN product ON retailer.id = product.retailer_id WHERE NOT visible AND retailer_id IS NULL LIMIT 1;")
 
   db_fetch_query(SQL)$id
+}
+
+db_retailer_product_count <- function() {
+  SQL <- glue("SELECT count(*), retailer_id FROM product GROUP BY retailer_id HAVING count(*) > 10000 LIMIT 1;")
+
+  db_fetch_query(SQL)
 }
 
 # Use on_cran() to check if we are running on CRAN.
@@ -59,7 +71,14 @@ if (!testthat:::on_cran()) {
 
   db_send_statement("set search_path to prd, public;")
 
-  retailer_id           <- db_get_retailer()
+  retailer_id           <- db_get_retailer()$id
+  retailer_brand        <- db_get_retailer()$brand
+  retailer_product      <- db_get_retailer()$product
+
+  retailer_no_products  <- db_retailer_no_products()
+
+  retailer_product_count <- db_retailer_product_count()$count
+  retailer_product_count_id <- db_retailer_product_count()$retailer_id
 
   product_id            <- db_get_product("TRUE")
   product_id_null_brand <- db_get_product("brand IS NULL")

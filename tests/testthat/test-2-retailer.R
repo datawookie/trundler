@@ -38,3 +38,25 @@ test_that("retailer product count", {
   expect_type(product_count, "integer")
   expect_length(product_count, 1)
 })
+
+test_that("specific brand", {
+  skip_on_cran()
+
+  retailer_products_with_brand <- retailer_products(retailer_id, brand = retailer_brand)
+
+  expect_equal(names(retailer_products_with_brand), c("product_id", "product", "brand", "model", "sku"))
+})
+
+test_that("specific product", {
+  skip_on_cran()
+
+  retailer_products_with_product <- retailer_products(retailer_id, product = retailer_product)
+
+  expect_equal(names(retailer_products_with_product), c("product_id", "product", "brand", "model", "sku"))
+})
+
+test_that("retailer with no products", {
+  skip_on_cran()
+
+  expect_message(retailer_products(retailer_no_products), "No products are currently available for this retailer.")
+})
