@@ -18,6 +18,8 @@ addons:
   apt:
     packages:
     - libmagick++-dev
+    - libharfbuzz-dev
+    - libfribidi-dev
 
 after_success:
   - Rscript -e 'library(covr); codecov()'
