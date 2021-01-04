@@ -20,6 +20,7 @@ addons:
     - libmagick++-dev
     - libharfbuzz-dev
     - libfribidi-dev
+    - libgit2-dev
 
 after_success:
   - Rscript -e 'library(covr); codecov()'
