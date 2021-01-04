@@ -28,7 +28,12 @@ price_complete <- function(product_id, date_min = NULL, date_max = NULL) {
   }
 
   df <- product_prices(product_id) %>%
-    mutate(date = as.Date(time))
+    mutate(date = as.Date(time)) %>%
+    # Consolidate prices where there are multiple prices per date (unusual, but it happens).
+    group_by(date) %>%
+    mutate(price = mean(price)) %>%
+    slice(1) %>%
+    ungroup()
 
   if (is.null(date_min)) {
     date_min <- min(df$date)
@@ -40,9 +45,12 @@ price_complete <- function(product_id, date_min = NULL, date_max = NULL) {
 
   dates <- seq.Date(date_min, date_max, by = "day")
 
+  # Only interpolate prices for the relevant time period
   df <- complete(df, date = dates, nesting(product_id)) %>%
     group_by(product_id) %>%
-    mutate(price = approx(date, price, date, method = "constant", rule = 2)$y)
+    mutate(price = approx(date, price, date, method = "constant", rule = 2)$y) %>%
+    # Remove prices that weren't interpolated and that fall outside the relevant time period
+    filter(date %in% dates)
 
   df <- df %>%
     mutate(is_interpolated = ifelse(is.na(time), TRUE, FALSE)) %>%
