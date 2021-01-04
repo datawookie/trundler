@@ -8,6 +8,7 @@ retailer_products(
   retailer_id,
   product = NA,
   brand = NA,
+  sku = NA,
   regex = TRUE,
   ignore_case = TRUE,
   head = FALSE,
@@ -20,6 +21,8 @@ retailer_products(
 \item{product}{Filter by product name (treated as a regular expression).}
 
 \item{brand}{Filter by product brand (treated as a regular expression).}
+
+\item{sku}{Filter by SKU.}
 
 \item{regex}{Should filter be treated as a Regular Expression?}
 
@@ -39,7 +42,9 @@ Products for a specific retailer
 # Get products for a specific retailer.
 \dontrun{
 retailer_products(1)
-retailer_products(9, product = "Nescafe")
-retailer_products(9, product = "Nescafe", head = TRUE)
+retailer_products(118, product = "coffee")
+retailer_products(118, brand = "Illy")
+retailer_products(118, product = "coffee", brand = "Illy", head = TRUE)
+retailer_products(118, sku = "086079")
 }
 }

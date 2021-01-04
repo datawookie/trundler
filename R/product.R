@@ -44,6 +44,7 @@ product <- function(product_id) {
 #'
 #' @param product Filter by product name (treated as a regular expression).
 #' @param brand Filter by product brand (treated as a regular expression).
+#' @param sku Filter by SKU.
 #' @param regex Should filter be treated as a Regular Expression?
 #' @param ignore_case	Should case be ignored?
 #' @param barcode Filter by barcode.
@@ -59,11 +60,12 @@ product <- function(product_id) {
 #' products(brand = "Illy")
 #' products(product = "coffee", brand = "Illy")
 #' products(product = "coffee", brand = "Illy", head = TRUE)
+#' products(sku = "086079")
 #' }
-products <- function(product = NA, brand = NA, regex = TRUE, ignore_case = TRUE, barcode = NA, head = FALSE, ...) {
+products <- function(product = NA, brand = NA, sku = NA, regex = TRUE, ignore_case = TRUE, barcode = NA, head = FALSE, ...) {
   url <- paste0(base_url(), "product")
 
-  if (!head && is.na(product) && is.na(brand) && is.na(barcode)) {
+  if (!head && is.na(product) && is.na(brand) && is.na(sku) && is.na(barcode)) {
     warning("Without filter parameters this function will execute a large number of API calls and return a lot of data!", immediate. = TRUE)
   }
 
@@ -73,6 +75,10 @@ products <- function(product = NA, brand = NA, regex = TRUE, ignore_case = TRUE,
 
   if (!is.na(brand)) {
     url <- param_set(url, key = "brand", value = URLencode(brand))
+  }
+
+  if (!is.na(sku)) {
+    url <- param_set(url, key = "sku", value = URLencode(sku))
   }
 
   url <- param_set(url, key = "regex", value = param_boolean(regex))

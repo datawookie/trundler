@@ -43,6 +43,7 @@ retailer <- function(retailer_id = NA) {
 #' @param retailer_id A retailer ID.
 #' @param product Filter by product name (treated as a regular expression).
 #' @param brand Filter by product brand (treated as a regular expression).
+#' @param sku Filter by SKU.
 #' @param regex Should filter be treated as a Regular Expression?
 #' @param ignore_case	Should case be ignore?
 #' @param head Return the data (\code{FALSE}) or the number of records (\code{TRUE})?
@@ -55,10 +56,12 @@ retailer <- function(retailer_id = NA) {
 #' # Get products for a specific retailer.
 #' \dontrun{
 #' retailer_products(1)
-#' retailer_products(9, product = "Nescafe")
-#' retailer_products(9, product = "Nescafe", head = TRUE)
+#' retailer_products(118, product = "coffee")
+#' retailer_products(118, brand = "Illy")
+#' retailer_products(118, product = "coffee", brand = "Illy", head = TRUE)
+#' retailer_products(118, sku = "086079")
 #' }
-retailer_products <- function(retailer_id, product = NA, brand = NA, regex = TRUE, ignore_case = TRUE, head = FALSE, ...) {
+retailer_products <- function(retailer_id, product = NA, brand = NA, sku = NA, regex = TRUE, ignore_case = TRUE, head = FALSE, ...) {
   check_retailer_id(retailer_id)
 
   url <- paste0(base_url(), "retailer/%d/product") %>%
@@ -70,6 +73,10 @@ retailer_products <- function(retailer_id, product = NA, brand = NA, regex = TRU
 
   if (!is.na(brand)) {
     url <- param_set(url, key = "brand", value = URLencode(brand))
+  }
+
+  if (!is.na(sku)) {
+    url <- param_set(url, key = "sku", value = URLencode(sku))
   }
 
   url <- param_set(url, key = "regex", value = param_boolean(regex))
