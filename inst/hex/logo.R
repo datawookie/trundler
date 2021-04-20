@@ -11,7 +11,7 @@ IMAGE = tempfile(fileext = ".svg")
 #
 IMAGE = path.expand(IMAGE)
 #
-download.file("https://www.trundler.dev/images/icon.svg", IMAGE)
+download.file("https://www.trundler.dev/img/icon.svg", IMAGE)
 
 LOGO_PATH = here("man/figures/")
 LOGO_FILE = file.path(LOGO_PATH, "logo.png")
