@@ -18,7 +18,8 @@ test_that("default min date is correct", {
     product_id,
     date_min = NULL,
     date_max = MAX_DATE
-  )$date %>%
+  ) %>%
+    pull(date) %>%
     sort(decreasing = FALSE) %>%
     first()
 
@@ -34,7 +35,9 @@ test_that("default max date is correct", {
   last_date_with_interpolation <- price_complete(
     product_id,
     date_min = "2020-01-01",
-    date_max = NULL)$date %>%
+    date_max = NULL
+  ) %>%
+    pull(date) %>%
     sort() %>%
     last()
 
@@ -53,38 +56,59 @@ test_that("valid max date format", {
 
 test_that("correct minimum date when date range extended", {
   skip_on_cran()
-  date_min <- price_complete(product_id,
-                             date_min = "2019-01-01",
-                             date_max = MAX_DATE)$date[1]
+  date_min <- price_complete(
+    product_id,
+    date_min = "2019-01-01",
+    date_max = MAX_DATE
+  ) %>%
+    pull(date) %>%
+    first()
   expect_equal(date_min, as.Date("2019-01-01"))
 })
 
 test_that("correct minimum date when date range abbreviated", {
   skip_on_cran()
-  date_min <- price_complete(product_id,
-                             date_min = "2020-10-01",
-                             date_max = "2020-10-10")$date[1]
+  date_min <- price_complete(
+    product_id,
+    date_min = "2020-10-01",
+    date_max = "2020-10-10"
+  ) %>%
+    pull(date) %>%
+    first()
   expect_equal(date_min, as.Date("2020-10-01"))
 })
 
 test_that("correct maximum date when date range extended", {
   skip_on_cran()
-  date_max <- tail(price_complete(product_id,
-                                  date_min = "2020-01-01",
-                                  date_max = MAX_DATE)$date, n = 1)
+  date_max <- price_complete(
+    product_id,
+    date_min = "2020-01-01",
+    date_max = MAX_DATE
+  ) %>%
+    pull(date) %>%
+    last()
   expect_equal(date_max, as.Date(MAX_DATE))
 })
 
 test_that("correct maximum date when date range abbreviated", {
   skip_on_cran()
-  date_max <- tail(price_complete(product_id,
-                                  date_min = "2020-10-01",
-                                  date_max = "2020-10-10")$date, n = 1)
+  date_max <- price_complete(
+    product_id,
+    date_min = "2020-10-01",
+    date_max = "2020-10-10"
+  ) %>%
+    pull(date) %>%
+    last()
   expect_equal(date_max, as.Date("2020-10-10"))
 })
 
 test_that("is_interpolated", {
   skip_on_cran()
-  is_interpolated <- price_complete(product_id, date_min = "2019-01-01")$is_interpolated[1]
+  is_interpolated <- price_complete(
+    product_id,
+    date_min = "2019-01-01"
+  ) %>%
+    pull(is_interpolated) %>%
+    first()
   expect_equal(is_interpolated, TRUE)
 })
