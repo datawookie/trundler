@@ -31,7 +31,11 @@ db_get_product <- function(where) {
   db_fetch_query(SQL)$id
 }
 db_get_retailer <- function() {
-  SQL <- glue("SELECT retailer.id, product.product, product.brand FROM retailer INNER JOIN product ON retailer.id = product.retailer_id WHERE visible AND brand IS NOT NULL LIMIT 1;")
+  RETAILER = "Yuppiechef"
+  PRODUCT = "Classic Decorating Knife"
+  BRAND = "Wusthof"
+
+  SQL <- glue("SELECT retailer.id, product.product, product.brand FROM retailer INNER JOIN product ON retailer.id = product.retailer_id WHERE retailer = '{RETAILER}' AND product = '{PRODUCT}' AND brand = '{BRAND}' LIMIT 1;")
 
   db_fetch_query(SQL)
 }
