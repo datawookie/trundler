@@ -5,7 +5,7 @@ library(httr)
 test_that("check that response is compressed", {
   r = trundler:::GET("https://api.trundler.dev/category")
 
-  expect_equal(headers(r)$`content-encoding`, "gzip")
+  expect_true(headers(r)$`content-encoding` %in% c("gzip", "br", "deflate"))
 })
 
 test_that("http error message", {
