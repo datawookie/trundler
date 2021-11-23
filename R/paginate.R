@@ -14,7 +14,7 @@
 #' @param limit Number of items per query
 #' @param head Return the data (\code{FALSE}) or the number of records (\code{TRUE})?
 #' @param verbose Whether to produce verbose output.
-paginate <- function(url, head = FALSE, limit = 10000, verbose = NULL) {
+paginate <- function(url, head = FALSE, limit = 100000, verbose = NULL) {
   offset = 0
   results <- list()
 
@@ -23,8 +23,8 @@ paginate <- function(url, head = FALSE, limit = 10000, verbose = NULL) {
   if (!head) {
     while(TRUE) {
       url <- url %>%
-        param_set(key = "limit", value = limit) %>%
         # Prevent converting to scientific notation because "+" has different meaning in URL.
+        param_set(key = "limit", value = format(limit, scientific = FALSE)) %>%
         param_set(key = "offset", value = format(offset, scientific = FALSE))
 
       response <- GET(url)
