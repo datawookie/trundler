@@ -9,24 +9,24 @@ NULL
 #' @rdname palette
 #' @format
 #' @export
-TRUNDLER_SLATE  = "#708090"
+TRUNDLER_SLATE <- "#708090"
 #' @rdname palette
 #' @format
 #' @export
-TRUNDLER_ORANGE = "#FB792B"
+TRUNDLER_ORANGE <- "#FB792B"
 #' @rdname palette
 #' @format
 #' @export
-TRUNDLER_BLUE   = "#106682"
+TRUNDLER_BLUE <- "#106682"
 #' @rdname palette
 #' @format
 #' @export
-TRUNDLER_GREY   = "#AAAAAA"
+TRUNDLER_GREY <- "#AAAAAA"
 #' @rdname palette
 #' @format
 #' @export
-TRUNDLER_GREEN  = "#5D9D3F"
+TRUNDLER_GREEN <- "#5D9D3F"
 #' @rdname palette
 #' @format
 #' @export
-TRUNDLER_RED    = "#EB284B"
+TRUNDLER_RED <- "#EB284B"

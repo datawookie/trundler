@@ -4,9 +4,11 @@ plot_data <- product_prices(product_id) %>% mutate(date = as.Date(time))
 
 p <- ggplot(plot_data, aes(x = date, y = price, colour = product_id)) +
   geom_line() +
-  labs(title = "Trundler Title",
-       subtitle = "Trundler Subtitle",
-       caption = "Trundler Caption") +
+  labs(
+    title = "Trundler Title",
+    subtitle = "Trundler Subtitle",
+    caption = "Trundler Caption"
+  ) +
   theme_trundler()
 
 test_that("theme", {
@@ -32,6 +34,8 @@ test_that("theme trundler watermark", {
 
   p <- p + theme_trundler_watermark()
 
-  expect_equal(class(p[["layers"]][[2]][["geom"]]),
-               c("GeomCustomAnn", "Geom", "ggproto", "gg"))
+  expect_equal(
+    class(p[["layers"]][[2]][["geom"]]),
+    c("GeomCustomAnn", "Geom", "ggproto", "gg")
+  )
 })

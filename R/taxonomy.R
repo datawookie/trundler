@@ -44,7 +44,7 @@ categories <- function(category_id = NULL) {
 #' graph <- categories_graph()
 #' # In principle there should be graph data available, but let's check.
 #' if (!is.null(graph)) {
-#'   ggraph(graph, 'tree') +
+#'   ggraph(graph, "tree") +
 #'     geom_edge_link() +
 #'     geom_node_point() +
 #'     geom_node_label(aes(label = category_label)) +
@@ -89,10 +89,12 @@ categories_graph <- function(taxonomy = NULL) {
 #' @examples
 #' # Get products for a specific category.
 #' \dontrun{
-#' category_id = categories() %>% filter(category_label == "red wine") %>% pull(category_id)
+#' category_id <- categories() %>%
+#'   filter(category_label == "red wine") %>%
+#'   pull(category_id)
 #' category_products(category_id)
 #' }
-category_products <- function(category_id, recursive=TRUE, ...) {
+category_products <- function(category_id, recursive = TRUE, ...) {
   url <- paste0(base_url(), "category/%d") %>%
     sprintf(category_id)
 

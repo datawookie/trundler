@@ -1,6 +1,6 @@
 context("price_complete")
 
-MAX_DATE = as.Date(max(product_prices(product_id)$time)) + 10
+MAX_DATE <- as.Date(max(product_prices(product_id)$time)) + 10
 
 test_that("price_complete", {
   skip_on_cran()
