@@ -1,7 +1,7 @@
 BASE_URL <- "https://api.trundler.dev/"
 RAPIDAPI_URL <- "https://trundler.p.rapidapi.com/"
 
-PKG_VERSION <- utils::packageDescription('trundler')$Version
+PKG_VERSION <- utils::packageDescription("trundler")$Version
 
 cache <- new.env()
 
@@ -118,11 +118,9 @@ set_api_key <- function(api_key) {
     message("Using a RapidAPI key.")
     assign("rapidapi_key", api_key, envir = cache)
     set_base_url(RAPIDAPI_URL)
-  }
-  else if (grepl("^[[:lower:][:digit:]-]{36}$", api_key)) {
+  } else if (grepl("^[[:lower:][:digit:]-]{36}$", api_key)) {
     assign("api_key", api_key, envir = cache)
-  }
-  else {
+  } else {
     if (api_key == "" || is.na(api_key) || is.null(api_key)) {
       stop("API key is missing.", call. = FALSE)
     } else {

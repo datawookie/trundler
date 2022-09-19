@@ -27,4 +27,3 @@ test_that("invalid category", {
 
   expect_error(category_products(0))
 })
-

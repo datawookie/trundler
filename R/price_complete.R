@@ -14,15 +14,15 @@
 #' }
 price_complete <- function(product_id, date_min = NULL, date_max = NULL) {
   if (!is.null(date_min)) {
-    date_min <- try(as.Date(date_min, format="%Y-%m-%d"))
-    if("try-error" %in% class(date_min) || is.na(date_min)) {
+    date_min <- try(as.Date(date_min, format = "%Y-%m-%d"))
+    if ("try-error" %in% class(date_min) || is.na(date_min)) {
       stop("Argument date_min must be a character string with format YYYY-mm-dd.")
     }
   }
 
   if (!is.null(date_max)) {
-    date_max <- try(as.Date(date_max, format="%Y-%m-%d"))
-    if("try-error" %in% class(date_max) || is.na(date_max)) {
+    date_max <- try(as.Date(date_max, format = "%Y-%m-%d"))
+    if ("try-error" %in% class(date_max) || is.na(date_max)) {
       stop("Argument date_max must be a character string with format YYYY-mm-dd.")
     }
   }

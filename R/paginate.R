@@ -15,13 +15,13 @@
 #' @param head Return the data (\code{FALSE}) or the number of records (\code{TRUE})?
 #' @param verbose Whether to produce verbose output.
 paginate <- function(url, head = FALSE, limit = 100000, verbose = NULL) {
-  offset = 0
+  offset <- 0
   results <- list()
 
-  if (is.null(verbose)) verbose = trundler_chatty()
+  if (is.null(verbose)) verbose <- trundler_chatty()
 
   if (!head) {
-    while(TRUE) {
+    while (TRUE) {
       url <- url %>%
         # Prevent converting to scientific notation because "+" has different meaning in URL.
         param_set(key = "limit", value = format(limit, scientific = FALSE)) %>%
@@ -39,7 +39,7 @@ paginate <- function(url, head = FALSE, limit = 100000, verbose = NULL) {
       if (offset == 0) {
         count_result <- as.integer(response$headers$`x-total-count`)
         if (length(count_result)) {
-          count_page   <- ceiling(count_result / limit)
+          count_page <- ceiling(count_result / limit)
           if (verbose) message(glue("Retrieving {count_result} results ({count_page} pages)."))
           #
           stepper <- progressr::progressor(steps = count_page, auto_finish = FALSE)
@@ -66,7 +66,7 @@ paginate <- function(url, head = FALSE, limit = 100000, verbose = NULL) {
         break
       }
 
-      offset = offset + limit
+      offset <- offset + limit
       # Increment progress bar.
       stepper()
     }
@@ -75,7 +75,9 @@ paginate <- function(url, head = FALSE, limit = 100000, verbose = NULL) {
       as_tibble() %>%
       mutate_at(vars(any_of(c("brand", "model", "sku"))), as.character) %>%
       mutate_at(vars(any_of(c("price", "price_promotion"))), as.numeric) %>%
-      mutate_at(vars(any_of(c("time"))), function(time) {as.POSIXct(time, format = "%Y-%m-%dT%H:%M:%S", tz = "UTC")})
+      mutate_at(vars(any_of(c("time"))), function(time) {
+        as.POSIXct(time, format = "%Y-%m-%dT%H:%M:%S", tz = "UTC")
+      })
   } else {
     response <- HEAD(url)
 

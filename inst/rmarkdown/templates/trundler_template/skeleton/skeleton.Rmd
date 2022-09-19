@@ -23,9 +23,9 @@ library(ggplot2)
 library(gt)
 library(glue)
 
-DATE_MIN = as.Date("2020-03-01")
-DATE_MAX = strftime(Sys.Date(), format = "%Y-%m-%d")
-RETAILER_ID_PICKNPAY = 9
+DATE_MIN <- as.Date("2020-03-01")
+DATE_MAX <- strftime(Sys.Date(), format = "%Y-%m-%d")
+RETAILER_ID_PICKNPAY <- 9
 ```
 
 This is an example of how you can generate a report using the Trundler R package.    
@@ -50,12 +50,16 @@ Trundler collects data from wide range of retailers.  Currently, there are `r le
 ```{r}
 # View the first 10 retailers
 gt(retailers[1:10, 1:4]) %>%
-  tab_header(title = md("**Trundler Retailer Catalog**"),
-            subtitle = md("*The first ten retailers in the catalog*")) %>%
-  cols_label(retailer_id = md("**Retailer ID**"),
-             retailer = md("**Retailer**"),
-             retailer_url = md("**URL**"),
-             currency = md("**Currency**"))
+  tab_header(
+    title = md("**Trundler Retailer Catalog**"),
+    subtitle = md("*The first ten retailers in the catalog*")
+  ) %>%
+  cols_label(
+    retailer_id = md("**Retailer ID**"),
+    retailer = md("**Retailer**"),
+    retailer_url = md("**URL**"),
+    currency = md("**Currency**")
+  )
 ```
 <br>
 
@@ -71,11 +75,15 @@ all_bovril <- retailer_products(retailer_id = RETAILER_ID_PICKNPAY, product = "B
 
 # View the table
 gt(all_bovril) %>%
-  tab_header(title = md("**All Bovril Products**"),
-             subtitle = md("*At Pick 'n Pay*")) %>%
-  cols_label(product_id = md("**Product ID**"),
-             product = md("**Product**"),
-             sku = md("**SKU**"))
+  tab_header(
+    title = md("**All Bovril Products**"),
+    subtitle = md("*At Pick 'n Pay*")
+  ) %>%
+  cols_label(
+    product_id = md("**Product ID**"),
+    product = md("**Product**"),
+    sku = md("**SKU**")
+  )
 ```
 <br>
 
@@ -93,9 +101,9 @@ bovril_250g <- product(bovril_250g_id)
 
 # Add the historical price data and the retailer information
 bovril_250g_prices <- product_prices(bovril_250g_id) %>%
-  inner_join(bovril_250g, by = 'product_id') %>%
-  inner_join(retailers, by = 'retailer_id') %>%
-  select(date = time, product, retailer, starts_with('price')) %>%
+  inner_join(bovril_250g, by = "product_id") %>%
+  inner_join(retailers, by = "retailer_id") %>%
+  select(date = time, product, retailer, starts_with("price")) %>%
   mutate(date = as.Date(date))
 
 # View the table
@@ -107,12 +115,16 @@ bovril_250g_prices %>%
   slice(1:10) %>%
   arrange(desc(date)) %>%
   gt() %>%
-  tab_header(title = md(glue("**{product}**")),
-             subtitle = md(glue("*At {retailer}*"))) %>%
-  cols_label(date = md("**Date**"),
-             price = md("**Price**"),
-             price_promotion = md("**Promotional Price**"),
-             price_effective = md("**Effective Price**"))
+  tab_header(
+    title = md(glue("**{product}**")),
+    subtitle = md(glue("*At {retailer}*"))
+  ) %>%
+  cols_label(
+    date = md("**Date**"),
+    price = md("**Price**"),
+    price_promotion = md("**Promotional Price**"),
+    price_effective = md("**Effective Price**")
+  )
 ```
 <br>
 
@@ -132,9 +144,9 @@ ggplot(bovril_250g_prices, aes(x = date)) +
   ) +
   theme_trundler() +
   theme(
-     panel.grid.major.y = element_line(colour = TRUNDLER_GREY, size = 0.25),
-     panel.grid.minor.y = element_line(colour = TRUNDLER_GREY, size = 0.25)
-   ) +
+    panel.grid.major.y = element_line(colour = TRUNDLER_GREY, size = 0.25),
+    panel.grid.minor.y = element_line(colour = TRUNDLER_GREY, size = 0.25)
+  ) +
   theme_trundler_title(subtitle = FALSE)
 ```
 <br>
@@ -150,9 +162,11 @@ search_results <- products("bovril")
 
 # Join the search results to the retailer dataframe.  Use currency field to select only SA retailers.
 bovril_products <- search_results %>%
-  inner_join(retailers, by = 'retailer_id') %>%
-  filter(str_detect(product, "250") ,
-         currency == "ZAR") %>%
+  inner_join(retailers, by = "retailer_id") %>%
+  filter(
+    str_detect(product, "250"),
+    currency == "ZAR"
+  ) %>%
   arrange(retailer)
 
 # View the results
@@ -162,11 +176,15 @@ bovril_products %>%
   slice(1) %>%
   ungroup() %>%
   gt() %>%
-  tab_header(title = md("**Bovril 250g**"),
-             subtitle = md("*Sold at South African retailers*")) %>%
-  cols_label(product = md("**Product**"),
-             retailer = md("**Retailer**"),
-             sku = md("**SKU**"))
+  tab_header(
+    title = md("**Bovril 250g**"),
+    subtitle = md("*Sold at South African retailers*")
+  ) %>%
+  cols_label(
+    product = md("**Product**"),
+    retailer = md("**Retailer**"),
+    sku = md("**SKU**")
+  )
 ```
 <br>
 
@@ -176,11 +194,12 @@ As you can see, it is sold at a number of South African retailers. Now, let's re
 ```{r}
 # Get the price data for these bovril products, interpolating prices where necessary.
 bovril_prices <- map_dfr(bovril_products$product_id,
-                         price_complete,
-                         date_min = DATE_MIN,
-                         date_max = DATE_MAX) %>%
+  price_complete,
+  date_min = DATE_MIN,
+  date_max = DATE_MAX
+) %>%
   unnest(cols = c(price)) %>%
-  inner_join(bovril_products, by = 'product_id') %>%
+  inner_join(bovril_products, by = "product_id") %>%
   select(date, product_id, sku, product, retailer, starts_with("price"))
 
 # Get the average daily price of Bovril in South Africa
@@ -191,12 +210,16 @@ bovril_summary <- bovril_prices %>%
 # View the table
 bovril_summary %>%
   arrange(desc(date)) %>%
-    slice(1:10) %>%
+  slice(1:10) %>%
   gt() %>%
-  tab_header(title = md("**Bovril 250g: Average Price**"),
-             subtitle = md("*Past ten days*")) %>%
-  cols_label(date = md("**Date**"),
-             avg_price = md("**Average Price**"))
+  tab_header(
+    title = md("**Bovril 250g: Average Price**"),
+    subtitle = md("*Past ten days*")
+  ) %>%
+  cols_label(
+    date = md("**Date**"),
+    avg_price = md("**Average Price**")
+  )
 ```
 <br>
 
@@ -217,7 +240,7 @@ ggplot(bovril_summary, aes(x = date)) +
   theme_trundler() +
   theme_trundler_title() +
   theme(
-     panel.grid.major.y = element_line(colour = TRUNDLER_GREY, size = 0.25),
-     panel.grid.minor.y = element_line(colour = TRUNDLER_GREY, size = 0.25)
-   )
+    panel.grid.major.y = element_line(colour = TRUNDLER_GREY, size = 0.25),
+    panel.grid.minor.y = element_line(colour = TRUNDLER_GREY, size = 0.25)
+  )
 ```

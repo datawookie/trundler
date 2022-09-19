@@ -3,7 +3,7 @@ context("http")
 library(httr)
 
 test_that("check that response is compressed", {
-  r = trundler:::GET("https://api.trundler.dev/category")
+  r <- trundler:::GET("https://api.trundler.dev/category")
 
   expect_true(headers(r)$`content-encoding` %in% c("gzip", "br", "deflate"))
 })
@@ -15,11 +15,9 @@ test_that("http error message", {
 })
 
 test_that("HEAD", {
-  r = trundler:::HEAD(sprintf("https://api.trundler.dev/retailer/%d/product", retailer_product_count_id))
+  r <- trundler:::HEAD(sprintf("https://api.trundler.dev/retailer/%d/product", retailer_product_count_id))
 
   product_count <- as.integer(r$headers$`x-total-count`)
 
   expect_equal(product_count, as.integer(retailer_product_count))
 })
-
-

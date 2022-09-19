@@ -25,10 +25,10 @@ product <- function(product_id) {
     content(as = "text", encoding = "UTF-8") %>%
     fromJSON()
 
-  if (is.null(result$brand)) result$brand = NA_character_
-  if (is.null(result$model)) result$model = NA_character_
-  if (is.null(result$sku)) result$sku = NA_character_
-  if (!length(result$barcodes)) result$barcodes = NA_character_
+  if (is.null(result$brand)) result$brand <- NA_character_
+  if (is.null(result$model)) result$model <- NA_character_
+  if (is.null(result$sku)) result$sku <- NA_character_
+  if (!length(result$barcodes)) result$barcodes <- NA_character_
 
   result %>%
     as_tibble() %>%
@@ -139,20 +139,21 @@ product_prices <- function(product_id, head = FALSE, ...) {
   if (!head) {
     if (nrow(prices)) {
       prices %>%
-        mutate(price_effective = coalesce(price_promotion, price)
-        ) %>%
+        mutate(price_effective = coalesce(price_promotion, price)) %>%
         select(-available, available)
     } else {
-      message(paste0("No prices are currently available for product with ID = ",
-                     product_id, "."))
-        tibble(
-          product_id = integer(),
-          time = as.POSIXct(integer(), origin = "1970-01-01"),
-          price = numeric(),
-          price_promotion = numeric(),
-          price_effective = numeric(),
-          available = logical()
-        )
+      message(paste0(
+        "No prices are currently available for product with ID = ",
+        product_id, "."
+      ))
+      tibble(
+        product_id = integer(),
+        time = as.POSIXct(integer(), origin = "1970-01-01"),
+        price = numeric(),
+        price_promotion = numeric(),
+        price_effective = numeric(),
+        available = logical()
+      )
     }
   } else {
     message(paste0(prices, " price history entries will be returned."))

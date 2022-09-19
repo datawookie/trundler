@@ -4,15 +4,15 @@ Sys.setenv(TZ = "Etc/UTC")
 
 library(glue)
 
-TRUNDLER_KEY = Sys.getenv("TRUNDLER_KEY")
-RAPIDAPI_KEY = Sys.getenv("RAPIDAPI_KEY")
+TRUNDLER_KEY <- Sys.getenv("TRUNDLER_KEY")
+RAPIDAPI_KEY <- Sys.getenv("RAPIDAPI_KEY")
 
 base_url_original <- base_url()
 
-DB_HOST = Sys.getenv("DB_HOST")
-DB_DATABASE = Sys.getenv("DB_DATABASE")
-DB_USER = Sys.getenv("DB_USER")
-DB_PASSWD = Sys.getenv("DB_PASSWD")
+DB_HOST <- Sys.getenv("DB_HOST")
+DB_DATABASE <- Sys.getenv("DB_DATABASE")
+DB_USER <- Sys.getenv("DB_USER")
+DB_PASSWD <- Sys.getenv("DB_PASSWD")
 
 db_fetch_query <- function(sql) {
   result <- dbSendQuery(db, sql)
@@ -31,9 +31,9 @@ db_get_product <- function(where) {
   db_fetch_query(SQL)$id
 }
 db_get_retailer <- function() {
-  RETAILER = "Yuppiechef"
-  PRODUCT = "Classic Decorating Knife"
-  BRAND = "Wusthof"
+  RETAILER <- "Yuppiechef"
+  PRODUCT <- "Classic Decorating Knife"
+  BRAND <- "Wusthof"
 
   SQL <- glue("SELECT retailer.id, product.product, product.brand FROM retailer INNER JOIN product ON retailer.id = product.retailer_id WHERE retailer = '{RETAILER}' AND product = '{PRODUCT}' AND brand = '{BRAND}' LIMIT 1;")
 
@@ -75,16 +75,16 @@ if (!testthat:::on_cran()) {
 
   db_send_statement("set search_path to prd, public;")
 
-  retailer_id           <- db_get_retailer()$id
-  retailer_brand        <- db_get_retailer()$brand
-  retailer_product      <- db_get_retailer()$product
+  retailer_id <- db_get_retailer()$id
+  retailer_brand <- db_get_retailer()$brand
+  retailer_product <- db_get_retailer()$product
 
-  retailer_no_products  <- db_retailer_no_products()
+  retailer_no_products <- db_retailer_no_products()
 
   retailer_product_count <- db_retailer_product_count()$count
   retailer_product_count_id <- db_retailer_product_count()$retailer_id
 
-  product_id            <- db_get_product("TRUE")
+  product_id <- db_get_product("TRUE")
   product_id_null_brand <- db_get_product("brand IS NULL")
-  product_id_null_sku   <- db_get_product("sku IS NULL")
+  product_id_null_sku <- db_get_product("sku IS NULL")
 }

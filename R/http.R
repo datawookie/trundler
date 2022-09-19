@@ -13,20 +13,20 @@ http_error_message <- function(status_code) {
 #' @param ... Further named parameters.
 #' @param retry Number of times to retry request on failure.
 GET <- function(url = NULL, config = list(), retry = 5, ...) {
-  headers = list()
+  headers <- list()
 
   api_key <- NULL
   try(api_key <- get_api_key(), silent = TRUE)
   #
   if (!is.null(api_key)) {
-    headers = list("X-Api-Key" = api_key)
+    headers <- list("X-Api-Key" = api_key)
   }
 
   api_key <- NULL
   try(api_key <- get_rapidapi_key(), silent = TRUE)
   #
   if (!is.null(api_key)) {
-    headers = list("x-rapidapi-key" = api_key, "x-rapidapi-host" = "trundler.p.rapidapi.com")
+    headers <- list("x-rapidapi-key" = api_key, "x-rapidapi-host" = "trundler.p.rapidapi.com")
   }
 
   response <- httr::RETRY(
@@ -58,20 +58,20 @@ GET <- function(url = NULL, config = list(), retry = 5, ...) {
 #' @param ... Further named parameters.
 #' @param retry Number of times to retry request on failure.
 HEAD <- function(url = NULL, config = list(), retry = 5, ...) {
-  headers = list()
+  headers <- list()
 
   api_key <- NULL
   try(api_key <- get_api_key(), silent = TRUE)
   #
   if (!is.null(api_key)) {
-    headers = list("X-Api-Key" = api_key)
+    headers <- list("X-Api-Key" = api_key)
   }
 
   api_key <- NULL
   try(api_key <- get_rapidapi_key(), silent = TRUE)
   #
   if (!is.null(api_key)) {
-    headers = list("x-rapidapi-key" = api_key, "x-rapidapi-host" = "trundler.p.rapidapi.com")
+    headers <- list("x-rapidapi-key" = api_key, "x-rapidapi-host" = "trundler.p.rapidapi.com")
   }
 
   response <- httr::RETRY(

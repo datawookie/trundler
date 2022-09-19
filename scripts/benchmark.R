@@ -2,7 +2,7 @@ library(trundler)
 library(dplyr)
 library(microbenchmark)
 
-API_KEY = Sys.getenv("TRUNDLER_KEY")
+API_KEY <- Sys.getenv("TRUNDLER_KEY")
 set_api_key(API_KEY)
 
 # Some "quick" queries.
